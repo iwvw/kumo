@@ -2,7 +2,7 @@ name: Translate docs via opencode agent
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, edited, labeled, reopened]
 
 permissions:
   contents: write
