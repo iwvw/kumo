@@ -13,48 +13,52 @@ concurrency:
   group: translate-${{ github.event.issue.number }}
   cancel-in-progress: false
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  DSUKHUB_API_KEY: ${{ secrets.DSUKHUB_API_KEY }}
+  ISSUE_NUMBER: ${{ github.event.issue.number }}
+
 jobs:
   translate:
     if: contains(github.event.issue.labels.*.name, 'translation')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout zh
         uses: actions/checkout@v6
         with:
-          persist-credentials: false
+          ref: zh
+          fetch-depth: 0
 
-      - name: Run OpenCode agent to translate
-        uses: anomalyco/opencode/github@latest
+      - name: Configure git identity
+        run: |
+          git config --global user.name "opencode[bot]"
+          git config --global user.email "opencode[bot]@users.noreply.github.com"
+
+      - name: Install opencode
+        run: curl -fsSL https://opencode.ai/install | bash
+
+      - name: Run opencode agent (incremental translation)
         env:
-          DSUKHUB_API_KEY: ${{ secrets.DSUKHUB_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          model: ${{ vars.OPENCODE_MODEL }}
-          use_github_token: true
-          prompt: |
-            You are the maintenance agent for the Simplified-Chinese localization of the Cloudflare Kumo docs (repo iwvw/kumo, branch `zh`).
+          PATH: /home/runner/.opencode/bin:$PATH
+        run: |
+          cat > /tmp/prompt.md <<'EOF'
+            You are the maintenance agent of the Simplified-Chinese localization of the Cloudflare Kumo docs (fork iwvw/kumo, branch `zh`).
 
-            Translate the documentation files listed in the triggering issue body (the `- path` items under the list). Read the full issue thread for the file list and any notes.
+            Context: translate the documentation files listed in issue #__ISSUE_NUMBER__. Read the issue first with:
+              gh issue view __ISSUE_NUMBER__
+            to get the exact file list. Work on the current branch `zh`. If necessary, ensure upstream is merged first:
+              git fetch upstream main && git merge upstream/main --no-edit
+            (resolve any conflicts by translating; the re-translated content wins over English.)
 
-            Do the work on the current checked-out branch `zh`.
-
-            STRICT RULES (violating any of these is a failure):
-            1. ONLY touch the files explicitly listed in the issue. Never modify any other file, never add files, never delete files. If a listed file is already fully translated, state that in your comment and skip it.
-            2. Translate ONLY user-visible English prose into natural Simplified Chinese: headings (##/###/####), paragraphs, list items, table cells, and the frontmatter `description` value. Do NOT translate:
-               - Code blocks (everything inside ``` fences) — keep byte-identical.
-               - Component/API identifiers (Button, Badge, Dialog...), frontmatter keys `layout`, `title`, `sourceFile`, import statements.
-               - JSX/Astro component tags and ALL their props (demo, vrSection, vrTitle, lang, component, href...) and prop values that are code or identifiers.
-               - Internal links, anchors (#...), URLs, image paths, file paths.
-               - Brand/proper nouns: Kumo, Base UI, Tailwind, CLI, Figma, npm, pnpm, ARIA.
-            3. Do not reformat, reindent, reflow, merge or reorder any existing content. Preserve the exact Markdown/JSX structure and whitespace, only replace English text with Chinese.
-            4. After editing, verify the build:
-               run `pnpm install`, then `pnpm --filter @cloudflare/kumo build`, then `pnpm --filter @cloudflare/kumo-docs-astro build`.
-               If the build fails, fix your changes until it passes. NEVER commit or push a broken build.
-            5. If you made changes, commit them on `zh` with subject `docs(zh): translate <issue #N> (<file paths, comma-separated, kebab-case>)` and push to `origin zh`. One commit for the task.
-            6. Close the loop: post a summary comment on the triggering issue — list the files you translated (or "no changes needed, all listed files already translated"), state that the build passed, and whether you pushed. If nothing was committed, still comment and then CLOSE the issue.
-            7. Do not remove/change the `translation` label; close the issue only when you are done.
-
-            Common term mapping for consistency:
-              Installation→安装, Usage→用法, Examples→示例, API Reference→API 参考, Variants→变体, Sizes→尺寸, States→状态, Accessibility→无障碍, Barrel→桶式导出, Granular→细粒度导入.
-
-            Reply concisely; the comment is the human-visible record.
+            STRICT RULES (violating any is a failure):
+            1. ONLY modify the files listed in the issue (paths under packages/kumo-docs-astro/src). Never touch other files, never add or delete files. If a listed file is already fully translated, state it in your summary and skip it.
+            2. Translate ONLY user-visible English prose into natural Simplified Chinese: headings, paragraphs, list items, table cells, and the frontmatter `description` value. Do NOT translate: code blocks (keep byte-identical), component/API identifiers (Button, Badge...), frontmatter keys (layout/title/sourceFile), imports, JSX/Astro props and their code-like values, links, anchors, URLs, file paths, brand nouns (Kumo, Base UI, Tailwind, CLI, Figma, npm, pnpm, ARIA).
+            3. Preserve exact Markdown/JSX structure, indentation and whitespace; do not reformat/reflow/reorder.
+            4. Consistent terms: Installation→安装, Usage→用法, Examples→示例, API Reference→API 参考, Variants→变体, Sizes→尺寸, States→状态, Accessibility→无障碍, Barrel→桶式导出, Granular→细粒度导入, Blocks→区块, Charts→图表.
+            5. After editing, verify the build: `pnpm install`, then `pnpm --filter @cloudflare/kumo build`, then `pnpm --filter @cloudflare/kumo-docs-astro build`. Fix problems until it passes. NEVER push a broken build.
+            6. Commit your changes on `zh` (subject: `docs(zh): translate issue #__ISSUE_NUMBER__`), then `git push origin zh`. Only commit/push if there are real changes; skip if nothing changed.
+            7. Close the loop: post a concise summary comment on the issue with `gh issue comment __ISSUE_NUMBER__` — which files were translated (or "no changes needed, all already translated"), that the build passed, and whether a commit was pushed. Then close it with `gh issue close __ISSUE_NUMBER__`.
+            You are done ONLY after step 7.
+          EOF
+          sed -i "s/__ISSUE_NUMBER__/${ISSUE_NUMBER}/g" /tmp/prompt.md
+          opencode run "$(cat /tmp/prompt.md)"
