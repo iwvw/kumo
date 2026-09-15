@@ -39,7 +39,6 @@ jobs:
 
       - name: Run opencode agent (incremental translation)
         env:
-          PATH: /home/runner/.opencode/bin:$PATH
           MODEL: ${{ vars.OPENCODE_MODEL }}
           MODEL_BACKUP: ${{ vars.OPENCODE_MODEL_BACKUP }}
         run: |
@@ -64,8 +63,9 @@ jobs:
           EOF
           sed -i "s/__ISSUE_NUMBER__/${ISSUE_NUMBER}/g" /tmp/prompt.md
           PROMPT="$(cat /tmp/prompt.md)"
+          OPENCODE=/home/runner/.opencode/bin/opencode
           echo "primary model: ${MODEL}"
-          if ! opencode run -m "${MODEL}" "$PROMPT"; then
+          if ! "${OPENCODE}" run -m "${MODEL}" "$PROMPT"; then
             echo "primary model failed; falling back to ${MODEL_BACKUP}"
-            opencode run -m "${MODEL_BACKUP}" "$PROMPT" || exit 1
+            "${OPENCODE}" run -m "${MODEL_BACKUP}" "$PROMPT" || exit 1
           fi
