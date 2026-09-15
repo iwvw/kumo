@@ -1,5 +1,5 @@
 {
-  "model": "dsukhub/deepseek-v4.1-flash",
+  "model": "dsukhub/deepseek-v4-flash",
   "provider": {
     "dsukhub": {
       "name": "dsukhub",

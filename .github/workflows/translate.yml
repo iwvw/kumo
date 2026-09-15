@@ -40,6 +40,8 @@ jobs:
       - name: Run opencode agent (incremental translation)
         env:
           PATH: /home/runner/.opencode/bin:$PATH
+          MODEL: ${{ vars.OPENCODE_MODEL }}
+          MODEL_BACKUP: ${{ vars.OPENCODE_MODEL_BACKUP }}
         run: |
           cat > /tmp/prompt.md <<'EOF'
             You are the maintenance agent of the Simplified-Chinese localization of the Cloudflare Kumo docs (fork iwvw/kumo, branch `zh`).
@@ -61,4 +63,9 @@ jobs:
             You are done ONLY after step 7.
           EOF
           sed -i "s/__ISSUE_NUMBER__/${ISSUE_NUMBER}/g" /tmp/prompt.md
-          opencode run "$(cat /tmp/prompt.md)"
+          PROMPT="$(cat /tmp/prompt.md)"
+          echo "primary model: ${MODEL}"
+          if ! opencode run -m "${MODEL}" "$PROMPT"; then
+            echo "primary model failed; falling back to ${MODEL_BACKUP}"
+            opencode run -m "${MODEL_BACKUP}" "$PROMPT" || exit 1
+          fi
