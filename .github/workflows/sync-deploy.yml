@@ -86,7 +86,8 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: '上游 cloudflare/kumo 变更与汉化冲突，需要补译',
-              body: `自动同步在合并 \`cloudflare/kumo@main\` 到 \`zh\` 时发生冲突（触发事件 ${context.eventName}）。\n\n请打开仓库操作台解决冲突，然后重跑 "Sync upstream and deploy"（workflow_dispatch）。\n\n触发时间: ${new Date().toISOString()}`
+              labels: ['translation'],
+              body: `自动同步在合并 \`cloudflare/kumo@main\` 到 \`zh\` 时发生冲突（触发事件 ${context.eventName}）。\n\n翻译 Agent 会尝试解决并增量汉化（见 translate workflow）；如自动处理失败，请手动解决后重跑 "Sync upstream and deploy"（workflow_dispatch）。\n\n触发时间: ${new Date().toISOString()}`
             })
 
       - name: Setup pnpm
@@ -137,21 +138,46 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Prune upstream workflows, append queue, push back
+      - name: File translation request issue for changed docs
+        if: steps.merge.outputs.merged == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const sha = fs.readFileSync('/tmp/upstream-sha.txt', 'utf8').trim().slice(0, 8);
+            let changed = '';
+            try { changed = fs.readFileSync('/tmp/changed-docs.txt', 'utf8').trim(); } catch {}
+            if (!changed) { console.log('no doc files changed; skip issue'); return; }
+            const files = changed.split('\n').filter(Boolean);
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'translation',
+            });
+            if (existing.data.some((i) => i.title.includes(sha))) {
+              console.log(`open translation issue already exists for ${sha}; skip`);
+              return;
+            }
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `translation: 需补译上游 ${sha}`,
+              labels: ['translation'],
+              body: `上游 \`cloudflare/kumo@${sha}\` 的文档内容有更新，以下文件需要增量补译为简体中文：\n\n${files.map((f) => '- ' + f).join('\n')}\n\n翻译 Agent 会自动处理本 issue（translate workflow），完成后会评论并关闭本 issue。`
+            });
+
+      - name: Prune upstream workflows and push merged zh
         if: steps.merge.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp .github/workflows/sync-deploy.yml /tmp/sync-deploy.yml
+          cp .github/workflows/translate.yml /tmp/translate.yml
           rm -rf .github/workflows
           mkdir -p .github/workflows
           cp /tmp/sync-deploy.yml .github/workflows/sync-deploy.yml
-          if [ "${{ steps.merge.outputs.merged }}" = "true" ] && [ -s /tmp/changed-docs.txt ]; then
-            {
-              echo "- $(date -u +%Y-%m-%d) @ upstream $(head -c 8 /tmp/upstream-sha.txt):"
-              sed 's/^/    - /' /tmp/changed-docs.txt
-            } >> TRANSLATION_TODO.md
-          fi
+          cp /tmp/translate.yml .github/workflows/translate.yml
           git add -A
           if git diff --cached --quiet; then
             echo "no changes to commit; nothing to push"

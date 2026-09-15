@@ -1,0 +1,60 @@
+name: Translate docs via opencode agent
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: translate-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    if: contains(github.event.issue.labels.*.name, 'translation')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Run OpenCode agent to translate
+        uses: anomalyco/opencode/github@latest
+        env:
+          DSUKHUB_API_KEY: ${{ secrets.DSUKHUB_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          model: ${{ vars.OPENCODE_MODEL }}
+          use_github_token: true
+          prompt: |
+            You are the maintenance agent for the Simplified-Chinese localization of the Cloudflare Kumo docs (repo iwvw/kumo, branch `zh`).
+
+            Translate the documentation files listed in the triggering issue body (the `- path` items under the list). Read the full issue thread for the file list and any notes.
+
+            Do the work on the current checked-out branch `zh`.
+
+            STRICT RULES (violating any of these is a failure):
+            1. ONLY touch the files explicitly listed in the issue. Never modify any other file, never add files, never delete files. If a listed file is already fully translated, state that in your comment and skip it.
+            2. Translate ONLY user-visible English prose into natural Simplified Chinese: headings (##/###/####), paragraphs, list items, table cells, and the frontmatter `description` value. Do NOT translate:
+               - Code blocks (everything inside ``` fences) — keep byte-identical.
+               - Component/API identifiers (Button, Badge, Dialog...), frontmatter keys `layout`, `title`, `sourceFile`, import statements.
+               - JSX/Astro component tags and ALL their props (demo, vrSection, vrTitle, lang, component, href...) and prop values that are code or identifiers.
+               - Internal links, anchors (#...), URLs, image paths, file paths.
+               - Brand/proper nouns: Kumo, Base UI, Tailwind, CLI, Figma, npm, pnpm, ARIA.
+            3. Do not reformat, reindent, reflow, merge or reorder any existing content. Preserve the exact Markdown/JSX structure and whitespace, only replace English text with Chinese.
+            4. After editing, verify the build:
+               run `pnpm install`, then `pnpm --filter @cloudflare/kumo build`, then `pnpm --filter @cloudflare/kumo-docs-astro build`.
+               If the build fails, fix your changes until it passes. NEVER commit or push a broken build.
+            5. If you made changes, commit them on `zh` with subject `docs(zh): translate <issue #N> (<file paths, comma-separated, kebab-case>)` and push to `origin zh`. One commit for the task.
+            6. Close the loop: post a summary comment on the triggering issue — list the files you translated (or "no changes needed, all listed files already translated"), state that the build passed, and whether you pushed. If nothing was committed, still comment and then CLOSE the issue.
+            7. Do not remove/change the `translation` label; close the issue only when you are done.
+
+            Common term mapping for consistency:
+              Installation→安装, Usage→用法, Examples→示例, API Reference→API 参考, Variants→变体, Sizes→尺寸, States→状态, Accessibility→无障碍, Barrel→桶式导出, Granular→细粒度导入.
+
+            Reply concisely; the comment is the human-visible record.
