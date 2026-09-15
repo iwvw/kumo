@@ -89,7 +89,7 @@ function DesignTipExample({ children, variant }: DesignTipExampleProps) {
           />
         )}
         <span className={cn("sr-only")}>
-          {isGood ? "Recommended example" : "Example to avoid"}
+          {isGood ? "推荐示例" : "应避免的示例"}
         </span>
       </figcaption>
       <div

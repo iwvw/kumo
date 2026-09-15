@@ -9,9 +9,9 @@ Apply these rules when designing, implementing, or reviewing Cloudflare product 
 
 ## Rules
 
-### `content-text-size` Use 14px for content text
+### `content-text-size` 正文文本使用 14px
 
-All content text—body, buttons, data, other interactables—must be 14px in size. 16px and above are restricted to headings and subheadings.
+所有正文文本——正文、按钮、数据及其他可交互元素——的尺寸都必须是 14px。16px 及以上仅限用于标题和副标题。
 
 **Good**
 
@@ -25,9 +25,9 @@ All content text—body, buttons, data, other interactables—must be 14px in si
 <Text size="lg">Content text</Text>
 ```
 
-### `heading-case` Always sentence case headings
+### `heading-case` 标题始终使用句子式大小写
 
-Never capitalize or uppercase headings. Product names must be title-cased.
+切勿对标题全部使用大写字母。产品名称必须使用标题式大写。
 
 **Good**
 
@@ -45,25 +45,25 @@ Never capitalize or uppercase headings. Product names must be title-cased.
 <Text as="h2" DANGEROUS_className="uppercase">Recent requests</Text>
 ```
 
-### `font-tracking` Never change the font's tracking
+### `font-tracking` 切勿更改字体的字距
 
-Do not use the `tracking-*` classes to change the spacing between characters.
+不要使用 `tracking-*` 类来更改字符之间的间距。
 
 **Good**
 
 ```tsx
-<span className="text-lg">Worker Metrics</span>
+<span className="text-lg">Worker 指标</span>
 ```
 
 **Avoid**
 
 ```tsx
-<span className="text-lg tracking-tight">Worker Metrics</span>
+<span className="text-lg tracking-tight">Worker 指标</span>
 ```
 
-### `font-weight` Never use `font-bold`
+### `font-weight` 切勿使用 `font-bold`
 
-Use `font-semibold` for headings and `font-medium` for bold inline text.
+标题使用 `font-semibold`，粗体行内文本使用 `font-medium`。
 
 **Good**
 
@@ -79,9 +79,9 @@ Use `font-semibold` for headings and `font-medium` for bold inline text.
 <Text as="strong" DANGEROUS_className="font-bold">required</Text>
 ```
 
-### `related-text-spacing` Put related text closer together
+### `related-text-spacing` 将相关文本排放得更靠近
 
-Related text should have smaller spacing around it than the content it belongs to.
+相关文本周围的间距应当小于其所属内容的间距。
 
 **Good**
 
@@ -105,9 +105,9 @@ Related text should have smaller spacing around it than the content it belongs t
 </div>
 ```
 
-### `text-spacing` Optically align spacing around text
+### `text-spacing` 围绕文本进行光学对齐排布
 
-Spacing around text should take into account its line height. Typically this means vertical spacing should be slightly smaller than horizontal.
+文本周围的间距应考虑到其行高。通常这意味着垂直间距应略小于水平间距。
 
 **Good**
 
@@ -121,9 +121,9 @@ Spacing around text should take into account its line height. Typically this mea
 <LayerCard className="p-5">...</LayerCard>
 ```
 
-### `hover-color-transitions` Never transition colors for hover states
+### `hover-color-transitions` 切勿为悬停状态过渡颜色
 
-Color changes on hover must be immediate. Transitions on fast interactions make the UI feel sluggish.
+悬停时的颜色变化必须立即完成。对快速交互使用过渡会让界面显得迟钝。
 
 **Good**
 
@@ -137,9 +137,9 @@ Color changes on hover must be immediate. Transitions on fast interactions make 
 <button className="transition-colors duration-300 hover:bg-kumo-tint">...</button>
 ```
 
-### `shadow-borders` Never use borders with drop shadows
+### `shadow-borders` 切勿将边框与投影一起使用
 
-Use `ring ring-kumo-line` to create a transparent border that maintains sharp edges.
+使用 `ring ring-kumo-line` 创建保持清晰边缘的透明边框。
 
 **Good**
 
@@ -153,9 +153,9 @@ Use `ring ring-kumo-line` to create a transparent border that maintains sharp ed
 <LayerCard className="border border-kumo-line shadow-md">...</LayerCard>
 ```
 
-### `concentric-border-radius` Use concentric border radii
+### `concentric-border-radius` 使用同心圆角
 
-When borders or rings are 8px or less apart, their corner radii must be mathematically concentric: outer radius = inner radius + padding.
+当边框或圆环彼此相隔 8px 或更近时，其圆角半径必须在数学上同心：外半径 = 内半径 + 内边距。
 
 **Good**
 
@@ -173,9 +173,9 @@ When borders or rings are 8px or less apart, their corner radii must be mathemat
 </div>
 ```
 
-### `icon-alignment` Align icons with the first line of text
+### `icon-alignment` 将图标与文本首行对齐
 
-Inline icons must be optically the same size as and be center-aligned with text. Use `h-lh flex items-center` for multi-line alignment.
+行内图标在视觉上必须与文本尺寸相同并居中对齐。多行对齐请使用 `h-lh flex items-center`。
 
 **Good**
 
@@ -202,16 +202,16 @@ Inline icons must be optically the same size as and be center-aligned with text.
 </div>
 ```
 
-### `inline-monospace-size` Reduce the font size of inline monospaced text
+### `inline-monospace-size` 缩小行内等宽文本的字号
 
-Monospaced text should have a slightly smaller font size (~0.9em) when mixed with regular text.
+等宽文本与普通文本混合时，应使用略小的字号（约 0.9em）。
 
 **Good**
 
 ```tsx
 <Text size="lg">
-  Edit <span className="font-mono text-[0.9em]">wrangler.toml</span>{" "}
-  to continue.
+  编辑 <span className="font-mono text-[0.9em]">wrangler.toml</span>{" "}
+  以继续。
 </Text>
 ```
 
@@ -219,11 +219,11 @@ Monospaced text should have a slightly smaller font size (~0.9em) when mixed wit
 
 ```tsx
 <Text size="lg">
-  Edit <span className="font-mono">wrangler.toml</span> to continue.
+  编辑 <span className="font-mono">wrangler.toml</span> 以继续。
 </Text>
 ```
 
-### `sticky-borders` Use `border` to separate sticky elements from the content
+### `sticky-borders` 使用 `border` 将吸顶元素与内容分隔开
 
 **Good**
 
@@ -237,9 +237,9 @@ Monospaced text should have a slightly smaller font size (~0.9em) when mixed wit
 <div className="sticky top-0">...</div>
 ```
 
-### `collapse-content-size` Maintain content size during collapse animations
+### `collapse-content-size` 在折叠动画期间保持内容尺寸
 
-Collapsible content must maintain its content size while closing to avoid its content shifting during animations.
+可折叠内容在关闭时必须保持其内容尺寸，以避免内容在动画期间发生位移。
 
 **Good**
 
@@ -257,7 +257,7 @@ Collapsible content must maintain its content size while closing to avoid its co
 </motion.div>
 ```
 
-### `layer-card-nesting` Never stack `LayerCard` on top of one another
+### `layer-card-nesting` 切勿将 `LayerCard` 相互层叠
 
 **Good**
 
@@ -277,9 +277,9 @@ Collapsible content must maintain its content size while closing to avoid its co
 </LayerCard>
 ```
 
-### `dialog-rendering` Never conditionally render dialogs
+### `dialog-rendering` 切勿按条件渲染 Dialog
 
-Conditionally rendering dialogs disables their open/close animation. Use the `open` prop to determine if a dialog should be visible or not.
+按条件渲染对话框会禁用其打开/关闭动画。请使用 `open` 属性来判断对话框是否可见。
 
 **Good**
 

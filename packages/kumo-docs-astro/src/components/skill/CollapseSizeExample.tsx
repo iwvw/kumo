@@ -18,7 +18,7 @@ export function CollapseSizeExample({
         onClick={() => setOpen((current) => !current)}
         variant="secondary"
       >
-        {open ? "Close" : "Open"}
+        {open ? "关闭" : "打开"}
       </Button>
       <motion.div
         animate={{ width: open ? 256 : 0 }}
