@@ -34,10 +34,23 @@ jobs:
           git config --global user.name "opencode[bot]"
           git config --global user.email "opencode[bot]@users.noreply.github.com"
 
+      - name: Dedup guard (skip if issue already closed)
+        id: guard
+        run: |
+          STATE=$(gh api repos/${{ github.repository }}/issues/${ISSUE_NUMBER} --jq .state)
+          echo "issue state: ${STATE}"
+          if [ "${STATE}" = "open" ]; then
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Install opencode
+        if: steps.guard.outputs.proceed == 'true'
         run: curl -fsSL https://opencode.ai/install | bash
 
       - name: Run opencode agent (incremental translation)
+        if: steps.guard.outputs.proceed == 'true'
         env:
           MODEL: ${{ vars.OPENCODE_MODEL }}
           MODEL_BACKUP: ${{ vars.OPENCODE_MODEL_BACKUP }}
