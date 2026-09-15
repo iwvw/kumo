@@ -57,13 +57,14 @@ git fetch origin main 2>&1 | Out-Null
 $upstreamSha = git rev-parse origin/main
 $localHead = git rev-parse HEAD
 
-# 2) 检查是否有新提交
-$isAncestor = git merge-base --is-ancestor HEAD origin/main
-if ($LASTEXITCODE -eq 0 -and -not $Force) {
+# 2) 检查是否有新提交：origin/main 是否已是 HEAD 的祖先
+git merge-base --is-ancestor origin/main HEAD
+$hasUpstream = $LASTEXITCODE -eq 0
+if ($hasUpstream -and -not $Force) {
     Write-Log "no upstream change (both at $($upstreamSha.Substring(0,8)))"
     exit 0
 }
-if (-not $Force) {
+if (-not $hasUpstream) {
     Write-Log "upstream changed: $($localHead.Substring(0,8)) -> $($upstreamSha.Substring(0,8))"
 } else {
     Write-Log "forced sync at upstream $($upstreamSha.Substring(0,8))"
