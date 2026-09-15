@@ -1,15 +1,11 @@
 name: Sync upstream and deploy
 
 on:
+  push:
+    branches: [ zh ]
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
-    inputs:
-      force:
-        description: "即使无上游变更也强制同步并部署"
-        required: false
-        default: false
-        type: boolean
 
 permissions:
   contents: write
@@ -34,36 +30,52 @@ jobs:
           git remote add upstream https://github.com/cloudflare/kumo.git
           git fetch upstream main
 
-      - name: Detect upstream change
+      - name: Detect whether to run
         id: detect
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force }}" = "true" ]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "reason=forced" >> "$GITHUB_OUTPUT"
-          elif git merge-base --is-ancestor upstream/main HEAD; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "reason=no-upstream-change" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "reason=upstream-advanced" >> "$GITHUB_OUTPUT"
-          fi
+          case "${{ github.event_name }}" in
+            schedule)
+              if git merge-base --is-ancestor upstream/main HEAD; then
+                echo "run=false" >> "$GITHUB_OUTPUT"
+                echo "reason=no-upstream-change" >> "$GITHUB_OUTPUT"
+              else
+                echo "run=true" >> "$GITHUB_OUTPUT"
+                echo "reason=upstream-advanced" >> "$GITHUB_OUTPUT"
+              fi
+              ;;
+            push)
+              echo "run=true" >> "$GITHUB_OUTPUT"
+              echo "reason=pushed-changes" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "run=true" >> "$GITHUB_OUTPUT"
+              echo "reason=workflow-dispatch" >> "$GITHUB_OUTPUT"
+              ;;
+          esac
 
-      - name: Merge upstream main into zh
-        if: steps.detect.outputs.changed == 'true'
+      - name: Sync (merge) upstream main into zh
         id: merge
+        if: steps.detect.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          PRE=$(git rev-parse HEAD)
           if ! git merge upstream/main --no-edit; then
             git merge --abort
             echo "::error::Merge conflict while merging upstream/main into zh. Translation refresh required."
-            echo "conflict=true" >> "$GITHUB_OUTPUT"
             exit 1
           fi
-          echo "conflict=false" >> "$GITHUB_OUTPUT"
-          git rev-parse upstream/main > /tmp/upstream-sha.txt
-          git diff --name-only HEAD^ HEAD -- packages/kumo-docs-astro/src/pages packages/kumo-docs-astro/src/components packages/kumo-docs-astro/src/layouts > /tmp/changed-docs.txt || true
-          cat /tmp/changed-docs.txt
+          if [ "$(git rev-parse HEAD)" != "$PRE" ]; then
+            echo "merged=true" >> "$GITHUB_OUTPUT"
+            git rev-parse upstream/main > /tmp/upstream-sha.txt
+            git diff --name-only "$PRE" HEAD -- \
+              packages/kumo-docs-astro/src/pages \
+              packages/kumo-docs-astro/src/components \
+              packages/kumo-docs-astro/src/layouts > /tmp/changed-docs.txt || true
+            cat /tmp/changed-docs.txt
+          else
+            echo "merged=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Open translation issue on conflict
         if: steps.merge.outcome == 'failure'
@@ -74,7 +86,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: '上游 cloudflare/kumo 变更与汉化冲突，需要补译',
-              body: `自动同步在合并 \`cloudflare/kumo@main\` 到 \`zh\` 时发生冲突（触发事件 ${context.eventName}）。\n\n请在本仓库操作台解决冲突后，二次运行 "Sync upstream and deploy"（workflow_dispatch）。\n\n触发时间: ${new Date().toISOString()}`
+              body: `自动同步在合并 \`cloudflare/kumo@main\` 到 \`zh\` 时发生冲突（触发事件 ${context.eventName}）。\n\n请打开仓库操作台解决冲突，然后重跑 "Sync upstream and deploy"（workflow_dispatch）。\n\n触发时间: ${new Date().toISOString()}`
             })
 
       - name: Setup pnpm
@@ -111,13 +123,13 @@ jobs:
           command: pages deploy packages/kumo-docs-astro/dist --project-name=kumo-docs-zh --branch=main
 
       - name: Report changed docs files
-        if: steps.merge.outcome == 'success'
+        if: steps.merge.outputs.merged == 'true'
         run: |
           {
             echo "## 同步结果"
             echo "上游提交: \`$(head -c 8 /tmp/upstream-sha.txt)\`"
             echo ""
-            echo "### 本次上游变更涉及的文件（可能影响已翻译页面，需补译检查）"
+            echo "### 本次上游变更涉及的文档文件（可能影响已翻译页面，需补译检查）"
             if [ -s /tmp/changed-docs.txt ]; then
               sed 's/^/- \`/' /tmp/changed-docs.txt | sed 's/$/\`/'
             else
@@ -125,7 +137,7 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Prune upstream workflows and push merged zh
+      - name: Prune upstream workflows, append queue, push back
         if: steps.merge.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
@@ -134,8 +146,7 @@ jobs:
           rm -rf .github/workflows
           mkdir -p .github/workflows
           cp /tmp/sync-deploy.yml .github/workflows/sync-deploy.yml
-          # 增量补译队列：把本次被上游改动的"已翻译文件"追加到 TRANSLATION_TODO.md
-          if [ -s /tmp/changed-docs.txt ]; then
+          if [ "${{ steps.merge.outputs.merged }}" = "true" ] && [ -s /tmp/changed-docs.txt ]; then
             {
               echo "- $(date -u +%Y-%m-%d) @ upstream $(head -c 8 /tmp/upstream-sha.txt):"
               sed 's/^/    - /' /tmp/changed-docs.txt
@@ -143,8 +154,8 @@ jobs:
           fi
           git add -A
           if git diff --cached --quiet; then
-            echo "no changes to commit"
+            echo "no changes to commit; nothing to push"
           else
             git commit -m "chore(zh): sync upstream $(head -c 8 /tmp/upstream-sha.txt)"
+            git push origin zh
           fi
-          git push origin zh
