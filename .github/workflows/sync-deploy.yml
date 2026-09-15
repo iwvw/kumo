@@ -134,6 +134,13 @@ jobs:
           rm -rf .github/workflows
           mkdir -p .github/workflows
           cp /tmp/sync-deploy.yml .github/workflows/sync-deploy.yml
+          # 增量补译队列：把本次被上游改动的"已翻译文件"追加到 TRANSLATION_TODO.md
+          if [ -s /tmp/changed-docs.txt ]; then
+            {
+              echo "- $(date -u +%Y-%m-%d) @ upstream $(head -c 8 /tmp/upstream-sha.txt):"
+              sed 's/^/    - /' /tmp/changed-docs.txt
+            } >> TRANSLATION_TODO.md
+          fi
           git add -A
           if git diff --cached --quiet; then
             echo "no changes to commit"
