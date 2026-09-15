@@ -71,3 +71,5 @@ __screenshots__/
 
 # CI report artifacts
 ci/reports/
+
+tools/cloudflare.env
