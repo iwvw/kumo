@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
-title: "Custom Chart"
-description: "Example charts using the Chart component."
+title: "自定义图表"
+description: "使用 Chart 组件编写的示例图表。"
 sourceFile: "components/chart"
 ---
 
@@ -14,7 +14,7 @@ import ComponentExample from "~/components/docs/ComponentExample.astro";
 
 <ComponentSection>
 
-## Custom Chart
+## 自定义图表
 
   <ComponentExample demo="PieChartDemo">
     <PieChartDemo client:visible />
@@ -23,11 +23,11 @@ import ComponentExample from "~/components/docs/ComponentExample.astro";
 
 <ComponentSection>
 
-## Custom Tooltip with HTML
+## 自定义 HTML Tooltip
 
-For tooltips that require custom HTML formatting, use the `dangerousHtmlFormatter` property instead of the standard `formatter`. This makes the security implications more explicit.
+对于需要自定义 HTML 格式的 tooltip，请使用 `dangerousHtmlFormatter` 属性，而不是标准的 `formatter`。这样安全影响会更加明确。
 
-When using `dangerousHtmlFormatter`, it is **strongly recommended** to sanitize any user-provided content using `echarts.format.encodeHTML` to prevent XSS vulnerabilities.
+使用 `dangerousHtmlFormatter` 时，**强烈建议**使用 `echarts.format.encodeHTML` 对任何用户提供的内容进行净化，以防 XSS 漏洞。
 
   <ComponentExample demo="CustomTooltipChartDemo">
     <CustomTooltipChartDemo client:visible />

@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Banner"
-description: "Displays contextual inline messages for informational, alert, or error states."
+description: "用于展示信息、提醒或错误状态的上下文内联消息。"
 sourceFile: "components/banner"
 ---
 
@@ -36,13 +36,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 <CodeBlock code={`import { Banner } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 按需导入
 
   <CodeBlock
     code={`import { Banner } from "@cloudflare/kumo/components/banner";`}
@@ -54,7 +54,7 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Banner } from "@cloudflare/kumo";
@@ -77,75 +77,75 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Variants
+### 变体
 
-#### Default
+#### 默认
 
 <ComponentExample demo="BannerDefaultDemo">
   <BannerDefaultDemo client:visible />
 </ComponentExample>
 
-#### Alert
+#### 提醒
 
 <ComponentExample demo="BannerAlertDemo">
   <BannerAlertDemo client:visible />
 </ComponentExample>
 
-#### Error
+#### 错误
 
 <ComponentExample demo="BannerErrorDemo">
   <BannerErrorDemo client:visible />
 </ComponentExample>
 
-#### Secondary
+#### 次要
 
 <ComponentExample demo="BannerSecondaryDemo">
   <BannerSecondaryDemo client:visible />
 </ComponentExample>
 
-### With icon
+### 带图标
 
 <ComponentExample demo="BannerWithIconDemo">
   <BannerWithIconDemo client:visible />
 </ComponentExample>
 
-### With action
+### 带单个操作
 
 <ComponentExample demo="BannerWithActionDemo">
   <BannerWithActionDemo client:visible />
 </ComponentExample>
 
-### With multiple actions
+### 带多个操作
 
 <ComponentExample demo="BannerWithActionsDemo">
   <BannerWithActionsDemo client:visible />
 </ComponentExample>
 
-### Compact size
+### 紧凑尺寸
 
-Use `size="sm"` in dialogs and other space-constrained contexts. Here, a banner should support the surrounding experience without competing with its primary action, so prefer a Kumo `Link` that renders inline with the description. When greater emphasis is warranted, use `Banner.Action`, which renders at the trailing end.
+在对话框及其他空间受限的上下文中使用 `size="sm"`。此处横幅应辅助周围的体验而不与主操作竞争，因此优先使用与描述内联渲染的 Kumo `Link`。当需要更强强调时，可使用 `Banner.Action`，它会渲染在末尾处。
 
-#### With inline link
+#### 带内联链接
 
 <ComponentExample demo="BannerCompactDemo">
   <BannerCompactDemo client:visible />
 </ComponentExample>
 
-#### With CTA
+#### 带 CTA
 
 <ComponentExample demo="BannerCompactWithCtaDemo">
   <BannerCompactWithCtaDemo client:visible />
 </ComponentExample>
 
-#### Without action
+#### 无操作
 
 <ComponentExample demo="BannerCompactWithoutActionDemo">
   <BannerCompactWithoutActionDemo client:visible />
 </ComponentExample>
 
-### Custom content
+### 自定义内容
 
   <ComponentExample demo="BannerCustomContentDemo">
     <BannerCustomContentDemo client:visible />
@@ -156,7 +156,7 @@ Use `size="sm"` in dialogs and other space-constrained contexts. Here, a banner 
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="Banner" />
 </ComponentSection>

@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Collapsible"
-description: "A composable disclosure component for showing and hiding content."
+description: "一个组合式折叠组件，用于显示和隐藏内容。"
 sourceFile: "components/collapsible"
 baseUIComponent: "collapsible"
 ---
@@ -31,15 +31,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 ```tsx
 import { Collapsible } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 按需导入
 
 ```tsx
 import { Collapsible } from "@cloudflare/kumo/components/collapsible";
@@ -51,13 +51,13 @@ import { Collapsible } from "@cloudflare/kumo/components/collapsible";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
-Collapsible uses a compound component pattern for full composition control.
+Collapsible 采用复合组件模式，提供完整的组合控制能力。
 
-### With Default Styling
+### 默认样式
 
-Use `DefaultTrigger` and `DefaultPanel` for the classic Kumo style:
+使用 `DefaultTrigger` 和 `DefaultPanel` 获得经典的 Kumo 样式：
 
 ```tsx
 import { Collapsible } from "@cloudflare/kumo";
@@ -76,9 +76,9 @@ export default function Example() {
 }
 ```
 
-### Custom Trigger
+### 自定义触发器
 
-Use the `render` prop on `Trigger` for full control over the trigger element:
+在 `Trigger` 上使用 `render` 属性，即可完全掌控触发器元素：
 
 ```tsx
 <Collapsible.Root open={open} onOpenChange={setOpen}>
@@ -97,47 +97,47 @@ Use the `render` prop on `Trigger` for full control over the trigger element:
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic
+### 基本
 
 <ComponentExample demo="CollapsibleBasicDemo">
   <CollapsibleBasicDemo client:load />
 </ComponentExample>
 
-### Multiple Items
+### 多个可折叠项
 
 <ComponentExample demo="CollapsibleMultipleDemo">
   <CollapsibleMultipleDemo client:load />
 </ComponentExample>
 
-### Custom Trigger
+### 自定义触发器
 
-Use `Collapsible.Trigger` with the `render` prop for full control:
+将 `Collapsible.Trigger` 与 `render` 属性结合使用即可完全掌控：
 
 <ComponentExample demo="CollapsibleCustomTriggerDemo">
   <CollapsibleCustomTriggerDemo client:load />
 </ComponentExample>
 
-### Keep Mounted
+### 保持挂载
 
-Use `keepMounted` on `DefaultPanel` (or `Panel`) to preserve internal state — such as form inputs — when the panel is collapsed:
+在 `DefaultPanel`（或 `Panel`）上使用 `keepMounted`，可在面板折叠时保留内部状态（如表单输入）：
 
 <ComponentExample demo="CollapsibleKeepMountedDemo">
   <CollapsibleKeepMountedDemo client:load />
 </ComponentExample>
 
-### Form Content
+### 表单内容
 
-Use `DefaultPanel` with form controls to verify focus rings have enough room inside the animated panel:
+将 `DefaultPanel` 与表单控件搭配使用，以验证焦点环在动画面板内有足够的空间：
 
 <ComponentExample demo="CollapsibleFormDemo">
   <CollapsibleFormDemo client:load />
 </ComponentExample>
 
-### Accordion Pattern
+### 手风琴模式
 
-Control which item is open to create an accordion where only one item can be expanded at a time:
+通过控制展开的条目来实现手风琴效果，即每次只展开一个条目：
 
 <ComponentExample demo="CollapsibleAccordionDemo">
   <CollapsibleAccordionDemo client:load />
@@ -149,15 +149,15 @@ Control which item is open to create an accordion where only one item can be exp
 
 <ComponentSection>
 
-## Sub-components
+## 子组件
 
-| Component | Description |
+| 组件 | 说明 |
 |-----------|-------------|
-| `Collapsible.Root` | Manages open state. Pass `open` and `onOpenChange` for controlled mode. |
-| `Collapsible.Trigger` | Button that toggles visibility. Use `render` prop for custom elements. |
-| `Collapsible.Panel` | Container for collapsible content. |
-| `Collapsible.DefaultTrigger` | Pre-styled trigger with text label and animated caret icon. |
-| `Collapsible.DefaultPanel` | Pre-styled panel with border-left accent and standard spacing. |
+| `Collapsible.Root` | 管理展开状态。传入 `open` 和 `onOpenChange` 可使用受控模式。 |
+| `Collapsible.Trigger` | 切换可见性的按钮。使用 `render` 属性可自定义元素。 |
+| `Collapsible.Panel` | 折叠内容的容器。 |
+| `Collapsible.DefaultTrigger` | 预置样式的触发器，含文本标签和动画插入标记图标。 |
+| `Collapsible.DefaultPanel` | 预置样式的面板，带左侧边框强调和标准间距。 |
 
 </ComponentSection>
 
@@ -165,46 +165,46 @@ Control which item is open to create an accordion where only one item can be exp
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Collapsible.Root
 
-| Prop | Type | Default | Description |
+| 属性 | 类型 | 默认值 | 说明 |
 |------|------|---------|-------------|
-| `open` | `boolean` | — | Whether the panel is visible (controlled). |
-| `defaultOpen` | `boolean` | `false` | Initial open state (uncontrolled). |
-| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes. |
-| `disabled` | `boolean` | `false` | Whether the collapsible is disabled. |
+| `open` | `boolean` | — | 面板是否可见（受控）。 |
+| `defaultOpen` | `boolean` | `false` | 初始展开状态（非受控）。 |
+| `onOpenChange` | `(open: boolean) => void` | — | 展开状态变化时的回调。 |
+| `disabled` | `boolean` | `false` | 是否禁用该折叠组件。 |
 
 ### Collapsible.Trigger
 
-| Prop | Type | Default | Description |
+| 属性 | 类型 | 默认值 | 说明 |
 |------|------|---------|-------------|
-| `render` | `ReactElement` | — | Custom element to render as trigger. |
-| `className` | `string` | — | Additional CSS classes. |
+| `render` | `ReactElement` | — | 作为触发器渲染的自定义元素。 |
+| `className` | `string` | — | 额外的 CSS 类。 |
 
 ### Collapsible.Panel
 
-| Prop | Type | Default | Description |
+| 属性 | 类型 | 默认值 | 说明 |
 |------|------|---------|-------------|
-| `className` | `string` | — | Additional CSS classes. |
-| `keepMounted` | `boolean` | `false` | Whether to keep the panel in the DOM when closed. |
+| `className` | `string` | — | 额外的 CSS 类。 |
+| `keepMounted` | `boolean` | `false` | 关闭时是否将面板保留在 DOM 中。 |
 
 ### Collapsible.DefaultTrigger
 
-| Prop | Type | Default | Description |
+| 属性 | 类型 | 默认值 | 说明 |
 |------|------|---------|-------------|
-| `children` | `ReactNode` | — | Label text displayed in the trigger. |
-| `className` | `string` | — | Additional CSS classes. |
+| `children` | `ReactNode` | — | 显示在触发器中的标签文本。 |
+| `className` | `string` | — | 额外的 CSS 类。 |
 
 ### Collapsible.DefaultPanel
 
-Accepts all `Collapsible.Panel` props in addition to the ones listed below.
+除下面列出的属性外，还接受 `Collapsible.Panel` 的所有属性。
 
-| Prop | Type | Default | Description |
+| 属性 | 类型 | 默认值 | 说明 |
 |------|------|---------|-------------|
-| `children` | `ReactNode` | — | Panel content. |
-| `className` | `string` | — | Additional CSS classes. |
-| `keepMounted` | `boolean` | `false` | Whether to keep the panel in the DOM when closed. |
+| `children` | `ReactNode` | — | 面板内容。 |
+| `className` | `string` | — | 额外的 CSS 类。 |
+| `keepMounted` | `boolean` | `false` | 关闭时是否将面板保留在 DOM 中。 |
 
 </ComponentSection>

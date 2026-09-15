@@ -26,16 +26,16 @@ function isActivePath(activePath: string, href: string) {
 }
 
 const staticPages: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Installation", href: "/installation" },
-  { label: "Contributing", href: "/contributing" },
-  { label: "Colors", href: "/colors" },
-  { label: "Accessibility", href: "/accessibility" },
-  { label: "Figma Resources", href: "/figma" },
+  { label: "首页", href: "/" },
+  { label: "安装", href: "/installation" },
+  { label: "参与贡献", href: "/contributing" },
+  { label: "颜色", href: "/colors" },
+  { label: "无障碍", href: "/accessibility" },
+  { label: "Figma 资源", href: "/figma" },
   { label: "CLI", href: "/cli" },
-  { label: "Design skill", href: "/skill" },
-  { label: "Registry", href: "/registry" },
-  { label: "Changelog", href: "/changelog" },
+  { label: "设计技能", href: "/skill" },
+  { label: "组件注册表", href: "/registry" },
+  { label: "更新日志", href: "/changelog" },
 ];
 
 const componentItems: NavItem[] = [
@@ -86,21 +86,21 @@ const componentItems: NavItem[] = [
 ];
 
 const chartItems: NavItem[] = [
-  { label: "Charts", href: "/charts" },
-  { label: "Colors", href: "/charts/colors" },
-  { label: "Timeseries", href: "/charts/timeseries" },
-  { label: "Maps", href: "/charts/maps" },
-  { label: "Sankey", href: "/charts/sankey" },
-  { label: "Custom Chart", href: "/charts/custom" },
+  { label: "图表", href: "/charts" },
+  { label: "配色", href: "/charts/colors" },
+  { label: "时间序列", href: "/charts/timeseries" },
+  { label: "地图", href: "/charts/maps" },
+  { label: "桑基图", href: "/charts/sankey" },
+  { label: "自定义图表", href: "/charts/custom" },
 ];
 
 // Blocks are CLI-installed components that you own and can customize
 // Use `npx @cloudflare/kumo blocks` to see available blocks
 // Use `npx @cloudflare/kumo add <block>` to install
 const blockItems: NavItem[] = [
-  { label: "Page Header", href: "/blocks/page-header" },
-  { label: "Resource List", href: "/blocks/resource-list" },
-  { label: "Delete Resource", href: "/blocks/delete-resource" },
+  { label: "页头", href: "/blocks/page-header" },
+  { label: "资源列表", href: "/blocks/resource-list" },
+  { label: "删除资源", href: "/blocks/delete-resource" },
 ];
 
 // Build info injected via Vite define in astro.config.mjs
@@ -218,7 +218,7 @@ export function SidebarNav({ currentPath }: SidebarNavProps) {
         className="mb-3 flex w-full items-center gap-2 rounded-lg bg-kumo-control px-3 py-2 text-sm text-kumo-subtle ring-1 ring-kumo-line transition-all hover:ring-kumo-hairline focus:outline-none focus-visible:ring-2 focus-visible:ring-kumo-brand focus-visible:ring-inset"
       >
         <MagnifyingGlassIcon size={16} className="shrink-0" />
-        <span>Search...</span>
+        <span>搜索...</span>
       </button>
 
       <ul className="flex flex-col gap-px">
@@ -247,7 +247,7 @@ export function SidebarNav({ currentPath }: SidebarNavProps) {
           className="flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-sm font-medium text-kumo-default transition-colors hover:bg-kumo-tint focus:outline-none focus-visible:ring-2 focus-visible:ring-kumo-brand focus-visible:ring-inset"
           onClick={() => setComponentsOpen(!componentsOpen)}
         >
-          <span>Components</span>
+          <span>组件</span>
           <CaretDownIcon
             size={12}
             className={cn(
@@ -287,7 +287,7 @@ export function SidebarNav({ currentPath }: SidebarNavProps) {
           className="flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-sm font-medium text-kumo-default transition-colors hover:bg-kumo-tint focus:outline-none focus-visible:ring-2 focus-visible:ring-kumo-brand focus-visible:ring-inset"
           onClick={() => setChartsOpen(!chartsOpen)}
         >
-          <span>Charts</span>
+          <span>图表</span>
           <CaretDownIcon
             size={12}
             className={cn(
@@ -327,7 +327,7 @@ export function SidebarNav({ currentPath }: SidebarNavProps) {
           className="flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-2 text-sm font-medium text-kumo-default transition-colors hover:bg-kumo-tint focus:outline-none focus-visible:ring-2 focus-visible:ring-kumo-brand focus-visible:ring-inset"
           onClick={() => setBlocksOpen(!blocksOpen)}
         >
-          <span>Blocks</span>
+          <span>区块</span>
           <CaretDownIcon
             size={12}
             className={cn(
@@ -374,7 +374,7 @@ export function SidebarNav({ currentPath }: SidebarNavProps) {
         <Button
           variant="ghost"
           shape="square"
-          aria-label="Open menu"
+          aria-label="打开菜单"
           onClick={toggleMobileMenu}
         >
           <KumoMenuIcon />
@@ -396,7 +396,7 @@ export function SidebarNav({ currentPath }: SidebarNavProps) {
           <Button
             variant="ghost"
             shape="square"
-            aria-label="Close menu"
+            aria-label="关闭菜单"
             onClick={toggleMobileMenu}
           >
             <XIcon size={20} />
@@ -424,7 +424,7 @@ export function SidebarNav({ currentPath }: SidebarNavProps) {
             <Button
               variant="ghost"
               shape="square"
-              aria-label="Toggle sidebar"
+              aria-label="切换侧边栏"
               aria-pressed={sidebarOpen}
               onClick={toggleSidebar}
             >

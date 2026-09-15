@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "DatePicker"
-description: "A date selection calendar supporting single, multiple, and range selection modes."
+description: "一个日期选择日历，支持单选、多选和范围选择模式。"
 sourceFile: "components/date-picker"
 ---
 
@@ -31,15 +31,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 ```tsx
 import { DatePicker, type DateRange } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 按需导入
 
 ```tsx
 import {
@@ -54,10 +54,10 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 <p>
-  DatePicker supports three selection modes: `single`, `multiple`, and `range`.
+  DatePicker 支持三种选择模式：`single`、`multiple` 和 `range`。
 </p>
 
 ```tsx
@@ -77,70 +77,70 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Single Date Selection
+### 单个日期选择
 
-<p>Select a single date. The most common use case for date pickers.</p>
+<p>选择单个日期。这是日期选择器最常见的用法。</p>
 <ComponentExample demo="DatePickerSingleDemo">
   <DatePickerSingleDemo client:load />
 </ComponentExample>
 
-### Multiple Date Selection
+### 多个日期选择
 
 <p>
-  Select multiple individual dates. Use `max` to limit the number of selections.
+  选择多个独立日期。使用 `max` 限制选择数量。
 </p>
 <ComponentExample demo="DatePickerMultipleDemo">
   <DatePickerMultipleDemo client:load />
 </ComponentExample>
 
-### Date Range Selection
+### 日期范围选择
 
 <p>
-  Select a continuous range of dates. Works well with `numberOfMonths={2}` for a
-  side-by-side view.
+  选择一段连续的日期范围。与 `numberOfMonths={2}` 配合可实现
+  并排双月视图。
 </p>
 <ComponentExample demo="DatePickerRangeDemo">
   <DatePickerRangeDemo client:load />
 </ComponentExample>
 
-### Range with Min/Max Constraints
+### 带最小/最大约束的范围
 
-<p>Constrain the range length using `min` and `max` props (in days/nights).</p>
+<p>使用 `min` 和 `max` 属性约束范围长度（以天/夜为单位）。</p>
 <ComponentExample demo="DatePickerRangeMinMaxDemo">
   <DatePickerRangeMinMaxDemo client:load />
 </ComponentExample>
 
-### With Popover
+### 搭配 Popover
 
 <p>
-  Compose with the [Popover](/components/popover) component to create a dropdown
-  date picker.
+  与 [Popover](/components/popover) 组件组合，即可创建下拉式
+  日期选择器。
 </p>
 <ComponentExample demo="DatePickerPopoverDemo">
   <DatePickerPopoverDemo client:load />
 </ComponentExample>
 
-### Date Range with Popover
+### 搭配 Popover 的日期范围
 
-<p>A date range picker in a popover with two months displayed.</p>
+<p>在 Popover 中显示双月的日期范围选择器。</p>
 <ComponentExample demo="DatePickerRangePopoverDemo">
   <DatePickerRangePopoverDemo client:load />
 </ComponentExample>
 
-### Date Range with Presets
+### 带预设的日期范围
 
-<p>Combine the date picker with preset options for quick selection.</p>
+<p>将日期选择器与预设选项结合，实现快速选择。</p>
 <ComponentExample demo="DatePickerRangeWithPresetsDemo">
   <DatePickerRangeWithPresetsDemo client:load />
 </ComponentExample>
 
-### Disabled Dates with Usage Limits
+### 带用量限制的禁用日期
 
   <p>
-    Use the `disabled` prop to make certain dates unselectable,
-    and `footer` to display usage information.
+    使用 `disabled` 属性使某些日期不可选择，
+    并使用 `footer` 展示用量信息。
   </p>
   <ComponentExample demo="DatePickerDisabledWithFooterDemo">
     <DatePickerDisabledWithFooterDemo client:load />
@@ -151,9 +151,9 @@ export default function Example() {
 
 <ComponentSection>
 
-## Full Popover Example
+## 完整的 Popover 示例
 
-<p>Here's a complete example showing how to compose DatePicker with Popover:</p>
+<p>以下是一个完整示例，展示如何将 DatePicker 与 Popover 组合使用：</p>
 
 ```tsx
 import { useState } from "react";
@@ -188,10 +188,10 @@ export function DatePickerDropdown() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 <p>
-  DatePicker forwards all props to
+  DatePicker 将所有属性转发给
   <a
     href="https://daypicker.dev/api/interfaces/PropsBase"
     target="_blank"
@@ -199,37 +199,37 @@ export function DatePickerDropdown() {
   >
     react-day-picker
   </a>
-  . Key props include:
+  。关键属性包括：
 </p>
 <ul class="mt-4 list-disc list-inside space-y-2">
   <li>
-    `mode` — `"single" | "multiple" | "range"` — Selection mode (required)
+    `mode` — `"single" | "multiple" | "range"` — 选择模式（必填）
   </li>
-  <li>`selected` — Currently selected date(s)</li>
-  <li>`onChange` — Callback when selection changes</li>
-  <li>`numberOfMonths` — Number of months to display</li>
-  <li>`disabled` — Dates that cannot be selected</li>
-  <li>`min` / `max` — Min/max selection constraints</li>
-  <li>`footer` — Content rendered below the calendar</li>
-  <li>`locale` — date-fns locale for internationalization</li>
-  <li>`className` — Additional CSS classes</li>
+  <li>`selected` — 当前选中的日期（们）</li>
+  <li>`onChange` — 选择变化时的回调</li>
+  <li>`numberOfMonths` — 显示的月份数量</li>
+  <li>`disabled` — 不可选择的日期</li>
+  <li>`min` / `max` — 最小/最大选择约束</li>
+  <li>`footer` — 渲染在日历下方的内容</li>
+  <li>`locale` — 用于国际化的 date-fns locale</li>
+  <li>`className` — 额外的 CSS 类</li>
 </ul>
 <p class="mt-4 text-kumo-subtle text-sm">
-  See the
+  完整 API 参见
   <a
     href="https://daypicker.dev/docs"
     target="_blank"
     rel="noopener noreferrer"
   >
-    react-day-picker documentation
+    react-day-picker 文档
   </a>
-  for the full API.
+  。
 </p>
 
-### Differences from react-day-picker
+### 与 react-day-picker 的差异
 
   <p>
-    For consistency with other Kumo form components, DatePicker uses `onChange` instead of react-day-picker's `onSelect`.
-    Full type inference is preserved — TypeScript will correctly narrow the callback signature based on the `mode` prop.
+    为了与其他 Kumo 表单组件保持一致，DatePicker 使用 `onChange` 而非 react-day-picker 的 `onSelect`。
+    类型推断保持完整——TypeScript 会根据 `mode` 属性正确窄化回调签名。
   </p>
 </ComponentSection>

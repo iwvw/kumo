@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Tabs"
-description: "A set of layered sections of content, known as tab panels, displayed one at a time."
+description: "一组分层的内容区块，称为选项卡面板，每次只显示一个。"
 sourceFile: "components/tabs"
 ---
 
@@ -31,15 +31,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Tabs } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Tabs } from "@cloudflare/kumo/components/tabs";
@@ -51,7 +51,7 @@ import { Tabs } from "@cloudflare/kumo/components/tabs";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Tabs } from "@cloudflare/kumo";
@@ -75,68 +75,68 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Variants
+### 变体
 
-#### Segmented (Default)
+#### 分段式（默认）
 
-<p>A pill-shaped indicator slides between tabs on a subtle background.</p>
+<p>胶囊形状的指示器在浅色背景上于选项卡之间滑动。</p>
 <ComponentExample demo="TabsSegmentedDemo">
   <TabsSegmentedDemo client:visible />
 </ComponentExample>
 
-#### Underline
+#### 下划线
 
 <p>
-  A bottom border with a primary-colored indicator. The active tab has bolder
-  text for emphasis.
+  底部边框配主色指示器。当前激活的选项卡
+  文字更粗，以示强调。
 </p>
 <ComponentExample demo="TabsUnderlineDemo">
   <TabsUnderlineDemo client:visible />
 </ComponentExample>
 
-### Small Size
+### 小尺寸
 
 <p>
-  Use `size="sm"` for a compact tab bar that matches `Input size="sm"` height (h-6.5 / 26px).
-  Useful inside toolbars and filter rows.
+  使用 `size="sm"` 得到紧凑的选项卡栏，与 `Input size="sm"` 高度一致（h-6.5 / 26px）。
+  适合放在工具栏和筛选行中。
 </p>
 <ComponentExample demo="TabsSmDemo">
   <TabsSmDemo client:visible />
 </ComponentExample>
 
-### Controlled
+### 受控模式
 
-<p>Use the `value` and `onValueChange` props for controlled state.</p>
+<p>使用 `value` 和 `onValueChange` 属性实现受控状态。</p>
 <ComponentExample demo="TabsControlledDemo">
   <TabsControlledDemo client:visible />
 </ComponentExample>
 
-### Many Tabs
+### 多选项卡
 
-<p>Tabs automatically scroll horizontally when there are many items.</p>
+<p>项目较多时，Tabs 会自动进行水平滚动。</p>
 <ComponentExample demo="TabsManyDemo">
   <TabsManyDemo client:visible />
 </ComponentExample>
 
-### Horizontal Overflow
+### 水平溢出
 
 <p>
-  When segmented tabs overflow their container, scroll buttons appear at the
-  clipped edge. Use them, horizontal scrolling, or mouse drag to reveal
-  off-screen tabs.
+  当分段式选项卡溢出容器时，被裁剪的边缘会出现滚动按钮。可以使用
+  这些按钮、水平滚动或鼠标拖拽来
+  显示屏幕外的选项卡。
 </p>
 <ComponentExample demo="TabsOverflowDemo">
   <TabsOverflowDemo client:visible />
 </ComponentExample>
 
-### Dynamic Tab Count
+### 动态选项卡数量
 
 <p>
-  This example toggles between an overflowing tab set and the production-like
-  seven-tab set. When the extra tabs disappear, the end overflow control should
-  hide once the remaining tabs fit.
+  这个示例在溢出的选项卡集与类似生产环境的七选项卡集之间切换。当多余
+  选项卡消失后，剩余选项卡可以容纳时，
+  末尾的溢出控件应自动隐藏。
 </p>
 <ComponentExample demo="TabsDynamicCountDemo">
   <TabsDynamicCountDemo client:visible />
@@ -148,7 +148,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="Tabs" />
 
@@ -158,9 +158,9 @@ export default function Example() {
   <table class="w-full text-sm">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Property</th>
-        <th class="px-4 py-3 text-left font-semibold">Type</th>
-        <th class="px-4 py-3 text-left font-semibold">Required</th>
+        <th class="px-4 py-3 text-left font-semibold">属性</th>
+        <th class="px-4 py-3 text-left font-semibold">类型</th>
+        <th class="px-4 py-3 text-left font-semibold">是否必需</th>
       </tr>
     </thead>
     <tbody class="text-kumo-subtle">

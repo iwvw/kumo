@@ -84,8 +84,8 @@ export function StickyDocHeader({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-kumo-subtle transition-colors hover:text-kumo-default"
-                title="View source on GitHub"
-                aria-label="View source on GitHub"
+                title="在 GitHub 上查看源码"
+                aria-label="在 GitHub 上查看源码"
                 tabIndex={showStickyTitle ? 0 : -1}
               >
                 <GithubLogoIcon size={14} weight="fill" />
@@ -97,8 +97,8 @@ export function StickyDocHeader({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-kumo-subtle transition-colors hover:text-kumo-default"
-                title="View Base UI documentation"
-                aria-label="View Base UI documentation"
+                title="查看 Base UI 文档"
+                aria-label="查看 Base UI 文档"
                 tabIndex={showStickyTitle ? 0 : -1}
               >
                 <BaseUIIcon size={14} />
@@ -129,8 +129,8 @@ export function StickyDocHeader({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-kumo-subtle transition-colors hover:text-kumo-default"
-                title="View source on GitHub"
-                aria-label="View source on GitHub"
+                title="在 GitHub 上查看源码"
+                aria-label="在 GitHub 上查看源码"
                 tabIndex={showStickyTitle && sidebarOpen ? 0 : -1}
               >
                 <GithubLogoIcon size={14} weight="fill" />
@@ -142,8 +142,8 @@ export function StickyDocHeader({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-kumo-subtle transition-colors hover:text-kumo-default"
-                title="View Base UI documentation"
-                aria-label="View Base UI documentation"
+                title="查看 Base UI 文档"
+                aria-label="查看 Base UI 文档"
                 tabIndex={showStickyTitle && sidebarOpen ? 0 : -1}
               >
                 <BaseUIIcon size={14} />

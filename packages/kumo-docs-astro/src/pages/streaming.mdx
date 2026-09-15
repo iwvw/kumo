@@ -1,39 +1,38 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Streaming UI"
-description: "Render AI-generated UI from JSON using Kumo's auto-generated schemas. Enable progressive rendering as LLM responses stream in."
+description: "使用 Kumo 自动生成的 schema，从 JSON 渲染 AI 生成的界面。在 LLM 响应流式返回时实现渐进式渲染。"
 ---
 
 import Callout from "~/components/docs/Callout.astro";
 
-## Overview
+## 概述
 
-The Kumo catalog module enables rendering UI from JSON structures, designed specifically for AI-generated interfaces. It provides runtime validation, data binding, conditional rendering, and action handling for JSON-based UI trees.
+Kumo catalog 模块支持从 JSON 结构渲染 UI，专为 AI 生成的界面而设计。它为基于 JSON 的 UI 树提供运行时校验、数据绑定、条件渲染和操作处理。
 
-#### Schemas Derived from Your Codebase
+#### 从你的代码库派生的 Schema
 
-Unlike approaches that require maintaining separate schema definitions, Kumo automatically derives validation schemas from your actual component TypeScript types. When you update a component's props, the validation schemas update automatically via the component registry codegen process. No manual synchronization required — your schemas are always in sync with your components.
+与需要单独维护 schema 定义的做法不同，Kumo 会从你组件的真实 TypeScript 类型中自动派生校验 schema。当你更新组件的 props 时，校验 schema 会通过组件注册表 codegen 流程自动更新。无需手动同步 — 你的 schema 始终与组件保持一致。
 
 <Callout type="info">
-  Schemas are auto-generated in `@cloudflare/kumo/ai/schemas` from component
-  TypeScript types. Run `pnpm codegen:registry` after modifying component props
-  to regenerate.
+  Schema 在 `@cloudflare/kumo/ai/schemas` 中从组件 TypeScript 类型自动生成。
+  修改组件 props 后，运行 `pnpm codegen:registry` 重新生成。
 </Callout>
 
-## How It Works
+## 工作原理
 
-The catalog module uses a pipeline that extracts component metadata from your TypeScript source code:
+catalog 模块使用一条流水线，从你的 TypeScript 源码中提取组件元数据：
 
 `Component TSX` → `TypeScript Types` → `Codegen Script` → `Zod Schemas`
 
-The generated schemas in `ai/schemas.ts` include:
+`ai/schemas.ts` 中生成的 schema 包括：
 
-- Props schemas for each component (e.g., `ButtonPropsSchema`)
-- Enum values for variant props
-- UI element and tree structure schemas
-- Dynamic value, visibility, and action schemas
+- 每个组件的 props schema（例如 `ButtonPropsSchema`）
+- variant props 的枚举值
+- UI 元素和树结构 schema
+- 动态值、可见性和操作 schema
 
-## Installation
+## 安装
 
 ```ts
 import {
@@ -44,9 +43,9 @@ import {
 } from "@cloudflare/kumo/catalog";
 ```
 
-## Creating a Catalog
+## 创建 Catalog
 
-Create a catalog instance that validates AI-generated JSON against the auto-generated schemas:
+创建一个 catalog 实例，用自动生成的 schema 校验 AI 生成的 JSON：
 
 ```ts
 import { createKumoCatalog, initCatalog } from "@cloudflare/kumo/catalog";
@@ -70,9 +69,9 @@ if (result.success) {
 }
 ```
 
-## UI Tree Format
+## UI 树格式
 
-The UI tree uses a flat structure optimized for LLM generation and streaming. Elements reference each other by key rather than nesting, enabling progressive rendering as elements stream in.
+UI 树采用扁平结构，专门为 LLM 生成和流式传输优化。元素通过 key 相互引用，而不是嵌套，从而可以在元素流式到达时进行渐进式渲染。
 
 ```json
 {
@@ -117,16 +116,16 @@ The UI tree uses a flat structure optimized for LLM generation and streaming. El
 }
 ```
 
-#### Why a flat structure?
+#### 为什么用扁平结构？
 
-- Elements can be rendered as soon as they arrive (streaming)
-- Easy updates without deep tree traversal
-- Simple serialization/deserialization
-- Natural fit for how LLMs generate token-by-token
+- 元素一到达即可渲染（流式传输）
+- 无需深层遍历即可轻松更新
+- 序列化/反序列化简单
+- 天然契合 LLM 逐个 token 生成的方式
 
-## Dynamic Values (Data Binding)
+## 动态值（数据绑定）
 
-Props can reference values from a data model using JSON Pointer paths. This allows the AI to declare data bindings that your application resolves at render time.
+Props 可以使用 JSON Pointer 路径引用数据模型中的值。这让 AI 可以声明数据绑定，由你的应用在渲染时解析。
 
 ```ts
 import { resolveProps, resolveDynamicValue } from "@cloudflare/kumo/catalog";
@@ -158,9 +157,9 @@ const name = resolveDynamicValue({ path: "/user/name" }, dataModel);
 // "Alice"
 ```
 
-## Visibility Conditions
+## 可见性条件
 
-Elements can be conditionally rendered based on data values, authentication state, or complex logic expressions.
+元素可以根据数据值、身份验证状态或复杂逻辑表达式进行条件渲染。
 
 ```ts
 import {
@@ -206,20 +205,20 @@ evaluateVisibility(
 );
 ```
 
-### Available Operators
+### 可用操作符
 
 | Operator             | Description                          |
 | -------------------- | ------------------------------------ |
-| `path`               | Truthy check on data path            |
-| `auth`               | "signedIn" or "signedOut"            |
-| `eq` / `neq`         | Equality / inequality comparison     |
-| `gt` / `gte`         | Greater than / greater than or equal |
-| `lt` / `lte`         | Less than / less than or equal       |
-| `and` / `or` / `not` | Boolean logic combinators            |
+| `path`               | 对数据路径做真值检查                 |
+| `auth`               | "signedIn" 或 "signedOut"            |
+| `eq` / `neq`         | 相等 / 不相等比较                    |
+| `gt` / `gte`         | 大于 / 大于或等于                    |
+| `lt` / `lte`         | 小于 / 小于或等于                    |
+| `and` / `or` / `not` | 布尔逻辑组合                         |
 
-## Actions
+## 操作
 
-Elements can declare actions that your application handles. The AI describes the intent, and your handlers execute the logic.
+元素可以声明由你的应用处理的操作。AI 描述意图，你的处理器执行业务逻辑。
 
 ```ts
 // In your UI tree element
@@ -261,9 +260,9 @@ const catalog = createKumoCatalog({
 });
 ```
 
-## Validation
+## 校验
 
-The catalog validates AI-generated JSON against auto-generated Zod schemas derived from component TypeScript types.
+catalog 使用从组件 TypeScript 类型派生的自动生成 Zod schema 来校验 AI 生成的 JSON。
 
 ```ts
 // Validate a complete tree
@@ -292,9 +291,9 @@ console.log(catalog.componentNames);
 // ["Badge", "Banner", "Button", ...]
 ```
 
-## AI Prompt Generation
+## AI 提示生成
 
-Generate prompts describing the catalog for AI models:
+生成向 AI 模型描述 catalog 的提示词：
 
 ```ts
 const prompt = catalog.generatePrompt();
@@ -315,9 +314,9 @@ Generate UI based on the user's request.
 `;
 ```
 
-## Type Exports
+## 类型导出
 
-All types are exported for TypeScript integration:
+所有类型都已导出，便于 TypeScript 集成：
 
 ```ts
 import type {
@@ -351,9 +350,9 @@ import type {
 } from "@cloudflare/kumo/catalog";
 ```
 
-## Full Example
+## 完整示例
 
-A complete example showing catalog creation, validation, and rendering:
+一个展示 catalog 创建、校验和渲染的完整示例：
 
 ```tsx
 import {
@@ -442,12 +441,12 @@ const tree = result.data;
 const ui = renderElement(tree.elements[tree.root], tree.elements);
 ```
 
-## Key Benefits
+## 核心优势
 
-**Auto-Generated Schemas** — Validation schemas are derived directly from component TypeScript types. No separate schema definitions to maintain.
+**自动生成的 Schema** — 校验 schema 直接来自组件 TypeScript 类型，无需单独维护 schema 定义。
 
-**Always in Sync** — When you update component props, the schemas update automatically via the component registry codegen process.
+**始终保持同步** — 更新组件 props 时，schema 会通过组件注册表 codegen 流程自动更新。
 
-**Streaming-Friendly** — Flat tree structure enables progressive rendering as LLM responses stream in token-by-token.
+**适合流式传输** — 扁平树结构让 LLM 响应逐个 token 流式返回时也能渐进式渲染。
 
-**Type Safety** — Full TypeScript support with exported types for UIElement, UITree, DynamicValue, and more.
+**类型安全** — 完整的 TypeScript 支持，导出了 UIElement、UITree、DynamicValue 等类型。

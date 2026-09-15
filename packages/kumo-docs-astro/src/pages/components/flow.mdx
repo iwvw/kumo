@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Flow"
-description: "A group of components for building directed flow diagrams with nodes and connectors."
+description: "一组用于构建带节点和连接器的有向流程图的组件。"
 sourceFile: "components/flow"
 ---
 
@@ -34,15 +34,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 ```tsx
 import { Flow } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 按需导入
 
 ```tsx
 import { Flow } from "@cloudflare/kumo/components/flow";
@@ -54,15 +54,15 @@ import { Flow } from "@cloudflare/kumo/components/flow";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
   <p>
-    The Flow components work together to create directed flow diagrams. Use
-    `Flow` as the container,
-    `Flow.Node` for individual
-    steps, and
-    `Flow.Parallel` to create
-    branching paths.
+    Flow 组件协同工作，可创建有向流程图。使用
+    `Flow` 作为容器，
+    `Flow.Node` 表示各个
+    步骤，使用
+    `Flow.Parallel` 创建
+    分支路径。
   </p>
 
 ```tsx
@@ -85,112 +85,105 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Sequential Flow
+### 顺序流程
 
-<p>A simple linear flow with nodes connected in sequence.</p>
+<p>节点按顺序连接的简单线性流程。</p>
 <ComponentExample demo="FlowBasicDemo">
   <FlowBasicDemo client:visible />
 </ComponentExample>
 
-### Parallel Branches
+### 并行分支
 
-<p>Use `Flow.Parallel` to create branching paths that run in parallel.</p>
+<p>使用 `Flow.Parallel` 创建并行运行的分支路径。</p>
 <ComponentExample demo="FlowParallelDemo">
   <FlowParallelDemo client:visible />
 </ComponentExample>
 
-### Vertical Orientation
+### 垂直方向
 
 <p>
-  Set `orientation="vertical"` to lay nodes out top-to-bottom instead of the
-  default left-to-right. Connectors, parallel branches, and `align` all adapt
-  to the vertical axis.
+  设置 `orientation="vertical"` 可将节点按从上到下排列，取代默认的从左到右。连接器、并行分支和 `align` 都会适配垂直方向。
 </p>
 <ComponentExample demo="FlowVerticalDemo">
   <FlowVerticalDemo client:visible />
 </ComponentExample>
 
 <p>
-  Parallel branches work the same way in vertical flows. In this orientation
-  `align` controls horizontal alignment of nodes.
+  并行分支在垂直流程中的工作方式相同。在此方向下，`align` 控制节点的水平对齐。
 </p>
 <ComponentExample demo="FlowVerticalParallelDemo">
   <FlowVerticalParallelDemo client:visible />
 </ComponentExample>
 
-### Custom Node Styling
+### 自定义节点样式
 
 <p>
-  Use the `render` prop to completely customize node appearance. The render prop
-  accepts a React element that will be used instead of the default styled node.
+  使用 `render` 属性完全自定义节点外观。render 属性接受一个 React 元素，用来替代默认样式的节点。
 </p>
 <ComponentExample demo="FlowCustomContentDemo">
   <FlowCustomContentDemo client:visible />
 </ComponentExample>
 
-### Centered Alignment
+### 居中对齐
 
 <p>
-  Use the `align` prop to vertically center nodes. This is useful when nodes
-  have different heights.
+  使用 `align` 属性垂直居中节点。当节点高度不同时非常有用。
 </p>
 <ComponentExample demo="FlowCenteredDemo">
   <FlowCenteredDemo client:visible />
 </ComponentExample>
 
-### Complex Flow
+### 复杂流程
 
-<p>Combine sequential and parallel nodes to build complex workflows.</p>
+<p>组合顺序节点和并行节点，构建复杂的流程。</p>
 <ComponentExample demo="FlowComplexDemo">
   <FlowComplexDemo client:visible />
 </ComponentExample>
 
-### Custom Anchor Points
+### 自定义锚点
 
 <p>
-  By default, connectors attach to the center of each node. Use `Flow.Anchor`
-  with its `render` prop to specify custom attachment points. The `type` prop
-  controls whether the anchor serves as a `"start"` point (where connectors
-  leave) or `"end"` point (where connectors arrive).
+  默认情况下，连接器连接到每个节点的中心。使用 `Flow.Anchor`
+  及其 `render` 属性可以指定自定义连接点。`type` 属性
+  控制锚点是作为 `"start"` 点（连接器离开处）还是
+  `"end"` 点（连接器到达处）。
 </p>
 <ComponentExample demo="FlowAnchorDemo">
   <FlowAnchorDemo client:visible />
 </ComponentExample>
 
-### Panning Large Diagrams
+### 平移大型图
 
 <p>
-  When a diagram exceeds its container, Flow automatically enables panning. Drag
-  to pan the viewport, or use the scroll wheel. Scrollbars appear on hover to
-  indicate available scroll area.
+  当图超出容器大小时，Flow 会自动启用平移。拖拽可平移视口，也可以使用滚轮。悬停时出现滚动条，用于指示可滚动区域。
 </p>
 <ComponentExample demo="FlowPanningDemo">
   <FlowPanningDemo client:visible />
 </ComponentExample>
 
-### Disabled Nodes
+### 禁用节点
 
 <p>
-  Use the `disabled` prop on a node to visually indicate it's inactive.
-  Connectors linking to disabled nodes are rendered with reduced opacity.
+  在节点上使用 `disabled` 属性，可在视觉上标示其不可用。
+  连接到禁用节点的连接器会以降低的不透明度渲染。
 </p>
 <ComponentExample demo="FlowDisabledDemo">
   <FlowDisabledDemo client:visible />
 </ComponentExample>
 
-### Parallel Node Alignment
+### 并行节点对齐
 
   <p>
-    Use the
-    `align` prop on
+    在
     `Flow.Parallel`
-    to control how nodes with different widths are aligned. Use
+    上使用
+    `align` 属性，
+    控制不同宽度的节点如何对齐。使用
     `"start"`
-    (default) to align left, or
-    `"end"` to align
-    right.
+    （默认）左对齐，或使用
+    `"end"` 右对齐。
   </p>
   <ComponentExample demo="FlowParallelAlignEndDemo">
     <FlowParallelAlignEndDemo client:visible />
@@ -201,17 +194,16 @@ export default function Example() {
 
 <ComponentSection>
 
-## Other Examples
+## 其他示例
 
-### Nested Node Lists in Parallel
+### 并行中的嵌套节点列表
 
   <p>
-    Use
-    `Flow.List`
-    inside
+    在
     `Flow.Parallel`
-    to create parallel branches where each branch contains a sequence of connected
-    nodes.
+    内部使用
+    `Flow.List`，
+    可创建并行分支，其中每个分支都包含一段依次连接的节点序列。
   </p>
   <ComponentExample demo="FlowParallelNestedListDemo">
     <FlowParallelNestedListDemo client:visible />
@@ -222,21 +214,20 @@ export default function Example() {
 
 <ComponentSection>
 
-## Components
+## 组件
 
 ### Flow
 
 <p>
-  The root container for flow diagrams. Provides panning and scrolling for large
-  diagrams.
+  流程图的主容器。为大型图提供平移和滚动支持。
 </p>
 <div class="overflow-x-auto">
   <table class="w-full">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Prop</th>
-        <th class="px-4 py-3 text-left font-semibold">Type</th>
-        <th class="px-4 py-3 text-left font-semibold">Description</th>
+        <th class="px-4 py-3 text-left font-semibold">属性</th>
+        <th class="px-4 py-3 text-left font-semibold">类型</th>
+        <th class="px-4 py-3 text-left font-semibold">说明</th>
       </tr>
     </thead>
     <tbody>
@@ -244,29 +235,25 @@ export default function Example() {
         <td class="px-4 py-3 font-mono">orientation</td>
         <td class="px-4 py-3 font-mono">"horizontal" | "vertical"</td>
         <td class="px-4 py-3">
-          Layout direction of the flow. `"horizontal"` (default) lays nodes out
-          left-to-right, `"vertical"` lays them out top-to-bottom.
+          流程的布局方向。`"horizontal"`（默认）将节点按从左到右排列，`"vertical"` 则按从上到下排列。
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono">align</td>
         <td class="px-4 py-3 font-mono">"start" | "center"</td>
         <td class="px-4 py-3">
-          Cross-axis alignment of nodes. In horizontal orientation this is
-          vertical alignment; in vertical orientation it is horizontal
-          alignment. `"start"` (default) aligns to the start of the cross axis,
-          `"center"` centers nodes.
+          节点的交叉轴对齐方式。水平方向下即垂直对齐；垂直方向下即水平对齐。`"start"`（默认）对齐到交叉轴起点，`"center"` 使节点居中。
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono">className</td>
         <td class="px-4 py-3 font-mono">string</td>
-        <td class="px-4 py-3">Additional CSS classes for the container</td>
+        <td class="px-4 py-3">容器的额外 CSS 类</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono">children</td>
         <td class="px-4 py-3 font-mono">ReactNode</td>
-        <td class="px-4 py-3">Flow.Node and Flow.Parallel components</td>
+        <td class="px-4 py-3">Flow.Node 和 Flow.Parallel 组件</td>
       </tr>
     </tbody>
   </table>
@@ -275,16 +262,15 @@ export default function Example() {
 ### Flow.Node
 
 <p>
-  A single node in the flow diagram. Renders as a styled card with automatic
-  connector points. Use the `render` prop to customize the element.
+  流程图中的单个节点。渲染为带自动连接点的样式化卡片。使用 `render` 属性自定义元素。
 </p>
 <div class="overflow-x-auto">
   <table class="w-full">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Prop</th>
-        <th class="px-4 py-3 text-left font-semibold">Type</th>
-        <th class="px-4 py-3 text-left font-semibold">Description</th>
+        <th class="px-4 py-3 text-left font-semibold">属性</th>
+        <th class="px-4 py-3 text-left font-semibold">类型</th>
+        <th class="px-4 py-3 text-left font-semibold">说明</th>
       </tr>
     </thead>
     <tbody>
@@ -292,21 +278,20 @@ export default function Example() {
         <td class="px-4 py-3 font-mono">render</td>
         <td class="px-4 py-3 font-mono">ReactElement</td>
         <td class="px-4 py-3">
-          Custom element to render instead of the default styled node
+          用于替代默认样式节点的自定义元素
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono">disabled</td>
         <td class="px-4 py-3 font-mono">boolean</td>
         <td class="px-4 py-3">
-          When true, connectors linking to this node are rendered with reduced
-          opacity
+          为 true 时，连接到该节点的连接器以降低的不透明度渲染
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono">children</td>
         <td class="px-4 py-3 font-mono">ReactNode</td>
-        <td class="px-4 py-3">Content to display inside the node</td>
+        <td class="px-4 py-3">显示在节点内的内容</td>
       </tr>
     </tbody>
   </table>
@@ -315,17 +300,15 @@ export default function Example() {
 ### Flow.Anchor
 
 <p>
-  A component that marks a custom attachment point for connectors within a
-  Flow.Node. Use this to control exactly where connector lines attach instead of
-  the default node center by providing a custom element via the `render` prop.
+  用于标记 Flow.Node 内连接器的自定义连接点的组件。通过 `render` 属性提供自定义元素，即可精确控制连接线的连接位置，而不是默认的节点中心。
 </p>
 <div class="overflow-x-auto">
   <table class="w-full">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Prop</th>
-        <th class="px-4 py-3 text-left font-semibold">Type</th>
-        <th class="px-4 py-3 text-left font-semibold">Description</th>
+        <th class="px-4 py-3 text-left font-semibold">属性</th>
+        <th class="px-4 py-3 text-left font-semibold">类型</th>
+        <th class="px-4 py-3 text-left font-semibold">说明</th>
       </tr>
     </thead>
     <tbody>
@@ -333,19 +316,18 @@ export default function Example() {
         <td class="px-4 py-3 font-mono">type</td>
         <td class="px-4 py-3 font-mono">"start" | "end"</td>
         <td class="px-4 py-3">
-          Whether this anchor serves as a "start" point (outgoing connectors) or
-          "end" point (incoming connectors). When omitted, serves as both.
+          该锚点作为 `"start"` 点（出向连接器）还是 `"end"` 点（入向连接器）。省略时同时充当两者。
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono">render</td>
         <td class="px-4 py-3 font-mono">ReactElement</td>
-        <td class="px-4 py-3">Custom element to render for the anchor point</td>
+        <td class="px-4 py-3">在锚点处渲染的自定义元素</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono">children</td>
         <td class="px-4 py-3 font-mono">ReactNode</td>
-        <td class="px-4 py-3">Content to render at the anchor point</td>
+        <td class="px-4 py-3">在锚点处渲染的内容</td>
       </tr>
     </tbody>
   </table>
@@ -354,16 +336,15 @@ export default function Example() {
 ### Flow.Parallel
 
 <p>
-  A container for parallel branches. Child Flow.Node components are displayed in
-  parallel with junction connectors.
+  并行分支的容器。子 Flow.Node 组件以并行方式显示，并使用汇合连接器。
 </p>
 <div class="overflow-x-auto">
   <table class="w-full">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Prop</th>
-        <th class="px-4 py-3 text-left font-semibold">Type</th>
-        <th class="px-4 py-3 text-left font-semibold">Description</th>
+        <th class="px-4 py-3 text-left font-semibold">属性</th>
+        <th class="px-4 py-3 text-left font-semibold">类型</th>
+        <th class="px-4 py-3 text-left font-semibold">说明</th>
       </tr>
     </thead>
     <tbody>
@@ -371,15 +352,14 @@ export default function Example() {
         <td class="px-4 py-3 font-mono">align</td>
         <td class="px-4 py-3 font-mono">"start" | "end"</td>
         <td class="px-4 py-3">
-          Controls horizontal alignment of nodes within the parallel group.
-          `"start"` (default) aligns left, `"end"` aligns right.
+          控制并行组内节点的水平对齐方式。`"start"`（默认）左对齐，`"end"` 右对齐。
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono">children</td>
         <td class="px-4 py-3 font-mono">ReactNode</td>
         <td class="px-4 py-3">
-          Flow.Node or Flow.List components to display in parallel
+          要并行显示的 Flow.Node 或 Flow.List 组件
         </td>
       </tr>
     </tbody>
@@ -389,24 +369,22 @@ export default function Example() {
 ### Flow.List
 
   <p>
-    A container for a sequence of Flow.Node components with automatic
-    connectors between them. Use inside Flow.Parallel to create branches
-    with multiple sequential steps.
+    一段 Flow.Node 组件的容器，组件之间自动生成连接器。在 Flow.Parallel 内使用，可创建包含多个顺序步骤的分支。
   </p>
   <div class="overflow-x-auto">
     <table class="w-full">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="px-4 py-3 text-left font-semibold">Prop</th>
-          <th class="px-4 py-3 text-left font-semibold">Type</th>
-          <th class="px-4 py-3 text-left font-semibold">Description</th>
+          <th class="px-4 py-3 text-left font-semibold">属性</th>
+          <th class="px-4 py-3 text-left font-semibold">类型</th>
+          <th class="px-4 py-3 text-left font-semibold">说明</th>
         </tr>
       </thead>
       <tbody>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono">children</td>
           <td class="px-4 py-3 font-mono">ReactNode</td>
-          <td class="px-4 py-3">Flow.Node components to display in sequence</td>
+          <td class="px-4 py-3">要按顺序显示的 Flow.Node 组件</td>
         </tr>
       </tbody>
     </table>

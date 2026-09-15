@@ -1,32 +1,32 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Components vs Blocks"
-description: "Understanding how Kumo delivers different types of building blocks: versioned components you import, and copy-paste blocks you own."
+description: "了解 Kumo 如何提供不同类型的构建单元：你导入的受版本管理的组件，以及由你拥有的可复制粘贴的块。"
 ---
 
 import Callout from "~/components/docs/Callout.astro";
 
-## The Building Block Spectrum
+## 构建单元的分类
 
-Not everything belongs in a design system library. Kumo distinguishes between **components** (shared, versioned primitives) and **blocks** (patterns you copy and own). Understanding this distinction helps you build applications faster while maintaining the right level of ownership.
+并非所有东西都适合放进设计系统库里。Kumo 区分了**组件**（共享的、受版本管理的原语）和**块**（你复制并拥有的模式）。理解这种区别能帮助你更快地构建应用，同时保持恰当的掌控程度。
 
-This isn't just organizational preference — it's about responsibility. Components are primitives we maintain, test, and version. Blocks are helpful starting points that you extend and adapt to your needs.
+这不仅是组织上的偏好，更关乎责任。组件是我们维护、测试并管理版本的原语。块则是有用的起点，你可以按需扩展和调整。
 
-## Components
+## 组件
 
-Components are the atomic, reusable UI elements that form the foundation of your application. Button, Input, Dialog, Badge — these are content-agnostic, context-agnostic building blocks designed for maximum reuse across any product.
+组件是构成你应用基础的原子化、可复用的 UI 元素。Button、Input、Dialog、Badge — 这些是与内容和上下文无关的构建单元，致力于在任何产品中实现最大限度的复用。
 
-#### Characteristics
+#### 特点
 
-- **Versioned & maintained** — We own the API, fix bugs, and ship updates
-- **Tree-shakeable** — Import only what you use, no bloat
-- **Accessible by default** — Built on Base UI primitives with proper ARIA support
-- **Design-system compliant** — Semantic tokens, consistent variants, predictable APIs
-- **Agnostic** — No business logic, no product-specific assumptions
+- **有版本管理并由我们维护** — 我们负责 API、修复 bug 并发布更新
+- **支持 tree-shaking** — 只导入你用到的部分，无冗余
+- **默认无障碍** — 基于 Base UI 原语构建，具备完善的 ARIA 支持
+- **符合设计系统规范** — 语义化令牌、一致的变体、可预期的 API
+- **通用无关** — 不含业务逻辑，也不做任何特定于产品的假设
 
-### How to Use
+### 使用方法
 
-Import directly from the package:
+直接从包中导入：
 
 ```tsx
 import { Button, Input, Dialog, Badge } from "@cloudflare/kumo";
@@ -35,23 +35,23 @@ import { Button, Input, Dialog, Badge } from "@cloudflare/kumo";
 import { Button } from "@cloudflare/kumo/components/button";
 ```
 
-When Kumo ships a new version, you get bug fixes and improvements automatically. Your code doesn't change — just bump the version.
+当 Kumo 发布新版本时，你会自动获得 bug 修复和改进。你的代码无需改动 — 只需升级版本。
 
-## Blocks
+## 块
 
-Blocks are compositions of components that solve common patterns, but aren't agnostic enough to live in the core library. `PageHeader`, `ResourceList` — these are valuable, reusable patterns, but they may only apply to certain products or need product-specific customization.
+块是针对常见模式组合而成的组件，但它们的通用性不足以放进核心库。`PageHeader`、`ResourceList` — 这些是有价值、可复用的模式，但它们可能只适用于特定产品，或需要针对产品进行定制。
 
-#### Characteristics
+#### 特点
 
-- **You own it** — Code lives in your project, you control the implementation
-- **Fully customizable** — Modify anything beyond what props allow
-- **Composition-first** — Built from Kumo components, not raw HTML
-- **Starting points** — Patterns to extend, not constraints to work around
-- **Product-aware** — Can include business logic, layout assumptions, specific compositions
+- **归你所有** — 代码在你的项目中，由你掌控实现
+- **完全可定制** — 可以修改 props 允许范围以外的任何内容
+- **组合优先** — 由 Kumo 组件构建，而不是原生 HTML
+- **起点而非约束** — 可以扩展的模式，而不是需要绕开的限制
+- **感知产品** — 可以包含业务逻辑、布局假设和特定组合
 
-### How to Use
+### 使用方法
 
-Install via CLI, then import from your project:
+通过 CLI 安装，然后从你的项目中导入：
 
 ```bash
 
@@ -68,7 +68,7 @@ npx @cloudflare/kumo blocks
 npx @cloudflare/kumo add PageHeader
 ```
 
-After installation, import from your local path:
+安装后，从你的本地路径导入：
 
 ```tsx
 // Path depends on your kumo.json blocksDir setting
@@ -76,11 +76,11 @@ After installation, import from your local path:
 import { PageHeader } from "./components/kumo/page-header/page-header";
 ```
 
-The block code is now yours. Customize it, extend it, break it apart — whatever your product needs.
+块代码现在归你所有。可以自定义、扩展或拆分 — 一切取决于你产品的需要。
 
-## A Practical Example
+## 一个实际示例
 
-Consider a `ProductCard`. It's a specific arrangement of components for a specific use case:
+以 `ProductCard` 为例。它是针对特定场景的一种特定组件组合：
 
 ```tsx
 // This is a "block" or "recipe" - a specific composition
@@ -101,55 +101,53 @@ Consider a `ProductCard`. It's a specific arrangement of components for a specif
 </Surface>
 ```
 
-All those components (`Surface`, `Text`, `Button`) come from Kumo. But the specific arrangement? That's a pattern you own and customize.
+这些组件（`Surface`、`Text`、`Button`）都来自 Kumo。至于具体的组合方式？那是一个由你拥有并定制的模式。
 
-## Decision Framework
+## 决策框架
 
-Asking "is this a component or a block?" really means asking about ownership and reuse:
+问 "这是一个组件还是块？" 实际上是在问归属与复用的问题：
 
-#### Use a Component when...
+#### 以下情况使用组件……
 
-- It's content-agnostic (works with any data)
-- It's context-agnostic (works in any layout)
-- Multiple products need the exact same thing
-- Accessibility and consistency matter most
-- You want automatic updates and maintenance
+- 内容无关（适用于任何数据）
+- 上下文无关（适用于任何布局）
+- 多个产品需要完全相同的东西
+- 无障碍性和一致性最为重要
+- 你想要自动更新和维护
 
-#### Use a Block when...
+#### 以下情况使用块……
 
-- You need to customize beyond props
-- The pattern is product-specific
-- It includes business logic or layout assumptions
-- You want full control over implementation
-- You prefer copy-paste over package dependency
+- 你需要超出 props 范围的定制
+- 模式是特定于产品的
+- 包含业务逻辑或布局假设
+- 你想完全掌控实现
+- 你倾向于复制粘贴而不是依赖包
 
 <Callout type="info">
-  **Default to thinking "component first."** Even when building something
-  specific, ask yourself: "Can I build this from existing components?" The
-  answer is usually yes. Components compose into blocks, and blocks can always
-  be broken apart again.
+  **默认优先想"组件"。** 即使在构建特定功能时，也先问自己："我能否用
+  现有组件来构建？"答案通常是肯定的。组件可以组合成块，块也总能再次拆解。
 </Callout>
 
-## Movement Between Levels
+## 层级之间的流动
 
-Things can move between these categories. A pattern that starts as a one-off in your application might become widely used enough to warrant extraction into a block. A block that proves universally useful might graduate to a full component.
+东西可以在这些类别之间流动。一个最初在你的应用里一次性使用的模式，可能变得足够通用，值得提炼成块。一个证明具有普适价值的块，也可能晋升为完整的组件。
 
-**The key principle:** Things should move _down_ into the design system rather than cluttering it with too-specific patterns that need to be weeded out later. Wait for reuse to prove itself before promoting something to a shared component.
+**关键原则：** 东西应该_向下_沉淀到设计系统中，而不是用过于特定、日后还需清除的模式把设计系统弄乱。在把某个模式提升为共享组件之前，先让复用价值得到验证。
 
-This is why blocks exist as a middle ground. They're patterns worth sharing, but without the commitment of maintaining a versioned API. You get the starting point; you own the evolution.
+这正是块存在的意义 — 作为中间地带。它们是值得分享的模式，但不需要承担维护有版本管理的 API 的承诺。你得到起点，并拥有它的演进。
 
-## Summary
+## 总结
 
-|                   | Components                   | Blocks                       |
-| ----------------- | ---------------------------- | ---------------------------- |
-| **Delivery**      | NPM package import           | CLI copy to your project     |
-| **Ownership**     | Kumo maintains               | You own & customize          |
-| **Updates**       | Automatic via version bump   | Manual (re-install or merge) |
-| **Customization** | Props & className only       | Full source code access      |
-| **Examples**      | Button, Input, Dialog, Badge | PageHeader, ResourceList     |
+|                   | 组件                         | 块                              |
+| ----------------- | ---------------------------- | ------------------------------- |
+| **交付方式**      | NPM 包导入                   | 通过 CLI 复制到你的项目         |
+| **归属**          | 由 Kumo 维护                 | 归你所有并定制                  |
+| **更新**          | 升级版本自动更新             | 手动（重新安装或合并）          |
+| **定制**          | 仅 props 和 className        | 完整源码访问                    |
+| **示例**          | Button, Input, Dialog, Badge | PageHeader, ResourceList        |
 
-## Related
+## 相关链接
 
-- [Installation](/installation) — Get started with Kumo
-- [CLI](/cli) — Install blocks and access documentation
-- [Contributing](/contributing) — Add new components and blocks
+- [Installation](/installation) — Kumo 快速上手
+- [CLI](/cli) — 安装块并访问文档
+- [Contributing](/contributing) — 添加新组件和块

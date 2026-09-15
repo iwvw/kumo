@@ -1,40 +1,40 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Contributing"
-description: "Learn how to contribute to Kumo, from setup and workflows to PR and release guidelines. Everything you need for setup, development, quality checks, and PR process is documented here."
+description: "了解如何为 Kumo 贡献代码，涵盖环境搭建、工作流程以及 PR 和发布指南。这里记录了你需要的环境搭建、开发、质量检查和 PR 流程的全部信息。"
 ---
 
-## Before You Start
+## 开始之前
 
-For non-trivial changes, start with alignment before coding:
+对于非简单的改动，编写代码之前先对齐以下几点：
 
-- Comment on an existing issue or open one first.
-- Confirm scope, API direction, and migration impact.
-- For small fixes/docs tweaks, you can go straight to a PR.
+- 先在现有 issue 下评论，或先新建一个 issue。
+- 确认改动范围、API 方向以及迁移影响。
+- 对于小修复或文档调整，你可以直接提交 PR。
 
 ---
 
-## 1. Get Set Up Once
+## 1. 一次性完成环境搭建
 
-From repo root:
+在仓库根目录执行：
 
 ```bash
 pnpm install
 pnpm build
 ```
 
-Requirements:
+环境要求：
 
 - Node `^24.12.0`
 - pnpm `>=10.26.0`
 
-Recommended local setup:
+推荐的本地环境配置：
 
-- Use a Node version manager (`nvm`, `fnm`, etc.).
-- Use VS Code and select the workspace TypeScript version.
-- If dependencies changed after rebase, run `pnpm install` again.
+- 使用 Node 版本管理器（`nvm`、`fnm` 等）。
+- 使用 VS Code，并选择工作区的 TypeScript 版本。
+- 如果 rebase 后依赖发生变化，请重新运行 `pnpm install`。
 
-### Repository Access and Branching
+### 仓库访问与分支
 
 Internal contributors normally clone and push directly to `cloudflare/kumo`:
 
@@ -44,19 +44,19 @@ git switch -c <branch-name>
 git push -u origin <branch-name>
 ```
 
-If you do not have write access, contact your manager or Kumo maintainers.
+如果你没有写权限，请联系你的主管或 Kumo 维护者。
 
 ---
 
-## 2. Pick the Right Contribution Type
+## 2. 选择正确的贡献类型
 
-Use this to decide where your change belongs:
+根据以下分类确定你的改动应归属到哪里：
 
-- **Component**: reusable UI primitive in `packages/kumo/src/components/`
-- **Block**: installable composition pattern in `packages/kumo/src/blocks/`
-- **Docs only**: docs/demo/navigation updates in `packages/kumo-docs-astro/`
+- **组件（Component）**：`packages/kumo/src/components/` 下可复用的 UI 原语
+- **块（Block）**：`packages/kumo/src/blocks/` 下可安装的组合模式
+- **仅文档**：`packages/kumo-docs-astro/` 下的文档、demo 和导航更新
 
-When adding a new **component**, scaffold it (do not create files manually):
+添加新的**组件**时，请使用脚手架生成（不要手动创建文件）：
 
 ```bash
 pnpm --filter @cloudflare/kumo new:component
@@ -64,9 +64,9 @@ pnpm --filter @cloudflare/kumo new:component
 
 ---
 
-## 3. Start the Dev Loop
+## 3. 启动开发循环
 
-Run these in separate terminals:
+请在两个独立的终端中运行：
 
 ```bash
 # Terminal 1: watch Kumo package output
@@ -76,35 +76,35 @@ pnpm --filter @cloudflare/kumo dev
 pnpm dev
 ```
 
-This gives you a fast loop while verifying your change in the actual docs environment.
+这样你可以在实际文档环境中验证改动的同时，获得快速的开发循环。
 
 ---
 
-## 4. Implement the Change
+## 4. 实现改动
 
-Typical internal change flow:
+典型的内部改动流程：
 
-1. Build the feature in `packages/kumo/src/...`.
-2. Add or update demos in `packages/kumo-docs-astro/src/components/demos/`.
-3. Add/update tests in `packages/kumo`.
-4. Add or update docs pages in `packages/kumo-docs-astro/src/pages/`.
+1. 在 `packages/kumo/src/...` 中构建功能。
+2. 在 `packages/kumo-docs-astro/src/components/demos/` 中添加或更新 demo。
+3. 在 `packages/kumo` 中添加或更新测试。
+4. 在 `packages/kumo-docs-astro/src/pages/` 中添加或更新文档页面。
 
-If your demos should appear in registry metadata, keep demo naming exact:
+如果你希望 demo 出现在注册表元数据中，请保持 demo 命名完全一致：
 
-- File: `{Component}Demo.tsx`
-- Export names must end with `Demo`
+- 文件名：`{Component}Demo.tsx`
+- 导出名必须以 `Demo` 结尾
 
-Implementation expectations:
+实现要求：
 
-- Preserve accessibility semantics and keyboard behavior.
-- Keep APIs focused and avoid one-off abstractions.
-- Follow existing Kumo patterns for variants, props, and structure.
+- 保留无障碍语义和键盘行为。
+- 保持 API 聚焦，避免一次性的抽象。
+- 遵循 Kumo 现有的变体、props 和结构模式。
 
 ---
 
-## 5. Run Validation Before PR
+## 5. 提交 PR 前运行校验
 
-Run these from repo root before opening or updating your PR:
+在开启或更新 PR 之前，请从仓库根目录运行：
 
 ```bash
 pnpm lint
@@ -112,90 +112,90 @@ pnpm typecheck
 pnpm --filter @cloudflare/kumo test
 ```
 
-If you changed exports/build behavior, also run:
+如果你更改了导出或构建行为，还需要运行：
 
 ```bash
 pnpm --filter @cloudflare/kumo build
 ```
 
-Optional (when relevant):
+可选项（相关时运行）：
 
 ```bash
 pnpm format
 pnpm --filter @cloudflare/kumo test:run
 ```
 
-Windsurf and hooks catch additional issues, but you should still run checks locally before requesting review.
+Windsurf 和 git hooks 能捕获其他问题，但在请求评审之前，你仍应在本地运行检查。
 
 ---
 
-## 6. Handle Changesets Correctly
+## 6. 正确处理 Changesets
 
-If your change touches `packages/kumo/` and should ship, add a changeset:
+如果你的改动涉及 `packages/kumo/` 并且需要发布，请添加一个 changeset：
 
 ```bash
 pnpm changeset
 ```
 
-Changeset guidance:
+Changeset 使用指引：
 
-- Use `patch` for bug fixes and low-risk improvements.
-- Use `minor` for new backward-compatible features.
-- Use `major` only for breaking changes.
-- Keep the summary focused on user-visible impact.
+- 使用 `patch` 发布 bug 修复和低风险改进。
+- 使用 `minor` 发布新的向后兼容功能。
+- 仅在破坏性变更时使用 `major`。
+- 保持摘要聚焦于用户可见的影响。
 
-If your change is docs-only or non-releasable package work, a changeset is usually not required.
-
----
-
-## 7. Open and Maintain the PR
-
-- Branch from `main` and push to `origin`.
-- Use PR title format: `[package] short description` (example: `[kumo] add meter warning variant`).
-- Fill in the PR template with testing details and impact.
-- After review starts, prefer follow-up commits over force-pushing rewritten history.
-
-Git hygiene expectations:
-
-- Keep commit history readable before first review.
-- After reviews begin, avoid rewriting already-reviewed commits.
-- Add follow-up commits for feedback (`fixup` commits are fine).
-
-PR review is required before merge.
+如果你的改动仅涉及文档或不可发布的包工作，通常不需要 changeset。
 
 ---
 
-## PR Previews and Tests
+## 7. 开启并维护 PR
 
-- PRs publish prerelease artifacts via `pkg.pr.new` links in CI comments.
-- Every PR should include tests for behavior changes.
-- Most Kumo tests are Vitest-based and live under `packages/kumo`.
+- 从 `main` 创建分支并推送到 `origin`。
+- PR 标题格式：`[package] short description`（示例：`[kumo] add meter warning variant`）。
+- 在 PR 模板中填写测试详情和影响。
+- 评审开始后，优先使用后续提交，而不是强推重写历史。
 
----
+Git 卫生要求：
 
-## Release Process (How Your Change Ships)
+- 在首次评审之前保持提交历史清晰可读。
+- 评审开始后，避免重写已经评审过的提交。
+- 针对反馈添加后续提交（`fixup` 提交可以）。
 
-- Releases are managed through Changesets.
-- Merged changesets on `main` feed the automated versioning/publish flow.
-- If you need an urgent out-of-cadence release, contact maintainers.
-
----
-
-## Practical Guidelines
-
-- Use semantic Kumo tokens and avoid raw Tailwind color classes.
-- Compose class names with `cn(...)`.
-- Prefer extending existing patterns over introducing one-off API designs.
-- Include tests for behavior changes, not just rendering snapshots.
-
-Common pitfalls to avoid:
-
-- Do not scaffold components manually; use `new:component`.
-- Do not rely on raw Tailwind color classes (`bg-blue-500`, etc.).
-- Do not skip changesets for releasable `packages/kumo` changes.
+合并前必须通过 PR 评审。
 
 ---
 
-## Related Docs
+## PR 预览和测试
 
-Follow the [changeset guide](https://github.com/cloudflare/kumo/blob/main/.changeset/README.md) to document releasable library changes and see the [AGENTS.md](https://github.com/cloudflare/kumo/blob/main/packages/kumo/AGENTS.md) for conventions and patterns.
+- PR 会通过 CI 评论中的 `pkg.pr.new` 链接发布预发布产物。
+- 每个 PR 都应包含对行为变化的测试。
+- 大多数 Kumo 测试基于 Vitest，位于 `packages/kumo` 下。
+
+---
+
+## 发布流程（你的改动如何上线）
+
+- 发布通过 Changesets 管理。
+- 合并到 `main` 的 changeset 会进入自动化的版本管理和发布流程。
+- 如果你需要紧急的非计划内发布，请联系维护者。
+
+---
+
+## 实用指南
+
+- 使用 Kumo 语义化令牌，避免直接使用 Tailwind 颜色类。
+- 使用 `cn(...)` 组合类名。
+- 优先扩展现有模式，而不是引入一次性的 API 设计。
+- 包含对行为变化的测试，而不只是渲染快照。
+
+需要避免的常见坑：
+
+- 不要手动搭建组件；使用 `new:component`。
+- 不要依赖原生的 Tailwind 颜色类（`bg-blue-500` 等）。
+- 对可发布的 `packages/kumo` 改动不要跳过 changeset。
+
+---
+
+## 相关文档
+
+遵循 [changeset 指南](https://github.com/cloudflare/kumo/blob/main/.changeset/README.md) 来记录可发布的库改动，并查看 [AGENTS.md](https://github.com/cloudflare/kumo/blob/main/packages/kumo/AGENTS.md) 了解相关约定和模式。

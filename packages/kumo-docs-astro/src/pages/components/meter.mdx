@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Meter"
-description: "A progress/percentage meter component for displaying numeric values within a known range."
+description: "一个进度/百分比仪表组件，用于在已知范围内展示数值。"
 sourceFile: "components/meter"
 ---
 
@@ -28,15 +28,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Meter } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Meter } from "@cloudflare/kumo/components/meter";
@@ -48,7 +48,7 @@ import { Meter } from "@cloudflare/kumo/components/meter";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Meter } from "@cloudflare/kumo";
@@ -64,39 +64,39 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic Meter
+### 基础仪表
 
-<p>The default meter displays a label and percentage value.</p>
+<p>默认仪表会显示标签和百分比数值。</p>
 <ComponentExample demo="MeterBasicDemo">
   <MeterBasicDemo client:visible />
 </ComponentExample>
 
-### Custom Value Display
+### 自定义数值显示
 
-<p>Use `customValue` to show a custom string instead of the percentage.</p>
+<p>使用 `customValue` 显示自定义字符串，替代百分比。</p>
 <ComponentExample demo="MeterCustomValueDemo">
   <MeterCustomValueDemo client:visible />
 </ComponentExample>
 
-### Hidden Value
+### 隐藏数值
 
-<p>Set `showValue={false}` to hide the value display.</p>
+<p>设置 `showValue={false}` 以隐藏数值显示。</p>
 <ComponentExample demo="MeterHiddenValueDemo">
   <MeterHiddenValueDemo client:visible />
 </ComponentExample>
 
-### Full Meter
+### 满载仪表
 
-<p>A meter at 100% capacity.</p>
+<p>容量达到 100% 的仪表。</p>
 <ComponentExample demo="MeterFullDemo">
   <MeterFullDemo client:visible />
 </ComponentExample>
 
-### Low Value
+### 低数值
 
-<p>A meter with a low value.</p>
+<p>数值较低的仪表。</p>
 <ComponentExample demo="MeterLowDemo">
   <MeterLowDemo client:visible />
 </ComponentExample>
@@ -107,7 +107,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="Meter" />
 </ComponentSection>

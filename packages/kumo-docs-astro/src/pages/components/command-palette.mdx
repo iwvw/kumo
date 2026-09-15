@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "CommandPalette"
-description: "A composable command palette component for search and command dialogs."
+description: "一个组合式命令面板组件，用于搜索和命令对话框。"
 sourceFile: "components/command-palette"
 ---
 
@@ -29,15 +29,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 ```tsx
 import { CommandPalette } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 按需导入
 
 ```tsx
 import { CommandPalette } from "@cloudflare/kumo/components/command-palette";
@@ -49,12 +49,11 @@ import { CommandPalette } from "@cloudflare/kumo/components/command-palette";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
   <p>
-    CommandPalette is a compound component built on Base UI's Autocomplete
-    primitive. It provides accessible keyboard navigation and customizable
-    styling for command palette interfaces.
+    CommandPalette 是一个复合组件，构建于 Base UI 的 Autocomplete
+    原语之上。它为命令面板界面提供无障碍键盘导航和可自定义的样式。
   </p>
 
 ```tsx
@@ -114,15 +113,15 @@ export default function Example() {
 
 <ComponentSection>
 
-## Keyboard Navigation
+## 键盘导航
 
-  <p>Built-in keyboard navigation is provided automatically:</p>
+  <p>内置键盘导航会自动生效：</p>
   <KeyboardShortcuts
     shortcuts={[
-      { keys: ["↑", "↓"], description: "Move highlight between items" },
-      { keys: ["Enter"], description: "Select highlighted item" },
-      { keys: ["⌘/Ctrl", "Enter"], description: "Select with newTab: true" },
-      { keys: ["Escape"], description: "Close the dialog" },
+      { keys: ["↑", "↓"], description: "在条目之间移动高亮" },
+      { keys: ["Enter"], description: "选中高亮的条目" },
+      { keys: ["⌘/Ctrl", "Enter"], description: "以 newTab: true 方式选中" },
+      { keys: ["Escape"], description: "关闭对话框" },
     ]}
   />
 </ComponentSection>
@@ -131,41 +130,41 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### With Grouped Items
+### 分组条目
 
-<p>Group related commands together with labels.</p>
+<p>使用标签将相关命令分组在一起。</p>
 <ComponentExample demo="CommandPaletteBasicDemo">
   <CommandPaletteBasicDemo client:visible />
 </ComponentExample>
 
-### Simple Flat List
+### 简单平铺列表
 
-<p>For simpler use cases, use a flat array of items without grouping.</p>
+<p>对于更简单的场景，使用不带分组的平铺条目数组。</p>
 <ComponentExample demo="CommandPaletteSimpleDemo">
   <CommandPaletteSimpleDemo client:visible />
 </ComponentExample>
 
-### Loading State
+### 加载状态
 
-<p>Show a loading spinner while fetching results.</p>
+<p>在获取结果时显示加载微调器。</p>
 <ComponentExample demo="CommandPaletteLoadingDemo">
   <CommandPaletteLoadingDemo client:visible />
 </ComponentExample>
 
-### Disabling Browser Autocomplete
+### 禁用浏览器自动补全
 
-<p>Pass standard HTML input attributes like `autoComplete`, `autoCorrect`, `spellCheck`, and `data-*` to suppress browser and password manager autocomplete overlays.</p>
+<p>传入 `autoComplete`、`autoCorrect`、`spellCheck` 和 `data-*` 等标准 HTML 输入属性，可抑制浏览器和密码管理器自动补全覆盖层。</p>
 <ComponentExample demo="CommandPaletteNoAutocompleteDemo">
   <CommandPaletteNoAutocompleteDemo client:visible />
 </ComponentExample>
 
-### ResultItem with Breadcrumbs
+### 带面包屑的 ResultItem
 
   <p>
-    Use `ResultItem` for rich items with
-    breadcrumbs, icons, and optional text highlighting.
+    使用 `ResultItem` 构建丰富的条目，支持
+    面包屑、图标和可选文本高亮。
   </p>
   <ComponentExample demo="CommandPaletteResultItemDemo">
     <CommandPaletteResultItemDemo client:visible />
@@ -176,77 +175,77 @@ export default function Example() {
 
 <ComponentSection>
 
-## Component Parts
+## 组件组成
 
 ### CommandPalette.Root
 
 <p>
-  The main wrapper that combines Dialog + Panel. Manages open state and
-  Autocomplete functionality.
+  组合 Dialog 与 Panel 的主包装组件。管理打开状态和
+  Autocomplete 功能。
 </p>
 
 ### CommandPalette.Dialog
 
 <p>
-  Modal dialog wrapper. Use with Panel for swappable content (e.g., drill-down
-  navigation).
+  模态对话框包装。与 Panel 搭配使用可实现可替换内容（例如
+  下钻式导航）。
 </p>
 
 ### CommandPalette.Panel
 
 <p>
-  Autocomplete panel without dialog. Use inside Dialog for content that can swap
-  without re-mounting.
+  不含对话框的 Autocomplete 面板。在 Dialog 内使用，用于容纳无需
+  重新挂载即可切换的内容。
 </p>
 
 ### CommandPalette.Input
 
-<p>Search input field with auto-focus and keyboard handling.</p>
+<p>带自动聚焦和键盘处理的搜索输入框。</p>
 
 ### CommandPalette.List
 
-<p>Scrollable container for results.</p>
+<p>结果的滚动容器。</p>
 
 ### CommandPalette.Results
 
-<p>Render prop iterator for items/groups.</p>
+<p>条目/分组的 render 属性迭代器。</p>
 
 ### CommandPalette.Group
 
-<p>Category grouping container.</p>
+<p>类别分组容器。</p>
 
 ### CommandPalette.GroupLabel
 
-<p>Section header text within a group.</p>
+<p>分组内的小节标题文本。</p>
 
 ### CommandPalette.Items
 
-<p>Render prop iterator for items within a group.</p>
+<p>组内条目的 render 属性迭代器。</p>
 
 ### CommandPalette.Item
 
-<p>Basic selectable item.</p>
+<p>基础可选条目。</p>
 
 ### CommandPalette.ResultItem
 
-<p>Rich item with breadcrumbs, icons, and text highlighting.</p>
+<p>带面包屑、图标和文本高亮的丰富条目。</p>
 
 ### CommandPalette.HighlightedText
 
-<p>Renders text with highlighted portions based on match indices.</p>
+<p>根据匹配索引渲染带高亮部分的文本。</p>
 
 ### CommandPalette.Empty
 
-<p>Empty state when no results match.</p>
+<p>无匹配结果时的空状态。</p>
 
 ### CommandPalette.Loading
 
-<p>Loading spinner state.</p>
+<p>加载微调器状态。</p>
 
 ### CommandPalette.Footer
 
   <p>
-    Footer for keyboard hints or other content.
+    用于存放键盘提示或其他内容的底部区域。
   </p>
 </ComponentSection>
 
@@ -254,9 +253,9 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
-### CommandPalette.Root Props
+### CommandPalette.Root 属性
 
 ```tsx
 interface CommandPaletteRootProps<TGroup, TItem> {
@@ -281,7 +280,7 @@ interface CommandPaletteRootProps<TGroup, TItem> {
 }
 ```
 
-### CommandPalette.ResultItem Props
+### CommandPalette.ResultItem 属性
 
 ```tsx
 interface CommandPaletteResultItemProps<T> {

@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Combobox"
-description: "A searchable select component that allows users to filter and select from a list of options."
+description: "一个可搜索的选择组件，允许用户从选项列表中筛选并选择。"
 sourceFile: "components/combobox"
 baseUIComponent: "combobox"
 ---
@@ -38,13 +38,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 <CodeBlock code={`import { Combobox } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 按需导入
 
   <CodeBlock
     code={`import { Combobox } from "@cloudflare/kumo/components/combobox";`}
@@ -56,7 +56,7 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { useState } from "react";
@@ -91,20 +91,20 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Sizes
+### 尺寸
 
 <p>
-  The Combobox supports four size variants that match the Input component: `xs`,
-  `sm`, `base` (default), and `lg`.
+  Combobox 支持与 Input 组件一致的四种尺寸变体：`xs`、
+  `sm`、`base`（默认）和 `lg`。
 </p>
 <ComponentExample demo="ComboboxSizesDemo">
   <ComboboxSizesDemo client:load />
 </ComponentExample>
 
   <p>
-    Size also applies to `TriggerValue` (searchable inside variant):
+    尺寸同样适用于 `TriggerValue`（可搜索内嵌变体）：
   </p>
   <ComponentExample demo="ComboboxSizesSearchableInsideDemo">
     <ComboboxSizesSearchableInsideDemo client:load />
@@ -113,11 +113,10 @@ export default function Example() {
 
 <ComponentSection>
 
-### Searchable Item (Inside)
+### 可搜索条目（内嵌）
 
   <p>
-    A searchable select component inside popup that allows users to filter and
-    select.
+    弹出层内嵌的可搜索选择组件，允许用户筛选和选择。
   </p>
   <ComponentExample demo="ComboboxSearchableInsideDemo">
     <ComboboxSearchableInsideDemo client:load />
@@ -126,11 +125,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### Searchable Select with Placeholder
+### 带占位符的可搜索选择
 
   <p>
-    Use `TriggerValue` with a `placeholder` prop to create a searchable Select-style field.
-    The placeholder is displayed until a value is selected.
+    将 `TriggerValue` 与 `placeholder` 属性结合使用，即可创建可搜索的 Select 样式字段。
+    选中值之前会一直显示占位符。
   </p>
   <ComponentExample demo="ComboboxSearchableSelectDemo">
     <ComboboxSearchableSelectDemo client:load />
@@ -139,11 +138,10 @@ export default function Example() {
 
 <ComponentSection>
 
-### Object Item Collections
+### 对象条目集合
 
 <p>
-  Derive stable values and labels from application objects with
-  `Combobox.createItems()`.
+  使用 `Combobox.createItems()` 从应用对象派生出稳定的取值和标签。
 </p>
 <ComponentExample demo="ComboboxCreateItemsDemo">
   <ComboboxCreateItemsDemo client:load />
@@ -153,13 +151,13 @@ export default function Example() {
 
 <ComponentSection>
 
-### Custom Trigger
+### 自定义触发器
 
 <p>
-  Use <code>Combobox.Trigger</code> with a <code>render</code> prop to replace
-  the default input-like trigger with your own element. Pair with
-  <code>Combobox.Value</code> to display the selected value. Useful for account
-  switchers, sidebar navigation, or anywhere the default chrome doesn't fit.
+  将 <code>Combobox.Trigger</code> 与 <code>render</code> 属性结合使用，
+  可以用你自己的元素替换默认的输入型触发器。配合
+  <code>Combobox.Value</code> 展示选中的值。适用于账号切换器、
+  侧边栏导航等默认外观无法满足的场景。
 </p>
 <ComponentExample demo="ComboboxCustomTriggerDemo">
   <ComboboxCustomTriggerDemo client:load />
@@ -169,9 +167,9 @@ export default function Example() {
 
 <ComponentSection>
 
-### Grouped
+### 分组
 
-  <p>Group items into categories using the Group and GroupLabel components.</p>
+  <p>使用 Group 和 GroupLabel 组件将条目按类别分组。</p>
   <ComponentExample demo="ComboboxGroupedDemo">
     <ComboboxGroupedDemo client:load />
   </ComponentExample>
@@ -179,9 +177,9 @@ export default function Example() {
 
 <ComponentSection>
 
-### Multiple
+### 多选
 
-  <p>Allow users to select multiple options from the list.</p>
+  <p>允许用户从列表中选择多个选项。</p>
   <ComponentExample demo="ComboboxMultipleDemo">
     <ComboboxMultipleDemo client:load />
   </ComponentExample>
@@ -189,9 +187,9 @@ export default function Example() {
 
 <ComponentSection>
 
-### With Field
+### 搭配 Field
 
-  <p>Add label and description using the built-in Field wrapper.</p>
+  <p>使用内置的 Field 包装添加标签和描述。</p>
   <ComponentExample demo="ComboboxWithFieldDemo">
     <ComboboxWithFieldDemo client:load />
   </ComponentExample>
@@ -199,9 +197,9 @@ export default function Example() {
 
 <ComponentSection>
 
-### Disabled
+### 禁用
 
-  <p>Pass the `disabled` prop to prevent interaction. Works with both `TriggerInput` and `TriggerValue`.</p>
+  <p>传入 `disabled` 属性可禁止交互。`TriggerInput` 和 `TriggerValue` 均支持。</p>
   <ComponentExample demo="ComboboxDisabledDemo">
     <ComboboxDisabledDemo client:load />
   </ComponentExample>
@@ -209,9 +207,9 @@ export default function Example() {
 
 <ComponentSection>
 
-### Disabled Items
+### 禁用条目
 
-  <p>Pass the `disabled` prop to an individual `Combobox.Item` to make it non-selectable. Disabled rows are rendered with a muted style and skipped during keyboard navigation selection.</p>
+  <p>为单个 `Combobox.Item` 传入 `disabled` 属性，可使其不可选择。禁用行以弱化样式渲染，并在键盘导航选择时被跳过。</p>
   <ComponentExample demo="ComboboxDisabledItemsDemo">
     <ComboboxDisabledItemsDemo client:load />
   </ComponentExample>
@@ -219,9 +217,9 @@ export default function Example() {
 
 <ComponentSection>
 
-### Error State
+### 错误状态
 
-  <p>Display validation errors with the error prop.</p>
+  <p>使用 error 属性展示校验错误。</p>
   <ComponentExample demo="ComboboxErrorDemo">
     <ComboboxErrorDemo client:load />
   </ComponentExample>
@@ -229,16 +227,16 @@ export default function Example() {
 
 <ComponentSection>
 
-## Filtering
+## 过滤
 
 <p>
-  Filtering is case- and accent-insensitive by default, powered by
-  `Intl.Collator` under the hood. For string items, no custom `filter` is
-  needed.
+  过滤默认不区分大小写和重音，底层由
+  `Intl.Collator` 驱动。对于字符串条目，无需自定义
+  `filter`。
 </p>
 <p>
-  When filtering on a property of object items, use `Combobox.useFilter()` to
-  preserve the built-in accent-insensitive matching:
+  当需要按对象条目的属性过滤时，使用 `Combobox.useFilter()` 来
+  保留内置的重音不敏感匹配：
 </p>
 
 ```tsx
@@ -259,8 +257,8 @@ function LanguagePicker() {
 ```
 
 <p>
-  To disable filtering entirely (e.g. when results come from a server), pass
-  `filter={null}`:
+  如需完全禁用过滤（例如结果来自服务器），可传
+  `filter={null}`：
 </p>
 
 ```tsx
@@ -273,12 +271,11 @@ function LanguagePicker() {
 
 <ComponentSection>
 
-## Object Item Collections
+## 对象条目集合
 
 <p>
-  Use `Combobox.createItems()` when items are application objects rather than
-  primitive values. It derives stable selection values and labels while keeping
-  the source object available to the list renderer.
+  当条目是应用对象而非原始值时，使用 `Combobox.createItems()`。
+  它会派生稳定的取值和标签，同时让列表渲染器仍能拿到源对象。
 </p>
 
 ```tsx
@@ -319,22 +316,22 @@ function FruitPicker() {
 ```
 
 <p>
-  Create static collections at module scope. For data that changes at runtime,
-  memoize `Combobox.createItems()` with the source data as its dependency.
+  在模块作用域创建静态集合。对于运行时变化的数据，
+  以源数据为依赖对 `Combobox.createItems()` 做 memoize（记忆化）。
 </p>
 
 </ComponentSection>
 
 <ComponentSection>
 
-## Customizing Dropdown Height
+## 自定义下拉高度
 
 <p>
-  By default, `Combobox.Content` has a max height of `24rem` (384px) or the
-  available viewport space, whichever is smaller. The dropdown scrolls
-  automatically when content exceeds this height.
+  默认情况下，`Combobox.Content` 的最大高度为 `24rem`（384px），
+  或可用视口空间，取两者中的较小值。当内容超出该高度时，
+  下拉列表会自动滚动。
 </p>
-<p>To customize the max height, pass a className to `Combobox.Content`:</p>
+<p>如需自定义最大高度，请向 `Combobox.Content` 传入 className：</p>
 
 ```tsx
 // Shorter dropdown (200px)
@@ -352,36 +349,36 @@ function FruitPicker() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Combobox
 
-<p>Root component for the searchable select.</p>
+<p>可搜索选择组件的根组件。</p>
 <PropsTable component="Combobox" />
 
 ### Combobox.Content
 
-<p>Dropdown container for the list.</p>
+<p>列表的下拉容器。</p>
 <PropsTable component="Combobox.Content" />
 
 ### Combobox.Item
 
-<p>Individual selectable option.</p>
+<p>单个可选择的选项。</p>
 <PropsTable component="Combobox.Item" />
 
-### Additional Sub-components
+### 其他子组件
 
   <ul class="list-disc list-inside space-y-1">
-    <li>`Combobox.TriggerInput` - Single-select input trigger</li>
-    <li>`Combobox.TriggerValue` - Button trigger showing selected value</li>
-    <li>`Combobox.TriggerMultipleWithInput` - Multi-select with chips</li>
-    <li>`Combobox.Input` - Search input inside dropdown</li>
-    <li>`Combobox.List` - List container with render prop</li>
-    <li>`Combobox.Group` - Group container for categorized items</li>
-    <li>`Combobox.GroupLabel` - Header label for a group</li>
-    <li>`Combobox.Collection` - Items container within a group</li>
-    <li>`Combobox.Chip` - Selected item chip</li>
-    <li>`Combobox.Empty` - Empty state message</li>
-    <li>`Combobox.createItems` - Collection helper for object items</li>
+    <li>`Combobox.TriggerInput` - 单选输入触发器</li>
+    <li>`Combobox.TriggerValue` - 显示选中值的按钮触发器</li>
+    <li>`Combobox.TriggerMultipleWithInput` - 带 chip 标签的多选触发器</li>
+    <li>`Combobox.Input` - 下拉内的搜索输入框</li>
+    <li>`Combobox.List` - 带 render 属性的列表容器</li>
+    <li>`Combobox.Group` - 分类条目的分组容器</li>
+    <li>`Combobox.GroupLabel` - 分组的标题标签</li>
+    <li>`Combobox.Collection` - 组内的条目容器</li>
+    <li>`Combobox.Chip` - 选中条目的 chip 标签</li>
+    <li>`Combobox.Empty` - 空状态提示</li>
+    <li>`Combobox.createItems` - 对象条目的集合辅助方法</li>
   </ul>
 </ComponentSection>

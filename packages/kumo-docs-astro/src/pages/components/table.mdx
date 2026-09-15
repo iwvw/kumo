@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Table"
-description: "A table component for displaying tabular data with support for selection, row variants, and column sizing."
+description: "用于展示表格数据的组件，支持行选择、行变体与列宽控制。"
 sourceFile: "components/table"
 ---
 
@@ -31,15 +31,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Table } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Table } from "@cloudflare/kumo/components/table";
@@ -51,7 +51,7 @@ import { Table } from "@cloudflare/kumo/components/table";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Table, LayerCard } from "@cloudflare/kumo";
@@ -86,19 +86,17 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### With Checkboxes
+### 带复选框
 
 <p>
-  Add row selection with `Table.CheckHead` and `Table.CheckCell`. Both accept
-  `onCheckedChange`, which matches the underlying `Checkbox` component's
-  signature and exposes optional event details as a second argument.
+  使用 `Table.CheckHead` 与 `Table.CheckCell` 添加行选择。两者都接受
+  `onCheckedChange`，其签名与底层 `Checkbox` 组件一致，并通过第二个参数暴露可选的事件详情。
 </p>
 <p>
-  The older `onValueChange` prop still works but is deprecated — the lint
-  rule will flag it and it will be removed in a future major version. Migrate
-  by renaming the prop:
+  较早的 `onValueChange` 属性仍可用，但已废弃 —— lint 规则会予以标记，并将在未来的
+  主版本中移除。迁移方式为重命名该属性：
 </p>
 
 ```tsx
@@ -121,56 +119,53 @@ export default function Example() {
   <TableWithCheckboxDemo client:visible />
 </ComponentExample>
 
-### Compact Header
+### 紧凑表头
 
 <p>
-  Use `variant="compact"` on `Table.Header` for a more condensed header style.
+  在 `Table.Header` 上使用 `variant="compact"` 可获得更紧凑的表头样式。
 </p>
 <ComponentExample demo="TableWithCompactHeaderDemo">
   <TableWithCompactHeaderDemo client:visible />
 </ComponentExample>
 
-### Selected Row
+### 选中行
 
-<p>Use `variant="selected"` on `Table.Row` to highlight selected rows.</p>
+<p>在 `Table.Row` 上使用 `variant="selected"` 可高亮选中行。</p>
 <ComponentExample demo="TableSelectedRowDemo">
   <TableSelectedRowDemo client:visible />
 </ComponentExample>
 
-### Fixed Layout with Column Sizes
+### 固定布局与列宽
 
 <p>
-  For precise control over column widths, set `layout="fixed"` and use
-  `colgroup` with `col` elements.
+  如需精确控制列宽，可设置 `layout="fixed"` 并使用带 `col` 元素的 `colgroup`。
 </p>
 <ComponentExample demo="TableFixedLayoutDemo">
   <TableFixedLayoutDemo client:visible />
 </ComponentExample>
 
-### Sticky Column
+### 固定列
 
 <p>
-  Pin a column to the left or right edge of the scroll container with
-  `sticky="left"` or `sticky="right"` on `Table.Head` and `Table.Cell`. The
-  component automatically adds an opaque background and gradient fade. Wrap the
-  table in an `overflow-x-auto` container.
+  在 `Table.Head` 与 `Table.Cell` 上使用 `sticky="left"` 或 `sticky="right"`，
+  可将列固定到滚动容器的左缘或右缘。组件会自动添加不透明背景与渐变淡出效果。请将表格
+  包裹在 `overflow-x-auto` 容器中。
 </p>
 <ComponentExample demo="TableStickyColumnDemo">
   <TableStickyColumnDemo client:visible />
 </ComponentExample>
 
-### Compact Header with Sticky Column
+### 紧凑表头与固定列
 
-<p>Combining `variant="compact"` on `Table.Header` with `sticky` columns.</p>
+<p>在 `Table.Header` 上组合使用 `variant="compact"` 与 `sticky` 固定列。</p>
 <ComponentExample demo="TableCompactStickyDemo">
   <TableCompactStickyDemo client:visible />
 </ComponentExample>
 
-### Full Example
+### 完整示例
 
 <p>
-  Complete table with checkboxes, badges, action buttons, and fixed column
-  widths.
+  包含复选框、徽章、操作按钮与固定列宽的完整表格。
 </p>
 <ComponentExample demo="TableFullDemo">
   <TableFullDemo client:visible />
@@ -182,49 +177,48 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Table
 
-<p>Root table component. Renders a semantic `<table>` element.</p>
+<p>根表格组件，渲染语义化的 `<table>` 元素。</p>
 <PropsTable component="Table" />
 
 ### Table.Header
 
-<p>Table header section. Renders `<thead>`. Set `sticky` to pin the header row to the top of the scroll container.</p>
+<p>表头区域，渲染 `<thead>`。设置 `sticky` 可将表头行固定在滚动容器顶部。</p>
 
 ### Table.Body
 
-<p>Table body section. Renders `<tbody>`.</p>
+<p>表体区域，渲染 `<tbody>`。</p>
 
 ### Table.Row
 
-<p>Table row. Supports `variant="selected"` for highlighting.</p>
+<p>表格行，支持 `variant="selected"` 用于高亮。</p>
 <PropsTable component="Table.Row" />
 
 ### Table.Head
 
-<p>Header cell. Renders `<th>`. Accepts `sticky="left"` or `sticky="right"` to pin the column.</p>
+<p>表头单元格，渲染 `<th>`。支持 `sticky="left"` 或 `sticky="right"` 固定所在列。</p>
 
 ### Table.Cell
 
-<p>Body cell. Renders `<td>`. Accepts `sticky="left"` or `sticky="right"` to pin the column.</p>
+<p>表体单元格，渲染 `<td>`。支持 `sticky="left"` 或 `sticky="right"` 固定所在列。</p>
 
 ### Table.CheckHead
 
-<p>Header cell with checkbox for "select all" functionality.</p>
+<p>带复选框的表头单元格，用于全选。</p>
 <PropsTable component="Table.CheckHead" />
 
 ### Table.CheckCell
 
-<p>Body cell with checkbox for row selection.</p>
+<p>带复选框的表体单元格，用于行选择。</p>
 <PropsTable component="Table.CheckCell" />
 
 ### Table.ResizeHandle
 
 <p>
-  Draggable handle for column resizing. Use with TanStack Table or custom resize
-  logic.
+  用于调整列宽的可拖拽手柄。可搭配 TanStack Table 或自定义缩放逻辑使用。
 </p>
 
 </ComponentSection>
@@ -233,10 +227,10 @@ export default function Example() {
 
 <ComponentSection>
 
-## TanStack Table Integration
+## TanStack Table 集成
 
   <p>
-    For advanced features like sorting, filtering, and resizable columns, integrate with <a href="https://tanstack.com/table" class="text-kumo-link hover:underline" target="_blank" rel="noopener noreferrer">TanStack Table</a>. The Table component is designed to work seamlessly with TanStack's headless API.
+    如需排序、筛选、可调整列宽等高级功能，可与 <a href="https://tanstack.com/table" class="text-kumo-link hover:underline" target="_blank" rel="noopener noreferrer">TanStack Table</a> 集成。Table 组件专为与 TanStack 的无头 API 无缝协作而设计。
   </p>
 
 ```tsx
@@ -302,27 +296,25 @@ function DataTable({ data, columns }) {
 
 <ComponentSection>
 
-## Accessibility
+## 无障碍
 
-### Semantic HTML
+### 语义化 HTML
 
 <p>
-  Table uses semantic `<table>`, `<thead>`, `<tbody>`, `<th>`, and `<td>` elements for proper screen reader navigation.
+  Table 使用语义化的 `<table>`、`<thead>`、`<tbody>`、`<th>` 和 `<td>` 元素，以便屏幕阅读器正确导航。
 </p>
 
-### Checkbox Labels
+### 复选框标签
 
 <p>
-  Always provide `aria-label` for `Table.CheckHead` and `Table.CheckCell` to
-  describe their purpose.
+  请始终为 `Table.CheckHead` 与 `Table.CheckCell` 提供 `aria-label`，说明其用途。
 </p>
 
-### Keyboard Navigation
+### 键盘导航
 
 <p>
-  <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Tab</kbd> moves focus
-  through interactive elements. Checkboxes respond to{" "}
-  <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Space</kbd>.
+  <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Tab</kbd> 可在各交互元素之间移动焦点。复选框响应{" "}
+  <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Space</kbd>。
 </p>
 
 </ComponentSection>

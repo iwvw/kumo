@@ -70,7 +70,7 @@ export function ThemeToggle() {
   // Prevent hydration mismatch
   if (!mounted) {
     return (
-      <Button variant="ghost" shape="square" aria-label="Select theme">
+      <Button variant="ghost" shape="square" aria-label="选择主题">
         <DesktopIcon size={20} />
       </Button>
     );
@@ -85,7 +85,7 @@ export function ThemeToggle() {
           <Button
             variant="ghost"
             shape="square"
-            aria-label={`Select theme, current theme is ${theme}`}
+            aria-label={`选择主题，当前主题：${theme}`}
           >
             <ActiveIcon size={20} />
           </Button>
@@ -93,7 +93,7 @@ export function ThemeToggle() {
       />
       <DropdownMenu.Content align="end">
         <DropdownMenu.RadioGroup value={theme} onValueChange={selectTheme}>
-          <DropdownMenu.Label>Theme</DropdownMenu.Label>
+          <DropdownMenu.Label>主题</DropdownMenu.Label>
           {themeOptions.map((option) => (
             <DropdownMenu.RadioItem
               key={option.value}

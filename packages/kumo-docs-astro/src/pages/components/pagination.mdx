@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Pagination"
-description: "A page navigation component for navigating through paginated content."
+description: "一个页面导航组件，用于在分页内容之间进行导航。"
 sourceFile: "components/pagination"
 ---
 
@@ -36,15 +36,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Pagination } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Pagination } from "@cloudflare/kumo/components/pagination";
@@ -56,7 +56,7 @@ import { Pagination } from "@cloudflare/kumo/components/pagination";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { useState } from "react";
@@ -77,41 +77,41 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Full Controls (Default)
+### 完整控件（默认）
 
 <p>
-  The default pagination includes first, previous, page input, next, and last
-  buttons.
+  默认分页包含首页、上一页、页码输入、
+  下一页和末页按钮。
 </p>
 <ComponentExample demo="PaginationFullDemo">
   <PaginationFullDemo client:visible />
 </ComponentExample>
 
-### Simple Controls
+### 简易控件
 
 <p>
-  Use `controls="simple"` for a minimal pagination with only previous and next
-  buttons.
+  使用 `controls="simple"` 实现最简分页，
+  仅保留上一页和下一页按钮。
 </p>
 <ComponentExample demo="PaginationSimpleDemo">
   <PaginationSimpleDemo client:visible />
 </ComponentExample>
 
-### Unknown Totals
+### 未知总数
 
 <p>
-  Use `hasNextPage` when the data source does not return a total count. This is
-  common for cursor-based APIs, where calculating the total can be expensive or
-  unavailable. Set it from the response's next-page signal to keep Next enabled
-  only while another result set exists.
+  当数据源不返回总条数时，使用 `hasNextPage`。这在基于游标的 API 中
+  很常见，因为计算总数代价高昂或根本不可用。根据响应中的下一页信号
+  设置该值，只在还存在下一组结果时保持
+  「下一页」可用。
 </p>
 <p>
-  Without a total, users can only move sequentially, so Pagination hides the
-  first, last, and page-selector controls. The `page` value remains useful for
-  the UI, but your application is responsible for storing and sending the
-  cursor or continuation token for each request.
+  没有总数时，用户只能顺序翻页，因此 Pagination 会隐藏首页、末页和
+  页码选择控件。此时 `page` 值仍可用于界面展示，但你的应用
+  需要自行保存并随每次请求发送游标
+  或续页令牌。
 </p>
 
 ```tsx
@@ -135,23 +135,23 @@ return (
   <PaginationUnknownTotalDemo client:visible />
 </ComponentExample>
 
-### Mid-Page State
+### 中间页状态
 
-<p>Pagination in the middle of a dataset with all navigation enabled.</p>
+<p>处于数据集中间位置、所有导航均已启用的分页。</p>
 <ComponentExample demo="PaginationMidPageDemo">
   <PaginationMidPageDemo client:visible />
 </ComponentExample>
 
-### Large Dataset
+### 大数据集
 
-<p>Pagination handles large datasets with many pages.</p>
+<p>Pagination 可以处理包含大量页数的数据集。</p>
 <ComponentExample demo="PaginationLargeDatasetDemo">
   <PaginationLargeDatasetDemo client:visible />
 </ComponentExample>
 
-### Custom Text
+### 自定义文本
 
-<p>You can set custom pagination text.</p>
+<p>你可以设置自定义的分页文本。</p>
 <ComponentExample demo="PaginationCustomTextDemo">
   <PaginationCustomTextDemo client:visible />
 </ComponentExample>
@@ -162,51 +162,51 @@ return (
 
 <ComponentSection>
 
-## Compound Components
+## 组合组件
 
   <p>
-    For more control over layout and features, use the compound component API. This allows you to compose `Pagination.Info`, `Pagination.PageSize`, `Pagination.Controls`, and `Pagination.Separator` in any order.
+    如需更灵活地控制布局和功能，可以使用组合组件 API，按任意顺序组合 `Pagination.Info`、`Pagination.PageSize`、`Pagination.Controls` 和 `Pagination.Separator`。
   </p>
 
-### Page Size Selector
+### 每页条数选择器
 
-<p>Add a dropdown to let users select the number of items per page.</p>
+<p>添加下拉框，让用户选择每页显示的项目数量。</p>
 <ComponentExample demo="PaginationPageSizeSelectorDemo">
   <PaginationPageSizeSelectorDemo client:visible />
 </ComponentExample>
 
-### Custom Page Size Options
+### 自定义每页条数选项
 
 <p>
-  Customize the available page size options with the `options` prop. Defaults to
-  `[25, 50, 100, 250]`.
+  使用 `options` 属性自定义可选的每页条数，默认值为
+  `[25, 50, 100, 250]`。
 </p>
 <ComponentExample demo="PaginationCustomPageSizeOptionsDemo">
   <PaginationCustomPageSizeOptionsDemo client:visible />
 </ComponentExample>
 
-### Custom Info Text
+### 自定义信息文本
 
-<p>Use a render function to customize the info text.</p>
+<p>使用渲染函数自定义信息文本。</p>
 <ComponentExample demo="PaginationCompoundCustomInfoDemo">
   <PaginationCompoundCustomInfoDemo client:visible />
 </ComponentExample>
 
-### Custom Layout
+### 自定义布局
 
 <p>
-  Arrange components in any order. Here the page size selector is on the right.
+  可按任意顺序排列组件。这里将每页条数选择器放在了右侧。
 </p>
 <ComponentExample demo="PaginationPageSizeRightDemo">
   <PaginationPageSizeRightDemo client:visible />
 </ComponentExample>
 
-### Dropdown Page Selector
+### 下拉页码选择器
 
     <p>
-      Use `pageSelector="dropdown"` on `Pagination.Controls` to render a dropdown
-      select instead of a text input for page navigation. This is useful when you
-      want users to pick from a list of available pages rather than typing a number.
+      在 `Pagination.Controls` 上设置 `pageSelector="dropdown"`，即可用下拉选择
+      替代文本输入进行页码导航。当你希望用户从可用页码列表中选择，而不是输入数字时，
+      这会很有用。
     </p>
     <ComponentExample
       code={`<Pagination page={page} setPage={setPage} perPage={perPage} totalCount={500}>
@@ -231,10 +231,10 @@ return (
 
 <ComponentSection>
 
-## Internationalization
+## 国际化
 
   <p>
-    Use the `labels` prop to customize all UI strings for different locales. All labels default to English.
+    使用 `labels` 属性自定义面向不同 locale 的所有界面字符串。所有标签默认均为英文。
   </p>
 
 <ComponentExample demo="PaginationI18nDemo">
@@ -247,7 +247,7 @@ return (
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="Pagination" />
 </ComponentSection>

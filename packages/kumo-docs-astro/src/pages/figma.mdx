@@ -1,78 +1,77 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Figma Resources"
-description: "Generate Figma components from Kumo definitions using the Figma plugin."
+description: "使用 Figma 插件从 Kumo 定义生成 Figma 组件。"
 ---
 
 import Callout from "~/components/docs/Callout.astro";
 
-## Kumo Figma Plugin
+## Kumo Figma 插件
 
-The Kumo Figma plugin generates production-quality Figma components directly from Kumo component definitions. This keeps design and code in sync — components in Figma are generated from the same source of truth as the React components you use in code.
+Kumo Figma 插件直接从 Kumo 组件定义生成生产级的 Figma 组件。这让设计与代码保持同步 — Figma 中的组件与你代码中使用的 React 组件来自同一事实来源。
 
-The plugin reads from `component-registry.json` and creates Figma ComponentSets with proper auto-layout, semantic color variable bindings, and all variant combinations.
+该插件读取 `component-registry.json`，生成带正确自动布局、语义颜色变量绑定和所有变体组合的 Figma 组件集（ComponentSet）。
 
-## Local Development Setup
+## 本地开发环境搭建
 
-Follow these steps to build and test the Figma plugin locally on any Figma file.
+按照以下步骤在任意 Figma 文件上本地构建和测试该插件。
 
-### 1. Build the Plugin
+### 1. 构建插件
 
-From the repository root, run:
+从仓库根目录执行：
 
 ```bash
 pnpm --filter @cloudflare/kumo-figma build
 ```
 
-This generates theme data, loader data, and icons, then bundles the plugin code into `src/code.js`.
+这会生成主题数据、加载器数据和图标，然后将插件代码打包到 `src/code.js`。
 
-### 2. Import the Plugin in Figma
+### 2. 在 Figma 中导入插件
 
-Open Figma Desktop (plugin development requires the desktop app, not the web version).
+打开 Figma 桌面版（插件开发需要桌面应用，而不是网页版）。
 
-1. Go to **Plugins** in the menu bar
-2. Select **Development** → **Import plugin from manifest...**
-3. Navigate to `packages/kumo-figma/src/manifest.json` in your local kumo repository
+1. 在菜单栏中进入 **Plugins**
+2. 选择 **Development** → **Import plugin from manifest...**
+3. 在本地 kumo 仓库中定位到 `packages/kumo-figma/src/manifest.json`
 
-### 3. Run the Plugin
+### 3. 运行插件
 
-Once imported, the plugin appears in your development plugins list.
+导入成功后，插件会出现在你的开发插件列表中。
 
-1. Open any Figma file (or the Kumo design file if you have access)
-2. Go to **Plugins** → **Development** → **Kumo UI Kit Generator**
+1. 打开任意 Figma 文件（如果你有访问权限，也可以打开 Kumo 设计文件）
+2. 进入 **Plugins** → **Development** → **Kumo UI Kit Generator**
 
-### 4. Use the Plugin UI
+### 4. 使用插件界面
 
-The plugin opens a panel where you can select which components to generate. Click the component buttons to generate their Figma equivalents.
+插件会打开一个面板，你可以选择要生成的组件。点击组件按钮即可生成对应的 Figma 版本。
 
 <Callout type="info">
-  **Note:** For components to bind to semantic color variables correctly, the
-  target Figma file must have the `kumo-colors` variable collection. Run the
-  token sync script first if you're setting up a new file.
+  **注意：** 要让组件正确绑定语义颜色变量，目标 Figma 文件必须包含
+  `kumo-colors` 变量集合。如果是在新文件中设置，请先运行令牌同步脚本。
 </Callout>
 
-## Environment Variables
+## 环境变量
 
-The token sync script requires environment variables to authenticate with the Figma API and target the correct file.
+令牌同步脚本需要环境变量来使用 Figma API 鉴权并指定目标文件。
 
-### Setup
+### 配置
 
-1. Get a [Figma personal access token](https://www.figma.com/developers/api#authentication) from Figma Settings → Personal Access Tokens
-2. Copy the environment template:
+1. 从 Figma Settings → Personal Access Tokens 获取 [Figma 个人访问令牌](https://www.figma.com/developers/api#authentication)
+2. 复制环境变量模板：
 
 ```bash
 cp packages/kumo-figma/scripts/.env.example packages/kumo-figma/scripts/.env
 ```
 
-3. Configure the environment variables in `.env`
+3. 在 `.env` 中配置环境变量
 
-### Required Variables
+### 必需变量
 
 | Variable                | Required | Description                                                       |
 | ----------------------- | -------- | ----------------------------------------------------------------- |
-| `FIGMA_TOKEN`           | Yes      | Your Figma personal access token for API authentication           |
-| `FIGMA_FILE_KEY`        | Yes      | The file key from your Figma URL: `figma.com/file/{FILE_KEY}/...` |
-| `FIGMA_COLLECTION_NAME` | No       | Variable collection name in Figma. Defaults to `kumo-colors`      |
+| `FIGMA_TOKEN`           | Yes      | 用于 API 鉴权的 Figma 个人访问令牌                                |
+| `FIGMA_FILE_KEY`        | Yes      | Figma URL 中的文件密钥：`figma.com/file/{FILE_KEY}/...`           |
+| `FIGMA_COLLECTION_NAME` | No       | Figma 中的变量集合名称。默认为 `kumo-colors`                      |
 
 ```bash
 
@@ -84,55 +83,55 @@ FIGMA_COLLECTION_NAME=kumo-colors
 ```
 
 <Callout type="warning">
-  **Security:** Never commit your Figma token. The `.env` file is gitignored.
+  **安全：** 切勿把 Figma 令牌提交到仓库。`.env` 文件已被 gitignore 忽略。
 </Callout>
 
-## Token Sync
+## 令牌同步
 
-Before generating components, sync Kumo's semantic color tokens to Figma. This creates the `kumo-colors` variable collection that components bind to for consistent theming.
+在生成组件之前，先把 Kumo 的语义颜色令牌同步到 Figma。这会创建 `kumo-colors` 变量集合，组件绑定到这些变量以实现一致的主题。
 
-### Run Token Sync
+### 运行令牌同步
 
 ```bash
 pnpm --filter @cloudflare/kumo-figma figma:sync
 ```
 
-This parses tokens from `theme-kumo.css`, resolves `light-dark()` values for both modes, and pushes them to Figma via the Variables API.
+这会解析 `theme-kumo.css` 中的令牌，为两种模式解析 `light-dark()` 值，并通过 Variables API 推送到 Figma。
 
-## What Gets Generated
+## 会生成什么
 
-The Kumo Figma workflow produces two types of output in your target Figma file:
+Kumo Figma 工作流会在你的目标 Figma 文件中生成两类输出：
 
-### 1. Figma Variables (Token Sync)
+### 1. Figma 变量（令牌同步）
 
-The token sync script creates a `kumo-colors` variable collection containing:
+令牌同步脚本会创建包含以下内容的 `kumo-colors` 变量集合：
 
-- **Color variables** — All semantic tokens like `color-primary`, `color-surface`, `text-color-muted`
-- **Light and dark modes** — Each variable has values for both color schemes
-- **Theme overrides** — Extended modes like FedRAMP with their specific color overrides
+- **颜色变量** — 所有语义化令牌，如 `color-primary`、`color-surface`、`text-color-muted`
+- **浅色和深色模式** — 每个变量都有两种配色方案下的取值
+- **主题覆盖** — FedRAMP 等扩展模式及其特定的颜色覆盖
 
-Variables appear in Figma's Variables panel and can be used throughout your design file. When you switch modes, all bound colors update automatically.
+变量会出现在 Figma 的 Variables 面板中，可在整个设计文件中使用。切换模式时，所有绑定的颜色都会自动更新。
 
-### 2. Figma Components (Plugin)
+### 2. Figma 组件（插件）
 
-The plugin generates a **"ui kit"** page containing ComponentSets for each Kumo component:
+插件会生成一个包含每个 Kumo 组件对应组件集（ComponentSet）的 **"ui kit"** 页面：
 
-- **ComponentSets with variants** — Each component (Button, Badge, Input, etc.) becomes a ComponentSet with all its variant combinations
-- **Variable bindings** — Fills, strokes, and text colors are bound to `kumo-colors` variables, not hardcoded values
-- **Auto-layout** — Components use Figma auto-layout matching the CSS flexbox behavior
-- **Proper sizing** — Spacing, padding, border-radius, and font sizes match the code implementation
+- **带变体的组件集** — 每个组件（Button、Badge、Input 等）都会成为一个包含其所有变体组合的 ComponentSet
+- **变量绑定** — 填充、描边和文本颜色都绑定到 `kumo-colors` 变量，而不是硬编码值
+- **自动布局** — 组件使用与 CSS flexbox 行为一致的 Figma 自动布局
+- **正确的尺寸** — 间距、内边距、圆角和字号与代码实现一致
 
-#### Currently Generated Components (30+)
+#### 当前生成的组件（30+）
 
 Badge, Banner, Breadcrumbs, Button, Checkbox, ClipboardText, Code, CodeBlock, Collapsible, Combobox, CommandPalette, Dialog, Dropdown, Empty, Input, InputArea, Label, LayerCard, LinkButton, Loader, MenuBar, Meter, Pagination, Radio, RefreshButton, Select, SensitiveInput, Surface, Switch, Table, Tabs, Text, Toast, Tooltip
 
-### Destructive Sync
+### 破坏性同步
 
-The plugin uses **destructive sync** — it purges all existing generated content and recreates everything fresh on each run. This ensures the Figma file always matches the current state of the codebase. Don't manually edit generated components; your changes will be overwritten on the next sync.
+插件采用**破坏性同步** — 每次运行都会清除所有已生成的内容并重新创建。这确保 Figma 文件始终与代码库的当前状态一致。不要手动编辑生成的组件，你做的修改会在下次同步时被覆盖。
 
-## Complete Workflow
+## 完整工作流
 
-The typical workflow when updating components:
+更新组件时的典型工作流：
 
 ```bash
 
@@ -156,32 +155,32 @@ pnpm --filter @cloudflare/kumo-figma build
 
 ```
 
-## Plugin Architecture
+## 插件架构
 
 | Directory         | Purpose                                              |
 | ----------------- | ---------------------------------------------------- |
-| `src/code.ts`     | Main plugin entry point, orchestrates generators     |
-| `src/ui.html`     | Plugin UI (component selection panel)                |
-| `src/generators/` | 30+ component generators (badge.ts, button.ts, etc.) |
-| `src/parsers/`    | Tailwind-to-Figma converters, registry parsing       |
-| `scripts/`        | Token sync script for Figma Variables API            |
+| `src/code.ts`     | 插件主入口，负责编排各生成器                         |
+| `src/ui.html`     | 插件界面（组件选择面板）                             |
+| `src/generators/` | 30 多个组件生成器（badge.ts、button.ts 等）          |
+| `src/parsers/`    | Tailwind 到 Figma 的转换器、注册表解析               |
+| `scripts/`        | 用于 Figma Variables API 的令牌同步脚本              |
 
-## Adding a New Component Generator
+## 添加新的组件生成器
 
-When you add a new component to Kumo, create a corresponding Figma generator:
+当你向 Kumo 添加新组件时，请创建对应的 Figma 生成器：
 
-1. Create `src/generators/yourcomponent.ts`
-2. Import shared utilities from `shared.ts`
-3. Register in the `GENERATORS` array in `code.ts`
-4. Run `pnpm --filter @cloudflare/kumo-figma validate` to verify drift detection passes
+1. 创建 `src/generators/yourcomponent.ts`
+2. 从 `shared.ts` 导入共享工具
+3. 在 `code.ts` 的 `GENERATORS` 数组中注册
+4. 运行 `pnpm --filter @cloudflare/kumo-figma validate` 验证漂移检测通过
 
-If a component doesn't need Figma representation (utility or layout-only), add it to `EXCLUDED_COMPONENTS` in `drift-detection.test.ts`.
+如果组件不需要在 Figma 中呈现（如工具类或纯布局组件），请把它添加到 `drift-detection.test.ts` 的 `EXCLUDED_COMPONENTS` 中。
 
-## Troubleshooting
+## 故障排查
 
 ### "kumo-colors collection not found"
 
-The target Figma file needs the variable collection. Run the token sync script first:
+目标 Figma 文件需要变量集合。请先运行令牌同步脚本：
 
 ```bash
 pnpm --filter @cloudflare/kumo-figma figma:sync
@@ -189,18 +188,18 @@ pnpm --filter @cloudflare/kumo-figma figma:sync
 
 ### "Variable not found: color-primary"
 
-Variable names must match the kumo-colors collection. Verify tokens synced correctly by checking the Variables panel in Figma.
+变量名称必须与 kumo-colors 集合匹配。请检查 Figma 的 Variables 面板，确认令牌已正确同步。
 
 ### "Font not found"
 
-The plugin uses Inter font, which is a default Figma font. Ensure you have it available in your Figma fonts.
+插件使用 Inter 字体，这是 Figma 的默认字体。请确保你的 Figma 字体中可用该字体。
 
-### Plugin not appearing in menu
+### 插件未出现在菜单中
 
-Make sure you're using Figma Desktop (not web) and that you imported the manifest from the correct path: `packages/kumo-figma/src/manifest.json`
+请确保你使用的是 Figma 桌面版（而非网页版），并从正确的路径导入清单：`packages/kumo-figma/src/manifest.json`
 
-## Related
+## 相关链接
 
-- [Colors](/colors) — Semantic color token reference
-- [Registry](/registry) — Component registry that the plugin reads from
-- [Contributing](/contributing) — Adding new components and generators
+- [Colors](/colors) — 语义颜色令牌参考
+- [Registry](/registry) — 插件读取的组件注册表
+- [Contributing](/contributing) — 添加新组件和生成器

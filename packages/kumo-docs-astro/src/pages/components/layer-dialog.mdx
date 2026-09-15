@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Layer Dialog"
-description: "A strict responsive dialog composition with a sticky title inside its scrollable body."
+description: "一个严格响应的对话框组合组件，可在可滚动正文中提供固定的标题。"
 sourceFile: "components/layer-dialog"
 baseUIComponent: "drawer"
 ---
@@ -33,15 +33,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导入
 
 ```tsx
 import { LayerDialog } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 子路径导入
 
 ```tsx
 import { LayerDialog } from "@cloudflare/kumo/components/layer-dialog";
@@ -53,7 +53,7 @@ import { LayerDialog } from "@cloudflare/kumo/components/layer-dialog";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Button, LayerDialog } from "@cloudflare/kumo";
@@ -84,64 +84,64 @@ export default function Example() {
 </ComponentSection>
 
 <ComponentSection>
-## Composition rules
-`LayerDialog.Content` accepts exactly one `Title`, one `Body`, an optional `Description`, and an optional `Actions`. It chooses its dismissal UI automatically:
+## 组合规则
+`LayerDialog.Content` 恰好接受一个 `Title`、一个 `Body`、一个可选的 `Description` 和一个可选的 `Actions`。它会自动选择关闭 UI：
 
-- Without `Actions`: show an X in the title frame and no footer.
-- With `Actions`: remove the X and show a footer with **Close** or **Cancel** and one primary action.
+- 无 `Actions` 时：在标题栏中显示 X，且底部无操作栏。
+- 有 `Actions` 时：移除 X，并显示含**关闭**或**取消**及一个主操作的底部操作栏。
 
-Consumers cannot mix these layouts or add more primary actions. Use the X for read-only content, `Actions` when the user must commit a change, and `LayerDialog.Alert` for destructive or critical confirmations.
+使用方不能混用这些布局，也不能添加更多主操作。只读内容用 X，用户必须提交变更时用 `Actions`，破坏性操作或重要确认用 `LayerDialog.Alert`。
 
-`Description` renders directly beneath the title inside the sticky title frame and becomes the dialog's accessible description. Without one, the body copy describes the dialog instead.
+`Description` 直接渲染在粘性标题栏内的标题下方，并成为对话框的可访问描述。没有它时，则由正文文本来描述对话框。
 </ComponentSection>
 
 <ComponentSection>
-## Informational dialog
-`Title` and `Description` always live in the bordered body surface. The title frame remains visible while the body scrolls and has the sole automatic X dismissal action. Once the body scrolls past the top, the description folds away beneath the title to give the content more room, and unfolds again at the top. The content edge mask signals overflow.
+## 信息型对话框
+`Title` 和 `Description` 始终位于带边框的正文表面内。正文滚动时标题栏保持可见，并提供唯一的自动 X 关闭操作。当正文滚动过顶部后，描述会折叠到标题下方，为内容腾出更多空间，滚回顶部时再展开。内容边缘遮罩用于提示溢出。
 <ComponentExample demo="LayerDialogInformationalDemo"><LayerDialogInformationalDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
-## Standard action
-Adding `Actions` selects a fixed footer with exactly one Kumo primary action and an automatic **Close** button. Consumers cannot add custom footer controls, change button sizes, or add extra CTAs. The primary action accepts `variant="primary"` (default) or `variant="destructive"`.
+## 标准操作
+添加 `Actions` 会启用固定底部操作栏，其中恰好包含一个 Kumo 主操作和一个自动生成的**关闭**按钮。使用方不能添加自定义底部控件、修改按钮尺寸或增加额外 CTA。主操作接受 `variant="primary"`（默认）或 `variant="destructive"`。
 <ComponentExample demo="LayerDialogActionDemo"><LayerDialogActionDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
-## Cancellation wording
-When `LayerDialog.Actions` is present, LayerDialog renders a secondary button that dismisses the dialog. Its default label is "Close", or "Cancel" for `LayerDialog.Alert`.
+## 取消文案
+当存在 `LayerDialog.Actions` 时，LayerDialog 会渲染一个用于关闭对话框的次要按钮。默认文案为“关闭”，对于 `LayerDialog.Alert` 则为“取消”。
 
-Use `dismissLabel` only when this dialog needs more specific wording, such as "Keep editing" or "Discard changes". The label does not change the button's behavior: it always closes the dialog.
+仅当对话框需要更具体的文案时才使用 `dismissLabel`，例如“继续编辑”或“放弃更改”。该标签不改变按钮行为：它始终关闭对话框。
 <ComponentExample demo="LayerDialogCancelDemo"><LayerDialogCancelDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
-## Confirmation and destructive actions
-`LayerDialog.Alert` follows Base UI's alert dialog: it supplies `role="alertdialog"`, an automatic **Cancel**, no X, is always modal, and blocks backdrop and swipe dismissal. Escape still cancels, matching the ARIA alert dialog pattern.
-Pass `variant="destructive"` to the primary action when the confirmation is irreversible. Alerts that confirm a non-destructive but critical step keep the default primary styling.
+## 确认与破坏性操作
+`LayerDialog.Alert` 遵循 Base UI 的 alert dialog：提供 `role="alertdialog"`、自动**取消**按钮、无 X、始终模态，并阻止背景与滑动关闭。Escape 仍然可以取消，符合 ARIA alert dialog 模式。
+当确认操作不可逆时，为主操作传入 `variant="destructive"`。对于确认非破坏性但关键步骤的 Alert，保留默认的主操作样式。
 
 <ComponentExample demo="LayerDialogAlertDemo"><LayerDialogAlertDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
-## Pending work
-`dismissDisabled` blocks every user-initiated dismissal together while asynchronous work is in flight. Programmatic closes, through `actionsRef.current.close()` or a controlled `open` prop, still work so a successful action can dismiss the dialog. The single primary action owns its separate loading or disabled state.
+## 进行中的操作
+`dismissDisabled` 会在异步操作进行期间统一阻止所有用户触发的关闭操作。通过 `actionsRef.current.close()` 或受控 `open` 属性进行的程序化关闭仍然有效，因此成功的操作可以关闭对话框。唯一的主操作拥有独立的 loading 或 disabled 状态。
 <ComponentExample demo="LayerDialogPendingDemo"><LayerDialogPendingDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
-## Cleanup
-Put cleanup in `onOpenChange`, rather than in a dismissal click handler, so it runs for X, Close, Escape, backdrop, and swipe.
+## 清理
+将清理逻辑放在 `onOpenChange` 中，而不是放在关闭点击处理函数里，这样 X、关闭、Escape、背景和滑动关闭都能触发清理。
 <ComponentExample demo="LayerDialogCleanupDemo"><LayerDialogCleanupDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
-## Localization
+## 本地化
 
-The dialog renders two strings of its own. Configure their application-wide defaults with `KumoLocaleProvider`:
+该对话框自带两处文案。可通过 `KumoLocaleProvider` 配置它们的全局默认值：
 
-- `layerDialog.close` is used for the automatic X button and the default footer dismiss button. Default: "Close".
-- `layerDialog.cancel` is used for the default footer dismiss button inside an `Alert`.
+- `layerDialog.close` 用于自动 X 按钮和默认底部关闭按钮。默认值：“关闭”。
+- `layerDialog.cancel` 用于 `Alert` 内默认底部关闭按钮。
 
 ```tsx
 <KumoLocaleProvider
@@ -153,22 +153,22 @@ The dialog renders two strings of its own. Configure their application-wide defa
 </KumoLocaleProvider>
 ```
 
-Use `closeLabel` on `Content` or `dismissLabel` on `Actions` when one dialog needs custom copy; explicit props override provider defaults.
+当某个对话框需要自定义文案时，可在 `Content` 上使用 `closeLabel`，或在 `Actions` 上使用 `dismissLabel`；显式属性会覆盖提供者的默认值。
 
-## Desktop width
-Desktop dialogs use `size="base"` (576px) by default. Use `sm` (448px), `lg` (672px), or `xl` (768px) when the content needs a different width. Mobile dialogs remain full-width at every size.
+## 桌面端宽度
+桌面端对话框默认使用 `size="base"`（576px）。当内容需要不同宽度时，可使用 `sm`（448px）、`lg`（672px）或 `xl`（768px）。移动端对话框在所有尺寸下都保持全宽。
 <ComponentExample demo="LayerDialogSizeDemo"><LayerDialogSizeDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
-## Desktop placement
-Desktop dialogs center by default. Use the narrow `verticalAlign="top"` override only when its content benefits from top alignment; mobile remains a bottom sheet.
+## 桌面端位置
+桌面端对话框默认居中。仅当内容适合顶部对齐时，才使用 `verticalAlign="top"` 这一窄化覆盖项；移动端仍是底部抽屉（bottom sheet）。
 <ComponentExample demo="LayerDialogTopAlignDemo"><LayerDialogTopAlignDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
-## Maximum height
-Height is derived from content and capped by the viewport. Following Base UI's inside-scroll pattern, the viewport reserves the vertical breathing room for each placement and the popup fills it, so a top-aligned dialog can never extend past the bottom edge. Past the cap, only the body scrolls while the title frame and actions stay pinned. Mobile sheets cap at 85% of the viewport instead. There are no height props: consumers control height only through the content they render.
+## 最大高度
+高度由内容决定，并以视口为上限。遵循 Base UI 的 inside-scroll 模式，视口为每种位置预留垂直空间，弹出层填满该空间，因此顶部对齐的对话框永远不会超出底部边缘。超过上限后，只有正文滚动，标题栏和操作栏保持固定。移动端抽屉则以视口的 85% 为上限。不存在高度属性：使用方只能通过所渲染的内容来控制高度。
 <ComponentExample demo="LayerDialogMaxHeightDemo"><LayerDialogMaxHeightDemo client:load /></ComponentExample>
 </ComponentSection>
 
@@ -176,23 +176,23 @@ Height is derived from content and capped by the viewport. Following Base UI's i
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### LayerDialog.Root
 
 <p>
-  Controls the open state. Accepts every Base UI Drawer root prop, including
-  `open`, `defaultOpen`, `onOpenChange`, `modal`, and `actionsRef`. Doesn't
-  render its own HTML element.
+  控制打开状态。接受 Base UI Drawer 的所有 root 属性，包括 `open`、
+  `defaultOpen`、`onOpenChange`、`modal` 和 `actionsRef`。不渲染自身的
+  HTML 元素。
 </p>
 <div class="mb-4 overflow-hidden rounded-lg border border-kumo-hairline">
   <table class="w-full text-sm">
     <thead class="bg-kumo-elevated">
       <tr>
-        <th class="px-4 py-2 text-left font-medium">Prop</th>
-        <th class="px-4 py-2 text-left font-medium">Type</th>
-        <th class="px-4 py-2 text-left font-medium">Default</th>
-        <th class="px-4 py-2 text-left font-medium">Description</th>
+        <th class="px-4 py-2 text-left font-medium">属性</th>
+        <th class="px-4 py-2 text-left font-medium">类型</th>
+        <th class="px-4 py-2 text-left font-medium">默认值</th>
+        <th class="px-4 py-2 text-left font-medium">描述</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-kumo-hairline">
@@ -201,8 +201,8 @@ Height is derived from content and capped by the viewport. Following Base UI's i
         <td class="px-4 py-2 font-mono text-xs">boolean</td>
         <td class="px-4 py-2 font-mono text-xs">false</td>
         <td class="px-4 py-2 text-kumo-subtle">
-          Blocks X, Close, Escape, backdrop, and swipe dismissal while work is
-          pending. Programmatic closes are never blocked.
+          在操作待处理期间，阻止通过 X、关闭、Escape、背景和滑动进行关闭。
+          程序化关闭永远不会被阻止。
         </td>
       </tr>
     </tbody>
@@ -212,60 +212,58 @@ Height is derived from content and capped by the viewport. Following Base UI's i
 ### LayerDialog.Alert
 
 <p>
-  Same props as `LayerDialog.Root`. Forces `modal`, blocks pointer dismissal,
-  renders `role="alertdialog"`, and requires `LayerDialog.Actions`.
+  与 `LayerDialog.Root` 属性相同。强制 `modal`、阻止指针关闭、渲染
+  `role="alertdialog"`，并要求使用 `LayerDialog.Actions`。
 </p>
 
 ### LayerDialog.Trigger
 
-<p>A button that opens the dialog when clicked.</p>
+<p>点击后打开对话框的按钮。</p>
 <PropsTable component="LayerDialog.Trigger" />
 
 ### LayerDialog.Content
 
-<p>Portals the backdrop and popup and validates the composition.</p>
+<p>将背景和弹出层放入 portal，并校验组合的合法性。</p>
 <PropsTable component="LayerDialog.Content" />
 
 ### LayerDialog.Title
 
-<p>A heading that labels the dialog for accessibility.</p>
+<p>为对话框提供无障碍标签的标题。</p>
 <PropsTable component="LayerDialog.Title" />
 
 ### LayerDialog.Description
 
 <p>
-  Optional supporting copy beneath the title. Becomes the dialog's accessible
-  description.
+  标题下方的可选说明文字，会成为对话框的可访问描述。
 </p>
 <PropsTable component="LayerDialog.Description" />
 
 ### LayerDialog.Body
 
-<p>The scrollable content region.</p>
+<p>可滚动的内容区域。</p>
 <PropsTable component="LayerDialog.Body" />
 
 ### LayerDialog.Actions
 
 <p>
-  A footer with an automatic dismiss button and exactly one
-  `LayerDialog.Actions.Primary`.
+  包含一个自动关闭按钮和恰好一个 `LayerDialog.Actions.Primary` 的底部操作栏。
 </p>
 <PropsTable component="LayerDialog.Actions" />
 
 ### LayerDialog.Actions.Primary
 
 <p>
-  The single primary action. Renders a Kumo `Button` and accepts standard
-  button attributes such as `onClick`, `disabled`, and `type`.
+  唯一的主操作。渲染一个 Kumo `Button`，接受 `onClick`、`disabled`、`type`
+  等标准按钮属性。
 </p>
 <div class="mb-4 overflow-hidden rounded-lg border border-kumo-hairline">
   <table class="w-full text-sm">
     <thead class="bg-kumo-elevated">
       <tr>
-        <th class="px-4 py-2 text-left font-medium">Prop</th>
-        <th class="px-4 py-2 text-left font-medium">Type</th>
-        <th class="px-4 py-2 text-left font-medium">Default</th>
-        <th class="px-4 py-2 text-left font-medium">Description</th>
+        <th class="px-4 py-2 text-left font-medium">属性</th>
+        <th class="px-4 py-2 text-left font-medium">类型</th>
+        <th class="px-4 py-2 text-left font-medium">默认值</th>
+        <th class="px-4 py-2 text-left font-medium">描述</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-kumo-hairline">
@@ -274,8 +272,7 @@ Height is derived from content and capped by the viewport. Following Base UI's i
         <td class="px-4 py-2 font-mono text-xs">"primary" | "destructive"</td>
         <td class="px-4 py-2 font-mono text-xs">"primary"</td>
         <td class="px-4 py-2 text-kumo-subtle">
-          Visual emphasis of the action. Use `destructive` when confirming an
-          irreversible action such as a delete.
+          操作的视觉强调程度。在确认删除等不可逆操作时使用 `destructive`。
         </td>
       </tr>
       <tr>
@@ -283,7 +280,7 @@ Height is derived from content and capped by the viewport. Following Base UI's i
         <td class="px-4 py-2 font-mono text-xs">boolean</td>
         <td class="px-4 py-2 font-mono text-xs">false</td>
         <td class="px-4 py-2 text-kumo-subtle">
-          Shows a spinner and disables the action while work is pending.
+          操作待处理期间显示加载指示器并禁用操作。
         </td>
       </tr>
     </tbody>

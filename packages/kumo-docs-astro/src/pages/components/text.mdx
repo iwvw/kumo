@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Text"
-description: "A typography component for various heading and copy styles."
+description: "一个排版组件，提供多种标题与正文样式。"
 sourceFile: "components/text"
 ---
 
@@ -26,15 +26,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Text } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Text } from "@cloudflare/kumo/components/text";
@@ -46,7 +46,7 @@ import { Text } from "@cloudflare/kumo/components/text";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Text } from "@cloudflare/kumo";
@@ -57,12 +57,12 @@ export default function Example() {
 ```
 
 <section class="mt-8 space-y-4">
-  <Text variant="heading3" as="h3">Semantic HTML</Text>
+  <Text variant="heading3" as="h3">语义化 HTML</Text>
   <Text>
-    The `variant` prop controls visual styling only—it does not determine the HTML element rendered.
-    Heading variants **require** the `as` prop to avoid silently excluding real section headings from
-    the document outline. Body and monospace variants have sensible defaults (`<p>` and `<span>`
-    respectively) and accept `as` optionally.
+    `variant` 属性只控制视觉样式，并不决定渲染出的 HTML 元素。
+    标题变体**必须**提供 `as` 属性，以免真实的章节标题被静默排除在
+    文档大纲之外。正文与等宽变体具有合理的默认值（分别渲染为 `<p>` 和 `<span>`），
+    `as` 为可选。
   </Text>
 
 ```tsx
@@ -81,16 +81,17 @@ export default function Example() {
 ```
 
   <Text>
-    The `as` prop accepts: `"h1"` through `"h6"`, `"p"`, and `"span"`.
-    Body variants default to `"p"`, monospace variants default to `"span"`,
-    and heading variants have no default — you must choose explicitly.
+    `as` 属性可接受：`"h1"` 到 `"h6"`、`"p"` 和 `"span"`。
+    正文变体默认为 `"p"`，等宽变体默认为 `"span"`，
+    标题变体则没有默认值 —— 你必须明确选择。
   </Text>
 </section>
 
 <section class="mt-8 space-y-4">
-  <Text variant="heading3" as="h3">Restrictions</Text>
+  <Text variant="heading3" as="h3">限制</Text>
   <Text>
-    The `bold` and `size` props are intentionally restricted to the `base`, `secondary`, `success`, and `error` text variants.
+    `bold` 与 `size` 属性特意限制为仅在 `base`、`secondary`、`success` 和 `error`
+    正文变体上可用。
   </Text>
 
 ```tsx
@@ -101,8 +102,8 @@ export default function Example() {
 ```
 
 <Text>
-  Monospace variants (`mono` and `mono-secondary`) can only set `size` to `lg`
-  and cannot use the `bold` prop:
+  等宽变体（`mono` 和 `mono-secondary`）只能将 `size` 设置为 `lg`，
+  且不能使用 `bold` 属性：
 </Text>
 
 ```tsx
@@ -112,8 +113,8 @@ export default function Example() {
 ```
 
 <Text>
-  Headings (i.e. `heading1`, `heading2` and `heading3` variants) cannot use
-  these props at all:
+  标题变体（即 `heading1`、`heading2` 和 `heading3`）完全不能使用
+  这些属性：
 </Text>
 
 ```tsx
@@ -130,10 +131,10 @@ export default function Example() {
 
 <ComponentSection>
 
-## Truncate
+## 文本截断
 
 <Text>
-  Use the `truncate` prop to clip overflowing text with an ellipsis. This adds `truncate min-w-0` classes, which is useful when `Text` is inside a flex or grid container.
+  使用 `truncate` 属性可以用省略号截断溢出的文本。它会添加 `truncate min-w-0` 类，当 `Text` 位于 flex 或 grid 容器内时尤其有用。
 </Text>
 
 <ComponentExample demo="TextTruncateDemo">
@@ -150,7 +151,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="Text" />
 </ComponentSection>

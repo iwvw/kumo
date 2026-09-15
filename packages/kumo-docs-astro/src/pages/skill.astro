@@ -14,8 +14,8 @@ const renderedTips = designTips.map(({ title, description }) => ({
 }));
 
 const headings = [
-  { depth: 2, slug: "installation", text: "Installation" },
-  { depth: 2, slug: "rules", text: "Rules" },
+  { depth: 2, slug: "installation", text: "安装" },
+  { depth: 2, slug: "rules", text: "规则" },
   ...designTips.map(({ id, title }) => ({
     depth: 3,
     slug: id,
@@ -26,16 +26,16 @@ const headings = [
 
 <DocLayout
   title="Design skill"
-  description="Cloudflare product design guidance for building and reviewing Kumo interfaces."
+  description="面向构建和评审 Kumo 界面的 Cloudflare 产品设计指南。"
   headings={headings}
 >
   <div>
     <section>
-      <Heading level={2} class="mt-0">Installation</Heading>
+      <Heading level={2} class="mt-0">安装</Heading>
       <CodeBlock code="npx skills add cloudflare/kumo@kumo-design" lang="bash" />
     </section>
     <section>
-      <Heading level={2}>Rules</Heading>
+      <Heading level={2}>规则</Heading>
       <div class="not-prose grid gap-16">
         <DesignTips client:load renderedTips={renderedTips} />
       </div>

@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Button"
-description: "Displays a button or a component that looks like a button."
+description: "用于显示一个按钮或外观类似按钮的组件。"
 sourceFile: "components/button"
 ---
 
@@ -40,13 +40,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
   <CodeBlock code={`import { Button } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 按需导入
 
   <CodeBlock
     code={`import { Button } from "@cloudflare/kumo/components/button";`}
@@ -58,7 +58,7 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Button } from "@cloudflare/kumo";
@@ -74,13 +74,13 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
 {/* Variants */}
 
-### Variants
+### 变体
 
-#### Primary
+#### 主要
 
 <ComponentExample
   demo="ButtonPrimaryDemo"
@@ -90,7 +90,7 @@ export default function Example() {
   <ButtonPrimaryDemo client:visible />
 </ComponentExample>
 
-#### Secondary
+#### 次要
 
 <ComponentExample
   demo="ButtonSecondaryDemo"
@@ -100,7 +100,7 @@ export default function Example() {
   <ButtonSecondaryDemo client:visible />
 </ComponentExample>
 
-#### Ghost
+#### 幽灵
 
 <ComponentExample
   demo="ButtonGhostDemo"
@@ -110,7 +110,7 @@ export default function Example() {
   <ButtonGhostDemo client:visible />
 </ComponentExample>
 
-#### Destructive
+#### 危险
 
 <ComponentExample
   demo="ButtonDestructiveDemo"
@@ -120,7 +120,7 @@ export default function Example() {
   <ButtonDestructiveDemo client:visible />
 </ComponentExample>
 
-#### Outline
+#### 描边
 
 <ComponentExample
   demo="ButtonOutlineDemo"
@@ -130,7 +130,7 @@ export default function Example() {
   <ButtonOutlineDemo client:visible />
 </ComponentExample>
 
-#### Secondary Destructive
+#### 次要危险
 
 <ComponentExample
   demo="ButtonSecondaryDestructiveDemo"
@@ -142,7 +142,7 @@ export default function Example() {
 
 {/* Sizes */}
 
-### Sizes
+### 尺寸
 
 <ComponentExample demo="ButtonSizesDemo" vrSection="sizes" vrTitle="Sizes">
   <ButtonSizesDemo client:visible />
@@ -150,7 +150,7 @@ export default function Example() {
 
 {/* With Icon */}
 
-### With Icon
+### 带图标
 
 <ComponentExample
   demo="ButtonWithIconDemo"
@@ -162,14 +162,11 @@ export default function Example() {
 
 {/* Icon Only */}
 
-### Icon Only
+### 仅图标
 
 <p>
-  For icon-only buttons, use `shape="square"` or `shape="circle"` with the
-  `icon` prop.
-  <strong>Always include `aria-label`</strong>
-  for accessibility — without visible text, screen readers need the label to
-  convey the button's purpose.
+  对于仅含图标的按钮，请使用 `shape="square"` 或 `shape="circle"` 并配合 `icon` 属性。
+  <strong>务必始终包含 `aria-label`</strong>——没有可见文本时，屏幕阅读器需要借助标签来传达按钮的用途。
 </p>
 <ComponentExample
   demo="ButtonIconOnlyDemo"
@@ -181,7 +178,7 @@ export default function Example() {
 
 {/* Loading State */}
 
-### Loading State
+### 加载状态
 
 <ComponentExample
   demo="ButtonLoadingDemo"
@@ -193,7 +190,7 @@ export default function Example() {
 
 {/* Disabled State */}
 
-### Disabled State
+### 禁用状态
 
 <ComponentExample
   demo="ButtonDisabledDemo"
@@ -205,12 +202,10 @@ export default function Example() {
 
 {/* Title (Tooltip) */}
 
-### Title
+### 标题提示
 
   <p>
-    Use the `title` prop to wrap the button in a tooltip. This is useful for
-    icon-only buttons, disabled buttons, or whenever additional context helps
-    the user understand the action.
+    使用 `title` 属性可以为按钮包裹一个 Tooltip。这对于仅图标按钮、禁用按钮，或任何需要额外上下文帮助用户理解该操作的情况都很实用。
   </p>
   <ComponentExample
     demo="ButtonTitleDemo"
@@ -220,12 +215,10 @@ export default function Example() {
     <ButtonTitleDemo client:visible />
   </ComponentExample>
 
-### Link as Button
+### 作为按钮的链接
 
 <p>
-  Use `LinkButton` when the interaction should navigate somewhere but still look
-  like a button. Use `Button` for in-place actions like submitting, opening, or
-  toggling UI.
+  当交互需要跳转到某处但仍需呈现按钮外观时，使用 `LinkButton`。对于提交、打开或切换 UI 等就地操作，请使用 `Button`。
 </p>
 <ComponentExample
   demo="ButtonLinkAsButtonDemo"
@@ -235,11 +228,10 @@ export default function Example() {
   <ButtonLinkAsButtonDemo client:visible />
 </ComponentExample>
 
-### Link with Tooltip
+### 带 Tooltip 的链接
 
 <p>
-  Pass `title` to a `LinkButton` to wrap it in a tooltip, just like `Button`.
-  This surfaces extra context on hover and focus.
+  与 `Button` 一样，向 `LinkButton` 传入 `title` 即可为其包裹 Tooltip。这会在悬停和聚焦时呈现额外的上下文信息。
 </p>
 <ComponentExample
   demo="ButtonLinkTooltipDemo"
@@ -249,11 +241,10 @@ export default function Example() {
   <ButtonLinkTooltipDemo client:visible />
 </ComponentExample>
 
-### Disabled Link
+### 禁用的链接
 
 <p>
-  Set `disabled` on a `LinkButton` to render a non-interactive button styled like
-  the link. Pass `title` to explain why it's unavailable via a tooltip.
+  在 `LinkButton` 上设置 `disabled` 可以渲染一个不可交互、但样式近似链接的按钮。传入 `title` 可通过 Tooltip 解释其不可用的原因。
 </p>
 <ComponentExample
   demo="ButtonDisabledLinkDemo"
@@ -268,7 +259,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="Button" />
 </ComponentSection>

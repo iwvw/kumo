@@ -306,28 +306,5 @@ export default defineConfig({
         );
       },
     },
-    {
-      entry: packEntries,
-      format: "esm",
-      platform: "browser",
-      outDir: "dist",
-      clean: false,
-      // Keep bare imports external so consumers resolve real packages' types.
-      deps: { neverBundle: /^[^./]/ },
-      // tsconfig's declarationMap is for the workspace; published maps point at
-      // ../src, which isn't shipped.
-      dts: { emitDtsOnly: true, sourcemap: false },
-      sourcemap: false,
-      // rolldown-plugin-dts transforms without maps; maps are irrelevant for d.ts.
-      inputOptions: { checks: { sourcemapBroken: false } },
-      // Package-correctness gates on the final output (runs on the packed
-      // tarball): styles/registry entries are non-JS assets by design.
-      attw: {
-        profile: "esm-only",
-        level: "error",
-        excludeEntrypoints: [/styles/, /component-registry/],
-      },
-      publint: true,
-    },
   ],
 });

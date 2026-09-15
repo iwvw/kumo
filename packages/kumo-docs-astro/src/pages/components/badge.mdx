@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Badge"
-description: "Displays a small label for status, categorization, or metadata."
+description: "用于显示状态、分类或元数据的小型标签。"
 sourceFile: "components/badge"
 ---
 
@@ -21,21 +21,21 @@ import {
   <BadgeSemanticVariantsDemo client:visible />
 </ComponentExample>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 ```tsx
 import { Badge } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 按需导入
 
 ```tsx
 import { Badge } from "@cloudflare/kumo/components/badge";
 ```
 
-## Usage
+## 用法
 
 ```tsx
 import { Badge } from "@cloudflare/kumo";
@@ -45,52 +45,52 @@ export default function Example() {
 }
 ```
 
-## Examples
+## 示例
 
-### Primary Badges
+### 主要 Badge
 
 <ComponentExample demo="BadgeSemanticVariantsDemo">
   <BadgeSemanticVariantsDemo client:visible />
 </ComponentExample>
 
-### Other color variants
+### 其他颜色变体
 
-Other color variants for specific products/use cases where the semantic badges aren't enough to convey intended meaning or status.
+当语义 Badge 不足以表达所要传达的含义或状态时，可使用面向特定产品或用例的其他颜色变体。
 
 <ComponentExample demo="BadgeColorVariantsDemo">
   <BadgeColorVariantsDemo client:visible />
 </ComponentExample>
 
-### Dot badges
+### 圆点 Badge
 
-Use `appearance="dot"` for a subtle status indicator with a colored dot. Supported with `success`, `warning`, `error`, and `neutral` variants.
+使用 `appearance="dot"` 通过彩色圆点呈现微妙的指示状态。支持 `success`、`warning`、`error` 和 `neutral` 变体。
 
 <ComponentExample demo="BadgeDotDemo">
   <BadgeDotDemo client:visible />
 </ComponentExample>
 
-### In a sentence
+### 用于句中
 
 <ComponentExample demo="BadgeInSentenceDemo">
   <BadgeInSentenceDemo client:visible />
 </ComponentExample>
 
-### With an icon
+### 带图标
 
-Filled badges accept a Phosphor icon component or React element through `icon`. Dot badges use their status dot and do not accept icons.
+实心 Badge 可通过 `icon` 接受一个 Phosphor 图标组件或 React 元素。圆点 Badge 使用其状态圆点，不接受图标。
 
 <ComponentExample demo="BadgeIconDemo">
   <BadgeIconDemo client:visible />
 </ComponentExample>
 
-### Linked badge
+### 可跳转的 Badge
 
-Wrap a badge in [`Link`](/components/link) to make it navigable. The badge adds a ring when its ancestor link is hovered.
+将 Badge 包装在 [`Link`](/components/link) 中即可使其可跳转。当祖先链接被悬停时，Badge 会添加一个圆环。
 
 <ComponentExample demo="BadgeLinkDemo">
   <BadgeLinkDemo client:visible />
 </ComponentExample>
 
-## API Reference
+## API 参考
 
 <PropsTable component="Badge" />

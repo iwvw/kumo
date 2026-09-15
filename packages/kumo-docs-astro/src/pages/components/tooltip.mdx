@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Tooltip"
-description: "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it."
+description: "一种弹出层，当元素获得键盘焦点或鼠标悬停在其上时，显示与该元素相关的信息。"
 sourceFile: "components/tooltip"
 baseUIComponent: "tooltip"
 ---
@@ -29,15 +29,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Tooltip, TooltipProvider } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Tooltip, TooltipProvider } from "@cloudflare/kumo/components/tooltip";
@@ -49,7 +49,7 @@ import { Tooltip, TooltipProvider } from "@cloudflare/kumo/components/tooltip";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Tooltip, Button } from "@cloudflare/kumo";
@@ -63,7 +63,7 @@ export default function Example() {
 }
 ```
 
-For delay grouping across multiple tooltips, see [TooltipProvider](#tooltipprovider).
+如需在多个 tooltip 之间统一延迟分组，请参阅 [TooltipProvider](#tooltipprovider)。
 
 </ComponentSection>
 
@@ -71,36 +71,36 @@ For delay grouping across multiple tooltips, see [TooltipProvider](#tooltipprovi
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic Tooltip
+### 基础 Tooltip
 
 <ComponentExample demo="TooltipBasicDemo">
   <TooltipBasicDemo client:load />
 </ComponentExample>
 
-### Multiple Tooltips
+### 多个 Tooltip
 
 <ComponentExample demo="TooltipMultipleDemo">
   <TooltipMultipleDemo client:load />
 </ComponentExample>
 
-### Long Content / Overflow
+### 长内容 / 溢出
 
 <p>
-  Tooltips with long content automatically constrain their width to the available
-  viewport space using `--available-width` from Base UI's Positioner. Hover over
-  the edge buttons to see the tooltip wrap instead of overflowing the viewport.
+  长内容的 Tooltip 会自动使用 Base UI Positioner 提供的 `--available-width`，
+  将宽度限制在可用视口范围之内。悬停到边缘按钮上，即可看到 tooltip
+  换行而不是溢出视口。
 </p>
 <ComponentExample demo="TooltipOverflowDemo">
   <TooltipOverflowDemo client:load />
 </ComponentExample>
 
-### Delay Control
+### 延迟控制
 
 <p>
-  Use `delay` to control how long to wait before opening (default: 600ms) and
-  `closeDelay` to control how long to wait before closing (default: 0ms).
+  使用 `delay` 控制打开前的等待时长（默认 600ms），使用 `closeDelay` 控制
+  关闭前的等待时长（默认 0ms）。
 </p>
 <ComponentExample demo="TooltipDelayDemo">
   <TooltipDelayDemo client:load />
@@ -114,9 +114,9 @@ For delay grouping across multiple tooltips, see [TooltipProvider](#tooltipprovi
 ## TooltipProvider
 
 <p>
-  `TooltipProvider` groups multiple tooltips so that after the first tooltip has
-  been shown, switching to another skips the open delay. Place it once at your
-  app root or layout — not around each individual `Tooltip`.
+  `TooltipProvider` 将多个 tooltip 分组，使第一个 tooltip 显示后，切换到
+  其他 tooltip 时会跳过打开延迟。将它放在应用根节点或布局中一次即可；
+  不要在每个 `Tooltip` 外面分别包裹。
 </p>
 
 ```tsx
@@ -135,7 +135,7 @@ For delay grouping across multiple tooltips, see [TooltipProvider](#tooltipprovi
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Tooltip
 

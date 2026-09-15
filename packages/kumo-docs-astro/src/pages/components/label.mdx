@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Label"
-description: "A label component for form fields with support for required/optional indicators and tooltips."
+description: "用于表单字段的标签组件，支持必填/可选标识和提示信息。"
 sourceFile: "components/label"
 ---
 
@@ -28,15 +28,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导入
 
 ```tsx
 import { Label } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 子路径导入
 
 ```tsx
 import { Label } from "@cloudflare/kumo/components/label";
@@ -48,12 +48,12 @@ import { Label } from "@cloudflare/kumo/components/label";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
-### With Form Components (Recommended)
+### 与表单组件搭配使用（推荐）
 
   <p>
-    Label features are automatically available through form components like `Input`, `Select`, `Checkbox`, and `Switch` via the `required` and `labelTooltip` props.
+    通过 `required` 和 `labelTooltip` 属性，`Input`、`Select`、`Checkbox`、`Switch` 等表单组件会自动获得 Label 的各项功能。
   </p>
 
 ```tsx
@@ -75,9 +75,9 @@ export default function Example() {
 }
 ```
 
-### Standalone Label
+### 独立使用的 Label
 
-<p>For custom form layouts, use the `Label` component directly.</p>
+<p>对于自定义表单布局，可直接使用 `Label` 组件。</p>
 
 ```tsx
 import { Label } from "@cloudflare/kumo";
@@ -93,39 +93,39 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Optional Field
+### 可选字段
 
-<p>Shows gray "(optional)" text when `required={false}`.</p>
+<p>当 `required={false}` 时显示灰色“（可选）”文本。</p>
 <ComponentExample demo="LabelOptionalFieldDemo">
   <LabelOptionalFieldDemo client:visible />
 </ComponentExample>
 
-### With Tooltip
+### 带提示
 
-<p>Shows an info icon with a tooltip for additional context.</p>
+<p>显示一个信息图标，悬停时提供额外的说明信息。</p>
 <ComponentExample demo="LabelWithTooltipDemo">
   <LabelWithTooltipDemo client:visible />
 </ComponentExample>
 
-### ReactNode Label Content
+### ReactNode 标签内容
 
-<p>Labels support ReactNode content for rich formatting.</p>
+<p>标签支持 ReactNode 内容，可实现丰富的格式。</p>
 <ComponentExample demo="LabelReactNodeDemo">
   <LabelReactNodeDemo client:visible />
 </ComponentExample>
 
-### Form with Mixed Fields
+### 混合字段表单
 
-<p>Real-world example showing required and optional fields together.</p>
+<p>展示必填与可选字段并存的真实示例。</p>
 <ComponentExample demo="LabelFormMixedDemo">
   <LabelFormMixedDemo client:visible />
 </ComponentExample>
 
-### Standalone Label
+### 独立使用的 Label
 
-<p>Use Label directly for custom layouts or non-form contexts.</p>
+<p>在自定义布局或非表单场景下直接使用 Label。</p>
 <ComponentExample demo="LabelStandaloneDemo">
   <LabelStandaloneDemo client:visible />
 </ComponentExample>
@@ -136,19 +136,19 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
-### Label Props
+### Label 属性
 
-<p>Props for the standalone Label component:</p>
+<p>独立 Label 组件的属性：</p>
 <div class="overflow-x-auto">
   <table class="w-full text-sm">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Prop</th>
-        <th class="px-4 py-3 text-left font-semibold">Type</th>
-        <th class="px-4 py-3 text-left font-semibold">Default</th>
-        <th class="px-4 py-3 text-left font-semibold">Description</th>
+        <th class="px-4 py-3 text-left font-semibold">属性</th>
+        <th class="px-4 py-3 text-left font-semibold">类型</th>
+        <th class="px-4 py-3 text-left font-semibold">默认值</th>
+        <th class="px-4 py-3 text-left font-semibold">描述</th>
       </tr>
     </thead>
     <tbody>
@@ -156,46 +156,46 @@ export default function Example() {
         <td class="px-4 py-3 font-mono text-xs">children</td>
         <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
-        <td class="px-4 py-3 text-xs">Label content (required)</td>
+        <td class="px-4 py-3 text-xs">标签内容（必填）</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">showOptional</td>
         <td class="px-4 py-3 font-mono text-xs">boolean</td>
         <td class="px-4 py-3 font-mono text-xs">false</td>
         <td class="px-4 py-3 text-xs">
-          Shows gray "(optional)" text (only when required is false)
+          显示灰色“（可选）”文本（仅当 required 为 false 时）
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">tooltip</td>
         <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
-        <td class="px-4 py-3 text-xs">Tooltip content shown via info icon</td>
+        <td class="px-4 py-3 text-xs">通过信息图标显示的提示内容</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">className</td>
         <td class="px-4 py-3 font-mono text-xs">string</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
-        <td class="px-4 py-3 text-xs">Additional CSS classes</td>
+        <td class="px-4 py-3 text-xs">额外 CSS 类</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### Form Component Label Props
+### 表单组件 Label 属性
 
 <p>
-  These props are available on Input, InputArea, Select, Checkbox, Switch,
-  SensitiveInput, and Combobox:
+  以下属性适用于 Input、InputArea、Select、Checkbox、Switch、
+  SensitiveInput 和 Combobox：
 </p>
 <div class="overflow-x-auto">
   <table class="w-full text-sm">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Prop</th>
-        <th class="px-4 py-3 text-left font-semibold">Type</th>
-        <th class="px-4 py-3 text-left font-semibold">Default</th>
-        <th class="px-4 py-3 text-left font-semibold">Description</th>
+        <th class="px-4 py-3 text-left font-semibold">属性</th>
+        <th class="px-4 py-3 text-left font-semibold">类型</th>
+        <th class="px-4 py-3 text-left font-semibold">默认值</th>
+        <th class="px-4 py-3 text-left font-semibold">描述</th>
       </tr>
     </thead>
     <tbody>
@@ -203,15 +203,14 @@ export default function Example() {
         <td class="px-4 py-3 font-mono text-xs">label</td>
         <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
-        <td class="px-4 py-3 text-xs">Label content (enables Field wrapper)</td>
+        <td class="px-4 py-3 text-xs">标签内容（启用 Field 包装器）</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">required</td>
         <td class="px-4 py-3 font-mono text-xs">boolean</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
         <td class="px-4 py-3 text-xs">
-          When false: shows "(optional)" text. Also sets HTML required
-          attribute.
+          为 false 时：显示“（可选）”文本，同时设置 HTML required 属性。
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
@@ -219,7 +218,7 @@ export default function Example() {
         <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
         <td class="px-4 py-3 text-xs">
-          Tooltip content shown via info icon next to label
+          通过标签旁的信息图标显示的提示内容
         </td>
       </tr>
     </tbody>
@@ -232,43 +231,42 @@ export default function Example() {
 
 <ComponentSection>
 
-## Design Guidelines
+## 设计指南
 
   <div class="space-y-4 text-sm">
     <div>
 
-      ### When to Use Optional Indicators
+      ### 何时使用可选标识
 
       <ul class="ml-4 list-disc space-y-1">
         <li>
-          Use "(optional)" for optional fields when most fields are required
+          当大多数字段为必填时，为可选字段使用“（可选）”标识
         </li>
-        <li>Be consistent within a form</li>
-        <li>Default fields (no indicator) are assumed required by users</li>
+        <li>在同一表单内保持一致</li>
+        <li>没有标识的默认字段，用户会默认视为必填</li>
       </ul>
     </div>
     <div>
 
-      ### When to Use Tooltips
+      ### 何时使用提示
 
       <ul class="ml-4 list-disc space-y-1">
-        <li>Provide additional context that doesn't fit in the label</li>
-        <li>Explain format requirements or validation rules</li>
-        <li>Link to help documentation for complex fields</li>
-        <li>Keep tooltip content concise - 1-2 sentences max</li>
+        <li>提供标签中无法容纳的补充上下文</li>
+        <li>解释格式要求或校验规则</li>
+        <li>为复杂字段链接到帮助文档</li>
+        <li>保持提示内容简洁，最多 1-2 句</li>
       </ul>
     </div>
     <div>
 
-      ### Accessibility
+      ### 无障碍
 
       <ul class="ml-4 list-disc space-y-1">
         <li>
-          Optional indicators are purely visual - use the `required` attribute
-          for validation
+          可选标识仅用于视觉展示，请使用 `required` 属性进行校验
         </li>
-        <li>Tooltips are accessible via keyboard focus on the info icon</li>
-        <li>Screen readers will announce tooltip content when focused</li>
+        <li>通过键盘聚焦信息图标即可访问提示内容</li>
+        <li>屏幕阅读器在聚焦时会播报提示内容</li>
       </ul>
     </div>
   </div>

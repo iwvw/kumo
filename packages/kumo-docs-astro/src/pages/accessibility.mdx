@@ -1,39 +1,39 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: Accessibility
-description: Learn how to make the most of Kumo's accessibility features and guidelines.
+description: 了解如何充分利用 Kumo 的无障碍特性和规范。
 ---
 
-Accessibility is a top priority for Kumo. Built on [Base UI](https://base-ui.com/react/overview/accessibility), Kumo components handle many complex accessibility details including ARIA attributes, role attributes, pointer interactions, keyboard navigation, and focus management. The goal is to provide an accessible user experience out of the box, with intuitive APIs for configuration.
+无障碍是 Kumo 的头等大事。Kumo 基于 [Base UI](https://base-ui.com/react/overview/accessibility) 构建，其组件处理了许多复杂的无障碍细节，包括 ARIA 属性、role 属性、指针交互、键盘导航和焦点管理。目标是开箱即用地提供无障碍的用户体验，并提供直观的 API 供配置。
 
-This page highlights some of the key accessibility features of Kumo, as well as some ways you will need to augment the library, in order to ensure that your application is accessible to everyone.
+本页重点介绍 Kumo 的一些关键无障碍特性，以及你需要对库进行补充的一些方面，以确保你的应用对每个人都是无障碍的。
 
-## Keyboard Navigation
+## 键盘导航
 
-Kumo components adhere to the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/) to provide basic keyboard accessibility out of the box. This is critical for users who have difficulty using a pointer device, but it's also important for users who prefer navigating with a keyboard or other input mode.
+Kumo 组件遵循 [WAI-ARIA 创作实践](https://www.w3.org/WAI/ARIA/apg/)，开箱即用地提供基本的键盘无障碍支持。这对难以使用指针设备的用户至关重要，同时对偏好使用键盘或其他输入方式导航的用户同样重要。
 
-Many components provide support for arrow keys, alphanumeric keys, <kbd>Home</kbd>, <kbd>End</kbd>, <kbd>Enter</kbd>, and <kbd>Esc</kbd>.
+许多组件支持方向键、字母数字键、<kbd>Home</kbd>、<kbd>End</kbd>、<kbd>Enter</kbd> 和 <kbd>Esc</kbd>。
 
-## Focus Management
+## 焦点管理
 
-Kumo components manage focus automatically following a user interaction. Additionally, some components provide props like `initialFocus` and `finalFocus`, to configure focus management.
+Kumo 组件在用户交互后会自动管理焦点。此外，一些组件提供 `initialFocus` 和 `finalFocus` 等 props 来配置焦点管理。
 
-While Kumo components manage focus, it's the developer's responsibility to visually indicate focus. This is typically handled by styling the `:focus` or `:focus-visible` CSS pseudo-classes. [WCAG provides guidelines on focus appearance](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html).
+Kumo 组件负责管理焦点，但视觉上显示焦点位置是开发者的职责。这通常通过样式化 `:focus` 或 `:focus-visible` CSS 伪类来实现。[WCAG 提供了关于焦点外观的指南](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html)。
 
-## Color Contrast
+## 颜色对比度
 
-When styling elements, it's important to meet the minimum requirements for color contrast between each foreground element and its corresponding background element. Unless your application has strict requirements around compliance with current standards, consider adhering to [APCA](https://www.myndex.com/APCA/), which is slated to become the new standard in WCAG 3.
+在给元素设置样式时，必须满足每个前景元素与其对应背景元素之间的最低颜色对比度要求。除非你的应用对符合现行标准有严格要求，否则建议遵循 [APCA](https://www.myndex.com/APCA/)，它有望成为 WCAG 3 中的新标准。
 
-## Accessible Labels
+## 无障碍标签
 
-Kumo provides components like `Field`, `Input`, and `Checkbox` to automatically associate form controls. Additionally, you can use the native HTML `<label>` element to provide context to corresponding inputs.
+Kumo 提供了 `Field`、`Input` 和 `Checkbox` 等组件，自动关联表单控件。此外，你可以使用原生 HTML `<label>` 元素为对应的输入提供上下文。
 
-Most applications will present custom controls that require accessible names provided by markup features such as `alt`, `aria-label` or `aria-labelledby`. [WAI-ARIA provides guidelines on providing accessible names to custom controls](https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/).
+大多数应用会提供需要无障碍名称的自定义控件，这些名称通过 `alt`、`aria-label` 或 `aria-labelledby` 等标记特性提供。[WAI-ARIA 提供了为自定义控件提供无障碍名称的指南](https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/)。
 
-## Testing
+## 测试
 
-Kumo components, built on Base UI, are tested on a broad spectrum of browsers, devices, platforms, screen readers, and environments to ensure accessibility across different user contexts.
+Kumo 组件基于 Base UI 构建，在广泛的浏览器、设备、平台、屏幕阅读器和环境中经过测试，以确保在不同用户场景下的无障碍性。
 
 ---
 
-For more detailed information about the accessibility features provided by Base UI, visit the [official accessibility documentation](https://base-ui.com/react/overview/accessibility).
+有关 Base UI 提供的无障碍功能的更详细信息，请访问[官方无障碍文档](https://base-ui.com/react/overview/accessibility)。

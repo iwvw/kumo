@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Clipboard Text"
-description: "A text component with a copy-to-clipboard button."
+description: "一个带有复制到剪贴板按钮的文本组件。"
 sourceFile: "components/clipboard-text"
 ---
 
@@ -29,15 +29,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 ```tsx
 import { ClipboardText } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 按需导入
 
 ```tsx
 import { ClipboardText } from "@cloudflare/kumo/components/clipboard-text";
@@ -49,7 +49,7 @@ import { ClipboardText } from "@cloudflare/kumo/components/clipboard-text";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { ClipboardText } from "@cloudflare/kumo";
@@ -65,35 +65,35 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Short Text
+### 短文本
 
 <ComponentExample demo="ClipboardTextShortDemo">
   <ClipboardTextShortDemo client:visible />
 </ComponentExample>
 
-### API Key
+### API 密钥
 
 <ComponentExample demo="ClipboardTextApiKeyDemo">
   <ClipboardTextApiKeyDemo client:visible />
 </ComponentExample>
 
-### Copy Alternate Text
+### 复制替代文本
 
 <ComponentExample demo="ClipboardTextAlternateTextToCopyDemo">
   <ClipboardTextAlternateTextToCopyDemo client:visible />
 </ComponentExample>
 
-### Long Text
+### 长文本
 
 <ComponentExample demo="ClipboardTextLongDemo">
   <ClipboardTextLongDemo client:visible />
 </ComponentExample>
 
-### With Tooltip
+### 带 Tooltip
 
-<p>Shows "Copy" tooltip on hover, "Copied!" toast on click.</p>
+<p>悬停时显示"复制"Tooltip，点击时显示"已复制！"提示。</p>
 <ComponentExample demo="ClipboardTextWithTooltipDemo">
   <ClipboardTextWithTooltipDemo client:visible />
 </ComponentExample>
@@ -104,7 +104,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="ClipboardText" />
 </ComponentSection>

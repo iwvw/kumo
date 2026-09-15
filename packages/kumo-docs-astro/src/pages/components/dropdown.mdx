@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Dropdown Menu"
-description: "Displays a menu to the user—such as a set of actions or functions—triggered by a button."
+description: "向用户展示菜单（例如一组操作或功能），由按钮触发。"
 sourceFile: "components/dropdown"
 baseUIComponent: "menu"
 ---
@@ -32,15 +32,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 ```tsx
 import { DropdownMenu } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 按需导入
 
 ```tsx
 import { DropdownMenu } from "@cloudflare/kumo/components/dropdown";
@@ -52,7 +52,7 @@ import { DropdownMenu } from "@cloudflare/kumo/components/dropdown";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { DropdownMenu, Button } from "@cloudflare/kumo";
@@ -87,80 +87,78 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic Dropdown
+### 基本下拉
 
 <ComponentExample demo="DropdownBasicDemo">
   <DropdownBasicDemo client:load />
 </ComponentExample>
 
-### Inset Items
+### 缩进条目
 
 <p>
-  Use `inset` on items without an icon to align their text with items that have one.
+  在没有图标的条目上使用 `inset`，可让其文本与带图标的条目对齐。
 </p>
 <ComponentExample demo="DropdownInsetDemo">
   <DropdownInsetDemo client:load />
 </ComponentExample>
 
-### Handling Item Clicks
+### 处理条目点击
 
 <p>
-  Use `onClick` on `DropdownMenu.Item` to handle actions. Each item receives a standard React mouse event handler.
+  使用 `DropdownMenu.Item` 上的 `onClick` 处理操作。每个条目都会接收到标准的 React 鼠标事件处理器。
 </p>
 <ComponentExample demo="DropdownOnClickDemo">
   <DropdownOnClickDemo client:load />
 </ComponentExample>
 
-### Checkbox Items
+### 复选框条目
 
 <p>
-  Use `DropdownMenu.CheckboxItem` for toggleable options that can be
-  independently checked or unchecked.
+  使用 `DropdownMenu.CheckboxItem` 实现可独立勾选或取消勾选的可切换选项。
 </p>
 <ComponentExample demo="DropdownCheckboxDemo">
   <DropdownCheckboxDemo client:load />
 </ComponentExample>
 
-### Nested Menu with Radio Selection
+### 带单选的内嵌菜单
 
 <p>
-  Use `DropdownMenu.Sub`, `DropdownMenu.SubTrigger`, and
-  `DropdownMenu.SubContent` to create nested submenus. For single-selection
-  lists like language or timezone, use `DropdownMenu.RadioGroup` and
-  `DropdownMenu.RadioItem`.
+  使用 `DropdownMenu.Sub`、`DropdownMenu.SubTrigger` 和
+  `DropdownMenu.SubContent` 创建嵌套子菜单。对于语言、时区等单选列表，
+  请使用 `DropdownMenu.RadioGroup` 和
+  `DropdownMenu.RadioItem`。
 </p>
 <ComponentExample demo="DropdownNestedDemo">
   <DropdownNestedDemo client:load />
 </ComponentExample>
 
-### Custom Trigger with Avatar
+### 带头像的自定义触发器
 
 <p>
-  Use the `render` prop to customize the trigger element while passing children
-  to render inside it. This is useful when you need a non-button trigger (like
-  an avatar) wrapped in an accessible button element.
+  使用 `render` 属性自定义触发器元素，同时传入要渲染在其中的子内容。
+  当需要将头像等非按钮触发器包裹在无障碍按钮元素中时，此功能非常实用。
 </p>
 <ComponentExample demo="DropdownAvatarTriggerDemo">
   <DropdownAvatarTriggerDemo client:load />
 </ComponentExample>
 
-### Navigation Links
+### 导航链接
 
 <p>
-  Use `DropdownMenu.LinkItem` for menu items that navigate to a URL.
-  This renders a semantic `<a>` element with full control over link attributes like `target` and `rel`.
+  使用 `DropdownMenu.LinkItem` 处理导航到 URL 的菜单条目。
+  它会渲染语义化的 `<a>` 元素，可完全控制 `target`、`rel` 等链接属性。
 </p>
 <ComponentExample demo="DropdownLinkItemDemo">
   <DropdownLinkItemDemo client:load />
 </ComponentExample>
 
-### Long List
+### 长列表
 
 <p>
-  When a dropdown contains many items, the content automatically limits its height
-  to the available viewport space and becomes scrollable.
+  当下拉包含大量条目时，内容会自动将高度限制为可用的视口空间，
+  并变为可滚动。
 </p>
 <ComponentExample demo="DropdownLongListDemo">
   <DropdownLongListDemo client:load />
@@ -172,83 +170,79 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### DropdownMenu
 
-<p>Root component that manages the dropdown state.</p>
+<p>管理下拉状态的主组件。</p>
 <PropsTable component="DropdownMenu" />
 
 ### DropdownMenu.Trigger
 
-<p>Button that opens the dropdown when clicked.</p>
+<p>点击即可打开下拉的按钮。</p>
 <PropsTable component="DropdownMenu.Trigger" />
 
 ### DropdownMenu.Item
 
-<p>Individual menu item for actions.</p>
+<p>用于操作的单个菜单条目。</p>
 <PropsTable component="DropdownMenu.Item" />
 
 ### DropdownMenu.LinkItem
 
 <p>
-  A menu item that navigates to a URL. Renders a semantic `<a>` element. Use this instead of `Item` for navigation links.
+  导航到 URL 的菜单条目。渲染语义化的 `<a>` 元素。导航链接请使用此组件，而不是 `Item`。
 </p>
 <PropsTable component="DropdownMenu.LinkItem" />
 
 ### DropdownMenu.CheckboxItem
 
 <p>
-  A menu item that can be toggled on or off. Use for independent boolean
-  options.
+  可开启或关闭的菜单条目。适用于独立的布尔选项。
 </p>
 <PropsTable component="DropdownMenu.CheckboxItem" />
 
 ### DropdownMenu.Sub
 
 <p>
-  Root component for a nested submenu. Wrap SubTrigger and SubContent inside
-  this.
+  嵌套子菜单的主组件。将 SubTrigger 和 SubContent 包裹在此组件内。
 </p>
 <PropsTable component="DropdownMenu.Sub" />
 
 ### DropdownMenu.SubTrigger
 
 <p>
-  Menu item that opens a nested submenu when hovered or clicked. Displays a
-  caret icon automatically.
+  悬停或点击时打开嵌套子菜单的菜单条目。自动显示插入标记（caret）图标。
 </p>
 <PropsTable component="DropdownMenu.SubTrigger" />
 
 ### DropdownMenu.SubContent
 
-<p>Container for submenu items. Positioned relative to the SubTrigger.</p>
+<p>子菜单条目的容器。相对于 SubTrigger 定位。</p>
 <PropsTable component="DropdownMenu.SubContent" />
 
 ### DropdownMenu.Separator
 
-<p>A visual divider between menu items.</p>
+<p>菜单条目之间的视觉分隔线。</p>
 <PropsTable component="DropdownMenu.Separator" />
 
 ### DropdownMenu.RadioGroup
 
 <p>
-  Groups radio items for single-selection behavior. Only one item can be
-  selected at a time.
+  对单选条目分组以实现单选行为。一次只能选中一个条目。
 </p>
 <PropsTable component="DropdownMenu.RadioGroup" />
 
 ### DropdownMenu.RadioItem
 
 <p>
-  A menu item that works like a radio button. Must be used inside a RadioGroup.
+  行为类似单选按钮的菜单条目。必须在 RadioGroup 内使用。
 </p>
 <PropsTable component="DropdownMenu.RadioItem" />
 
 ### DropdownMenu.RadioItemIndicator
 
 <p>
-  Shows the selected state for a RadioItem. Displays a checkmark by default.
+  显示 RadioItem 的选中状态。默认显示对勾。
 </p>
 <PropsTable component="DropdownMenu.RadioItemIndicator" />
 

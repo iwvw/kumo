@@ -1,24 +1,24 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "CLI"
-description: "Access component documentation and install blocks from your terminal."
+description: "在终端中访问组件文档并安装块。"
 ---
 
 import { CLITerminal } from "~/components/demos/CLIDemo";
 
-## Installation
+## 安装
 
-The Kumo CLI is available via npx. No installation required.
+Kumo CLI 可通过 npx 使用，无需安装。
 
 ```bash
 npx @cloudflare/kumo help
 ```
 
-## Commands
+## 命令
 
-### Blocks
+### 块
 
-Install copy-paste blocks into your project for full customization.
+把可复制粘贴的块安装到你的项目中，以便完全自定义。
 
 ```bash
 # Initialize kumo.json configuration
@@ -31,9 +31,9 @@ npx @cloudflare/kumo blocks
 npx @cloudflare/kumo add PageHeader
 ```
 
-### Component Registry
+### 组件注册表
 
-Access component documentation directly from your terminal.
+直接从终端访问组件文档。
 
 ```bash
 # List all Kumo components with categories
@@ -46,8 +46,8 @@ npx @cloudflare/kumo doc Button
 npx @cloudflare/kumo docs
 ```
 
-## Try it out
+## 试试看
 
-Type commands in the interactive terminal below to explore the CLI.
+在下面的交互式终端中输入命令，体验 CLI。
 
 <CLITerminal client:load />

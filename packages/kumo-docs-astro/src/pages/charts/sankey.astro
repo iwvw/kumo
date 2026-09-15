@@ -18,8 +18,8 @@ import {
 ---
 
 <DocLayout
-  title="Sankey Chart"
-  description="A Sankey diagram component for visualizing flow data between nodes using ECharts."
+  title="桑基图"
+  description="一个桑基图组件，使用 ECharts 呈现节点之间的流量数据。"
   sourceFile="components/chart"
 >
   <!-- Demo -->
@@ -31,15 +31,15 @@ import {
 
   <!-- Installation -->
   <ComponentSection>
-    <Heading level={2}>Installation</Heading>
+    <Heading level={2}>安装</Heading>
     <p class="mb-4 text-kumo-subtle">
-      SankeyChart requires <code class="text-kumo-default">echarts</code> as a peer dependency.
+      SankeyChart 需要 <code class="text-kumo-default">echarts</code> 作为 peer dependency。
     </p>
     <CodeBlock code={`npm install echarts`} lang="bash" />
     
-    <Heading level={3} class="mb-2 mt-6 text-lg">Barrel</Heading>
+    <Heading level={3} class="mb-2 mt-6 text-lg">桶式导出</Heading>
     <CodeBlock code={`import { SankeyChart } from "@cloudflare/kumo";`} lang="tsx" />
-    <Heading level={3} class="mb-2 mt-4 text-lg">Granular</Heading>
+    <Heading level={3} class="mb-2 mt-4 text-lg">细粒度导入</Heading>
     <CodeBlock
       code={`import { SankeyChart } from "@cloudflare/kumo/components/chart";`}
       lang="tsx"
@@ -48,7 +48,7 @@ import {
 
   <!-- Usage -->
   <ComponentSection>
-    <Heading level={2}>Usage</Heading>
+    <Heading level={2}>用法</Heading>
     <CodeBlock
       code={`import { SankeyChart, ChartPalette } from "@cloudflare/kumo";
 import * as echarts from "echarts/core";
@@ -82,13 +82,13 @@ export default function Example() {
 
   <!-- Examples -->
   <ComponentSection>
-    <Heading level={2} class="mb-6">Examples</Heading>
+    <Heading level={2} class="mb-6">示例</Heading>
 
     <div class="space-y-8">
       <div>
-        <Heading level={3}>Basic Sankey</Heading>
+        <Heading level={3}>基础桑基图</Heading>
         <p class="mb-4 text-kumo-subtle">
-          A simple Sankey diagram showing flow between source and target nodes.
+          展示源节点与目标节点之间流量的简单桑基图。
         </p>
         <ComponentExample code={`<SankeyChart nodes={nodes} links={links} height={300} />`}>
           <SankeyChartBasicDemo client:visible />
@@ -96,9 +96,9 @@ export default function Example() {
       </div>
 
       <div>
-        <Heading level={3}>Multi-Level Flow</Heading>
+        <Heading level={3}>多级流量</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Sankey diagrams can show multiple levels of flow through intermediate nodes.
+          桑基图可以展示经过中间节点的多级流量。
         </p>
         <ComponentExample code={`<SankeyChart nodes={nodes} links={links} height={350} nodeWidth={20} nodePadding={15} />`}>
           <SankeyChartMultiLevelDemo client:visible />
@@ -106,9 +106,9 @@ export default function Example() {
       </div>
 
       <div>
-        <Heading level={3}>Full-Width Layout</Heading>
+        <Heading level={3}>全宽布局</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Use <code class="text-kumo-default">left</code> and <code class="text-kumo-default">right</code> to control horizontal padding of the Sankey layout within its container. Set both to <code class="text-kumo-default">0</code> to eliminate the default 5% padding and fill the full width.
+          使用 <code class="text-kumo-default">left</code> 和 <code class="text-kumo-default">right</code> 控制桑基图在其容器内的水平内边距。将两者都设为 <code class="text-kumo-default">0</code> 可去掉默认的 5% 内边距，铺满整个宽度。
         </p>
         <ComponentExample code={`<SankeyChart
   nodes={nodes}
@@ -122,9 +122,9 @@ export default function Example() {
       </div>
 
       <div>
-        <Heading level={3}>Rich Tooltips</Heading>
+        <Heading level={3}>富 Tooltip</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Use <code class="text-kumo-default">tooltipFormatter</code> for full control over tooltip content.
+          使用 <code class="text-kumo-default">tooltipFormatter</code> 可完全控制 tooltip 内容。
         </p>
         <ComponentExample code={`import { SankeyChart, type SankeyTooltipParams } from "@cloudflare/kumo";
 
@@ -148,9 +148,9 @@ const customTooltip = (params: SankeyTooltipParams) => {
       </div>
 
       <div>
-        <Heading level={3}>Interactive</Heading>
+        <Heading level={3}>交互</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Use <code class="text-kumo-default">onNodeClick</code> and <code class="text-kumo-default">onLinkClick</code> to handle interactions.
+          使用 <code class="text-kumo-default">onNodeClick</code> 与 <code class="text-kumo-default">onLinkClick</code> 处理交互。
         </p>
         <ComponentExample code={`<SankeyChart 
   nodes={nodes} 
@@ -163,9 +163,9 @@ const customTooltip = (params: SankeyTooltipParams) => {
       </div>
 
       <div>
-        <Heading level={3}>Drill-Down Filtering</Heading>
+        <Heading level={3}>下钻筛选</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Click a source node to filter the chart and show only its connections. Click again or use the reset button to restore the full view.
+          点击源节点可筛选图表，只显示与其相连的部分。再次点击或使用重置按钮可恢复完整视图。
         </p>
         <ComponentExample code={`const [selectedSource, setSelectedSource] = useState<string | null>(null);
 
@@ -185,9 +185,9 @@ const handleNodeClick = (node: { name: string }) => {
       </div>
 
       <div>
-        <Heading level={3}>Inline Label Layout</Heading>
+        <Heading level={3}>内联标签布局</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Use <code class="text-kumo-default">nodeLabelLayout="inline"</code> to display node values and names on a single line. This prevents label overlap on small nodes where the default stacked layout would cause text to collide.
+          使用 <code class="text-kumo-default">nodeLabelLayout="inline"</code> 可将节点数值与名称显示在同一行。这能避免小节点上的标签重叠，而默认的堆叠布局会导致文字相互碰撞。
         </p>
         <ComponentExample code={`<SankeyChart
   echarts={echarts}
@@ -204,7 +204,7 @@ const handleNodeClick = (node: { name: string }) => {
 
   <!-- API Reference -->
   <ComponentSection>
-    <Heading level={2}>API Reference</Heading>
+    <Heading level={2}>API 参考</Heading>
     <PropsTable component="SankeyChart" />
   </ComponentSection>
 </DocLayout>

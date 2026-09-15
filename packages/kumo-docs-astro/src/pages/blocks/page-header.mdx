@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Page Header"
-description: "A composite component that combines breadcrumbs and tabs for page navigation."
+description: "一个组合了面包屑与标签页、用于页面导航的复合组件。"
 sourceFile: "blocks/page-header"
 ---
 
@@ -31,16 +31,14 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
   <p>
-    PageHeader is a <strong>block</strong> - a CLI-installed component that you
-    own and can customize. Unlike regular components, blocks are copied into
-    your project so you have full control over the code.
+    PageHeader 是一个 <strong>block</strong> —— 通过 CLI 安装、归你所有且可自定义的组件。与普通组件不同，block 会复制到你的项目中，因此你可以完全掌控代码。
   </p>
   <div class="space-y-4">
     <div>
-      <p>**1. Initialize Kumo config (first time only)**</p>
+      <p>**1. 初始化 Kumo 配置（仅首次）**</p>
 
 ```bash
 npx @cloudflare/kumo init
@@ -48,7 +46,7 @@ npx @cloudflare/kumo init
 
 </div>
 <div>
-<p>**2. Install the block**</p>
+<p>**2. 安装 block**</p>
 
 ```bash
 npx @cloudflare/kumo add PageHeader
@@ -56,7 +54,7 @@ npx @cloudflare/kumo add PageHeader
 
 </div>
 <div>
-<p>**3. Import from your local path**</p>
+<p>**3. 从本地路径导入**</p>
 
 ```tsx
 // The path depends on your kumo.json blocksDir setting
@@ -73,7 +71,7 @@ import { PageHeader } from "./components/kumo/page-header/page-header";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { PageHeader } from "./components/kumo/page-header/page-header";
@@ -110,47 +108,47 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic
+### 基础
 
 <ComponentExample demo="PageHeaderBasicDemo">
   <PageHeaderBasicDemo client:visible />
 </ComponentExample>
 
-### With Icons
+### 带图标
 
 <ComponentExample demo="PageHeaderWithIconsDemo">
   <PageHeaderWithIconsDemo client:visible />
 </ComponentExample>
 
-### With Tabs
+### 带标签页
 
 <ComponentExample demo="PageHeaderWithTabsDemo">
   <PageHeaderWithTabsDemo client:visible />
 </ComponentExample>
 
-### With Actions
+### 带操作
 
 <ComponentExample demo="PageHeaderWithActionsDemo">
   <PageHeaderWithActionsDemo client:visible />
 </ComponentExample>
 
-### With Title
+### 带标题
 
 <ComponentExample demo="PageHeaderWithTitleDemo">
   <PageHeaderWithTitleDemo client:visible />
 </ComponentExample>
 
-### With Title and Description
+### 带标题和描述
 
 <ComponentExample demo="PageHeaderWithTitleDescriptionDemo">
   <PageHeaderWithTitleDescriptionDemo client:visible />
 </ComponentExample>
 
-### Complete Example
+### 完整示例
 
-  <p>Combining breadcrumbs, title, description, tabs, and actions.</p>
+  <p>组合了面包屑、标题、描述、标签页与操作。</p>
   <ComponentExample demo="PageHeaderCompleteDemo">
     <PageHeaderCompleteDemo client:visible />
   </ComponentExample>
@@ -160,7 +158,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="PageHeader" />
 
@@ -170,8 +168,8 @@ export default function Example() {
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="px-4 py-3 text-left font-semibold">Property</th>
-          <th class="px-4 py-3 text-left font-semibold">Type</th>
+          <th class="px-4 py-3 text-left font-semibold">属性</th>
+          <th class="px-4 py-3 text-left font-semibold">类型</th>
         </tr>
       </thead>
       <tbody>

@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Button Group"
-description: "Joins a primary action and a dropdown trigger into a single split button."
+description: "将主操作与下拉触发器组合成一个拆分按钮。"
 sourceFile: "components/button-group"
 ---
 
@@ -31,19 +31,15 @@ import {
 
 <ComponentSection>
 
-## When to use
+## 适用场景
 
 <p>
-  `ButtonGroup` joins a small set of tightly-coupled buttons into a single
-  control — most commonly a **split button**: a primary action next to a
-  dropdown trigger for related, secondary actions.
+  `ButtonGroup` 将一小组紧密关联的按钮合并为一个控件——最常见的形式是**拆分按钮**：一个主操作按钮旁边配一个用于相关次要操作的下拉触发器。
 </p>
 
 <p>
-  <strong>Grouping multiple independent buttons or inputs?</strong> Use{" "}
-  <a href="/components/toolbar">Toolbar</a> instead. A toolbar (e.g. a
-  formatting bar or a page-level set of actions) needs roaming-focus keyboard
-  semantics that `ButtonGroup` intentionally does not provide.
+  <strong>打算把多个相互独立的按钮或输入框组合在一起？</strong>请改用{" "}
+  <a href="/components/toolbar">Toolbar</a>。工具栏（例如格式栏或页面级的一组操作）需要可漫游焦点的键盘语义，而 `ButtonGroup` 有意不提供这一语义。
 </p>
 
 </ComponentSection>
@@ -52,16 +48,16 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 <CodeBlock
   code={`import { ButtonGroup } from "@cloudflare/kumo";`}
   lang="tsx"
 />
 
-### Granular
+### 按需导入
 
   <CodeBlock
     code={`import { ButtonGroup } from "@cloudflare/kumo/components/button-group";`}
@@ -73,13 +69,10 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 <p>
-  `ButtonGroup` is a layout wrapper. Its children keep their own `variant`,
-  `size`, and `shape` — the group only flattens the inner corners and overlaps
-  borders so the buttons share a single seam. Give the group an `aria-label`
-  describing the action, and give the dropdown trigger its own `aria-label`.
+  `ButtonGroup` 是一个布局包装器。其子元素各自保留自己的 `variant`、`size` 和 `shape`——分组只负责抹平内角并重叠边框，使按钮们共享一条接缝。请为分组提供用于描述该操作的 `aria-label`，并为下拉触发器单独提供 `aria-label`。
 </p>
 
   <CodeBlock
@@ -117,25 +110,25 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Split button
+### 拆分按钮
 
-<p>A primary action joined with a dropdown trigger for secondary actions.</p>
+<p>主操作与用于次要操作的下拉触发器组合在一起。</p>
 <ComponentExample demo="ButtonGroupSplitDemo">
   <ButtonGroupSplitDemo client:visible />
 </ComponentExample>
 
-### Secondary
+### 次要
 
-<p>Split buttons work with any button variant.</p>
+<p>拆分按钮适用于任意按钮变体。</p>
 <ComponentExample demo="ButtonGroupSecondaryDemo">
   <ButtonGroupSecondaryDemo client:visible />
 </ComponentExample>
 
-### Sizes
+### 尺寸
 
-<p>Match the `size` on both buttons to keep the split button aligned.</p>
+<p>在两个按钮上使用一致的 `size`，以保持拆分按钮对齐。</p>
 <ComponentExample demo="ButtonGroupSizesDemo">
   <ButtonGroupSizesDemo client:visible />
 </ComponentExample>
@@ -146,7 +139,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="ButtonGroup" />
 </ComponentSection>

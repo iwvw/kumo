@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Grid"
-description: "A responsive grid layout component for organizing content into columns."
+description: "用于将内容组织成多列的响应式网格布局组件。"
 sourceFile: "components/grid"
 ---
 
@@ -28,7 +28,7 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
 ```tsx
 import { Grid, GridItem } from "@cloudflare/kumo";
@@ -40,11 +40,10 @@ import { Grid, GridItem } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## Grid Variants
+## Grid 变体
 
   <p>
-    The Grid component supports multiple column layouts that adapt responsively
-    across breakpoints.
+    Grid 组件支持跨断点自适应响应的多种多列布局。
   </p>
   <ComponentExample demo="GridVariantsDemo">
     <GridVariantsDemo client:visible />
@@ -55,9 +54,9 @@ import { Grid, GridItem } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## Asymmetric Layouts
+## 不对称布局
 
-  <p>Use asymmetric variants for sidebar/main content layouts.</p>
+  <p>对于侧边栏/主内容布局，可使用不对称变体。</p>
   <ComponentExample demo="GridAsymmetricDemo">
     <GridAsymmetricDemo client:visible />
   </ComponentExample>
@@ -67,9 +66,9 @@ import { Grid, GridItem } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## Gap Sizes
+## 间距大小
 
-  <p>Control the spacing between grid items with the gap prop.</p>
+  <p>通过 gap 属性控制网格项之间的间距。</p>
   <ComponentExample demo="GridGapDemo">
     <GridGapDemo client:visible />
   </ComponentExample>
@@ -79,11 +78,11 @@ import { Grid, GridItem } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## Mobile Dividers
+## 移动端分隔线
 
   <p>
-    Add dividers between items on mobile with the mobileDivider prop (only works
-    with the 4up variant).
+    可以使用 mobileDivider 属性在移动端各项目之间添加分隔线（仅适用于
+    4up 变体）。
   </p>
   <ComponentExample demo="GridMobileDividerDemo">
     <GridMobileDividerDemo client:visible />
@@ -94,53 +93,53 @@ import { Grid, GridItem } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## All Variants
+## 全部变体
 
-  <p>Reference for all available grid variants:</p>
+  <p>可用网格变体一览：</p>
   <div class="overflow-x-auto">
     <table class="w-full text-left text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="py-3 pr-4 font-medium">Variant</th>
-          <th class="py-3 pr-4 font-medium">Description</th>
+          <th class="py-3 pr-4 font-medium">变体</th>
+          <th class="py-3 pr-4 font-medium">描述</th>
         </tr>
       </thead>
       <tbody>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`2up`</td>
-          <td class="py-3 pr-4">1 column mobile, 2 columns medium+</td>
+          <td class="py-3 pr-4">移动端 1 列，中屏及以上 2 列</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`side-by-side`</td>
-          <td class="py-3 pr-4">Always 2 columns</td>
+          <td class="py-3 pr-4">始终 2 列</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`2-1`</td>
-          <td class="py-3 pr-4">66%/33% split on medium+</td>
+          <td class="py-3 pr-4">中屏及以上按 66%/33% 分栏</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`1-2`</td>
-          <td class="py-3 pr-4">33%/66% split on medium+</td>
+          <td class="py-3 pr-4">中屏及以上按 33%/66% 分栏</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`1-3up`</td>
-          <td class="py-3 pr-4">1 column mobile, 3 columns large+</td>
+          <td class="py-3 pr-4">移动端 1 列，大屏及以上 3 列</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`3up`</td>
-          <td class="py-3 pr-4">1 mobile, 2 medium, 3 large</td>
+          <td class="py-3 pr-4">移动端 1 列、中屏 2 列、大屏 3 列</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`4up`</td>
-          <td class="py-3 pr-4">Progressive: 1 → 2 → 3 → 4 columns</td>
+          <td class="py-3 pr-4">渐进式：1 → 2 → 3 → 4 列</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`6up`</td>
-          <td class="py-3 pr-4">2 mobile, up to 6 on XL</td>
+          <td class="py-3 pr-4">移动端 2 列，XL 屏最多 6 列</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4">`1-2-4up`</td>
-          <td class="py-3 pr-4">1 mobile, 2 medium, 4 large</td>
+          <td class="py-3 pr-4">移动端 1 列、中屏 2 列、大屏 4 列</td>
         </tr>
       </tbody>
     </table>
@@ -151,7 +150,7 @@ import { Grid, GridItem } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Grid
 
@@ -160,8 +159,7 @@ import { Grid, GridItem } from "@cloudflare/kumo";
 ### GridItem
 
 <p>
-  GridItem is a wrapper component for grid children. It accepts standard div
-  props including `className` and `children`.
+  GridItem 是网格子项的包装组件。它接受标准 div 属性，包括 `className` 和 `children`。
 </p>
 
 </ComponentSection>

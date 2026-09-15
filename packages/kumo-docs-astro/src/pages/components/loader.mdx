@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Loader"
-description: "A loading spinner to indicate loading state."
+description: "用于指示加载状态的加载指示器。"
 sourceFile: "components/loader"
 ---
 
@@ -25,15 +25,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导入
 
 ```tsx
 import { Loader } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 子路径导入
 
 ```tsx
 import { Loader } from "@cloudflare/kumo/components/loader";
@@ -45,7 +45,7 @@ import { Loader } from "@cloudflare/kumo/components/loader";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Loader } from "@cloudflare/kumo";
@@ -61,15 +61,15 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Default Size
+### 默认尺寸
 
 <ComponentExample demo="LoaderBasicDemo">
   <LoaderBasicDemo client:visible />
 </ComponentExample>
 
-### Custom Size
+### 自定义尺寸
 
 <ComponentExample demo="LoaderCustomSizeDemo">
   <LoaderCustomSizeDemo client:visible />
@@ -81,7 +81,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="Loader" />
 </ComponentSection>

@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Radio"
-description: "A control that allows the user to select one option from a set. Always used within a Radio.Group."
+description: "一种允许用户从一组选项中选择一项的控件。始终在 Radio.Group 中使用。"
 sourceFile: "components/radio"
 baseUIComponent: "radio-group"
 ---
@@ -38,15 +38,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Radio } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Radio } from "@cloudflare/kumo/components/radio";
@@ -58,7 +58,7 @@ import { Radio } from "@cloudflare/kumo/components/radio";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Radio } from "@cloudflare/kumo";
@@ -79,126 +79,126 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Default (Vertical)
+### 默认布局（垂直）
 
 <p>
-  Radio groups display vertically by default. Each radio has a label displayed
-  to its right.
+  单选组默认垂直排列。每个单选按钮的标签
+  显示在右侧。
 </p>
 <ComponentExample demo="RadioDefaultDemo">
   <RadioDefaultDemo client:visible />
 </ComponentExample>
 
-### Horizontal
+### 水平布局
 
 <p>
-  Use `orientation="horizontal"` for inline layouts. Items wrap when there isn't
-  enough space.
+  使用 `orientation="horizontal"` 实现内联布局。空间不足时
+  项目会自动换行。
 </p>
 <ComponentExample demo="RadioHorizontalDemo">
   <RadioHorizontalDemo client:visible />
 </ComponentExample>
 
-### With Description
+### 带描述
 
-<p>Add helper text below the radio items using the `description` prop.</p>
+<p>使用 `description` 属性在单选项目下方添加辅助说明文字。</p>
 <ComponentExample demo="RadioDescriptionDemo">
   <RadioDescriptionDemo client:visible />
 </ComponentExample>
 
-### Control Position
+### 控件位置
 
-<p>Use `controlPosition="end"` to place labels before radio buttons.</p>
+<p>使用 `controlPosition="end"` 将标签放在单选按钮左侧。</p>
 <ComponentExample demo="RadioControlPositionDemo">
   <RadioControlPositionDemo client:visible />
 </ComponentExample>
 
-### Radio Card
+### 卡片式单选
 
 <p>
-  Use `appearance="card"` on the group to display each option as a selectable
-  card. Combine with the `description` prop on each item for richer content.
+  在组上使用 `appearance="card"`，可将每个选项显示为可选卡片。
+  再配合每个项目的 `description` 属性，可获得更丰富的内容。
 </p>
 <ComponentExample demo="RadioCardDemo">
   <RadioCardDemo client:visible />
 </ComponentExample>
 
-### Radio Card (Control on the Left)
+### 卡片式单选（控件在左侧）
 
 <p>
-  Use `controlPosition="start"` on a card radio group to place the radio control
-  on the left of the label and description.
+  在卡片式单选组上使用 `controlPosition="start"`，可将单选控件放在标签
+  和描述的左侧。
 </p>
 <ComponentExample demo="RadioCardControlStartDemo">
   <RadioCardControlStartDemo client:visible />
 </ComponentExample>
 
-### Rich Label Content
+### 富标签内容
 
 <p>
-  The `label` prop on `Radio.Item` accepts React nodes, so you can embed icons,
-  badges, or other markup alongside the text.
+  `Radio.Item` 的 `label` 属性接受 React 节点，因此可以在文字旁边嵌入图标、
+  徽标或其他标记。
 </p>
 <ComponentExample demo="RadioRichLabelDemo">
   <RadioRichLabelDemo client:visible />
 </ComponentExample>
 
-### Radio Card (Horizontal)
+### 卡片式单选（水平）
 
 <p>
-  Combine `appearance="card"` with `orientation="horizontal"` for a side-by-side
-  card layout.
+  将 `appearance="card"` 与 `orientation="horizontal"` 结合，
+  可实现并排的卡片布局。
 </p>
 <ComponentExample demo="RadioCardHorizontalDemo">
   <RadioCardHorizontalDemo client:visible />
 </ComponentExample>
 
-### With Error
+### 错误状态
 
-<p>Show validation errors at the group level using the `error` prop.</p>
+<p>使用 `error` 属性在组级别显示校验错误。</p>
 <ComponentExample demo="RadioErrorDemo">
   <RadioErrorDemo client:visible />
 </ComponentExample>
 
-### Disabled
+### 禁用状态
 
-<p>Disable the entire group or individual items.</p>
+<p>可以禁用整个组或禁用一个或多个项目。</p>
 <ComponentExample demo="RadioDisabledDemo">
   <RadioDisabledDemo client:visible />
 </ComponentExample>
 
-### Visually Hidden Legend
+### 视觉隐藏的图例
 
 <p>
-  Use `Radio.Legend` with `className="sr-only"` to keep the legend accessible to
-  screen readers while hiding it visually. This is useful when the radio group
-  is already labeled by a parent `Field` or heading, and showing the legend
-  would create a redundant label.
+  使用带 `className="sr-only"` 的 `Radio.Legend`，可以在视觉上隐藏图例的同时
+  保持其为屏幕阅读器可读。当单选组已由父级 `Field` 或标题提供了标签，
+  再显示图例会形成冗余标签时，
+  这一用法很有用。
 </p>
 <ComponentExample demo="RadioLegendSrOnlyDemo">
   <RadioLegendSrOnlyDemo client:visible />
 </ComponentExample>
 
-### Custom Legend Styling
+### 自定义图例样式
 
 <p>
-  `Radio.Legend` accepts `className` for full control over legend presentation.
-  Use it instead of the `legend` string prop when you need custom typography,
-  colors, or layout.
+  `Radio.Legend` 接受 `className`，可完全控制图例的呈现方式。当你需要
+  自定义排版、颜色或布局时，请用它替代
+  `legend` 字符串属性。
 </p>
 <ComponentExample demo="RadioLegendCustomDemo">
   <RadioLegendCustomDemo client:visible />
 </ComponentExample>
 
-### Typed Values
+### 类型化值
 
 <p>
-  `Radio.Group` and `Radio.Item` support generic types. Pass a type parameter
-  (e.g. `<number>` or an enum) to constrain the type of `value` on both sub-components, 
-  and `defaultValue` and `onValueChange` on `Radio.Group`. Defaults to `string` 
-  when omitted.
+  `Radio.Group` 和 `Radio.Item` 支持泛型类型。传入类型参数（例如 `<number>` 或枚举）
+  可以约束两个子组件上 `value` 的类型，以及 `Radio.Group` 上 `defaultValue` 和
+  `onValueChange` 的类型。省略时默认为
+  `string`。
 </p>
 <ComponentExample
   vrSection="radio-typed-value"
@@ -245,25 +245,25 @@ export function RadioTypedValueDemo() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Radio.Group
 
-<p>Container for radio buttons with legend, description, and error support.</p>
+<p>单选按钮的容器，支持图例、描述和错误提示。</p>
 <PropsTable component="Radio.Group" />
 
 ### Radio.Legend
 
 <p>
-  Composable legend sub-component for Radio.Group. Accepts `className` for full
-  styling control (e.g. `className="sr-only"` to visually hide). Use instead of
-  the `legend` string prop when you need custom legend styling.
+  可组合的 Radio.Group 图例子组件。接受 `className` 以完全控制样式
+  （例如 `className="sr-only"` 实现视觉隐藏）。当你需要自定义图例样式时，
+  用它替代 `legend` 字符串属性。
 </p>
 <PropsTable component="Radio.Legend" />
 
 ### Radio.Item
 
-<p>Individual radio button within Radio.Group.</p>
+<p>Radio.Group 中的单个单选按钮。</p>
 <PropsTable component="Radio.Item" />
 
 </ComponentSection>
@@ -272,31 +272,31 @@ export function RadioTypedValueDemo() {
 
 <ComponentSection>
 
-## Accessibility
+## 无障碍
 
   <div class="space-y-4 text-sm">
     <div>
 
-      ### Semantic HTML
+      ### 语义化 HTML
 
       <p>
-        Radio.Group uses semantic `<fieldset>` and `<legend>` elements for proper grouping and screen reader announcement.
+        Radio.Group 使用语义化的 `<fieldset>` 和 `<legend>` 元素，实现正确的分组和屏幕阅读器播报。
       </p>
     </div>
     <div>
 
-      ### Keyboard Navigation
+      ### 键盘导航
 
       <p>
-        <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Arrow Up/Down</kbd> or <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Arrow Left/Right</kbd> moves between options. <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Space</kbd> selects the focused option. <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Tab</kbd> moves focus to and from the radio group.
+        使用 <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Arrow Up/Down</kbd> 或 <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Arrow Left/Right</kbd> 在选项间移动。<kbd class="rounded bg-kumo-control px-1.5 py-0.5">Space</kbd> 选中当前聚焦的选项。<kbd class="rounded bg-kumo-control px-1.5 py-0.5">Tab</kbd> 将焦点移入或移出单选组。
       </p>
     </div>
     <div>
 
-      ### Screen Readers
+      ### 屏幕阅读器
 
       <p>
-        Each radio is announced with its label and selection state. The group legend provides context for all options.
+        每个单选按钮都会播报其标签和选中状态。组的图例为所有选项提供上下文。
       </p>
     </div>
 

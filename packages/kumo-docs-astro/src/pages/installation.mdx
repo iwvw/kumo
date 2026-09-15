@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Installation"
-description: "Get started with Kumo by installing the package and importing components."
+description: "通过安装 Kumo 并导入组件来快速上手。"
 ---
 
 import Callout from "~/components/docs/Callout.astro";
@@ -9,13 +9,13 @@ import Callout from "~/components/docs/Callout.astro";
 export const kumoVersion =
   typeof __KUMO_VERSION__ !== "undefined" ? __KUMO_VERSION__ : "latest";
 
-## NPM Registry
+## NPM 注册表
 
-The `@cloudflare/kumo` package is published to the public npm registry. No special configuration is required for installation.
+`@cloudflare/kumo` 包发布在公共 npm 注册表上，安装时无需任何特殊配置。
 
-## Install Package
+## 安装包
 
-Install Kumo using your preferred package manager. The current version is <code>v{kumoVersion}</code>.
+使用你偏好的包管理器安装 Kumo。当前版本为 <code>v{kumoVersion}</code>。
 
 #### npm
 
@@ -35,44 +35,44 @@ pnpm add @cloudflare/kumo
 yarn add @cloudflare/kumo
 ```
 
-#### Peer Dependencies
+#### 对等依赖
 
-Kumo requires the following peer dependencies. Most React projects will already have these installed:
+Kumo 需要以下对等依赖。大多数 React 项目通常已经安装了这些依赖：
 
 ```bash
 # Required peer dependencies
 pnpm add react react-dom @phosphor-icons/react
 ```
 
-## Import Components
+## 导入组件
 
-Import components from the main package or use granular imports for better tree-shaking:
+可以从主包导入组件，或使用细粒度导入以获得更好的 tree-shaking 效果：
 
-#### Main Package Import
+#### 主包导入
 
 ```tsx
 import { Button, Input, LayerCard } from "@cloudflare/kumo";
 ```
 
-#### Granular Import (Recommended)
+#### 细粒度导入（推荐）
 
 ```tsx
 import { Button } from "@cloudflare/kumo/components/button";
 import { Input } from "@cloudflare/kumo/components/input";
 ```
 
-## Base UI Primitives
+## Base UI 原语
 
-Kumo is built on top of [Base UI](https://base-ui.com), a library of unstyled, accessible React components. For advanced use cases where you need access to the underlying primitives, Kumo re-exports all 37 Base UI components with both barrel and granular imports:
+Kumo 基于 [Base UI](https://base-ui.com) 构建，这是一个提供无样式、可访问特性的 React 组件库。如果你需要在高级场景中访问底层原语，Kumo 通过 barrel 导入和细粒度导入两种方式重新导出了全部 37 个 Base UI 组件：
 
-#### Barrel Import (Convenient)
+#### Barrel 导入（更方便）
 
 ```tsx
 // Import multiple primitives at once
 import { Popover, Slider, Accordion } from "@cloudflare/kumo/primitives";
 ```
 
-#### Granular Imports (Recommended for Performance)
+#### 细粒度导入（性能优先，推荐）
 
 ```tsx
 // Import individual primitives for better tree-shaking
@@ -81,37 +81,35 @@ import { Slider } from "@cloudflare/kumo/primitives/slider";
 import { Accordion } from "@cloudflare/kumo/primitives/accordion";
 ```
 
-Granular imports result in smaller bundle sizes by only including the primitives you actually use.
+细粒度导入只包含你实际用到的原语，从而减小打包体积。
 
 <Callout type="info">
-  **Available Primitives (37 total):** Layout · Accordion, Collapsible,
-  Separator, ScrollArea, Toolbar — Overlays · AlertDialog, Dialog, Popover,
-  PreviewCard, Tooltip, Toast — Menus · Menu, Menubar, ContextMenu,
-  NavigationMenu — Form Controls · Autocomplete, Button, Checkbox,
+  **可用的原语（共 37 个）：** 布局 · Accordion, Collapsible,
+  Separator, ScrollArea, Toolbar — 浮层 · AlertDialog, Dialog, Popover,
+  PreviewCard, Tooltip, Toast — 菜单 · Menu, Menubar, ContextMenu,
+  NavigationMenu — 表单控件 · Autocomplete, Button, Checkbox,
   CheckboxGroup, Combobox, Input, NumberField, Radio, RadioGroup, Select,
-  Slider, Switch, Toggle, ToggleGroup — Form Structure · Field, Fieldset, Form —
-  Display · Avatar, Meter, Progress, Tabs
+  Slider, Switch, Toggle, ToggleGroup — 表单结构 · Field, Fieldset, Form —
+  展示 · Avatar, Meter, Progress, Tabs
 </Callout>
 
 <Callout type="warning">
-  **Note:** Prefer using styled Kumo components when available. Primitives are
-  intended for building custom components that aren't yet available in Kumo, or
-  for cases requiring fine-grained control over styling and behavior.
+  **注意：** 在有可用的 Kumo 样式组件时应优先使用它们。原语主要用于构建
+  Kumo 中尚未提供的自定义组件，或者需要精细控制样式和行为的场景。
 </Callout>
 
-## Import Styles
+## 导入样式
 
-Kumo provides two CSS distribution options depending on your setup:
+Kumo 根据你的项目配置提供两种 CSS 分发方式：
 
-### For Tailwind CSS Users (Recommended)
+### 使用 Tailwind CSS（推荐）
 
-If your application uses Tailwind CSS, add Kumo's source files to your content configuration and import the styles. **Import order matters** — Kumo styles must come before `@import "tailwindcss"` so that Kumo's theme tokens are registered first:
+如果你的应用使用 Tailwind CSS，请将 Kumo 的源文件加入内容配置并导入样式。**导入顺序很重要** — Kumo 样式必须位于 `@import "tailwindcss"` 之前，这样才能先注册 Kumo 的主题令牌：
 
 <Callout type="warning">
-  **Important:** Tailwind CSS v4 does not scan `node_modules/` by default. You
-  must add a `@source` directive so Tailwind can discover the utility classes
-  used by Kumo components. Without this, components may render with missing
-  styles (e.g. Dialogs not centered).
+  **重要：** Tailwind CSS v4 默认不会扫描 `node_modules/`。你必须添加
+  `@source` 指令，这样 Tailwind 才能发现 Kumo 组件使用的工具类。否则组件
+  可能以缺少样式的方式渲染（例如 Dialog 未居中）。
 </Callout>
 
 ```css
@@ -124,29 +122,29 @@ If your application uses Tailwind CSS, add Kumo's source files to your content c
 ```
 
 <Callout type="info">
-  The `@source` path is relative to your CSS file. Adjust it based on your
-  project structure — e.g. if your CSS is in `src/styles/`, you may need
-  `../../node_modules/@cloudflare/kumo/dist/**/*.{"{"}js,jsx,ts,tsx{"}"}`.
+  `@source` 路径是相对于你的 CSS 文件的。请根据你的项目结构调整 — 例如，
+  如果你的 CSS 位于 `src/styles/`，可能需要写成
+  `../../node_modules/@cloudflare/kumo/dist/**/*.{"{"}js,jsx,ts,tsx{"}"}`。
 </Callout>
 
-Note: You can also use the default export `@cloudflare/kumo/styles` which is equivalent to `styles/tailwind`.
+注意：你也可以使用默认导出 `@cloudflare/kumo/styles`，它等价于 `styles/tailwind`。
 
-### For Non-Tailwind Users (Standalone)
+### 不使用 Tailwind（独立构建）
 
-If your application doesn't use Tailwind CSS, use the standalone build which includes all compiled styles:
+如果你的应用不使用 Tailwind CSS，请使用已包含全部编译样式的独立构建：
 
 ```tsx
 // In your app entry point (e.g., main.tsx, index.tsx)
 import "@cloudflare/kumo/styles/standalone";
 ```
 
-The standalone build includes all Tailwind utilities and Kumo component styles pre-compiled. No Tailwind configuration needed!
+独立构建预编译了所有 Tailwind 工具类和 Kumo 组件样式，无需进行任何 Tailwind 配置！
 
-## Isolate Your App Root
+## 隔离应用根节点
 
-Kumo's floating components (`Select`, `Combobox`, `Dropdown`, `Popover`, `Tooltip`, `Dialog`, and others) render their popups in a portal at the end of `document.body`. Because Kumo doesn't apply a `z-index` to these popups, any positive `z-index` in your own layout (a sticky header, for example) can paint above an open popup.
+Kumo 的浮层组件（`Select`、`Combobox`、`Dropdown`、`Popover`、`Tooltip`、`Dialog` 等）会通过 portal 把弹层渲染到 `document.body` 末尾。由于 Kumo 不会给这些弹层设置 `z-index`，你布局中任何正的 `z-index`（例如吸顶头部）都可能盖在打开的弹层之上。
 
-To prevent this, add `isolation: isolate` to your application's root element, as [Base UI recommends](https://base-ui.com/react/overview/quick-start#portals):
+为避免这种情况，请按 [Base UI 的建议](https://base-ui.com/react/overview/quick-start#portals)，给应用根元素添加 `isolation: isolate`：
 
 ```css
 /* The element that wraps your entire app, e.g. #root or #app */
@@ -155,7 +153,7 @@ To prevent this, add `isolation: isolate` to your application's root element, as
 }
 ```
 
-Or with Tailwind:
+或者使用 Tailwind：
 
 ```tsx
 <div id="root" className="isolate">
@@ -163,20 +161,19 @@ Or with Tailwind:
 </div>
 ```
 
-This creates a separate stacking context for your app's content, so portaled popups always appear on top regardless of the `z-index` values used inside your layout. Apply it to the element that wraps your app's content, not to `<body>` — isolating the body would put the portals inside the same stacking context and defeat the purpose.
+这会为应用内容创建独立的层叠上下文，因此无论布局中使用什么 `z-index` 值，通过 portal 渲染的弹层始终显示在最顶层。请将此属性应用到包裹应用内容的元素上，而不是 `<body>` — 隔离 body 会让 portal 落入同一层叠上下文，从而失去效果。
 
 <Callout type="info">
-  If you find yourself reaching for `z-index` to get a Kumo popup to show above
-  your own UI, that's a sign something is off. The fix is almost always
-  isolating your app root as shown above, not raising the popup's `z-index` or
-  targeting Base UI's internal data attributes.
+  如果你需要用 `z-index` 才能让 Kumo 弹层显示在你的界面之上，这说明某些
+  地方出了问题。解决办法几乎总是像上面那样隔离应用根节点，而不是提高弹层
+  的 `z-index`，或针对 Base UI 的内部 data 属性做处理。
 </Callout>
 
-## Usage Example
+## 使用示例
 
-Here's a complete example of using Kumo components with Tailwind CSS:
+下面是一个结合 Tailwind CSS 使用 Kumo 组件的完整示例：
 
-#### CSS File (app.css)
+#### CSS 文件（app.css）
 
 ```css
 @source "../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
@@ -184,9 +181,9 @@ Here's a complete example of using Kumo components with Tailwind CSS:
 @import "tailwindcss";
 ```
 
-Note: The `@source` path is relative to your CSS file. Adjust it based on your project structure.
+注意：`@source` 路径是相对于你的 CSS 文件的，请根据你的项目结构调整。
 
-#### Component File (App.tsx)
+#### 组件文件（App.tsx）
 
 ```tsx
 import { Button, Input, LayerCard } from "@cloudflare/kumo";
@@ -203,23 +200,23 @@ export default function App() {
 }
 ```
 
-## Blocks vs Components
+## 块与组件
 
-Kumo provides two types of building blocks for your application:
+Kumo 为你的应用提供两种构建单元：
 
-### Components (NPM Exports)
+### 组件（NPM 导出）
 
-Components are published as NPM exports and can be imported directly from the package. These are the core UI primitives like `Button`, `Input`, and `Dialog`.
+组件以 NPM 导出的形式发布，可以直接从包中导入。它们是核心 UI 原语，例如 `Button`、`Input` 和 `Dialog`。
 
 ```tsx
 import { Button, Input, Dialog } from "@cloudflare/kumo";
 ```
 
-Use components when you need consistent, pre-styled UI primitives that integrate seamlessly with your application. Components are versioned, tree-shakeable, and receive automatic updates.
+当你需要与你的应用无缝集成、样式一致且预置的 UI 原语时，请使用组件。组件有版本管理、支持 tree-shaking，并会自动更新。
 
-### Blocks (CLI Installation)
+### 块（通过 CLI 安装）
 
-Blocks are higher-level compositions (like `PageHeader` and `ResourceListPage`) that are installed via the Kumo CLI. Blocks give you full ownership of the code, allowing you to customize them to your specific needs.
+块是更高级的组合（例如 `PageHeader` 和 `ResourceListPage`），通过 Kumo CLI 安装。块把代码完全交给你，你可以根据自己的需求自由定制。
 
 ```bash
 
@@ -236,25 +233,25 @@ npx @cloudflare/kumo blocks
 npx @cloudflare/kumo add PageHeader
 ```
 
-After installation, blocks live in your project (e.g., `src/components/kumo/`) and can be customized as needed. The CLI automatically transforms imports from relative paths to `@cloudflare/kumo` for seamless integration.
+安装后，块位于你的项目中（例如 `src/components/kumo/`），可按需定制。CLI 会自动把相对路径的导入转换为 `@cloudflare/kumo`，实现无缝集成。
 
 ```tsx
 import { PageHeader } from "src/components/kumo/page-header/page-header";
 ```
 
 <Callout type="info">
-  <strong>When to use blocks:</strong>
+  <strong>什么时候使用块：</strong>
   <ul class="mt-2 space-y-1 text-sm">
-    <li>You need to customize the component beyond props</li>
-    <li>You want full control over the implementation</li>
-    <li>You're building application-specific layouts</li>
-    <li>You prefer copy-paste over package dependencies for certain code</li>
+    <li>你需要超出 props 范围的定制</li>
+    <li>你想完全掌控实现方式</li>
+    <li>你在构建特定于应用的布局</li>
+    <li>某些代码你更倾向于复制粘贴而不是依赖包</li>
   </ul>
 </Callout>
 
-## Utilities
+## 工具函数
 
-Kumo also exports utility functions for common tasks:
+Kumo 还导出了一些用于常见场景的工具函数：
 
 ```tsx
 import { cn, safeRandomId, LinkProvider } from "@cloudflare/kumo";

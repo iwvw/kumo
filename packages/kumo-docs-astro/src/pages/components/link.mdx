@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Link"
-description: "A styled anchor component for inline text links with multiple variants and composition support."
+description: "用于行内文本链接的锚点组件，支持多种变体与组合。"
 sourceFile: "components/link"
 ---
 
@@ -27,15 +27,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导入
 
 ```tsx
 import { Link } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 子路径导入
 
 ```tsx
 import { Link } from "@cloudflare/kumo/components/link";
@@ -47,12 +47,12 @@ import { Link } from "@cloudflare/kumo/components/link";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
-### Basic Link
+### 基础链接
 
   <p>
-    The default Link component renders an underlined anchor with primary color styling.
+    默认的 Link 组件渲染带下划线、主色样式的锚点链接。
   </p>
 
 ```tsx
@@ -67,11 +67,10 @@ export default function Example() {
 }
 ```
 
-### External Links
+### 外部链接
 
 <p>
-  Use the `Link.ExternalIcon` subcomponent to indicate links that open in a new
-  tab.
+  使用 `Link.ExternalIcon` 子组件来标识会在新标签页中打开的链接。
 </p>
 
 ```tsx
@@ -90,13 +89,12 @@ export default function Example() {
 }
 ```
 
-### Framework Integration (LinkProvider)
+### 框架集成（LinkProvider）
 
 <p>
-  For app-wide router integration, configure a `LinkProvider` at your app root.
-  Your wrapper component receives `href` and is responsible for bridging to your
-  router's API. This lets engineers use `<Link href="...">` everywhere without
-  thinking about routing internals.
+  要实现全应用的路由集成，请在应用根部配置 `LinkProvider`。你的包装组件
+  接收 `href`，负责桥接到你所用路由器的 API。这让工程师可以在任何地方使用
+  `<Link href="...">`，而无需关心路由内部实现。
 </p>
 
 ```tsx
@@ -129,13 +127,12 @@ export function App() {
 }
 ```
 
-### Composition with render prop
+### 使用 render 属性组合
 
 <p>
-  For exceptional cases where you need direct control over the rendered element,
-  use the `render` prop. This bypasses the `LinkProvider` entirely — all other
-  props (`href`, `target`, `className`, etc.) are merged onto the provided element
-  automatically.
+  在需要直接控制所渲染元素的特殊场景下，可使用 `render` 属性。这会完全绕过
+  `LinkProvider`，其余所有属性（`href`、`target`、`className` 等）会自动
+  合并到所提供的元素上。
 </p>
 
 ```tsx
@@ -165,40 +162,37 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Inline in Paragraph
+### 段落内联
 
-<p>Links flow naturally within paragraph text with proper underline offset.</p>
+<p>链接在段落文本中自然排布，下划线偏移量恰当。</p>
 <ComponentExample demo="LinkInParagraphDemo">
   <LinkInParagraphDemo client:visible />
 </ComponentExample>
 
-### External Link with Icon
+### 带图标的外部链接
 
 <p>
-  Use `Link.ExternalIcon` to visually indicate links that navigate away from
-  your site.
+  使用 `Link.ExternalIcon` 从视觉上标识跳转到站外的链接。
 </p>
 <ComponentExample demo="LinkExternalDemo">
   <LinkExternalDemo client:visible />
 </ComponentExample>
 
-### Current Variant (Color Inheritance)
+### current 变体（颜色继承）
 
 <p>
-  The `current` variant inherits color from its parent, useful for links within
-  colored contexts like alerts.
+  `current` 变体会从父级继承颜色，适用于 alerts 等彩色情境中的链接。
 </p>
 <ComponentExample demo="LinkCurrentVariantDemo">
   <LinkCurrentVariantDemo client:visible />
 </ComponentExample>
 
-### Composition with render prop
+### 使用 render 属性组合
 
 <p>
-  The `render` prop lets you compose Link styling onto any element, enabling
-  integration with framework routing components.
+  `render` 属性让你能将 Link 样式应用到任意元素上，从而实现与框架路由组件的集成。
 </p>
 <ComponentExample demo="LinkRenderDemo">
   <LinkRenderDemo client:visible />
@@ -210,19 +204,19 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
-### Link Props
+### Link 属性
 
-<p>Extends all native anchor element attributes.</p>
+<p>继承所有原生锚点元素属性。</p>
 <div class="overflow-x-auto">
   <table class="w-full text-sm">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Prop</th>
-        <th class="px-4 py-3 text-left font-semibold">Type</th>
-        <th class="px-4 py-3 text-left font-semibold">Default</th>
-        <th class="px-4 py-3 text-left font-semibold">Description</th>
+        <th class="px-4 py-3 text-left font-semibold">属性</th>
+        <th class="px-4 py-3 text-left font-semibold">类型</th>
+        <th class="px-4 py-3 text-left font-semibold">默认值</th>
+        <th class="px-4 py-3 text-left font-semibold">描述</th>
       </tr>
     </thead>
     <tbody>
@@ -232,14 +226,14 @@ export default function Example() {
           "inline" | "current" | "plain"
         </td>
         <td class="px-4 py-3 font-mono text-xs">"inline"</td>
-        <td class="px-4 py-3 text-xs">Visual style variant</td>
+        <td class="px-4 py-3 text-xs">视觉样式变体</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">render</td>
         <td class="px-4 py-3 font-mono text-xs">ReactElement</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
         <td class="px-4 py-3 text-xs">
-          Element to render with Link props merged onto it
+          要渲染的元素，Link 属性会合并到其上
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
@@ -247,9 +241,8 @@ export default function Example() {
         <td class="px-4 py-3 font-mono text-xs">string</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
         <td class="px-4 py-3 text-xs">
-          Link destination URL. Use this for all links — both internal and
-          external. Configure a `LinkProvider` to bridge `href` to your
-          router.
+          链接目标 URL。所有链接（内部和外部）都应使用此属性。可配置 `LinkProvider`
+          将 `href` 桥接到你的路由器。
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
@@ -257,56 +250,56 @@ export default function Example() {
         <td class="px-4 py-3 font-mono text-xs">string</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
         <td class="px-4 py-3 text-xs">
-          <strong>Deprecated.</strong> Use `href` instead. This prop will
-          be removed in a future major version.
+          <strong>已弃用。</strong>请改用 `href`。该属性将在
+          未来主版本中移除。
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">className</td>
         <td class="px-4 py-3 font-mono text-xs">string</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
-        <td class="px-4 py-3 text-xs">Additional CSS classes</td>
+        <td class="px-4 py-3 text-xs">额外 CSS 类</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">children</td>
         <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
         <td class="px-4 py-3 font-mono text-xs">-</td>
-        <td class="px-4 py-3 text-xs">Link content</td>
+        <td class="px-4 py-3 text-xs">链接内容</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### Variants
+### 变体
 
 <div class="overflow-x-auto">
   <table class="w-full text-sm">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="px-4 py-3 text-left font-semibold">Variant</th>
-        <th class="px-4 py-3 text-left font-semibold">Description</th>
-        <th class="px-4 py-3 text-left font-semibold">Use Case</th>
+        <th class="px-4 py-3 text-left font-semibold">变体</th>
+        <th class="px-4 py-3 text-left font-semibold">描述</th>
+        <th class="px-4 py-3 text-left font-semibold">使用场景</th>
       </tr>
     </thead>
     <tbody>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">inline</td>
-        <td class="px-4 py-3 text-xs">Primary color with underline</td>
-        <td class="px-4 py-3 text-xs">Default for inline text links</td>
+        <td class="px-4 py-3 text-xs">主色带下划线</td>
+        <td class="px-4 py-3 text-xs">行内文本链接的默认选择</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">current</td>
         <td class="px-4 py-3 text-xs">
-          Inherits parent text color with underline
+          继承父级文本颜色并带下划线
         </td>
         <td class="px-4 py-3 text-xs">
-          Links within colored contexts (alerts, errors)
+          彩色情境中的链接（alerts、错误提示）
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="px-4 py-3 font-mono text-xs">plain</td>
-        <td class="px-4 py-3 text-xs">Primary color without underline</td>
-        <td class="px-4 py-3 text-xs">Navigation links, menus, footers</td>
+        <td class="px-4 py-3 text-xs">主色不带下划线</td>
+        <td class="px-4 py-3 text-xs">导航链接、菜单、页脚</td>
       </tr>
     </tbody>
   </table>
@@ -315,8 +308,7 @@ export default function Example() {
 ### Link.ExternalIcon
 
 <p>
-  SVG icon component to indicate external links. Accepts all SVG element
-  attributes.
+  用于标识外部链接的 SVG 图标组件，接受所有 SVG 元素属性。
 </p>
 
 ```tsx
@@ -331,79 +323,73 @@ export default function Example() {
 
 <ComponentSection>
 
-## Design Guidelines
+## 设计指南
 
   <div class="space-y-4 text-sm">
     <div>
 
-      ### When to Use Each Variant
+      ### 何时使用各变体
 
       <ul class="ml-4 list-disc space-y-1">
         <li>
-          <strong>inline</strong>: Default choice for links within body text
+          <strong>inline</strong>：正文内链接的默认选择
         </li>
         <li>
-          <strong>current</strong>: Links inside alerts, banners, or other
-          colored containers
+          <strong>current</strong>：位于 alerts、banners 或其他彩色容器内的链接
         </li>
         <li>
-          <strong>plain</strong>: Navigation menus, footers, or where underlines
-          are distracting
+          <strong>plain</strong>：导航菜单、页脚，或下划线会造成干扰的场景
         </li>
       </ul>
     </div>
     <div>
 
-      ### External Link Indicators
+      ### 外部链接标识
 
       <ul class="ml-4 list-disc space-y-1">
-        <li>Always use `Link.ExternalIcon` for links that open in new tabs</li>
+        <li>对于在新标签页打开的链接，始终使用 `Link.ExternalIcon`</li>
         <li>
-          Set `target="_blank"` and `rel="noopener noreferrer"` for security
+          出于安全考虑，设置 `target="_blank"` 和 `rel="noopener noreferrer"`
         </li>
         <li>
-          The icon provides a visual cue that users will leave the current site
+          该图标为用户离开当前网站的视觉提示
         </li>
       </ul>
     </div>
     <div>
 
-      ### Framework Integration
+      ### 框架集成
 
       <ul class="ml-4 list-disc space-y-1">
         <li>
-          Configure a `LinkProvider` at your app root to integrate with your
-          client-side router
+          在应用根部配置 `LinkProvider`，以集成你的客户端路由器
         </li>
         <li>
-          Your wrapper receives `href` and maps it to your router's
-          navigation prop (e.g. React Router's `to`)
+          你的包装组件接收 `href`，并将其映射到路由器的导航属性
+          （例如 React Router 的 `to`）
         </li>
         <li>
-          The wrapper should handle external URLs by rendering a plain
-          `&lt;a&gt;` instead of routing them
+          包装组件应通过渲染普通 `&lt;a&gt;` 来处理外部 URL，而不是交给路由处理
         </li>
         <li>
-          Use the `render` prop as an escape hatch for exceptional cases
-          that need direct control over the rendered element
+          对于需要直接控制所渲染元素的特殊情况，可将 `render` 属性作为逃生舱
         </li>
         <li>
-          The `to` prop is deprecated — use `href` for all link destinations
+          `to` 属性已弃用，所有链接目标请使用 `href`
         </li>
       </ul>
     </div>
     <div>
 
-      ### Accessibility
+      ### 无障碍
 
       <ul class="ml-4 list-disc space-y-1">
-        <li>Links are keyboard focusable by default</li>
+        <li>链接默认可通过键盘聚焦</li>
         <li>
-          The external icon has `aria-hidden="true"` - add descriptive text for
-          screen readers
+          外部图标带有 `aria-hidden="true"`，请为屏幕阅读器添加描述文本
         </li>
-        <li>Ensure sufficient color contrast for all variants</li>
-        <li>Use descriptive link text (avoid "click here")</li>
+        <li>确保所有变体都具有足够的颜色对比度</li>
+        <li>使用描述性链接文本（避免“点击此处”）</li>
       </ul>
     </div>
   </div>

@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Layer Card"
-description: "A card component with a layered visual effect, perfect for navigation or feature highlights."
+description: "具有层叠视觉效果的卡片组件，非常适合导航或功能亮点展示。"
 sourceFile: "components/layer-card"
 ---
 
@@ -31,15 +31,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导入
 
 ```tsx
 import { LayerCard } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 子路径导入
 
 ```tsx
 import { LayerCard } from "@cloudflare/kumo/components/layer-card";
@@ -51,7 +51,7 @@ import { LayerCard } from "@cloudflare/kumo/components/layer-card";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { LayerCard } from "@cloudflare/kumo";
@@ -67,10 +67,9 @@ export default function Example() {
 ```
 
 <p>
-  <code>LayerCard</code> also supports a simple surface-style mode for cases
-  where you do not need a secondary header row. In those cases, render content
-  directly inside <code>LayerCard</code> instead of wrapping it in
-  <code>LayerCard.Primary</code>.
+  <code>LayerCard</code> 还支持简单的 surface 风格模式，适用于无需次要标题行的场景。
+  这种模式下，直接将内容渲染在 <code>LayerCard</code> 内部，而无需用
+  <code>LayerCard.Primary</code> 包裹。
 </p>
 
 ```tsx
@@ -91,46 +90,46 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic Card
+### 基础卡片
 
 <ComponentExample demo="LayerCardBasicDemo">
   <LayerCardBasicDemo client:visible />
 </ComponentExample>
 
-### Surface-style Card
+### Surface 风格卡片
 
 <p>
-  For simple card containers, render content directly inside <code>LayerCard</code>
-  without <code>LayerCard.Primary</code>.
+  对于简单的卡片容器，将内容直接渲染在 <code>LayerCard</code> 内部，
+  不要使用 <code>LayerCard.Primary</code>。
 </p>
 <ComponentExample demo="LayerCardSurfaceDemo">
   <LayerCardSurfaceDemo client:visible />
 </ComponentExample>
 
-### Multiple Cards
+### 多张卡片
 
 <ComponentExample demo="LayerCardMultipleDemo">
   <LayerCardMultipleDemo client:visible />
 </ComponentExample>
 
-### Filter Toolbar with Small Tabs
+### 带小号 Tabs 的筛选工具栏
 
 <p>
-  Combine <code>Tabs size="sm"</code> with <code>Input size="sm"</code> inside a
-  LayerCard for compact filter toolbars. Both share the same <code>h-6.5</code> (26px) height.
+  在 LayerCard 内组合 <code>Tabs size="sm"</code> 和 <code>Input size="sm"</code>，
+  可构建紧凑的筛选工具栏。两者共享相同的高度 <code>h-6.5</code>（26px）。
 </p>
 
 <ComponentExample demo="LayerCardFilterSubrequestsDemo">
   <LayerCardFilterSubrequestsDemo client:visible />
 </ComponentExample>
 
-### Test IDs
+### 测试 ID
 
 <p>
-  <code>LayerCard.Primary</code> and <code>LayerCard.Secondary</code> accept all
-  standard HTML attributes, including <code>data-testid</code> for testing.
+  <code>LayerCard.Primary</code> 和 <code>LayerCard.Secondary</code> 接受所有
+  标准 HTML 属性，包括用于测试的 <code>data-testid</code>。
 </p>
 
 <ComponentExample demo="LayerCardTestIdDemo">
@@ -143,7 +142,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="LayerCard" />
 </ComponentSection>

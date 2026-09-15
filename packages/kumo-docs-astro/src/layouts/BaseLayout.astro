@@ -7,8 +7,7 @@ interface Props {
   description?: string;
 }
 
-const { title = "Kumo", description = "Kumo – a modern component library" } =
-  Astro.props;
+const { title = "Kumo", description = "Kumo – 现代组件库" } = Astro.props;
 
 // Build info is injected via Vite define in astro.config.mjs
 // These are replaced at build time with actual values
@@ -30,7 +29,7 @@ const buildDate =
 ---
 
 <!doctype html>
-<html class="bg-kumo-canvas text-kumo-default" lang="en">
+<html class="bg-kumo-canvas text-kumo-default" lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -175,7 +174,7 @@ const buildDate =
           const button = document.createElement("button");
           button.type = "button";
           button.className = "code-block-copy-btn";
-          button.setAttribute("aria-label", "Copy code to clipboard");
+          button.setAttribute("aria-label", "复制代码到剪贴板");
           button.innerHTML = `
             <span class="code-block-copy-btn__icons">
               <span class="code-block-copy-btn__icon code-block-copy-btn__icon--check" aria-hidden="true">
@@ -217,14 +216,14 @@ const buildDate =
 
         // Set animation immediately (optimistic)
         btn.setAttribute("data-copied", "");
-        btn.setAttribute("aria-label", "Copied!");
+        btn.setAttribute("aria-label", "已复制！");
 
         try {
           await navigator.clipboard.writeText(code);
         } catch {
           // Roll back on failure
           btn.removeAttribute("data-copied");
-          btn.setAttribute("aria-label", "Copy code to clipboard");
+          btn.setAttribute("aria-label", "复制代码到剪贴板");
           return;
         }
 
@@ -232,7 +231,7 @@ const buildDate =
           btn,
           setTimeout(() => {
             btn.removeAttribute("data-copied");
-            btn.setAttribute("aria-label", "Copy code to clipboard");
+            btn.setAttribute("aria-label", "复制代码到剪贴板");
             timers.delete(btn);
           }, 1500),
         );

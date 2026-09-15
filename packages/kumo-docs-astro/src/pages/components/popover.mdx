@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Popover"
-description: "An accessible popup anchored to a trigger element, used for displaying rich content like menus, forms, or additional information."
+description: "一个可访问的弹出面板，锚定在触发元素上，用于展示菜单、表单或补充信息等丰富内容。"
 sourceFile: "components/popover"
 baseUIComponent: "popover"
 ---
@@ -31,15 +31,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Popover } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Popover } from "@cloudflare/kumo/components/popover";
@@ -51,7 +51,7 @@ import { Popover } from "@cloudflare/kumo/components/popover";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Popover, Button } from "@cloudflare/kumo";
@@ -75,12 +75,12 @@ export default function Example() {
 
 <ComponentSection>
 
-## Popover vs Tooltip
+## Popover 与 Tooltip 的对比
 
   <p>
-    While popovers can be triggered on hover (using `openOnHover`), they serve a
-    different purpose than tooltips. Understanding when to use each is important
-    for accessibility and user experience.
+    Popover 虽然可以配置为悬停触发（使用 `openOnHover`），但它与
+    Tooltip 的用途不同。理解何时使用两者，对于可访问性
+    和用户体验都很重要。
   </p>
   <div class="overflow-hidden rounded-lg border border-kumo-hairline">
     <table class="w-full text-sm">
@@ -93,28 +93,28 @@ export default function Example() {
       </thead>
       <tbody class="divide-y divide-kumo-hairline">
         <tr>
-          <td class="px-4 py-3 font-medium">Purpose</td>
+          <td class="px-4 py-3 font-medium">用途</td>
           <td class="px-4 py-3 text-kumo-subtle">
-            Short, non-interactive text labels for identification
+            简短、不可交互的文字标签，用于内容标识
           </td>
           <td class="px-4 py-3 text-kumo-subtle">
-            Rich, interactive content containers
-          </td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 font-medium">Content</td>
-          <td class="px-4 py-3 text-kumo-subtle">Plain text only</td>
-          <td class="px-4 py-3 text-kumo-subtle">
-            Any content: links, buttons, forms, images
+            丰富、可交互的内容容器
           </td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-medium">Trigger</td>
-          <td class="px-4 py-3 text-kumo-subtle">Hover or focus</td>
-          <td class="px-4 py-3 text-kumo-subtle">Click (default) or hover</td>
+          <td class="px-4 py-3 font-medium">内容</td>
+          <td class="px-4 py-3 text-kumo-subtle">仅限纯文本</td>
+          <td class="px-4 py-3 text-kumo-subtle">
+            任意内容：链接、按钮、表单、图片
+          </td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-medium">ARIA Role</td>
+          <td class="px-4 py-3 font-medium">触发方式</td>
+          <td class="px-4 py-3 text-kumo-subtle">悬停或聚焦</td>
+          <td class="px-4 py-3 text-kumo-subtle">点击（默认）或悬停</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 font-medium">ARIA 角色</td>
           <td class="px-4 py-3">
             `role="tooltip"`
           </td>
@@ -123,20 +123,20 @@ export default function Example() {
           </td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-medium">Keyboard</td>
-          <td class="px-4 py-3 text-kumo-subtle">Not focusable</td>
+          <td class="px-4 py-3 font-medium">键盘操作</td>
+          <td class="px-4 py-3 text-kumo-subtle">不可聚焦</td>
           <td class="px-4 py-3 text-kumo-subtle">
-            Focus moves inside, traps when open
+            打开后焦点进入内部并被限制在其中
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   <p>
-    <strong>Use a Tooltip</strong> when you need to label an icon button or
-    provide a brief explanation. <strong>Use a Popover</strong> when users need
-    to interact with the content inside, such as clicking links, filling out
-    forms, or dismissing with a button.
+    当你需要给图标按钮加标签或提供简短说明时，使用 <strong>Tooltip</strong>。
+    当用户需要与其中的内容交互时——例如点击链接、
+    填写表单或用按钮关闭——则使用
+    <strong>Popover</strong>。
   </p>
 </ComponentSection>
 
@@ -144,57 +144,57 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic Popover
+### 基础 Popover
 
 <ComponentExample demo="PopoverBasicDemo">
   <PopoverBasicDemo client:load />
 </ComponentExample>
 
-### With Close Button
+### 带关闭按钮
 
 <ComponentExample demo="PopoverWithCloseDemo">
   <PopoverWithCloseDemo client:load />
 </ComponentExample>
 
-### Positioning
+### 定位
 
 <p>
-  Use the `side` prop to control where the popover appears relative to the
-  trigger.
+  使用 `side` 属性控制 Popover
+  相对触发元素出现的位置。
 </p>
 <ComponentExample demo="PopoverPositionDemo">
   <PopoverPositionDemo client:load />
 </ComponentExample>
 
-### Custom Content
+### 自定义内容
 
 <p>
-  Popovers can contain any content, including custom layouts with avatars,
-  buttons, and more.
+  Popover 可以包含任意内容，包括带有头像、
+  按钮等的自定义布局。
 </p>
 <ComponentExample demo="PopoverCustomContentDemo">
   <PopoverCustomContentDemo client:load />
 </ComponentExample>
 
-### Open on Hover
+### 悬停打开
 
 <p>
-  Use `openOnHover` on the trigger to open the popover when the user hovers over
-  it. You can also specify a `delay` in milliseconds before the popover appears.
+  在触发器上使用 `openOnHover`，即可在用户悬停时打开 Popover。
+  还可以通过 `delay` 指定 Popover 出现前的毫秒延迟。
 </p>
 <ComponentExample demo="PopoverOpenOnHoverDemo">
   <PopoverOpenOnHoverDemo client:load />
 </ComponentExample>
 
-### Virtual Anchor
+### 虚拟锚点
 
 <p>
-  Use the `anchor` prop on `Popover.Content` to position the popover against an
-  element other than the trigger, or against a virtual point (e.g., a `DOMRect`
-  from `getBoundingClientRect()`). This is useful when the trigger and the
-  desired anchor are in different component trees.
+  在 `Popover.Content` 上使用 `anchor` 属性，将 Popover 定位到触发元素以外的其他
+  元素上，或定位到某个虚拟点（例如 `getBoundingClientRect()` 返回的
+  `DOMRect`）。当触发器与期望的锚点位于不同的组件树中时，
+  这会非常有用。
 </p>
 <ComponentExample demo="PopoverVirtualAnchorDemo">
   <PopoverVirtualAnchorDemo client:load />
@@ -206,47 +206,47 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Popover
 
-<p>The root component that manages the popover's open state.</p>
+<p>负责管理 Popover 打开状态的基础组件。</p>
 <PropsTable component="Popover" />
 
 ### Popover.Trigger
 
 <p>
-  A button that opens the popover when clicked. Use `render` to render your own
-  element.
+  点击时打开 Popover 的按钮。使用 `render`
+  渲染你自己的元素。
 </p>
 <PropsTable component="Popover.Trigger" />
 
 ### Popover.Content
 
 <p>
-  The container for popover content. Controls positioning via `side`, `align`,
-  `sideOffset`, and `alignOffset` props. Use the `anchor` prop to position
-  against a custom element or virtual point instead of the trigger. Use
-  `positionMethod="fixed"` when the popover needs to escape stacking contexts,
-  such as when inside sticky headers.
+  用于承载 Popover 内容的容器。通过 `side`、`align`、`sideOffset` 和
+  `alignOffset` 属性控制定位。使用 `anchor` 属性可定位到自定义元素或虚拟点，
+  而不是触发器。当 Popover 需要脱离层叠上下文
+  （例如位于粘性头部内部）时，使用
+  `positionMethod="fixed"`。
 </p>
 <PropsTable component="Popover.Content" />
 
 ### Popover.Title
 
-<p>A heading that labels the popover for accessibility.</p>
+<p>为 Popover 提供无障碍标签的标题。</p>
 <PropsTable component="Popover.Title" />
 
 ### Popover.Description
 
-<p>A paragraph providing additional context about the popover content.</p>
+<p>提供关于 Popover 内容补充信息的段落。</p>
 <PropsTable component="Popover.Description" />
 
 ### Popover.Close
 
 <p>
-  A button that closes the popover when clicked. Use `render` to render your own
-  element.
+  点击时关闭 Popover 的按钮。使用 `render`
+  渲染你自己的元素。
 </p>
 <PropsTable component="Popover.Close" />
 

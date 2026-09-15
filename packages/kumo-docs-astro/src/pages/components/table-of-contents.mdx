@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Table of Contents"
-description: "Presentational compound component for section navigation with an active indicator bar."
+description: "用于章节导航的展示型复合组件，带当前章节指示条。"
 sourceFile: "components/table-of-contents"
 ---
 
@@ -30,15 +30,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { TableOfContents } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { TableOfContents } from "@cloudflare/kumo/components/table-of-contents";
@@ -50,7 +50,7 @@ import { TableOfContents } from "@cloudflare/kumo/components/table-of-contents";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { TableOfContents } from "@cloudflare/kumo";
@@ -71,9 +71,8 @@ export default function Example() {
 ```
 
 <p>
-  This component is purely presentational — you control `active` on each item.
-  For automatic scroll tracking, pair it with the `useTableOfContentsActiveId`
-  hook below.
+  该组件纯为展示用途，每个项目的 `active` 状态由你控制。需要自动滚动跟踪时，可与下面的
+  `useTableOfContentsActiveId` hook 搭配使用。
 </p>
 
 </ComponentSection>
@@ -82,15 +81,13 @@ export default function Example() {
 
 <ComponentSection>
 
-## Scroll tracking
+## 滚动跟踪
 
 <p>
-  `useTableOfContentsActiveId` derives the active section from scroll position:
-  pass the section ids in document order and it returns the id of the topmost
-  section in view, plus a `selectSection` action that pins a clicked section
-  until the smooth scroll settles (so short sections stay highlighted after a
-  jump). Hash deep-links (`#usage`) are handled automatically. The hook is
-  SSR-safe — all DOM access happens in effects.
+  `useTableOfContentsActiveId` 会依据滚动位置推导当前章节：按文档顺序传入各章节
+  id，它会返回可视区域内最靠上的章节 id，并提供 `selectSection` action，在平滑滚动
+  落地之前把所点击的章节固定为激活状态（这样跳转后短章节也能保持高亮）。`#` 形式的
+  深链接（如 `#usage`）会自动处理。该 hook 兼容 SSR，所有 DOM 访问都在 effect 中完成。
 </p>
 
 ```tsx
@@ -123,22 +120,21 @@ export default function Example({ headings }) {
 ```
 
 <p>
-  Pass a `root` element to track a custom scroll container instead of the
-  viewport (and `trackHash: false` when hash navigation doesn't apply):
+  传入 `root` 元素可跟踪自定义滚动容器，而非视口（当哈希导航不适用时，可传
+  `trackHash: false`）：
 </p>
 
 <ComponentExample demo="TableOfContentsScrollspyDemo">
   <TableOfContentsScrollspyDemo client:load />
 </ComponentExample>
 
-### Options
+### 选项
 
 <p>
-  `ids` — section anchor ids, in document order (required). `offset` — px from
-  the top of the viewport/root to the activation line, typically your fixed
-  header height (default `0`). `root` — custom scroll container (default:
-  viewport). `trackHash` — select the section from `location.hash` on load and
-  `hashchange` (default `true`).
+  `ids` —— 章节锚点 id，按文档顺序排列（必填）。`offset` —— 从视口/根元素顶部到
+  激活线的像素距离，通常等于固定页头的高度（默认 `0`）。`root` —— 自定义滚动容器
+  （默认：视口）。`trackHash` —— 加载时及 `hashchange` 时依据 `location.hash` 选择
+  章节（默认 `true`）。
 </p>
 
 </ComponentSection>
@@ -147,55 +143,50 @@ export default function Example({ headings }) {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Interactive
+### 交互式
 
 <p>
-  Click an item to set it as active. The consumer controls state via `active`
-  and `onClick`.
+  点击项目即可将其设为激活状态。状态由使用方通过 `active` 与 `onClick` 控制。
 </p>
 <ComponentExample demo="TableOfContentsInteractiveDemo">
   <TableOfContentsInteractiveDemo client:load />
 </ComponentExample>
 
-### No active item
+### 无激活项目
 
 <p>
-  When no item has `active` set, all items show the default subtle text style
-  with a hover indicator.
+  当没有任何项目设置 `active` 时，所有项目都会显示默认的弱化文字样式，并带有悬停指示。
 </p>
 <ComponentExample demo="TableOfContentsNoActiveDemo">
   <TableOfContentsNoActiveDemo client:visible />
 </ComponentExample>
 
-### Groups
+### 分组
 
 <p>
-  Use `TableOfContents.Group` to organize items into labeled sections with
-  indented children. Groups support two modes: pass an `href` to make the group
-  label a clickable link (like "Examples" and "API" below), or omit it for a
-  plain non-interactive title (like "Getting Started").
+  使用 `TableOfContents.Group` 可以将项目组织进带标签的分区，子项目会缩进显示。
+  分组支持两种模式：传入 `href` 让分组标签成为可点击链接（如下面的「示例」与「API」），
+  或省略 `href` 作为纯静态标题（如「快速开始」）。
 </p>
 <ComponentExample demo="TableOfContentsGroupDemo">
   <TableOfContentsGroupDemo client:visible />
 </ComponentExample>
 
-### Without title
+### 无标题
 
 <p>
-  The title sub-component is optional — use `TableOfContents.List` directly if
-  you don't need a heading.
+  标题子组件是可选的，不需要标题时可直接使用 `TableOfContents.List`。
 </p>
 <ComponentExample demo="TableOfContentsWithoutTitleDemo">
   <TableOfContentsWithoutTitleDemo client:visible />
 </ComponentExample>
 
-### Custom element
+### 自定义元素
 
 <p>
-  Use the `render` prop to swap the default anchor for a button, router link, or
-  any element.
+  使用 `render` 属性可将默认的锚点替换为按钮、路由链接或任意元素。
 </p>
 <ComponentExample demo="TableOfContentsRenderPropDemo">
   <TableOfContentsRenderPropDemo client:load />
@@ -219,7 +210,7 @@ import Link from "next/link";
 </TableOfContents.Item>;
 ```
 
-#### Button (no navigation)
+#### 按钮（无导航）
 
 ```tsx
 <TableOfContents.Item render={<button type="button" />} onClick={handleClick}>
@@ -233,33 +224,33 @@ import Link from "next/link";
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### `TableOfContents`
 
-<p>Root nav container with a default `aria-label` of "Table of contents".</p>
+<p>根导航容器，默认 `aria-label` 为 "Table of contents"。</p>
 <PropsTable component="TableOfContents" />
 
 ### `TableOfContents.Title`
 
-<p>Optional uppercase heading displayed above the list (renders a `<p>`).</p>
+<p>列表上方可选的大写标题（渲染为 `<p>`）。</p>
 <PropsTable component="TableOfContents.Title" />
 
 ### `TableOfContents.List`
 
-<p>List container with a left border rail.</p>
+<p>带左侧边框竖线的列表容器。</p>
 <PropsTable component="TableOfContents.List" />
 
 ### `TableOfContents.Item`
 
 <p>
-  Individual navigation link. Set `active` for the current section. Use the
-  `render` prop to swap the anchor for a router link or button.
+  单个导航链接。为当前章节设置 `active`。使用 `render` 属性可将锚点替换为路由链接
+  或按钮。
 </p>
 <PropsTable component="TableOfContents.Item" />
 
 ### `TableOfContents.Group`
 
-<p>Groups items under a labeled section with indented children. Pass `href` to make the label a clickable link, or omit for a plain title.</p>
+<p>将项目归入带标签的分区，子项目缩进显示。传入 `href` 可将标签变为可点击链接，省略则作为纯标题。</p>
 <PropsTable component="TableOfContents.Group" />
 </ComponentSection>

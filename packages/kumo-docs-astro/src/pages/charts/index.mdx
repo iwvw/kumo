@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
-title: "Charts"
-description: "Charts built on ECharts."
+title: "图表"
+description: "基于 ECharts 构建的图表。"
 sourceFile: "components/chart"
 ---
 
@@ -18,7 +18,7 @@ import ComponentExample from "~/components/docs/ComponentExample.astro";
 
 <ComponentSection>
   <p class="mb-4">
-    Chart components are built on ECharts. Install it as a dependency:
+    图表组件基于 ECharts 构建。请先将其作为依赖安装：
   </p>
 
 ```bash
@@ -26,8 +26,8 @@ npm install echarts
 ```
 
 <p class="my-4">
-  For optimal bundle size, import only the ECharts components you need. The
-  examples below show the minimum required imports for our use cases.
+  为获得最优的包体积，请只导入你需要的 ECharts 组件。下面的
+  示例展示了我们各使用场景所需的最少导入。
 </p>
 
 ```tsx
@@ -62,20 +62,20 @@ echarts.use([
 
 <ComponentSection>
 
-## Available Charts
+## 可用图表
 
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
     <ChartCard
-      title="Timeseries Chart"
-      description="A specialized chart for displaying time-based data."
+      title="时序图表"
+      description="专用于展示基于时间的数据的图表。"
       href="/charts/timeseries"
     >
       <TimeseriesChartPreviewDemo client:visible />
     </ChartCard>
 
     <ChartCard
-      title="Custom Chart"
-      description="Examples like pie charts."
+      title="自定义图表"
+      description="饼图等示例。"
       href="/charts/custom"
     >
       <PieChartPreviewDemo client:visible />
@@ -86,31 +86,30 @@ echarts.use([
 
 <ComponentSection>
 
-## Color System
+## 配色体系
 
   <ChartCard
-    title="Color Palette"
-    description="Information about our color system."
+    title="色板"
+    description="关于我们配色体系的信息。"
     href="/charts/colors"
   />
 </ComponentSection>
 
 <ComponentSection>
 
-## Legend
+## 图例
 
 <p class="mb-6">
-  Use <code>LegendItem</code> to display chart series information with color
-  indicators.
+  使用 <code>LegendItem</code> 展示图表系列信息，并带有颜色指示。
 </p>
 
-### LargeItem
+### 大尺寸项目
 
 <ComponentExample demo="LegendDefaultDemo">
   <LegendDefaultDemo client:visible />
 </ComponentExample>
 
-### SmallItem
+### 小尺寸项目
 
   <ComponentExample demo="LegendCompactDemo">
     <LegendCompactDemo client:visible />

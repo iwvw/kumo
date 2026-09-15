@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Tag Input"
-description: "A creatable multi-value input for values that do not come from a predefined option list."
+description: "一种可创建新值的多值输入组件，适用于值并非来自预定义选项列表的场景。"
 sourceFile: "components/tag-input"
 ---
 
@@ -20,13 +20,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
 <CodeBlock code={`import { TagInput } from "@cloudflare/kumo";`} lang="tsx" />
 
-## Usage
+## 用法
 
-Use `value` with `onValueChange` to control the tags. Use `defaultValue` for uncontrolled usage.
+使用 `value` 配合 `onValueChange` 控制标签；非受控用法则使用 `defaultValue`。
 
 ```tsx
 const [tags, setTags] = useState<string[]>([]);
@@ -42,28 +42,28 @@ const [tags, setTags] = useState<string[]>([]);
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Unrestricted values
+### 不限值
 <ComponentExample demo="TagInputUnrestrictedDemo"><TagInputUnrestrictedDemo client:load /></ComponentExample>
 
-### Maximum values
+### 最大数量
 <ComponentExample demo="TagInputLimitedDemo"><TagInputLimitedDemo client:load /></ComponentExample>
 
-### Localization
+### 本地化
 <ComponentExample demo="TagInputLocalizationDemo"><TagInputLocalizationDemo client:load /></ComponentExample>
 
 </ComponentSection>
 
 <ComponentSection>
 
-## Behavior
+## 行为
 
-Press Enter, comma, or Tab to create a tag. Blur also commits the current value. Pasting comma- or newline-separated text creates each value synchronously. Duplicate values are ignored.
+按 Enter、逗号或 Tab 即可创建标签。失焦时也会提交当前值。粘贴以逗号或换行分隔的文本时，会同步创建每个值。重复值会被忽略。
 
-## Localization
+## 本地化
 
-Use `labels` to translate all TagInput-generated text: the fallback input name, tag removal action, invalid-value feedback, and maximum-value feedback.
+通过 `labels` 可以翻译 TagInput 生成的所有文本：回退输入名称、标签移除操作、无效值提示和达到最大数量提示。
 
 ```tsx
 <TagInput
@@ -77,7 +77,7 @@ Use `labels` to translate all TagInput-generated text: the fallback input name, 
 />
 ```
 
-## API Reference
+## API 参考
 
 <PropsTable component="TagInput" />
 </ComponentSection>

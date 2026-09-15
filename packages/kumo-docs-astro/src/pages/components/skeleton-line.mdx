@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Skeleton Line"
-description: "A skeleton loading placeholder for text content."
+description: "用于文本内容的骨架屏加载占位符。"
 sourceFile: "primitives/skeleton-line"
 ---
 
@@ -27,7 +27,7 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
 ```tsx
 import { SkeletonLine } from "@cloudflare/kumo";
@@ -39,10 +39,10 @@ import { SkeletonLine } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## Custom Widths
+## 自定义宽度
 
   <p class="mb-4">
-    Control the randomized width range for more natural-looking skeletons.
+    控制随机宽度的范围，让骨架屏看起来更自然。
   </p>
   <ComponentExample demo="SkeletonLineWidthDemo">
     <SkeletonLineWidthDemo client:visible />
@@ -53,11 +53,11 @@ import { SkeletonLine } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## Custom Height
+## 自定义高度
 
   <p class="mb-4">
-    Override the default height using Tailwind utility classes via{" "}
-    <code>className</code>. The default height is <code>0.5rem</code>.
+    使用 Tailwind 工具类通过 <code>className</code> 覆盖默认高度。默认高度为
+    <code>0.5rem</code>。
   </p>
   <ComponentExample demo="SkeletonLineHeightDemo">
     <SkeletonLineHeightDemo client:visible />
@@ -68,13 +68,13 @@ import { SkeletonLine } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## Block Height
+## 块高度
 
   <p class="mb-4">
-    Use <code>blockHeight</code> to set the height of a container that
-    vertically centers the skeleton line. Useful when replacing text of a known
-    line height. Accepts a number (treated as <code>px</code>) or any CSS string
-    value.
+    使用 <code>blockHeight</code> 设置容器的高度，
+    该容器会在垂直方向上居中骨架线。在替换已知行高的文本时很有用。
+    接受数字（视为 <code>px</code>）或任意 CSS
+    字符串值。
   </p>
   <ComponentExample demo="SkeletonLineBlockHeightDemo">
     <SkeletonLineBlockHeightDemo client:visible />
@@ -85,10 +85,10 @@ import { SkeletonLine } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## Card Loading State
+## 卡片加载状态
 
   <p class="mb-4">
-    Use skeleton lines to create loading states for cards and content areas.
+    使用骨架线为卡片和内容区域创建加载状态。
   </p>
   <ComponentExample demo="SkeletonLineCardDemo">
     <SkeletonLineCardDemo client:visible />
@@ -99,15 +99,15 @@ import { SkeletonLine } from "@cloudflare/kumo";
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <div class="overflow-x-auto">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="px-4 py-3 text-left font-semibold">Prop</th>
-          <th class="px-4 py-3 text-left font-semibold">Type</th>
-          <th class="px-4 py-3 text-left font-semibold">Default</th>
+          <th class="px-4 py-3 text-left font-semibold">属性</th>
+          <th class="px-4 py-3 text-left font-semibold">类型</th>
+          <th class="px-4 py-3 text-left font-semibold">默认值</th>
         </tr>
       </thead>
       <tbody>

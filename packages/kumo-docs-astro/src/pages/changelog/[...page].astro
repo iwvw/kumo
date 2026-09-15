@@ -129,15 +129,15 @@ const { page, perPage, totalPages, totalVersions, versions } = Astro.props;
 
 // Badge variant per bump type: primary (major), secondary (minor), outline (patch)
 const badgeConfig = {
-  major: { variant: "primary" as const, label: "Major" },
-  minor: { variant: "secondary" as const, label: "Minor" },
-  patch: { variant: "outline" as const, label: "Patch" },
+  major: { variant: "primary" as const, label: "主版本" },
+  minor: { variant: "secondary" as const, label: "次版本" },
+  patch: { variant: "outline" as const, label: "补丁" },
 };
 
 const sectionLabels: Record<string, string> = {
-  major: "Major changes",
-  minor: "Minor changes",
-  patch: "Patch changes",
+  major: "主要变更",
+  minor: "次要变更",
+  patch: "补丁变更",
 };
 
 const GITHUB_RELEASE_URL = "https://github.com/cloudflare/kumo/releases/tag/%40cloudflare%2Fkumo%40";
@@ -145,7 +145,7 @@ const GITHUB_RELEASE_URL = "https://github.com/cloudflare/kumo/releases/tag/%40c
 
 <DocLayout
   title="Changelog"
-  description="Latest updates and features. See what changed in each release."
+  description="最新的更新和功能。查看每个版本中的变更。"
 >
   <div class="space-y-6">
     {versions.map((v: ParsedVersion, i: number) => (
@@ -169,8 +169,8 @@ const GITHUB_RELEASE_URL = "https://github.com/cloudflare/kumo/releases/tag/%40c
             target="_blank"
             rel="noopener noreferrer"
             class="ml-auto text-kumo-subtle transition-colors hover:text-kumo-strong"
-            title="View release on GitHub"
-            aria-label={`View ${v.version} release on GitHub`}
+            title="在 GitHub 上查看发布"
+            aria-label={`查看 ${v.version} 的 GitHub 发布`}
           >
             <GithubLogoIcon size={18} weight="fill" />
           </a>

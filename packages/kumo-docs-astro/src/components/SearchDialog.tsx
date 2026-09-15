@@ -76,152 +76,156 @@ const STATIC_PAGES: Array<{
   type?: "component" | "block" | "layout" | "page";
 }> = [
   {
-    name: "Installation",
-    description: "How to install and set up Kumo in your project.",
+    name: "安装",
+    description: "如何在你的项目中安装并配置 Kumo。",
     url: "/installation",
-    category: "Getting Started",
+    category: "快速上手",
   },
   {
-    name: "Contributing",
-    description: "Guidelines for contributing to the Kumo component library.",
+    name: "参与贡献",
+    description: "为 Kumo 组件库贡献代码的指南。",
     url: "/contributing",
-    category: "Getting Started",
+    category: "快速上手",
   },
   {
-    name: "Accessibility",
-    description:
-      "Accessibility standards and best practices in Kumo components.",
+    name: "无障碍",
+    description: "Kumo 组件中的无障碍标准与最佳实践。",
     url: "/accessibility",
-    category: "Getting Started",
+    category: "快速上手",
   },
   {
-    name: "Components vs Blocks",
-    description: "Understanding the difference between components and blocks.",
+    name: "组件与区块",
+    description: "理解组件与区块之间的区别。",
     url: "/components-vs-blocks",
-    category: "Getting Started",
+    category: "快速上手",
   },
   {
-    name: "Colors",
-    description: "Explore Kumo's semantic color tokens and theming system.",
+    name: "颜色",
+    description: "探索 Kumo 的语义化颜色令牌与主题系统。",
     url: "/colors",
-    category: "Guides",
+    category: "指南",
   },
   {
-    name: "Charts",
-    description: "Charts built on ECharts.",
+    name: "图表",
+    description: "基于 ECharts 构建的图表。",
     url: "/charts",
-    category: "Charts",
+    category: "图表",
   },
   {
-    name: "Chart Colors",
-    description:
-      "Semantic, categorical, and sequential color guidance for charts.",
+    name: "图表配色",
+    description: "图表在语义、分类与连续配色方面的颜色指引。",
     url: "/charts/colors",
-    category: "Charts",
+    category: "图表",
   },
   {
-    name: "Maps",
-    description:
-      "Map chart components for visualizing geographic data with GeoJSON.",
+    name: "地图",
+    description: "用于通过 GeoJSON 可视化地理数据的图表组件。",
     url: "/charts/maps",
-    category: "Charts",
+    category: "图表",
   },
   {
-    name: "Custom Chart",
-    description: "Example charts using the Chart component.",
+    name: "自定义图表",
+    description: "使用 Chart 组件的示例图表。",
     url: "/charts/custom",
-    category: "Charts",
+    category: "图表",
   },
   {
     name: "CLI",
-    description:
-      "Use the Kumo CLI to add components and blocks to your project.",
+    description: "使用 Kumo CLI 向你的项目添加组件与区块。",
     url: "/cli",
-    category: "Guides",
+    category: "指南",
   },
   {
-    name: "Streaming",
-    description: "Server-side rendering and streaming support in Kumo.",
+    name: "流式渲染",
+    description: "Kumo 中的服务端渲染与流式传输支持。",
     url: "/streaming",
-    category: "Guides",
+    category: "指南",
   },
   {
     name: "Figma",
-    description: "Using Kumo components in Figma with the Kumo Figma plugin.",
+    description: "通过 Kumo Figma 插件在 Figma 中使用 Kumo 组件。",
     url: "/figma",
-    category: "Guides",
+    category: "指南",
   },
   {
-    name: "Component Registry",
-    description: "Browse and explore the full Kumo component registry.",
+    name: "组件注册表",
+    description: "浏览并探索完整的 Kumo 组件注册表。",
     url: "/registry",
-    category: "Guides",
+    category: "指南",
   },
   {
     name: "CodeHighlighted",
-    description: "Syntax-highlighted code blocks powered by Shiki.",
+    description: "由 Shiki 提供支持的语法高亮代码块。",
     url: "/components/code-highlighted",
-    category: "Components",
+    category: "组件",
     type: "component",
   },
   {
     name: "Flow",
-    description:
-      "A diagram component for visualizing sequential and parallel workflows.",
+    description: "用于可视化顺序与并行工作流的图表组件。",
     url: "/components/flow",
-    category: "Components",
+    category: "组件",
     type: "component",
   },
 ];
 
 /** Better descriptions from the Astro doc pages */
 const COMPONENT_DESCRIPTIONS: Record<string, string> = {
-  badge: "Displays a small label for status, categorization, or metadata.",
-  "command-palette":
-    "A keyboard-driven command menu for searching and navigating.",
-  meter: "A visual indicator showing a value within a known range.",
-  pagination: "Navigation controls for paginated content.",
-  banner:
-    "Displays contextual inline messages for informational, alert, or error states.",
-  button: "Displays a button or a component that looks like a button.",
-  checkbox:
-    "A control that allows the user to toggle between checked and not checked.",
-  "clipboard-text": "A text component with a copy-to-clipboard button.",
-  collapsible:
-    "A vertically stacked set of interactive headings that each reveal content.",
-  combobox:
-    "A searchable select component for filtering and selecting from options.",
-  dialog: "A modal window overlaid on the primary window or another dialog.",
-  dropdown: "Displays a menu of actions or functions triggered by a button.",
-  input:
-    "A text input field with built-in label, description, and error support.",
-  "input-area":
-    "A multi-line text input for longer content with built-in label, description, and error support.",
-  label: "A label component for form fields with required/optional indicators.",
-  "layer-card":
-    "A card with a layered visual effect for navigation or highlights.",
-  loader: "A loading spinner to indicate loading state.",
-  popover: "An accessible popup anchored to a trigger element.",
-  radio: "A control that allows selecting one option from a set.",
-  select: "Displays a list of options for the user to pick from.",
-  "sensitive-input":
-    "A masked input for sensitive values like API keys and passwords.",
-  "skeleton-line": "A skeleton loading placeholder for text content.",
-  switch: "A two-state toggle button that can be either on or off.",
-  table:
-    "A table component for displaying tabular data with selection support.",
-  tabs: "Layered sections of content displayed one at a time.",
-  text: "A typography component for various heading and copy styles.",
-  tooltip: "A popup that displays information on hover or focus.",
-  breadcrumbs:
-    "Shows the current page's location within a navigational hierarchy.",
-  empty:
-    "A placeholder component for empty states with illustration and actions.",
-  "page-header": "Combines breadcrumbs and tabs for page navigation.",
-  "resource-list":
-    "A layout for displaying resource lists with title and sidebar.",
-  toast: "Displays brief, non-intrusive notifications that appear temporarily.",
+  badge: "用于展示状态、分类或元数据的小型标签。",
+  "command-palette": "以键盘驱动的命令菜单，用于搜索与导航。",
+  meter: "在已知范围内展示数值的可视化指示器。",
+  pagination: "分页内容的导航控件。",
+  banner: "展示信息、警告或错误状态的情境内联消息。",
+  button: "展示按钮或外观类似按钮的组件。",
+  checkbox: "用于在选中与未选中之间切换的控件。",
+  "clipboard-text": "带一键复制按钮的文本组件。",
+  collapsible: "一组垂直堆叠的交互式标题，每个标题展开对应内容。",
+  combobox: "可搜索的 Select 组件，用于过滤并从选项中选择。",
+  dialog: "覆盖在主窗口或其他对话框之上的模态窗口。",
+  dropdown: "由按钮触发的一组操作或功能菜单。",
+  input: "内置标签、描述与错误提示的文本输入框。",
+  "input-area": "用于较长内容的多行文本输入，内置标签、描述与错误提示。",
+  label: "用于表单字段的标签组件，支持必填/选填标识。",
+  "layer-card": "带分层视觉效果的卡片，用于导航或重点展示。",
+  loader: "用于展示加载状态的加载动画。",
+  popover: "锚定于触发元素的可访问弹层。",
+  radio: "允许用户从一组选项中选择一个的控件。",
+  select: "展示一组选项供用户选择的组件。",
+  "sensitive-input": "用于 API 密钥、密码等敏感值的掩码输入。",
+  "skeleton-line": "用于文本内容的骨架占位符。",
+  switch: "可在开与关之间切换的双态按钮。",
+  table: "用于展示表格数据并支持选择的表格组件。",
+  tabs: "一次只显示一层内容的层级化内容区。",
+  text: "用于各类标题与正文样式的排版组件。",
+  tooltip: "在悬停或聚焦时展示信息的弹层。",
+  breadcrumbs: "展示当前页面在导航层级中的位置。",
+  empty: "用于空状态的占位组件，带插画与操作按钮。",
+  "page-header": "组合面包屑与页签，用于页面导航。",
+  "resource-list": "用于展示带标题与侧栏的资源列表布局。",
+  toast: "短暂显示、轻量且不打扰用户的即时通知。",
 };
+
+/** Translate registry category names to Chinese for the search UI. */
+const CATEGORY_TRANSLATIONS: Record<string, string> = {
+  Action: "操作",
+  "Data Visualization": "数据可视化",
+  Display: "展示",
+  Feedback: "反馈",
+  Input: "输入",
+  Layout: "布局",
+  Navigation: "导航",
+  Other: "其他",
+  Overlay: "浮层",
+  Block: "区块",
+  "Getting Started": "快速上手",
+  Guides: "指南",
+  Charts: "图表",
+  Components: "组件",
+};
+
+function translateCategory(category: string): string {
+  return CATEGORY_TRANSLATIONS[category] || category;
+}
 
 interface ComponentRegistryEntry {
   name: string;
@@ -308,7 +312,7 @@ function groupByCategory(items: SearchItem[]): SearchGroup[] {
   const groups: Record<string, SearchItem[]> = {};
 
   for (const item of items) {
-    const category = item.category || "Other";
+    const category = translateCategory(item.category || "Other");
     if (!groups[category]) {
       groups[category] = [];
     }
@@ -317,9 +321,9 @@ function groupByCategory(items: SearchItem[]): SearchGroup[] {
 
   // Define category order: Getting Started and Guides first, Block/Layout last
   const categoryOrder = (cat: string): number => {
-    if (cat === "Getting Started") return 0;
-    if (cat === "Guides") return 1;
-    if (cat === "Block" || cat === "Layout") return 100;
+    if (cat === "快速上手") return 0;
+    if (cat === "指南") return 1;
+    if (cat === "区块" || cat === "布局") return 100;
     return 50; // Component categories in the middle
   };
 
@@ -338,7 +342,7 @@ function groupByCategory(items: SearchItem[]): SearchGroup[] {
 /** Return items as a single "Results" group (used when searching) */
 function asSearchResults(items: SearchItem[]): SearchGroup[] {
   if (items.length === 0) return [];
-  return [{ label: "Results", items }];
+  return [{ label: "搜索结果", items }];
 }
 
 /** Get icon for item type */
@@ -364,11 +368,11 @@ function getTypeBadge(
 
   switch (type) {
     case "block":
-      return <Badge variant="neutral">Block</Badge>;
+      return <Badge variant="neutral">区块</Badge>;
     case "layout":
-      return <Badge variant="neutral">Layout</Badge>;
+      return <Badge variant="neutral">布局</Badge>;
     case "page":
-      return <Badge variant="neutral">Guide</Badge>;
+      return <Badge variant="neutral">指南</Badge>;
     default:
       return null;
   }
@@ -394,7 +398,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
         setError(null);
       } catch (err) {
         console.error("Failed to load component registry:", err);
-        setError("Failed to load search index");
+        setError("搜索索引加载失败");
       } finally {
         setLoading(false);
       }
@@ -498,7 +502,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
       filter={() => true}
     >
       <CommandPalette.Input
-        placeholder="Search docs..."
+        placeholder="搜索文档..."
         leading={
           <MagnifyingGlassIcon
             className="h-4 w-4 text-kumo-subtle"
@@ -516,8 +520,8 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
         ) : !hasResults ? (
           <CommandPalette.Empty>
             {query.trim()
-              ? `No results found for "${query}"`
-              : "Type to search docs"}
+              ? `未找到与「${query}」相关的结果`
+              : "输入关键词搜索文档"}
           </CommandPalette.Empty>
         ) : (
           <CommandPalette.Results>
@@ -570,7 +574,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
       <CommandPalette.Footer>
         <span className="text-kumo-subtle">
           {hasResults
-            ? `${totalResults} result${totalResults === 1 ? "" : "s"}`
+            ? `${totalResults} 条结果`
             : ""}
         </span>
         <div className="flex items-center gap-4">
@@ -581,25 +585,25 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
             <kbd className="rounded border border-kumo-hairline bg-kumo-base px-1.5 py-0.5">
               ↓
             </kbd>
-            <span>navigate</span>
+            <span>选择</span>
           </span>
           <span className="flex items-center gap-1">
             <kbd className="rounded border border-kumo-hairline bg-kumo-base px-1.5 py-0.5">
               ↵
             </kbd>
-            <span>open</span>
+            <span>打开</span>
           </span>
           <span className="flex items-center gap-1">
             <kbd className="rounded border border-kumo-hairline bg-kumo-base px-1.5 py-0.5">
               ⌘↵
             </kbd>
-            <span>new tab</span>
+            <span>新标签页</span>
           </span>
           <span className="flex items-center gap-1">
             <kbd className="rounded border border-kumo-hairline bg-kumo-base px-1.5 py-0.5">
               esc
             </kbd>
-            <span>close</span>
+            <span>关闭</span>
           </span>
         </div>
       </CommandPalette.Footer>

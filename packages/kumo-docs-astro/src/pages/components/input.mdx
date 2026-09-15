@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Input"
-description: "A text input field for user input with built-in label, description, and error support."
+description: "用于用户输入的文本输入框，内置标签、描述和错误提示支持。"
 sourceFile: "components/input"
 baseUIComponent: "input"
 ---
@@ -40,13 +40,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导入
 
 <CodeBlock code={`import { Input } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 子路径导入
 
   <CodeBlock
     code={`import { Input } from "@cloudflare/kumo/components/input";`}
@@ -58,13 +58,12 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
-### With Built-in Field (Recommended)
+### 使用内置 Field（推荐）
 
 <p>
-  Use the `label` prop to enable the built-in Field wrapper with label,
-  description, and error support.
+  使用 `label` 属性启用内置 Field 包装器，支持标签、描述和错误提示。
 </p>
 
 ```tsx
@@ -81,11 +80,11 @@ export default function Example() {
 }
 ```
 
-### Bare Input (Custom Layouts)
+### 裸 Input（自定义布局）
 
 <p>
-  For custom form layouts, use Input without `label`. Must provide `aria-label`
-  or `aria-labelledby` for accessibility.
+  对于自定义表单布局，可在不带 `label` 的情况下使用 Input，但必须提供
+  `aria-label` 或 `aria-labelledby` 以保证无障碍访问。
 </p>
 
 ```tsx
@@ -102,128 +101,125 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### With Label and Description
+### 带标签与描述
 
 <p>
-  The `label` prop enables the built-in Field wrapper with automatic vertical
-  layout (label above input).
+  `label` 属性启用内置 Field 包装器，并自动采用垂直布局（标签在输入框上方）。
 </p>
 <ComponentExample demo="InputWithLabelDemo">
   <InputWithLabelDemo client:visible />
 </ComponentExample>
 
-### With Error (String)
+### 带错误（字符串）
 
 <p>
-  Pass `error` as a string for simple error messages. Error styling is
-  automatically applied when the `error` prop is truthy.
+  对于简单的错误提示，可将 `error` 以字符串形式传入。当 `error` 属性为真时，
+  会自动应用错误样式。
 </p>
 <ComponentExample demo="InputErrorStringDemo">
   <InputErrorStringDemo client:visible />
 </ComponentExample>
 
-### With Error (Validation Object)
+### 带错误（校验对象）
 
 <p>
-  Pass `error` as an object with `message` and `match` for HTML5 validation.
-  Error shows when field validity matches.
+  可将 `error` 以包含 `message` 和 `match` 的对象形式传入，用于 HTML5 校验。
+  当字段有效性匹配时显示错误。
 </p>
 <ComponentExample demo="InputErrorObjectDemo">
   <InputErrorObjectDemo client:visible />
 </ComponentExample>
 
-### Input Sizes
+### Input 尺寸
 
-<p>Four sizes available: `xs`, `sm`, `base` (default), `lg`.</p>
+<p>四种尺寸可选：`xs`、`sm`、`base`（默认）、`lg`。</p>
 <ComponentExample demo="InputSizesDemo">
   <InputSizesDemo client:visible />
 </ComponentExample>
 
-### Disabled
+### 禁用
 
 <ComponentExample demo="InputDisabledDemo">
   <InputDisabledDemo client:visible />
 </ComponentExample>
 
-### Optional Field
+### 可选字段
 
-<p>Set `required={false}` to show "(optional)" text after the label.</p>
+<p>设置 `required={false}` 会在标签后显示“（可选）”文本。</p>
 <ComponentExample demo="InputOptionalFieldDemo">
   <InputOptionalFieldDemo client:visible />
 </ComponentExample>
 
-### With Label Tooltip
+### 带标签提示
 
-<p>Use `labelTooltip` to add an info icon with additional context on hover.</p>
+<p>使用 `labelTooltip` 添加一个信息图标，悬停时可显示更多上下文说明。</p>
 <ComponentExample demo="InputLabelTooltipDemo">
   <InputLabelTooltipDemo client:visible />
 </ComponentExample>
 
-### ReactNode Label
+### ReactNode 标签
 
-<p>The `label` prop accepts ReactNode for rich formatting.</p>
+<p>`label` 属性接受 ReactNode，支持富文本格式。</p>
 <ComponentExample demo="InputReactNodeLabelDemo">
   <InputReactNodeLabelDemo client:visible />
 </ComponentExample>
 
-### Controlled with onChange
+### 使用 onChange 受控
 
 <p>
-  The standard React `onChange` handler receives the full event object. Use
-  `e.target.value` to get the value.
+  标准 React `onChange` 处理函数会接收到完整的事件对象。通过
+  `e.target.value` 获取值。
 </p>
 <ComponentExample demo="InputControlledOnChangeDemo">
   <InputControlledOnChangeDemo client:load />
 </ComponentExample>
 
-### Controlled with onValueChange
+### 使用 onValueChange 受控
 
 <p>
-  `onValueChange` is a convenience handler from Base UI that gives you the
-  string value directly — no event unwrapping needed. This is the same pattern
-  used by `Select`, `Combobox`, and `Radio.Group`.
+  `onValueChange` 是 Base UI 提供的便捷处理函数，让你直接拿到字符串值，
+  无需解包事件对象。`Select`、`Combobox` 和 `Radio.Group` 也使用同样的模式。
 </p>
 <ComponentExample demo="InputControlledOnValueChangeDemo">
   <InputControlledOnValueChangeDemo client:load />
 </ComponentExample>
 
-### Bare Input (No Label)
+### 裸 Input（无标签）
 
 <p>
-  Input without `label` renders as a bare input. Must provide `aria-label` for
-  accessibility.
+  不带 `label` 的 Input 会渲染为裸输入框，必须提供 `aria-label`
+  以保证无障碍访问。
 </p>
 <ComponentExample demo="InputBareDemo">
   <InputBareDemo client:visible />
 </ComponentExample>
 
-### Error Without Label
+### 无标签时的错误
 
 <p>
-  Error messages and descriptions render even without a visible `label` — use
-  `aria-label` to keep the input accessible.
+  即使没有可见的 `label`，错误信息和描述仍会渲染。可使用 `aria-label`
+  保持输入框的无障碍访问。
 </p>
 <ComponentExample demo="InputErrorWithoutLabelDemo">
   <InputErrorWithoutLabelDemo client:visible />
 </ComponentExample>
 
-### Input Types
+### 输入类型
 
 <p>
-  Supports all HTML input types: `text`, `email`, `password`, `number`, `tel`,
-  `url`, etc.
+  支持所有 HTML input 类型：`text`、`email`、`password`、`number`、`tel`、
+  `url` 等。
 </p>
 <ComponentExample demo="InputTypesDemo">
   <InputTypesDemo client:visible />
 </ComponentExample>
 
-### Password Manager Overlays
+### 密码管理器覆盖层
 
 <p>
-  Set `passwordManagerIgnore` on non-credential inputs that password managers
-  might incorrectly classify as login fields.
+  在密码管理器可能误判为登录字段的非凭据输入框上设置 `passwordManagerIgnore`。
 </p>
 <ComponentExample demo="InputPasswordManagerIgnoreDemo">
   <InputPasswordManagerIgnoreDemo client:visible />
@@ -235,56 +231,56 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
-<p>Input accepts all standard HTML input attributes plus the following:</p>
+<p>Input 接受所有标准 HTML input 属性，以及以下属性：</p>
 <PropsTable component="Input" />
 
-### Validation Error Types
+### 校验错误类型
 
   <p>
-    When using `error` as an object, the `match` property corresponds to HTML5 ValidityState values:
+    当 `error` 以对象形式使用时，`match` 属性对应 HTML5 ValidityState 值：
   </p>
   <div class="overflow-x-auto">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="px-4 py-3 text-left font-semibold">Match</th>
-          <th class="px-4 py-3 text-left font-semibold">Description</th>
+          <th class="px-4 py-3 text-left font-semibold">匹配</th>
+          <th class="px-4 py-3 text-left font-semibold">描述</th>
         </tr>
       </thead>
       <tbody>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">valueMissing</td>
-          <td class="px-4 py-3 text-xs">Required field is empty</td>
+          <td class="px-4 py-3 text-xs">必填字段为空</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">typeMismatch</td>
-          <td class="px-4 py-3 text-xs">Value doesn't match type (e.g., invalid email)</td>
+          <td class="px-4 py-3 text-xs">值不符合类型（例如邮箱无效）</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">patternMismatch</td>
-          <td class="px-4 py-3 text-xs">Value doesn't match pattern attribute</td>
+          <td class="px-4 py-3 text-xs">值不符合 pattern 属性</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">tooShort</td>
-          <td class="px-4 py-3 text-xs">Value shorter than minLength</td>
+          <td class="px-4 py-3 text-xs">值短于 minLength</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">tooLong</td>
-          <td class="px-4 py-3 text-xs">Value longer than maxLength</td>
+          <td class="px-4 py-3 text-xs">值长于 maxLength</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">rangeUnderflow</td>
-          <td class="px-4 py-3 text-xs">Value less than min</td>
+          <td class="px-4 py-3 text-xs">值小于 min</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">rangeOverflow</td>
-          <td class="px-4 py-3 text-xs">Value greater than max</td>
+          <td class="px-4 py-3 text-xs">值大于 max</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">true</td>
-          <td class="px-4 py-3 text-xs">Always show error (for server-side validation)</td>
+          <td class="px-4 py-3 text-xs">始终显示错误（用于服务端校验）</td>
         </tr>
       </tbody>
     </table>
@@ -295,32 +291,31 @@ export default function Example() {
 
 <ComponentSection>
 
-## Accessibility
+## 无障碍
 
   <div class="space-y-4 text-sm">
     <div>
 
-      ### Label Requirement
+      ### 标签要求
 
       <p>
-        Inputs require an accessible name via one of:
+        Input 需要满足以下任一方式提供可访问名称：
       </p>
       <ul class="mt-2 ml-4 list-disc space-y-1">
-        <li>`label` prop (recommended)</li>
-        <li>`placeholder` + `aria-label` for bare inputs</li>
-        <li>`aria-labelledby` for custom label association</li>
+        <li>`label` 属性（推荐）</li>
+        <li>对于裸输入框，使用 `placeholder` + `aria-label`</li>
+        <li>使用 `aria-labelledby` 进行自定义标签关联</li>
       </ul>
       <p class="mt-2">
-        Missing accessible names trigger console warnings in development.
+        开发环境下，缺少可访问名称会触发控制台警告。
       </p>
     </div>
     <div>
 
-      ### Error Association
+      ### 错误关联
 
       <p>
-        Error messages are automatically associated with the input via ARIA
-        attributes for screen reader announcement.
+        错误信息会通过 ARIA 属性自动关联到输入框，供屏幕阅读器播报。
       </p>
     </div>
 

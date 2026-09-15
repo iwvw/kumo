@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "InputArea"
-description: "A multi-line text input for longer content with built-in label, description, and error support."
+description: "支持多行文本输入的组件，内置标签、描述和错误提示支持。"
 sourceFile: "components/input"
 ---
 
@@ -35,21 +35,21 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导入
 
 ```tsx
 import { InputArea } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 子路径导入
 
 ```tsx
 import { InputArea } from "@cloudflare/kumo/components/input";
 ```
 
-`Textarea` is also exported as an alias for `InputArea` for discoverability when migrating from other libraries.
+`Textarea` 也作为 `InputArea` 的别名导出，方便从其他库迁移时查找。
 
 </ComponentSection>
 
@@ -57,13 +57,12 @@ import { InputArea } from "@cloudflare/kumo/components/input";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
-### With Built-in Field (Recommended)
+### 使用内置 Field（推荐）
 
 <p>
-  Use the `label` prop to enable the built-in Field wrapper with label,
-  description, and error support.
+  使用 `label` 属性启用内置 Field 包装器，支持标签、描述和错误提示。
 </p>
 
 ```tsx
@@ -80,11 +79,11 @@ export default function Example() {
 }
 ```
 
-### Bare InputArea (Custom Layouts)
+### 裸 InputArea（自定义布局）
 
 <p>
-  For custom form layouts, use InputArea without `label`. Must provide
-  `aria-label` or `aria-labelledby` for accessibility.
+  对于自定义表单布局，可在不带 `label` 的情况下使用 InputArea，但必须提供
+  `aria-label` 或 `aria-labelledby` 以保证无障碍访问。
 </p>
 
 ```tsx
@@ -101,86 +100,85 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### With Label
+### 带标签
 
 <ComponentExample demo="InputAreaWithLabelDemo">
   <InputAreaWithLabelDemo client:visible />
 </ComponentExample>
 
-### Custom Row Count
+### 自定义行数
 
-<p>Use the `rows` prop to control the initial height.</p>
+<p>使用 `rows` 属性控制初始高度。</p>
 <ComponentExample demo="InputAreaRowsDemo">
   <InputAreaRowsDemo client:visible />
 </ComponentExample>
 
-### Error State (String)
+### 错误状态（字符串）
 
-<p>Error styling is automatically applied when the `error` prop is truthy.</p>
+<p>当 `error` 属性为真时，会自动应用错误样式。</p>
 <ComponentExample demo="InputAreaErrorStringDemo">
   <InputAreaErrorStringDemo client:visible />
 </ComponentExample>
 
-### Error State (Object)
+### 错误状态（对象）
 
-<p>Use an error object with `match` for constraint validation.</p>
+<p>可使用包含 `match` 的错误对象进行约束校验。</p>
 <ComponentExample demo="InputAreaErrorObjectDemo">
   <InputAreaErrorObjectDemo client:visible />
 </ComponentExample>
 
-### Sizes
+### 尺寸
 
-<p>Four sizes available: `xs`, `sm`, `base` (default), `lg`.</p>
+<p>四种尺寸可选：`xs`、`sm`、`base`（默认）、`lg`。</p>
 <ComponentExample demo="InputAreaSizesDemo">
   <InputAreaSizesDemo client:visible />
 </ComponentExample>
 
-### Disabled
+### 禁用
 
 <ComponentExample demo="InputAreaDisabledDemo">
   <InputAreaDisabledDemo client:visible />
 </ComponentExample>
 
-### Auto Resize
+### 自动调整大小
 
 <p>
-  Use `autoResize` to let the textarea grow vertically as users type or paste
-  multi-line content. `minRows` sets the minimum height, and the optional
-  `maxRows` caps growth — content beyond the cap scrolls.
+  使用 `autoResize` 可让文本区域在用户输入或粘贴多行内容时自动垂直增高。
+  `minRows` 设置最小高度，可选的 `maxRows` 限制最大高度，超出上限的内容会滚动显示。
 </p>
 <ComponentExample demo="InputAreaAutoResizeDemo">
   <InputAreaAutoResizeDemo client:visible />
 </ComponentExample>
 
-### Bare InputArea
+### 裸 InputArea
 
 <p>
-  InputArea without `label` renders as a bare textarea. Must provide
-  `aria-label` for accessibility.
+  不带 `label` 的 InputArea 会渲染为裸文本区域，必须提供 `aria-label`
+  以保证无障碍访问。
 </p>
 <ComponentExample demo="InputAreaBareDemo">
   <InputAreaBareDemo client:visible />
 </ComponentExample>
 
-### Optional Field
+### 可选字段
 
-<p>Set `required={false}` to show "(optional)" text after the label.</p>
+<p>设置 `required={false}` 会在标签后显示“（可选）”文本。</p>
 <ComponentExample demo="InputAreaOptionalFieldDemo">
   <InputAreaOptionalFieldDemo client:visible />
 </ComponentExample>
 
-### Label with Tooltip
+### 带提示的标签
 
-<p>Use `labelTooltip` to add an info icon with additional context on hover.</p>
+<p>使用 `labelTooltip` 添加一个信息图标，悬停时可显示更多上下文说明。</p>
 <ComponentExample demo="InputAreaLabelTooltipDemo">
   <InputAreaLabelTooltipDemo client:visible />
 </ComponentExample>
 
-### React Node Label
+### React Node 标签
 
-<p>The `label` prop accepts ReactNode for rich formatting.</p>
+<p>`label` 属性接受 ReactNode，支持富文本格式。</p>
 <ComponentExample demo="InputAreaReactNodeLabelDemo">
   <InputAreaReactNodeLabelDemo client:visible />
 </ComponentExample>
@@ -191,10 +189,10 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 <p>
-  InputArea accepts all standard HTML textarea attributes plus the following:
+  InputArea 接受所有标准 HTML textarea 属性，以及以下属性：
 </p>
 
 <PropsTable component="InputArea" />
@@ -205,27 +203,26 @@ export default function Example() {
 
 <ComponentSection>
 
-## Accessibility
+## 无障碍
 
-### Label Requirement
+### 标签要求
 
-<p>InputArea requires an accessible name via one of:</p>
+<p>InputArea 需要满足以下任一方式提供可访问名称：</p>
 
 <ul class="ml-4 list-disc space-y-1">
-  <li>`label` prop (recommended)</li>
-  <li>`placeholder` + `aria-label` for bare textareas</li>
-  <li>`aria-labelledby` for custom label association</li>
+  <li>`label` 属性（推荐）</li>
+  <li>对于裸文本区域，使用 `placeholder` + `aria-label`</li>
+  <li>使用 `aria-labelledby` 进行自定义标签关联</li>
 </ul>
 
 <p class="mt-2">
-  Missing accessible names trigger console warnings in development.
+  开发环境下，缺少可访问名称会触发控制台警告。
 </p>
 
-### Error Association
+### 错误关联
 
 <p>
-  Error messages are automatically associated with the textarea via ARIA
-  attributes for screen reader announcement.
+  错误信息会通过 ARIA 属性自动关联到文本区域，供屏幕阅读器播报。
 </p>
 
 </ComponentSection>

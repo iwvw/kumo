@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Sensitive Input"
-description: "A masked input for sensitive values like API keys and passwords. Click to reveal."
+description: "一个用于 API 密钥、密码等敏感值的掩码输入。点击即可显示。"
 sourceFile: "components/sensitive-input"
 ---
 
@@ -27,15 +27,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { SensitiveInput } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { SensitiveInput } from "@cloudflare/kumo/components/sensitive-input";
@@ -47,7 +47,7 @@ import { SensitiveInput } from "@cloudflare/kumo/components/sensitive-input";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { SensitiveInput } from "@cloudflare/kumo";
@@ -63,9 +63,9 @@ export default function Example() {
 
 <ComponentSection>
 
-## Sizes
+## 尺寸
 
-  <p>SensitiveInput supports multiple sizes to fit different contexts.</p>
+  <p>SensitiveInput 支持多种尺寸，以适应不同使用场景。</p>
   <ComponentExample demo="SensitiveInputSizesDemo">
     <SensitiveInputSizesDemo client:visible />
   </ComponentExample>
@@ -75,9 +75,9 @@ export default function Example() {
 
 <ComponentSection>
 
-## Controlled
+## 受控模式
 
-  <p>Use controlled mode for full control over the input value.</p>
+  <p>使用受控模式可完全控制输入值。</p>
   <ComponentExample demo="SensitiveInputControlledDemo">
     <SensitiveInputControlledDemo client:load />
   </ComponentExample>
@@ -87,11 +87,11 @@ export default function Example() {
 
 <ComponentSection>
 
-## States
+## 状态
 
   <p>
-    Various input states including error, disabled, read-only, and with
-    description.
+    各种输入状态，包括错误、禁用、只读，
+    以及带描述。
   </p>
   <ComponentExample demo="SensitiveInputStatesDemo">
     <SensitiveInputStatesDemo client:visible />
@@ -102,7 +102,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="SensitiveInput" />
 </ComponentSection>

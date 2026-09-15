@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "CodeHighlighted"
-description: "Shiki-powered syntax highlighting with VS Code-quality highlighting, theming, and lazy loading."
+description: "基于 Shiki 的语法高亮组件，具备 VS Code 级别的高亮质量、主题支持与按需加载。"
 sourceFile: "code"
 ---
 
@@ -27,8 +27,8 @@ import {
 <ComponentSection>
   <div class="mb-4 rounded-md border border-kumo-brand/20 bg-kumo-brand/5 p-4">
     <p class="text-sm text-kumo-strong">
-      <strong>New in v1.10:</strong> Shiki-powered syntax highlighting with lazy
-      loading. Import from `@cloudflare/kumo/code` to use.
+      <strong>v1.10 新增：</strong>基于 Shiki 的语法高亮，支持按需
+      加载。请从 `@cloudflare/kumo/code` 导入使用。
     </p>
   </div>
   <ComponentExample demo="CodeHighlightedBasicDemo">
@@ -40,13 +40,10 @@ import {
 
 <ComponentSection>
 
-## Overview
+## 概述
 
   <p>
-    A Shiki-powered syntax highlighter. Supports 200+ languages with TextMate
-    grammars, dual light/dark themes, and lazy loading. Exported from a separate
-    entry point ( `@cloudflare/kumo/code` ) to avoid bundling Shiki for apps
-    that don't need it.
+    基于 Shiki 的语法高亮组件。支持 200+ 种语言（基于 TextMate 语法）、浅色/深色双主题，并按需加载。通过独立的入口（ `@cloudflare/kumo/code` ）导出，避免不需要它的应用打包 Shiki。
   </p>
 </ComponentSection>
 
@@ -54,10 +51,10 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
   <p>
-    CodeHighlighted is exported from a separate entry point to avoid bundling Shiki for apps that don't need it.
+    CodeHighlighted 从独立的入口导出，避免不需要它的应用打包 Shiki。
   </p>
 
 ```tsx
@@ -66,8 +63,8 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
 
   <div class="mt-4 rounded-md border border-kumo-warning/20 bg-kumo-warning/5 p-4">
     <p class="text-sm text-kumo-strong">
-      <strong>Important:</strong> Do NOT import from the main `@cloudflare/kumo` entry.
-      That would pull Shiki into your bundle even if you don't use it.
+      <strong>重要：</strong>不要从主入口 `@cloudflare/kumo` 导入。
+      否则即使你没有使用 Shiki，也会把它打包进你的产物中。
     </p>
   </div>
 </ComponentSection>
@@ -76,11 +73,11 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
 
 <ComponentSection>
 
-## Basic Usage
+## 基本用法
 
   <p>
-    Wrap your app with `ShikiProvider` to configure Shiki once.
-    All `CodeHighlighted` components inside share the same Shiki instance.
+    使用 `ShikiProvider` 包裹你的应用，只需一次性配置 Shiki。
+    所有 `CodeHighlighted` 组件共享同一个 Shiki 实例。
   </p>
 
 ```tsx
@@ -105,13 +102,12 @@ export function App() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Languages
+### 语言
 
 <p>
-  CodeHighlighted supports 200+ languages through Shiki. Only load the languages
-  you need.
+  CodeHighlighted 通过 Shiki 支持 200+ 种语言。只加载你需要的语言即可。
 </p>
 
 #### TypeScript
@@ -144,47 +140,46 @@ export function App() {
   <CodeHighlightedCssDemo client:visible />
 </ComponentExample>
 
-### Highlight Lines
+### 高亮行
 
-<p>Emphasize specific lines with `highlightLines` (1-indexed).</p>
+<p>使用 `highlightLines`（从 1 开始索引）强调特定行。</p>
 <ComponentExample demo="CodeHighlightedHighlightLinesDemo">
   <CodeHighlightedHighlightLinesDemo client:visible />
 </ComponentExample>
 
-### Custom Highlight Color
+### 自定义高亮颜色
 
 <p>
-  Customize the highlight color with the `--kumo-code-highlight-bg` CSS
-  variable.
+  使用 `--kumo-code-highlight-bg` CSS 变量自定义高亮颜色。
 </p>
 <CodeHighlightedCustomHighlightDemo client:load />
 
-### Line Numbers
+### 行号
 
-<p>Display line numbers with `showLineNumbers` .</p>
+<p>使用 `showLineNumbers` 显示行号。</p>
 <ComponentExample demo="CodeHighlightedLineNumbersDemo">
   <CodeHighlightedLineNumbersDemo client:visible />
 </ComponentExample>
 
-### Copy Button
+### 复制按钮
 
-<p>Add a copy-to-clipboard button with `showCopyButton` .</p>
+<p>使用 `showCopyButton` 添加复制到剪贴板的按钮。</p>
 <ComponentExample demo="CodeHighlightedCopyButtonDemo">
   <CodeHighlightedCopyButtonDemo client:visible />
 </ComponentExample>
 
-### Full Featured
+### 完整功能
 
-<p>Combine all features for a complete code display experience.</p>
+<p>组合全部功能，带来完整的代码展示体验。</p>
 <ComponentExample demo="CodeHighlightedFullFeaturedDemo">
   <CodeHighlightedFullFeaturedDemo client:visible />
 </ComponentExample>
 
-### Shared Provider
+### 共享 Provider
 
   <p>
-    Multiple code blocks can share a single `ShikiProvider`.
-    Shiki loads once and is reused for all blocks.
+    多个代码块可以共享同一个 `ShikiProvider`。
+    Shiki 只加载一次，并供所有代码块复用。
   </p>
   <ComponentExample demo="CodeHighlightedSharedProviderDemo">
     <CodeHighlightedSharedProviderDemo client:visible />
@@ -195,25 +190,23 @@ export function App() {
 
 <ComponentSection>
 
-## Themes
+## 主题
 
   <p>
-    CodeHighlighted uses hardcoded themes for consistent styling across all Kumo
-    applications:
+    CodeHighlighted 使用内置主题，保证所有 Kumo 应用样式一致：
   </p>
   <ul class="mb-4 list-disc pl-6">
     <li>
-      <strong>Light mode:</strong>
+      <strong>浅色模式：</strong>
       `github-light`
     </li>
     <li>
-      <strong>Dark mode:</strong>
+      <strong>深色模式：</strong>
       `vesper`
     </li>
   </ul>
   <p class="text-sm text-kumo-subtle">
-    Theme customization is not supported. This ensures visual consistency across
-    all code blocks in your application.
+    不支持自定义主题。这能确保应用中所有代码块视觉一致。
   </p>
 </ComponentSection>
 
@@ -221,13 +214,13 @@ export function App() {
 
 <ComponentSection>
 
-## Server-Side Usage
+## 服务端用法
 
   <p>
-    For SSR frameworks (Next.js RSC, Astro, Remix), use the server utilities to highlight at build time.
+    对于 SSR 框架（Next.js RSC、Astro、Remix），请在构建时使用服务端工具进行高亮。
   </p>
 
-#### One-off highlighting
+#### 一次性高亮
 
 ```tsx
 // Next.js RSC or Astro
@@ -240,7 +233,7 @@ export default async function Page() {
 }
 ```
 
-#### Reusable highlighter
+#### 可复用高亮器
 
 ```tsx
 // For multiple highlights, reuse the highlighter
@@ -262,10 +255,10 @@ highlighter.dispose(); // Clean up when done
 
 <ComponentSection>
 
-## Custom Hook
+## 自定义 Hook
 
   <p>
-    Use `useShikiHighlighter` for custom implementations.
+    使用 `useShikiHighlighter` 实现自定义场景。
   </p>
 
 ```tsx
@@ -307,10 +300,10 @@ function CustomCodeBlock({ code, lang }) {
 
 <ComponentSection>
 
-## Internationalization
+## 国际化
 
   <p>
-    Customize button labels at the provider level for all code blocks, or override per-component.
+    可在 provider 层级为所有代码块统一设置按钮文案，也可在单个组件上覆盖。
   </p>
 
 ```tsx
@@ -338,7 +331,7 @@ function CustomCodeBlock({ code, lang }) {
 
 <ComponentSection>
 
-## Framework Integration
+## 框架集成
 
 ### Next.js App Router
 
@@ -370,11 +363,10 @@ export default function RootLayout({ children }) {
 }
 ```
 
-### Astro (Static)
+### Astro（静态）
 
 <p>
-  For static sites, use server-side highlighting for zero client-side
-  JavaScript.
+  对于静态站点，使用服务端高亮可以实现零客户端 JavaScript。
 </p>
 
 ```tsx
@@ -395,38 +387,37 @@ const html = await highlightCode(code, lang);
 
 <ComponentSection>
 
-## Bundle Size
+## 体积占用
 
   <p>
-    Shiki is lazy-loaded on first render. The size depends on your
-    configuration:
+    Shiki 在首次渲染时按需加载。体积取决于你的配置：
   </p>
   <div class="overflow-x-auto">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="py-2 pr-4 text-left font-medium">Scenario</th>
-          <th class="py-2 pr-4 text-left font-medium">Languages</th>
-          <th class="py-2 pr-4 text-left font-medium">Engine</th>
-          <th class="py-2 text-left font-medium">Lazy Load Size</th>
+          <th class="py-2 pr-4 text-left font-medium">场景</th>
+          <th class="py-2 pr-4 text-left font-medium">语言</th>
+          <th class="py-2 pr-4 text-left font-medium">引擎</th>
+          <th class="py-2 text-left font-medium">按需加载体积</th>
         </tr>
       </thead>
       <tbody>
         <tr class="border-b border-kumo-hairline/50">
-          <td class="py-2 pr-4">Minimal</td>
+          <td class="py-2 pr-4">最小配置</td>
           <td class="py-2 pr-4">tsx, json</td>
           <td class="py-2 pr-4">JS</td>
           <td class="py-2">~75 KB</td>
         </tr>
         <tr class="border-b border-kumo-hairline/50">
-          <td class="py-2 pr-4">Standard</td>
+          <td class="py-2 pr-4">标准配置</td>
           <td class="py-2 pr-4">tsx, ts, bash, json, css, yaml</td>
           <td class="py-2 pr-4">JS</td>
           <td class="py-2">~95 KB</td>
         </tr>
         <tr>
-          <td class="py-2 pr-4">Full</td>
-          <td class="py-2 pr-4">15+ languages</td>
+          <td class="py-2 pr-4">完整配置</td>
+          <td class="py-2 pr-4">15+ 种语言</td>
           <td class="py-2 pr-4">WASM</td>
           <td class="py-2">~250 KB</td>
         </tr>
@@ -434,7 +425,7 @@ const html = await highlightCode(code, lang);
     </table>
   </div>
   <p class="mt-4 text-sm text-kumo-subtle">
-    Teams that don't import from `@cloudflare/kumo/code` pay 0 KB.
+    不引入 `@cloudflare/kumo/code` 的应用额外体积为 0 KB。
   </p>
 </ComponentSection>
 
@@ -442,11 +433,11 @@ const html = await highlightCode(code, lang);
 
 <ComponentSection>
 
-## Migration from Code/CodeBlock
+## 从 Code/CodeBlock 迁移
 
   <p>
-    The legacy `Code` and `CodeBlock` components are deprecated.
-    They will be removed in v2.0.
+    旧版 `Code` 和 `CodeBlock` 组件已废弃。
+    它们将在 v2.0 中移除。
   </p>
 
 ```tsx
@@ -472,18 +463,18 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
-### ShikiProvider Props
+### ShikiProvider 属性
 
 <div class="overflow-x-auto">
   <table class="w-full text-sm">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="py-2 pr-4 text-left font-medium">Prop</th>
-        <th class="py-2 pr-4 text-left font-medium">Type</th>
-        <th class="py-2 pr-4 text-left font-medium">Required</th>
-        <th class="py-2 text-left font-medium">Description</th>
+        <th class="py-2 pr-4 text-left font-medium">属性</th>
+        <th class="py-2 pr-4 text-left font-medium">类型</th>
+        <th class="py-2 pr-4 text-left font-medium">必填</th>
+        <th class="py-2 text-left font-medium">说明</th>
       </tr>
     </thead>
     <tbody>
@@ -494,9 +485,9 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>"javascript" | "wasm"</code>
         </td>
-        <td class="py-2 pr-4">Yes</td>
+        <td class="py-2 pr-4">是</td>
         <td class="py-2">
-          JS is smaller (~50KB), WASM is more accurate (~180KB)
+          JS 体积更小（约 50KB），WASM 更准确（约 180KB）
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline/50">
@@ -506,8 +497,8 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>string[]</code>
         </td>
-        <td class="py-2 pr-4">Yes</td>
-        <td class="py-2">Languages to support (e.g., ["tsx", "bash"])</td>
+        <td class="py-2 pr-4">是</td>
+        <td class="py-2">要支持的语言（如 ["tsx", "bash"]）</td>
       </tr>
       <tr class="border-b border-kumo-hairline/50">
         <td class="py-2 pr-4">
@@ -516,8 +507,8 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>{"{ copy?: string, copied?: string }"}</code>
         </td>
-        <td class="py-2 pr-4">No</td>
-        <td class="py-2">Localized labels for copy button</td>
+        <td class="py-2 pr-4">否</td>
+        <td class="py-2">复制按钮的本地化文案</td>
       </tr>
       <tr>
         <td class="py-2 pr-4">
@@ -526,23 +517,23 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>ReactNode</code>
         </td>
-        <td class="py-2 pr-4">Yes</td>
-        <td class="py-2">App content</td>
+        <td class="py-2 pr-4">是</td>
+        <td class="py-2">应用内容</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### CodeHighlighted Props
+### CodeHighlighted 属性
 
 <div class="overflow-x-auto">
   <table class="w-full text-sm">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="py-2 pr-4 text-left font-medium">Prop</th>
-        <th class="py-2 pr-4 text-left font-medium">Type</th>
-        <th class="py-2 pr-4 text-left font-medium">Required</th>
-        <th class="py-2 text-left font-medium">Description</th>
+        <th class="py-2 pr-4 text-left font-medium">属性</th>
+        <th class="py-2 pr-4 text-left font-medium">类型</th>
+        <th class="py-2 pr-4 text-left font-medium">必填</th>
+        <th class="py-2 text-left font-medium">说明</th>
       </tr>
     </thead>
     <tbody>
@@ -553,8 +544,8 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>string</code>
         </td>
-        <td class="py-2 pr-4">Yes</td>
-        <td class="py-2">Source code to display</td>
+        <td class="py-2 pr-4">是</td>
+        <td class="py-2">要展示的源代码</td>
       </tr>
       <tr class="border-b border-kumo-hairline/50">
         <td class="py-2 pr-4">
@@ -563,9 +554,9 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>string</code>
         </td>
-        <td class="py-2 pr-4">Yes</td>
+        <td class="py-2 pr-4">是</td>
         <td class="py-2">
-          Language identifier (must be in provider's languages)
+          语言标识（必须在 provider 的 languages 中）
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline/50">
@@ -575,8 +566,8 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>boolean</code>
         </td>
-        <td class="py-2 pr-4">No</td>
-        <td class="py-2">Display line numbers</td>
+        <td class="py-2 pr-4">否</td>
+        <td class="py-2">显示行号</td>
       </tr>
       <tr class="border-b border-kumo-hairline/50">
         <td class="py-2 pr-4">
@@ -585,8 +576,8 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>number[]</code>
         </td>
-        <td class="py-2 pr-4">No</td>
-        <td class="py-2">Lines to emphasize (1-indexed)</td>
+        <td class="py-2 pr-4">否</td>
+        <td class="py-2">要强调的行（从 1 开始索引）</td>
       </tr>
       <tr class="border-b border-kumo-hairline/50">
         <td class="py-2 pr-4">
@@ -595,8 +586,8 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>boolean</code>
         </td>
-        <td class="py-2 pr-4">No</td>
-        <td class="py-2">Show copy-to-clipboard button</td>
+        <td class="py-2 pr-4">否</td>
+        <td class="py-2">显示复制到剪贴板的按钮</td>
       </tr>
       <tr class="border-b border-kumo-hairline/50">
         <td class="py-2 pr-4">
@@ -605,8 +596,8 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>{"{ copy?: string, copied?: string }"}</code>
         </td>
-        <td class="py-2 pr-4">No</td>
-        <td class="py-2">Override provider labels for this instance</td>
+        <td class="py-2 pr-4">否</td>
+        <td class="py-2">覆盖此实例的 provider 文案</td>
       </tr>
       <tr>
         <td class="py-2 pr-4">
@@ -615,44 +606,44 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2 pr-4">
           <code>string</code>
         </td>
-        <td class="py-2 pr-4">No</td>
-        <td class="py-2">Additional CSS classes</td>
+        <td class="py-2 pr-4">否</td>
+        <td class="py-2">额外的 CSS 类</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### useShikiHighlighter Return Value
+### useShikiHighlighter 返回值
 
   <div class="overflow-x-auto">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="py-2 pr-4 text-left font-medium">Property</th>
-          <th class="py-2 pr-4 text-left font-medium">Type</th>
-          <th class="py-2 text-left font-medium">Description</th>
+          <th class="py-2 pr-4 text-left font-medium">属性</th>
+          <th class="py-2 pr-4 text-left font-medium">类型</th>
+          <th class="py-2 text-left font-medium">说明</th>
         </tr>
       </thead>
       <tbody>
         <tr class="border-b border-kumo-hairline/50">
           <td class="py-2 pr-4"><code>highlight</code></td>
           <td class="py-2 pr-4"><code>(code, lang, options?) =&gt; string | null</code></td>
-          <td class="py-2">Returns highlighted HTML, or null if not ready</td>
+          <td class="py-2">返回高亮后的 HTML；未就绪时返回 null</td>
         </tr>
         <tr class="border-b border-kumo-hairline/50">
           <td class="py-2 pr-4"><code>isLoading</code></td>
           <td class="py-2 pr-4"><code>boolean</code></td>
-          <td class="py-2">True while Shiki is loading</td>
+          <td class="py-2">Shiki 加载期间为 true</td>
         </tr>
         <tr class="border-b border-kumo-hairline/50">
           <td class="py-2 pr-4"><code>isReady</code></td>
           <td class="py-2 pr-4"><code>boolean</code></td>
-          <td class="py-2">True when highlight() is safe to call</td>
+          <td class="py-2">当 highlight() 可安全调用时为 true</td>
         </tr>
         <tr>
           <td class="py-2 pr-4"><code>error</code></td>
           <td class="py-2 pr-4"><code>Error | null</code></td>
-          <td class="py-2">Error if Shiki initialization failed</td>
+          <td class="py-2">Shiki 初始化失败时返回错误</td>
         </tr>
       </tbody>
     </table>

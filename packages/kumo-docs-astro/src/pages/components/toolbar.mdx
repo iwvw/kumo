@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Toolbar"
-description: "Compose explicit toolbar controls into one clean grouped card."
+description: "将显式的工具栏控件组合成一个整洁的分组卡片。"
 sourceFile: "components/toolbar"
 ---
 
@@ -28,13 +28,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 <CodeBlock code={`import { Toolbar } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 细粒度导入
 
 <CodeBlock
   code={`import { Toolbar } from "@cloudflare/kumo/components/toolbar";`}
@@ -44,12 +44,12 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
-Use `Toolbar` when multiple controls should read as one compact toolbar or
-filter card. Use `Toolbar.Button`, `Toolbar.Link`, `Toolbar.Input`, and
-`Toolbar.InputGroup` directly. Compose Select and Combobox triggers with those
-toolbar controls through their `render` props.
+当多个控件需要呈现为一个紧凑工具栏或筛选卡片时，请使用 `Toolbar`。可
+直接使用 `Toolbar.Button`、`Toolbar.Link`、`Toolbar.Input` 和
+`Toolbar.InputGroup`。通过 `render` 属性，可将 Select 与 Combobox 的
+触发器与这些工具栏控件组合起来。
 
 ```tsx
 import { InputGroup, Toolbar } from "@cloudflare/kumo";
@@ -74,34 +74,33 @@ export default function Example() {
 
 <ComponentSection>
 
-## Behavior
+## 行为
 
-Toolbar item components intentionally own grouped control presentation:
+工具栏子组件特意负责分组控件的呈现样式：
 
-- Every `Toolbar.*` control uses the `base` size by default.
-- The Toolbar `size` prop remains available for compatibility but is deprecated; omit it for the base size.
-- `Toolbar.Button` always renders with quiet toolbar button styling.
-- `Toolbar.Link` renders a `LinkButton` with quiet toolbar styling and
-  participates in arrow-key navigation.
-- `Toolbar.InputGroup` passes props directly to `InputGroup` with the resolved toolbar size.
-- Give Select `render={<Toolbar.Button />}` to compose its trigger into the toolbar.
-- Give `Combobox.TriggerInput` `render={<Toolbar.Input />}` for an editable toolbar combobox.
-- Give `Combobox.TriggerValue` `render={<Toolbar.Button />}` for a button-style toolbar combobox.
-- Select and Combobox retain their value behavior, popup portals, filtering, and form inputs while joining toolbar arrow-key navigation.
-- Adjacent toolbar items share borders and only the Toolbar's outer corners are rounded.
-- A Select or Combobox without a rendered Toolbar control keeps its standalone presentation and does not join the toolbar's roving focus order.
+- 所有 `Toolbar.*` 控件默认使用 `base` 尺寸。
+- Toolbar 的 `size` 属性为兼容性而保留，但已废弃；省略它即可使用 `base` 尺寸。
+- `Toolbar.Button` 始终以安静的工具栏按钮样式渲染。
+- `Toolbar.Link` 以安静的工具栏样式渲染 `LinkButton`，并参与方向键导航。
+- `Toolbar.InputGroup` 将属性直接透传给 `InputGroup`，并使用解析后的工具栏尺寸。
+- 为 Select 传入 `render={<Toolbar.Button />}`，可将其触发器组合进工具栏。
+- 为 `Combobox.TriggerInput` 传入 `render={<Toolbar.Input />}`，可获得可编辑的工具栏 Combobox。
+- 为 `Combobox.TriggerValue` 传入 `render={<Toolbar.Button />}`，可获得按钮样式的工具栏 Combobox。
+- Select 与 Combobox 在加入工具栏方向键导航的同时，仍保持原有的值行为、弹层 portal、筛选和表单输入功能。
+- 相邻的工具栏项目共享边框，只有 Toolbar 的外侧边角是圆角。
+- 未渲染工具栏控件的 Select 或 Combobox 保持独立样式，不参与工具栏的巡游焦点顺序。
 
 </ComponentSection>
 
 <ComponentSection>
 
-## Examples
+## 示例
 
 ### Select
 
-Select keeps its regular root props, including `items`. Its `render` prop
-replaces the trigger, so rendering `Toolbar.Button` makes that trigger a toolbar
-item without replacing the Select root.
+Select 保留其常规根属性，包括 `items`。其 `render` 属性会替换
+触发器，因此渲染 `Toolbar.Button` 会让该触发器成为工具栏项目，
+而不会替换 Select 根组件。
 
 <ComponentExample demo="ToolbarSelectDemo">
   <ToolbarSelectDemo client:visible />
@@ -109,68 +108,63 @@ item without replacing the Select root.
 
 ### Combobox
 
-Compose an editable Combobox trigger with `Toolbar.Input`. For a non-editable
-value trigger, render `Toolbar.Button` from `Combobox.TriggerValue`. Continue to
-compose the popup from regular `Combobox.*` components. In a horizontal toolbar,
-place an editable trigger last so left and right arrows can continue to serve
-both text-cursor and toolbar navigation predictably.
+用 `Toolbar.Input` 组合可编辑的 Combobox 触发器。对于不可编辑的
+值触发器，可从 `Combobox.TriggerValue` 渲染 `Toolbar.Button`。弹层仍由
+常规的 `Combobox.*` 组件组合而成。在水平工具栏中，应将可编辑触发器放在
+最后，这样左右方向键能继续可预测地同时服务于文本光标与工具栏导航。
 
 <ComponentExample demo="ToolbarComboboxDemo">
   <ToolbarComboboxDemo client:visible />
 </ComponentExample>
 
-### Input Shorthand
+### 输入简洁写法
 
-Use `Toolbar.Input` for simple text inputs that do not need addons.
+不需要装饰（addon）的简单文本输入，请使用 `Toolbar.Input`。
 
 <ComponentExample demo="ToolbarMixedControlsDemo">
   <ToolbarMixedControlsDemo client:visible />
 </ComponentExample>
 
-### Input Group
+### 输入组
 
-Use `Toolbar.InputGroup` when one toolbar item needs its own
-inline addon or suffix.
+当某个工具栏项目需要自带内联装饰或后缀时，请使用 `Toolbar.InputGroup`。
 
 <ComponentExample demo="ToolbarInputGroupDemo">
   <ToolbarInputGroupDemo client:visible />
 </ComponentExample>
 
-### Deprecated sizing
+### 已废弃的尺寸
 
-The `size` prop still supports `xs`, `sm`, `base`, and `lg` for compatibility,
-but it is deprecated and will be removed in a future major release. Omit it to
-use the default `base` size.
+为兼容起见，`size` 属性仍支持 `xs`、`sm`、`base` 和 `lg`，但它已废弃，将在
+未来的主版本中移除。省略它即可使用默认的 `base` 尺寸。
 
 <ComponentExample demo="ToolbarSizesDemo">
   <ToolbarSizesDemo client:visible />
 </ComponentExample>
 
-### Button Actions
+### 按钮操作
 
-Toolbar buttons use quiet styling so grouped actions remain
-visually quiet and consistent.
+工具栏按钮使用安静的样式，让成组的操作保持视觉上的低调与一致。
 
 <ComponentExample demo="ToolbarActionsDemo">
   <ToolbarActionsDemo client:visible />
 </ComponentExample>
 
-### Links
+### 链接
 
-Use `Toolbar.Link` for navigation actions. It accepts `LinkButton` props except
-for `size` and `variant`, which are controlled by the Toolbar.
+导航类操作请使用 `Toolbar.Link`。它接受 `LinkButton` 除 `size` 和 `variant`
+之外的所有属性，这两个属性由 Toolbar 控制。
 
 <ComponentExample demo="ToolbarLinksDemo">
   <ToolbarLinksDemo client:visible />
 </ComponentExample>
 
-### Accessible Labels
+### 无障碍标签
 
-Use `aria-label` or `aria-labelledby` for compact controls without visible
-labels. A Select trigger and each Combobox trigger still need an accessible
-name. For editable inputs, toolbar focus moves only when the caret is already at
-the relevant text boundary; while a popup is open, arrow keys navigate its
-options instead.
+对于没有可见标签的紧凑控件，请使用 `aria-label` 或 `aria-labelledby`。
+Select 触发器与每个 Combobox 触发器仍需有可访问的名称。对于可编辑输入框，
+只有光标已位于相关文本边界处时，工具栏焦点才会移动；弹层打开时，方向键则
+用于在其选项间导航。
 
 <ComponentExample demo="ToolbarLabelsDemo">
   <ToolbarLabelsDemo client:visible />
@@ -180,15 +174,15 @@ options instead.
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 <table>
   <thead>
     <tr>
-      <th>Prop</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Description</th>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
     </tr>
   </thead>
   <tbody>
@@ -196,27 +190,27 @@ options instead.
       <td><code>children</code></td>
       <td><code>ReactNode</code></td>
       <td>-</td>
-      <td>Toolbar controls rendered as one grouped card.</td>
+      <td>以分组卡片形式渲染的工具栏控件。</td>
     </tr>
     <tr>
-      <td><code>size</code> <strong>Deprecated</strong></td>
+      <td><code>size</code> <strong>已废弃</strong></td>
       <td><code>&quot;xs&quot; | &quot;sm&quot; | &quot;base&quot; | &quot;lg&quot;</code></td>
       <td><code>&quot;base&quot;</code></td>
-      <td>Sets every supported item size. Omit this deprecated prop to use the default base size.</td>
+      <td>设置所有支持的项目尺寸。省略此已废弃属性即可使用默认的 base 尺寸。</td>
     </tr>
     <tr>
       <td><code>className</code></td>
       <td><code>string</code></td>
       <td>-</td>
-      <td>Additional CSS classes merged onto the toolbar root.</td>
+      <td>合并到工具栏根元素上的额外 CSS 类。</td>
     </tr>
   </tbody>
 </table>
 
-### Select composition
+### Select 组合
 
-Pass `render={<Toolbar.Button />}` to Select. Configure disabled-focus behavior
-on the rendered toolbar control:
+为 Select 传入 `render={<Toolbar.Button />}`。在渲染出的工具栏控件上
+配置禁用状态下的焦点行为：
 
 ```tsx
 <Select
@@ -227,10 +221,10 @@ on the rendered toolbar control:
 />
 ```
 
-### Combobox composition
+### Combobox 组合
 
-Pass `render={<Toolbar.Input />}` to `Combobox.TriggerInput`, or render
-`Toolbar.Button` from `Combobox.TriggerValue`:
+为 `Combobox.TriggerInput` 传入 `render={<Toolbar.Input />}`，或从
+`Combobox.TriggerValue` 渲染 `Toolbar.Button`：
 
 ```tsx
 <Combobox items={items}>
@@ -242,7 +236,6 @@ Pass `render={<Toolbar.Input />}` to `Combobox.TriggerInput`, or render
 </Combobox>
 ```
 
-Set `focusableWhenDisabled` on the rendered `Toolbar.Button` or `Toolbar.Input`
-to control whether a disabled trigger remains in the toolbar's roving focus
-order.
+在渲染出的 `Toolbar.Button` 或 `Toolbar.Input` 上设置 `focusableWhenDisabled`，
+可控制禁用的触发器是否仍保留在工具栏的巡游焦点顺序中。
 </ComponentSection>

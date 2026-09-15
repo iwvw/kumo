@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Resource List"
-description: "A layout component for resource list pages with optional sidebar content."
+description: "用于资源列表页面的布局组件，支持可选的侧边栏内容。"
 sourceFile: "blocks/resource-list"
 ---
 
@@ -26,16 +26,14 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
   <p>
-    ResourceListPage is a <strong>block</strong> - a CLI-installed component
-    that you own and can customize. Unlike regular components, blocks are copied
-    into your project so you have full control over the code.
+    ResourceListPage 是一个 <strong>block</strong> —— 通过 CLI 安装、归你所有且可自定义的组件。与普通组件不同，block 会复制到你的项目中，因此你可以完全掌控代码。
   </p>
   <div class="space-y-4">
     <div>
-      <p>**1. Initialize Kumo config (first time only)**</p>
+      <p>**1. 初始化 Kumo 配置（仅首次）**</p>
 
 ```bash
 npx @cloudflare/kumo init
@@ -43,7 +41,7 @@ npx @cloudflare/kumo init
 
 </div>
 <div>
-<p>**2. Install the block**</p>
+<p>**2. 安装 block**</p>
 
 ```bash
 npx @cloudflare/kumo add ResourceListPage
@@ -51,7 +49,7 @@ npx @cloudflare/kumo add ResourceListPage
 
 </div>
 <div>
-<p>**3. Import from your local path**</p>
+<p>**3. 从本地路径导入**</p>
 
 ```tsx
 // The path depends on your kumo.json blocksDir setting
@@ -63,9 +61,9 @@ import { ResourceListPage } from "./components/kumo/resource-list/resource-list"
 
   </div>
   <Callout type="info">
-    <strong>Why blocks?</strong> Blocks give you full ownership of the code,
-    allowing you to customize layouts to fit your specific needs. They're ideal
-    for page-level patterns that often need project-specific modifications.
+    <strong>为什么用 block？</strong> Block 让你完全拥有代码，
+    允许你自定义布局以满足特定需求。它们非常适合常需针对具体项目
+    定制的页面级模式。
   </Callout>
 </ComponentSection>
 
@@ -73,7 +71,7 @@ import { ResourceListPage } from "./components/kumo/resource-list/resource-list"
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { ResourceListPage } from "./components/kumo/resource-list/resource-list";
@@ -99,18 +97,18 @@ export default function DatabasesPage() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic
+### 基础
 
-<p>A minimal resource list page with title, description, and icon.</p>
+<p>包含标题、描述和图标的最小资源列表页面。</p>
 <ComponentExample demo="ResourceListBasicDemo">
   <ResourceListBasicDemo client:visible />
 </ComponentExample>
 
-### With Usage Sidebar
+### 带用法侧边栏
 
-  <p>Include a sidebar with usage examples or quick start guides.</p>
+  <p>添加一个包含用法示例或快速上手指南的侧边栏。</p>
   <ComponentExample demo="ResourceListWithUsageDemo">
     <ResourceListWithUsageDemo client:visible />
   </ComponentExample>
@@ -120,56 +118,56 @@ export default function DatabasesPage() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <div class="overflow-x-auto">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="px-4 py-3 text-left font-semibold">Property</th>
-          <th class="px-4 py-3 text-left font-semibold">Type</th>
-          <th class="px-4 py-3 text-left font-semibold">Description</th>
+          <th class="px-4 py-3 text-left font-semibold">属性</th>
+          <th class="px-4 py-3 text-left font-semibold">类型</th>
+          <th class="px-4 py-3 text-left font-semibold">说明</th>
         </tr>
       </thead>
       <tbody>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">title</td>
           <td class="px-4 py-3 font-mono text-xs">string</td>
-          <td class="px-4 py-3">Page title displayed at the top</td>
+          <td class="px-4 py-3">显示在页面顶部的标题。</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">description</td>
           <td class="px-4 py-3 font-mono text-xs">string</td>
-          <td class="px-4 py-3">Page description below the title</td>
+          <td class="px-4 py-3">标题下方的页面描述。</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">icon</td>
           <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
-          <td class="px-4 py-3">Icon displayed next to the title</td>
+          <td class="px-4 py-3">显示在标题旁边的图标。</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">usage</td>
           <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
           <td class="px-4 py-3">
-            Sidebar content for usage examples or quick start guides
+            用于用法示例或快速上手指南的侧边栏内容。
           </td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">additionalContent</td>
           <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
           <td class="px-4 py-3">
-            Additional sidebar content (e.g., resources, links)
+            额外的侧边栏内容（例如资源、链接）。
           </td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">children</td>
           <td class="px-4 py-3 font-mono text-xs">ReactNode</td>
-          <td class="px-4 py-3">Main content area for the resource list</td>
+          <td class="px-4 py-3">资源列表的主内容区域。</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">className</td>
           <td class="px-4 py-3 font-mono text-xs">string</td>
-          <td class="px-4 py-3">Additional CSS classes</td>
+          <td class="px-4 py-3">额外的 CSS 类。</td>
         </tr>
       </tbody>
     </table>

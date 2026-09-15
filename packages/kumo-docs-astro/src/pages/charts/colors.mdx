@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
-title: "Chart Colors"
-description: "Semantic and categorical color tokens for Cloudflare dashboard charts."
+title: "图表配色"
+description: "Cloudflare 仪表盘图表使用的语义与分类颜色令牌。"
 sourceFile: "components/chart/Color.ts"
 ---
 
@@ -18,27 +18,26 @@ import {
 } from "~/components/demos/Chart/ColorDemo";
 import { Banner } from "@cloudflare/kumo";
 
-Chart colors in Kumo are split into three systems — **semantic** tokens for data with inherent
-polarity, a **categorical** palette for nominal series and a **sequential** scale for density encoding. Using the right system for the data type is the most important color decision in a chart.
+Kumo 中的图表配色分为三大体系 —— **语义**色令牌用于带有固有倾向性的数据，**分类**色板用于名义系列，**序列**色阶用于密度编码。为数据类型选择正确的体系，是图表中最关键的颜色决策。
 
-## Color systems
+## 配色体系
 
 <div class="mb-6">
 <p>
-Charts in the dashboard serve different jobs, so color is not “one-size-fits-all.”
-To avoid misreading data, we use different color systems based on the data task.
+仪表盘中的图表承担着不同的任务，因此配色并非一套通用方案。
+为避免误读数据，我们会根据数据任务使用不同的配色体系。
 </p>
 </div>
 
 <ChartColorSystemsDemo client:visible />
 
-## Semantic tokens
+## 语义令牌
 
 <div class="mb-6">
 <p>
-Semantic chart colors should be used when the data has inherent polarity, i.e. status, severity and health data. Semantic colors communicate to the user that this data needs their attention and an action might be required.
+当数据带有固有倾向性（即状态、严重程度与健康度数据）时，应使用语义图表配色。语义配色向用户传达这样的信息：这些数据需要关注，可能要求取相应的行动。
 
-Semantic chart colors are derived from our existing badge/status semantic tokens so meaning stays consistent across components and contexts. We intentionally adjust hue/chroma for charts to be less visually aggressive than badges to reduce visual fatigue and false urgency.
+语义图表配色源于我们现有的徽章/状态语义令牌，从而保证不同组件与上下文之间的含义一致。我们特意调整了图表的色相/色度，使其不像徽章那样在视觉上具有侵略性，以减少视觉疲劳和虚假的紧急感。
 </p>
 </div>
 
@@ -47,11 +46,11 @@ Semantic chart colors are derived from our existing badge/status semantic tokens
 <CategoricalBarChartDemo client:visible />
 </div>
 
-## Categorical palette
+## 分类色板
 
 <div class="mb-6">
 <p>
-Use the categorical palette when the data has no inherent polarity. The palette is ordered for maximum perceptual distance between adjacent slots to ensure it's CVD friendly and the data is easily distinguishable.
+当数据没有固有倾向性时，请使用分类色板。该色板在设计上让相邻槽位之间保持最大的感知距离，以确保对色觉障碍（CVD）友好，且数据易于区分。
 </p>
 </div>
 
@@ -60,12 +59,12 @@ Use the categorical palette when the data has no inherent polarity. The palette 
 </div>
 
 <div class="text-kumo-info bg-kumo-info-tint/50 rounded-lg py-1 px-4 ring ring-kumo-info mb-12">
-  We reduced categorical tokens from 16 (8 hues × 2 lightness variants) to 5 because most charts intentionally surface only top categories at once (commonly 5). When a chart needs more than 5 series it should cycle those tokens with modulo (color = tokens[i % 5]) for consistent, predictable styling.
+  我们将分类令牌从 16 个（8 个色相 × 2 个明度变体）减少到 5 个，因为大多数图表刻意只同时展示顶部几个类别（通常为 5 个）。当图表需要超过 5 个系列时，应使用取模方式循环这些令牌（color = tokens[i % 5]），以保证样式一致且可预测。
 </div>
 
 <div class="my-4">
 <p>
-  Categorical colors are tested using a CVD simulator to ensure they remain distinguishable for users with color vision deficiency. Here's an example of what the categorical colors might look like to someone with deuteranopia.
+  分类配色会通过 CVD 模拟器测试，确保对色觉障碍用户仍然可区分。下面就是分类配色在二型色觉异常（deuteranopia）用户眼中可能的呈现效果。
 </p>
 </div>
 
@@ -75,22 +74,20 @@ Use the categorical palette when the data has no inherent polarity. The palette 
 <CategoricalLineChartDemo client:visible />
 
 <div class="text-kumo-info bg-kumo-info-tint/50 rounded-lg py-1 px-4 ring ring-kumo-info mb-6">
-    <span class="font-semibold">Color alone should not be used to convey information.</span> When implementing line charts, ensure that you're using patterns (e.g. dashes/dots) on top of the color palette to differentiate between data points. Since dots and dashes appear lighter, we avoid pairing them with light colors since those lines can fade out.
+    <span class="font-semibold">不应该仅靠颜色来传达信息。</span> 实现折线图时，请确保在配色色板之上使用图案（如虚线/点线）来区分数据点。由于点与虚线看起来更浅，我们会避免将它们与浅色搭配，因为那些线条可能会淡出。
 </div>
 </div>
 
-## Sequential scale
+## 序列色阶
 
 <div class="mb-6">
 <p>
-A 5-step single-hue scale for encoding **density** — use when a single metric varies in
-magnitude across a set of values and color intensity should reinforce that magnitude.
-Common uses: choropleth maps (traffic volume by country), heatmaps, and histogram fills.
-The sequential scale is not appropriate for categorical series differentiation — use the
-categorical palette for that.
+用于编码**密度**的 5 级单色相色阶 —— 当单个指标在一组数值上的量级变化需要通过颜色强度加以强化时使用。
+常见用途：等值区域图（按国家的流量）、热力图和直方图填充。
+序列色阶不适用于区分分类系列 —— 那种情况请使用分类色板。
 
-Darker steps encode higher values in light mode; lighter steps encode higher values in
-dark mode so the most prominent color always corresponds to the highest magnitude.
+浅色模式下，更深的色阶编码更高的数值；深色模式下，更浅的色阶编码更高的数值，
+从而使最突出的颜色始终对应最高量级。
 </p>
 </div>
 

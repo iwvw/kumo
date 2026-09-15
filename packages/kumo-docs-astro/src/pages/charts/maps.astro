@@ -34,8 +34,8 @@ try {
 ---
 
 <DocLayout
-  title="Maps"
-  description="Map chart components for visualizing geographic data with GeoJSON."
+  title="地图"
+  description="用于借助 GeoJSON 可视化地理数据的地图图表组件。"
   sourceFile="components/chart"
 >
   <ComponentSection>
@@ -66,15 +66,15 @@ try {
   </ComponentSection>
 
   <ComponentSection>
-    <Heading level={2}>Installation</Heading>
+    <Heading level={2}>安装</Heading>
     <p class="mb-4 text-kumo-subtle">
-      <code class="text-kumo-default">BubbleMap</code> and <code class="text-kumo-default">ChoroplethMap</code> require <code class="text-kumo-default">echarts</code> as a peer dependency. <code class="text-kumo-default">GlobeMap</code> renders a built-in Natural Earth land mask directly to SVG and does not use WebGL or require ECharts. Planar map consumers provide GeoJSON; map components do not fetch map data or use map tiles.
+      <code class="text-kumo-default">BubbleMap</code> 与 <code class="text-kumo-default">ChoroplethMap</code> 需要 <code class="text-kumo-default">echarts</code> 作为 peer dependency。<code class="text-kumo-default">GlobeMap</code> 会将内置的 Natural Earth 陆地掩膜直接渲染为 SVG，不使用 WebGL，也不需要 ECharts。平面地图使用方需要自行提供 GeoJSON；地图组件不会获取地图数据，也不使用地图瓦片。
     </p>
     <CodeBlock code={`npm install echarts`} lang="bash" />
 
-    <Heading level={3} class="mb-2 mt-6 text-lg">Barrel</Heading>
+    <Heading level={3} class="mb-2 mt-6 text-lg">桶式导出</Heading>
     <CodeBlock code={`import { BubbleMap, ChoroplethMap, GlobeMap } from "@cloudflare/kumo";`} lang="tsx" />
-    <Heading level={3} class="mb-2 mt-4 text-lg">Granular</Heading>
+    <Heading level={3} class="mb-2 mt-4 text-lg">细粒度导入</Heading>
     <CodeBlock
       code={`import { BubbleMap, ChoroplethMap, GlobeMap } from "@cloudflare/kumo/components/chart";`}
       lang="tsx"
@@ -82,7 +82,7 @@ try {
   </ComponentSection>
 
   <ComponentSection>
-    <Heading level={2}>Usage</Heading>
+    <Heading level={2}>用法</Heading>
     <CodeBlock
       code={`import { BubbleMap, ChoroplethMap, type MapGeoJson } from "@cloudflare/kumo";
 import * as echarts from "echarts/core";
@@ -139,13 +139,13 @@ export default function Example() {
   </ComponentSection>
 
   <ComponentSection>
-    <Heading level={2} class="mb-6">Examples</Heading>
+    <Heading level={2} class="mb-6">示例</Heading>
 
     <div class="space-y-8">
       <div>
-        <Heading level={3}>Bubble Map</Heading>
+        <Heading level={3}>气泡地图</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Plot raw rows by longitude and latitude. The <code class="text-kumo-default">value</code> accessor controls proportional bubble size.
+          按经纬度绘制原始数据行。<code class="text-kumo-default">value</code> 访问器控制气泡的比例大小。
         </p>
         <ComponentExample code={`<BubbleMap
   echarts={echarts}
@@ -162,9 +162,9 @@ export default function Example() {
       </div>
 
       <div>
-        <Heading level={3}>Choropleth Map</Heading>
+        <Heading level={3}>等值区域图</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Shade regions by value. Data rows are joined to GeoJSON features by <code class="text-kumo-default">name</code> (matched against the feature's <code class="text-kumo-default">nameProperty</code>, default <code class="text-kumo-default">"name"</code>).
+          按数值为区域着色。数据行通过 <code class="text-kumo-default">name</code> 与 GeoJSON 要素关联（与该要素的 <code class="text-kumo-default">nameProperty</code> 匹配，默认 <code class="text-kumo-default">"name"</code>）。
         </p>
         <ComponentExample code={`<ChoroplethMap
   echarts={echarts}
@@ -178,9 +178,9 @@ export default function Example() {
       </div>
 
       <div>
-        <Heading level={3}>Cloudflare Availability Locations</Heading>
+        <Heading level={3}>Cloudflare 可用位置</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Plot geographic markers without WebGL. Hatched neutral land, a transparent ocean, horizon-faded markers, and dense geographic guides echo the globe styling on Cloudflare’s marketing homepage while keeping the blue locations prominent. These illustrative locations use major network metros and IATA identifiers; drag the globe or focus it and use the arrow keys to reveal points on the hidden hemisphere.
+          在不使用 WebGL 的情况下绘制地理标记。斜纹的陆地、透明的海洋、随地平线淡出的标记和密集的地理辅助线，呼应了 Cloudflare 营销主页上的地球样式，同时让蓝色位置保持醒目。这些示意位置使用主要网络城市与 IATA 代号；拖动地球，或聚焦后用方向键，可查看隐藏半球上的点位。
         </p>
         <ComponentExample code={`<GlobeMap
   markers={cloudflareAvailabilityLocations}
@@ -197,9 +197,9 @@ export default function Example() {
       </div>
 
       <div>
-        <Heading level={3}>Custom Tooltips</Heading>
+        <Heading level={3}>自定义 Tooltip</Heading>
         <p class="mb-4 text-kumo-subtle">
-          Provide <code class="text-kumo-default">tooltipFormatter</code> when the default name/value tooltip is not enough. The formatter returns HTML rendered by ECharts, so escape user-provided values.
+          当默认的名称/数值 tooltip 不够用时，可提供 <code class="text-kumo-default">tooltipFormatter</code>。格式化函数返回由 ECharts 渲染的 HTML，因此请对用户提供的值进行转义。
         </p>
         <CodeBlock
           code={`<BubbleMap
@@ -221,7 +221,7 @@ export default function Example() {
   </ComponentSection>
 
   <ComponentSection>
-    <Heading level={2}>API Reference</Heading>
+    <Heading level={2}>API 参考</Heading>
     <Heading level={3} class="mb-2 mt-4 text-lg">BubbleMap</Heading>
     <PropsTable component="BubbleMap" />
     <Heading level={3} class="mb-2 mt-6 text-lg">ChoroplethMap</Heading>

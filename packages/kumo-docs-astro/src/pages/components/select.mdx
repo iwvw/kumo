@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Select"
-description: "Displays a list of options for the user to pick from—triggered by a button."
+description: "显示一个选项列表供用户选择，通过按钮触发。"
 sourceFile: "components/select"
 baseUIComponent: "select"
 ---
@@ -44,13 +44,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 <CodeBlock code={`import { Select } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 细粒度导入
 
   <CodeBlock
     code={`import { Select } from "@cloudflare/kumo/components/select";`}
@@ -62,7 +62,7 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Select } from "@cloudflare/kumo";
@@ -87,14 +87,14 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic
+### 基础用法
 
 <p>
-  A select with a visible label. When you provide the `label` prop, the select
-  automatically renders inside a Field wrapper with the label displayed above
-  it.
+  带有可见标签的 Select。提供 `label` 属性时，
+  Select 会自动在 Field 包装内渲染，
+  标签显示在其上方。
 </p>
 
   <ComponentExample demo="SelectBasicDemo">
@@ -106,9 +106,9 @@ export default function Example() {
 
 <ComponentSection>
 
-### Sizes
+### 尺寸
 
-<p>Use the `size` prop to match Input sizing (xs, sm, base, lg).</p>
+<p>使用 `size` 属性与 Input 的尺寸保持一致（xs、sm、base、lg）。</p>
 
   <ComponentExample demo="SelectSizesDemo">
     <SelectSizesDemo client:load />
@@ -119,12 +119,12 @@ export default function Example() {
 
 <ComponentSection>
 
-### Placement
+### 弹出位置
 
 <p>
-  The popup prefers `side="bottom"` and flips automatically when that side runs
-  out of room. Use `side`, `align`, `sideOffset` and `alignOffset` to pin it
-  explicitly — collision handling still applies.
+  弹出面板默认优先显示在 `side="bottom"`，该方向空间不足时会自动翻转。
+  使用 `side`、`align`、`sideOffset` 和 `alignOffset` 可以显式固定位置，
+  碰撞处理仍然生效。
 </p>
 
   <ComponentExample demo="SelectPlacementDemo">
@@ -136,15 +136,15 @@ export default function Example() {
 
 <ComponentSection>
 
-### Aligned to the selected option
+### 对齐到选中项
 
 <p>
-  Set `alignItemWithTrigger` to overlay the popup on the trigger so the selected
-  option sits directly on top of it, the way a native `select` behaves. Options
-  before the selection render above the trigger and the rest below, so the popup
-  can extend in both directions. Both selects below have `Mars` selected
-  mid-list — open them to compare. This mode disables itself and falls back to
-  normal anchored placement when there is not enough room.
+  设置 `alignItemWithTrigger` 可将弹出面板覆盖在触发器上，使选中项正好位于
+  其正上方，行为与原生 `select` 一致。选中项之前的选项渲染在触发器上方，
+  其余选项渲染在下方，因此弹出面板可以向两个方向延伸。
+  下面的两个 Select 都在列表中间选中了 `Mars`，
+  可以打开对比效果。当空间不足时，
+  此模式会自动停用并回退到常规的锚定定位。
 </p>
 
   <ComponentExample demo="SelectDynamicPlacementDemo">
@@ -156,11 +156,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### Without Visible Label
+### 无可见标签
 
 <p>
-  When a visible label isn't needed (e.g., in compact UIs or when context is
-  clear), use `aria-label` for accessibility.
+  当不需要可见标签时（例如紧凑界面或上下文已明确时），
+  使用 `aria-label` 保证无障碍。
 </p>
 
   <ComponentExample demo="SelectWithoutLabelDemo">
@@ -172,11 +172,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### With Description
+### 带描述
 
 <p>
-  Select integrates with the Field wrapper to show description text below the
-  input.
+  Select 与 Field 包装集成，
+  可在输入框下方显示描述文字。
 </p>
 
   <ComponentExample demo="SelectWithDescriptionDemo">
@@ -188,11 +188,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### With Error
+### 错误状态
 
 <p>
-  Pass the `error` prop to display a validation error. When an error is present,
-  it replaces the description in the UI.
+  传入 `error` 属性可显示校验错误。存在错误时，
+  界面中会用错误信息替代描述。
 </p>
 
   <ComponentExample demo="SelectWithErrorDemo">
@@ -204,12 +204,12 @@ export default function Example() {
 
 <ComponentSection>
 
-### Placeholder
+### 占位符
 
 <p>
-  Use the `placeholder` prop to show text when no value is selected. When using
-  `renderValue` to customize the display of selected values, the placeholder is
-  shown instead of calling `renderValue` when the value is `null`.
+  使用 `placeholder` 属性，在未选择任何值时显示文字。使用 `renderValue`
+  自定义选中值的显示时，当值为 `null` 会显示占位符，
+  而不会调用 `renderValue`。
 </p>
 
 ```tsx
@@ -229,11 +229,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### Label with Tooltip
+### 带提示的标签
 
 <p>
-  Add a tooltip icon next to the label for additional context using
-  `labelTooltip`.
+  使用 `labelTooltip` 在标签旁添加一个提示图标，
+  用于提供补充说明。
 </p>
 
   <ComponentExample demo="SelectWithTooltipDemo">
@@ -245,12 +245,12 @@ export default function Example() {
 
 <ComponentSection>
 
-### Custom Rendering
+### 自定义渲染
 
 <p>
-  Use `renderValue` to customize how the selected value appears in the trigger
-  button. This is useful when working with complex object data structures
-  instead of simple string values.
+  使用 `renderValue` 自定义选中值在触发器按钮中的外观。当处理复杂的
+  对象数据结构，而不只是简单字符串值时，
+  这一用法很有用。
 </p>
 
 <ComponentExample demo="SelectCustomRenderingDemo">
@@ -258,15 +258,15 @@ export default function Example() {
 </ComponentExample>
 
 <p>
-  The `renderValue` function is only called when a value is selected. Use
-  `placeholder` to define what to show when no value is selected.
+  只有在选中值后才会调用 `renderValue` 函数。使用 `placeholder`
+  定义未选择任何值时的显示内容。
 </p>
 
 <p>
-  Select compares value with items to find which one is selected. For object
-  items, it will compare if the object is the same reference not by value by
-  default. If you want to compare object items by value, you can use
-  `isItemEqualToValue` prop.
+  Select 会拿值与 items 比较，以确定哪个选项被选中。
+  对于对象类型的选项，默认按引用比较，而不是按值比较。
+  如果希望按值比较对象选项，可以使用
+  `isItemEqualToValue` 属性。
 </p>
 
 ```tsx
@@ -297,18 +297,18 @@ export default function Example() {
 
 <ComponentSection>
 
-### Loading
+### 加载状态
 
 <p>
-  A select component with loading state. The loading state is passed to the
-  component via the `loading` prop.
+  带加载状态的 Select 组件。加载状态通过 `loading` 属性
+  传给组件。
 </p>
 
   <ComponentExample demo="SelectLoadingDemo">
     <div class="flex flex-col gap-4">
-      <p class="text-kumo-default">Loading State</p>
+      <p class="text-kumo-default">加载状态</p>
       <SelectLoadingDemo client:load />
-      <p class="text-kumo-default">Loading From Server (simulated 2s delay)</p>
+      <p class="text-kumo-default">从服务器加载（模拟延迟 2 秒）</p>
       <SelectLoadingDataDemo client:load />
     </div>
   </ComponentExample>
@@ -318,12 +318,12 @@ export default function Example() {
 
 <ComponentSection>
 
-### Multiple Selection
+### 多选
 
 <p>
-  Enable multiple selection with the `multiple` prop. The value becomes an array
-  of selected items. Use `placeholder` for the empty state and `renderValue` to
-  customize how selections are displayed.
+  使用 `multiple` 属性启用多选。此时值变为选中项的数组。
+  使用 `placeholder` 定义空状态，使用 `renderValue`
+  自定义选中项如何显示。
 </p>
 
 ```tsx
@@ -348,7 +348,7 @@ export default function Example() {
 
 <ComponentSection>
 
-### More Example
+### 更多示例
 
   <ComponentExample demo="SelectComplexDemo">
     <SelectComplexDemo client:load />
@@ -359,11 +359,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### Disabled Options
+### 禁用选项
 
 <p>
-  Options can be disabled with the `disabled` prop. Disabled options are greyed
-  out and cannot be selected.
+  选项可以通过 `disabled` 属性禁用。
+  禁用选项呈灰色显示，无法被选中。
 </p>
 
   <ComponentExample demo="SelectDisabledOptionsDemo">
@@ -375,11 +375,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### Disabled Items (via items prop)
+### 禁用项目（通过 items 属性）
 
 <p>
-  The `items` object-map prop accepts descriptor objects with `disabled`
-  alongside plain string values.
+  `items` 对象映射属性既接受带 `disabled` 的描述对象，
+  也接受普通的字符串值。
 </p>
 
   <ComponentExample demo="SelectDisabledItemsDemo">
@@ -391,11 +391,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### Grouped Options
+### 分组选项
 
 <p>
-  Use `Select.Group`, `Select.GroupLabel`, and `Select.Separator` to organize
-  options under labeled headers with visual dividers.
+  使用 `Select.Group`、`Select.GroupLabel` 和 `Select.Separator`，
+  用带标签的标题和视觉分隔线组织选项。
 </p>
 
   <ComponentExample demo="SelectGroupedDemo">
@@ -407,11 +407,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### Groups with Disabled Options
+### 分组与禁用选项
 
 <p>
-  Combine groups, separators, and disabled options with info tooltips to clearly
-  separate available and unavailable choices.
+  将分组、分隔线和禁用选项与信息提示结合使用，
+  可以清晰地区分可用与不可用的选择。
 </p>
 
   <ComponentExample demo="SelectGroupedWithDisabledDemo">
@@ -423,11 +423,11 @@ export default function Example() {
 
 <ComponentSection>
 
-### Long List (Scrolling Test)
+### 长列表（滚动测试）
 
 <p>
-  A select component with many options to test popup scrolling behavior. The
-  popup should scroll smoothly without bounce/overscroll issues.
+  包含大量选项的 Select 组件，用于测试弹出面板的滚动行为。弹出面板应平滑滚动，
+  不会出现反弹或过度滚动的问题。
 </p>
 
   <ComponentExample demo="SelectLongListDemo">
@@ -439,7 +439,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Select
 
@@ -452,18 +452,18 @@ export default function Example() {
 ### Select.Group
 
 <p>
-  Groups related options together with an accessible `role="group"`. Use with
-  `Select.GroupLabel` to provide a visible heading.
+  使用可访问的 `role="group"` 将相关选项分组。
+  可配合 `Select.GroupLabel` 提供可见标题。
 </p>
 
 ### Select.GroupLabel
 
 <p>
-  A visible heading for a `Select.Group`. Automatically associated with its
-  parent group for accessibility.
+  `Select.Group` 的可见标题。
+  自动与其父组关联，保证无障碍。
 </p>
 
 ### Select.Separator
 
-  <p>A visual divider line between option groups. Renders with `role="separator"`.</p>
+  <p>选项组之间的视觉分隔线。渲染为 `role="separator"`。</p>
 </ComponentSection>

@@ -1,21 +1,21 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Component Registry"
-description: "AI-readable component metadata for LLMs and code generation tools. Auto-generated from TypeScript types and component variants."
+description: "供 LLM 和代码生成工具使用的、AI 可读的组件元数据。从 TypeScript 类型和组件变体自动生成。"
 ---
 
 import Callout from "~/components/docs/Callout.astro";
 import { ComponentRegistryView } from "~/components/demos/RegistryDemo";
 
-## Overview
+## 概述
 
-The component registry is a machine-readable JSON file that describes all Kumo components, their props, variants, examples, and semantic tokens. It's designed for AI agents, code generators, and other tooling.
+组件注册表是一个机器可读的 JSON 文件，描述了所有 Kumo 组件的 props、变体、示例和语义化令牌。它是为 AI 代理、代码生成器和其他工具设计的。
 
-[View JSON API](/api/component-registry)
+[查看 JSON API](/api/component-registry)
 
-## Accessing the Registry
+## 访问注册表
 
-### Via CLI
+### 通过 CLI
 
 ```bash
 # List all components
@@ -25,14 +25,14 @@ npx @cloudflare/kumo ls
 npx @cloudflare/kumo doc Button
 ```
 
-### Via HTTP API
+### 通过 HTTP API
 
 ```bash
 # JSON endpoint
 curl https://kumo-ui.com/api/component-registry
 ```
 
-### Via jq (Local)
+### 通过 jq（本地）
 
 ```bash
 # Get Button props
@@ -42,12 +42,11 @@ jq '.components.Button.props' packages/kumo/ai/component-registry.json
 jq '.search.byCategory' packages/kumo/ai/component-registry.json
 ```
 
-## Registry Contents
+## 注册表内容
 
 <Callout type="info">
-  The registry includes: component props with types and defaults, variant
-  options with descriptions, real code examples from stories, semantic color
-  tokens used, and sub-components for compound patterns.
+  注册表包含：带类型和默认值的组件 props、带描述的可选变体、来自 stories
+  的真实代码示例、使用的语义颜色令牌，以及复合模式的子组件。
 </Callout>
 
 <ComponentRegistryView client:load />

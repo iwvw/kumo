@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
-title: "Timeseries Chart"
-description: "A specialized chart for displaying time-based data."
+title: "时序图表"
+description: "专用于展示基于时间的数据的图表。"
 sourceFile: "components/chart"
 ---
 
@@ -27,15 +27,15 @@ import {
 } from "~/components/demos/Chart/ChartDemo";
 
 <p>
-  The timeseries chart is a specialized chart for displaying time-based data.
-  Each data point is a tuple of <code>[timestamp_in_ms, value]</code>.
+  时序图表是专用于展示基于时间的数据的图表。
+  每个数据点是一个 <code>[timestamp_in_ms, value]</code> 元组。
 </p>
 
 <ComponentSection>
 
-## Basic Line Chart
+## 基础折线图
 
-<p>A simple line chart displaying multiple data series over time.</p>
+<p>随时间展示多条数据系列的简单折线图。</p>
 
   <ComponentExample demo="BasicLineChartDemo">
     <BasicLineChartDemo client:visible />
@@ -44,12 +44,11 @@ import {
 
 <ComponentSection>
 
-## Discrete Count Data
+## 离散计数数据
 
 <p>
-  Set <code>yAxisMinInterval={1}</code> for discrete values such as request
-  counts. This prevents fractional y-axis tick marks while leaving the default
-  axis behavior unchanged for rates and other continuous values.
+  对于请求计数等离散值，设置 <code>yAxisMinInterval={1}</code>。这能避免 y 轴出现
+  小数刻度，同时保持比率等连续值的默认坐标轴行为不变。
 </p>
 
   <ComponentExample demo="IntegerYAxisChartDemo">
@@ -59,12 +58,11 @@ import {
 
 <ComponentSection>
 
-## Reference Markers
+## 参考标记
 
 <p>
-  Use the <code>markers</code> prop to render vertical reference lines at specific
-  timestamps, such as deployments, releases, or configuration changes. Markers
-  can include short labels, descriptions for tooltips, colors, and line styles.
+  使用 <code>markers</code> 属性在特定时间戳处渲染垂直参考线，例如部署、发布或配置变更。
+  标记可以包含简短标签、用于 tooltip 的描述、颜色和线型。
 </p>
 
   <ComponentExample demo="ReferenceMarkersChartDemo">
@@ -74,12 +72,11 @@ import {
 
 <ComponentSection>
 
-## Thresholds
+## 阈值
 
 <p>
-  Use the <code>thresholds</code> prop to render horizontal reference lines on the
-  value axis, such as memory limits or quota boundaries. Thresholds include a
-  value and color, with an optional label.
+  使用 <code>thresholds</code> 属性在数值轴上渲染水平参考线，例如内存限制或配额边界。
+  阈值包含一个值和颜色，以及可选的标签。
 </p>
 
   <ComponentExample demo="ThresholdsChartDemo">
@@ -89,12 +86,11 @@ import {
 
 <ComponentSection>
 
-## Custom X-Axis Label Format
+## 自定义 X 轴标签格式
 
 <p>
-  Use the <code>xAxisTickLabelFormat</code> prop to control how x-axis tick
-  labels are rendered. The formatter receives the raw timestamp in milliseconds
-  and returns a display string, overriding ECharts' built-in time formatting.
+  使用 <code>xAxisTickLabelFormat</code> 属性控制 x 轴刻度标签的渲染方式。格式化
+  函数接收以毫秒为单位的原始时间戳并返回显示字符串，从而覆盖 ECharts 内置的时间格式。
 </p>
 
   <ComponentExample demo="CustomAxisLabelFormatDemo">
@@ -104,13 +100,12 @@ import {
 
 <ComponentSection>
 
-## Gradient Fill
+## 渐变填充
 
 <p>
-  Set <code>gradient</code> to <code>true</code> to render a vertical gradient
-  fill beneath each line series. The fill fades from the series color at the top
-  to transparent at the bottom, giving the chart a polished area-chart look
-  without losing the clarity of individual lines.
+  将 <code>gradient</code> 设为 <code>true</code>，即可在每条折线系列下方渲染垂直渐变
+  填充。填充从顶部的系列颜色渐变为底部的透明色，让图表呈现精致的面积图观感，
+  同时不损失各条线条的清晰度。
 </p>
 
   <ComponentExample demo="GradientLineChartDemo">
@@ -120,11 +115,10 @@ import {
 
 <ComponentSection>
 
-## Incomplete Data
+## 不完整数据
 
 <p>
-  Use the <code>incomplete</code> prop to indicate regions where data may be
-  incomplete or still being collected.
+  使用 <code>incomplete</code> 属性标记数据可能不完整或仍在收集中区域。
 </p>
 
   <ComponentExample demo="IncompleteDataChartDemo">
@@ -134,11 +128,11 @@ import {
 
 <ComponentSection>
 
-## Time Range Selection
+## 时间范围选择
 
 <p>
-  Enable time range selection by providing the <code>onTimeRangeChange</code>
-  callback. Users can click and drag on the chart to select a time range.
+  提供 <code>onTimeRangeChange</code> 回调即可启用时间范围选择。
+  用户可以在图表上点击并拖动来选择时间范围。
 </p>
 
   <ComponentExample demo="TimeRangeSelectionChartDemo">
@@ -148,13 +142,11 @@ import {
 
 <ComponentSection>
 
-## Tooltip footer
+## Tooltip 页脚
 
 <p>
-  Use the <code>tooltipFooter</code> prop to add brief supporting text below
-  the values in standard series tooltips. It works with every timeseries chart
-  configuration, including line, bar, gradient, threshold, and custom-axis
-  charts.
+  使用 <code>tooltipFooter</code> 属性可在标准系列 tooltip 的数值下方添加简短的
+  支持性文本。它适用于所有时序图表配置，包括折线、柱状、渐变、阈值和自定义坐标轴图表。
 </p>
 
   <ComponentExample demo="ChartExampleDemo">
@@ -164,13 +156,12 @@ import {
 
 <ComponentSection>
 
-## Tooltip Cursor Tracking
+## Tooltip 光标跟踪
 
 <p>
-  Use the <code>tooltipFollowCursor</code> prop to control which axis the tooltip
-  tracks the cursor on. The default is <code>"both"</code>, which follows the
-  cursor freely. Set it to <code>"x"</code> for a Recharts-style axis-locked
-  tooltip that only moves horizontally.
+  使用 <code>tooltipFollowCursor</code> 属性控制 tooltip 沿哪个坐标轴跟踪光标。
+  默认值为 <code>"both"</code>，即自由跟随光标。设为 <code>"x"</code> 可得到
+  Recharts 风格的轴锁定 tooltip，只沿水平方向移动。
 </p>
 
   <ComponentExample demo="TooltipFollowCursorDemo">
@@ -180,14 +171,12 @@ import {
 
 <ComponentSection>
 
-## Tooltip Boundary
+## Tooltip 边界
 
 <p>
-  Use the <code>tooltipBoundary</code> prop to constrain the tooltip to a
-  specific container element. By default the tooltip avoids overflowing any
-  clipping ancestor (scroll containers, viewports). Pass a DOM element to
-  restrict it further — useful when the chart lives inside a card or panel
-  and the tooltip shouldn't escape it.
+  使用 <code>tooltipBoundary</code> 属性将 tooltip 限制在特定的容器元素内。
+  默认情况下，tooltip 会避免溢出任何裁剪祖先（滚动容器、视口）。传入 DOM 元素可
+  进一步限制 —— 当图表位于卡片或面板内、tooltip 不应超出其范围时很有用。
 </p>
 
   <ComponentExample demo="TooltipBoundaryDemo">
@@ -197,11 +186,11 @@ import {
 
 <ComponentSection>
 
-## Bar Chart
+## 柱状图
 
 <p>
-  Set <code>type="bar"</code> to render series as stacked bars instead of lines.
-  All other props — axes, tooltips, colors — work identically.
+  将 <code>type</code> 设为 <code>"bar"</code> 可以把系列渲染为堆叠柱状图，而不是
+  折线。其余所有属性 —— 坐标轴、tooltip、配色 —— 行为完全相同。
 </p>
 
   <ComponentExample demo="BarChartDemo">
@@ -211,13 +200,13 @@ import {
 
 <ComponentSection>
 
-## Legend Highlight
+## 图例高亮
 
 <p>
-  Hovering a legend item highlights the corresponding series on the chart and
-  fades the others. Use <code>onPointerEnter</code> and{" "}
-  <code>onPointerLeave</code> on <code>ChartLegend</code> items together with{" "}
-  <code>dispatchAction</code> on the chart ref.
+  悬停图例项会高亮图表上对应的系列，并淡化其他系列。可在 <code>ChartLegend</code>
+  项目上使用 <code>onPointerEnter</code> 和{" "}
+  <code>onPointerLeave</code>，并结合图表 ref 上的{" "}
+  <code>dispatchAction</code>。
 </p>
 
   <ComponentExample demo="LegendHighlightDemo">
@@ -227,12 +216,11 @@ import {
 
 <ComponentSection>
 
-## Legend Click
+## 图例点击
 
 <p>
-  Clicking a <code>ChartLegend</code> item isolates that series, showing only
-  it and hiding the rest. Clicking the already-isolated series restores them
-  all.
+  点击某个 <code>ChartLegend</code> 项目会隔离该系列，只显示它并隐藏其余系列。
+  再次点击已隔离的系列会恢复显示全部。
 </p>
 
   <ComponentExample demo="LegendOnClickDemo">
@@ -242,20 +230,20 @@ import {
 
 <ComponentSection>
 
-## Loading State
+## 加载状态
 
 <p>
-  Set <code>loading</code> to <code>true</code> to show a skeleton that matches
-  the chart's <code>type</code> while data loads.
+  将 <code>loading</code> 设为 <code>true</code>，可在数据加载期间显示与图表
+  <code>type</code> 匹配的骨架屏。
 </p>
 
-### Line
+### 折线图
 
   <ComponentExample demo="LoadingChartDemo">
     <LoadingChartDemo client:only="react" />
   </ComponentExample>
 
-### Bar
+### 柱状图
 
   <ComponentExample demo="LoadingBarChartDemo">
     <LoadingBarChartDemo client:only="react" />

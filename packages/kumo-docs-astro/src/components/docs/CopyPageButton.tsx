@@ -79,20 +79,20 @@ export function CopyPageButton({ align = "end" }: CopyPageButtonProps) {
   const dropdownItems = (
     <>
       <DropdownMenu.Item icon={LinkSimpleIcon} onClick={handleCopyPageLink}>
-        Copy page link
+        复制页面链接
       </DropdownMenu.Item>
       <DropdownMenu.Item icon={FileMdIcon} onClick={handleViewMarkdown}>
-        View Page as Markdown
+        将页面作为 Markdown 查看
       </DropdownMenu.Item>
       <DropdownMenu.Separator />
       <DropdownMenu.Item
         icon={<ClaudeIcon className="mr-2" />}
         onClick={handleOpenInClaude}
       >
-        Open in Claude
+        在 Claude 中打开
       </DropdownMenu.Item>
       <DropdownMenu.Item icon={OpenAiLogo} onClick={handleOpenInChatGPT}>
-        Open in ChatGPT
+        在 ChatGPT 中打开
       </DropdownMenu.Item>
     </>
   );
@@ -106,7 +106,7 @@ export function CopyPageButton({ align = "end" }: CopyPageButtonProps) {
         size="sm"
         variant="secondary"
       >
-        <span>Copy page</span>
+        <span>复制页面</span>
       </Button>
       <DropdownMenu>
         <DropdownMenu.Trigger
@@ -115,7 +115,7 @@ export function CopyPageButton({ align = "end" }: CopyPageButtonProps) {
               variant="secondary"
               size="sm"
               shape="square"
-              aria-label="Copy page options"
+              aria-label="复制页面选项"
               className={cn("rounded-l-none")}
             >
               <CaretDownIcon size={12} />

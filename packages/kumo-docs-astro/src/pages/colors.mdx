@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Colors"
-description: "Kumo uses semantic color tokens that automatically adapt to light and dark mode. Use these classes in your Tailwind CSS instead of raw color values."
+description: "Kumo 使用语义化颜色令牌，可自动适配浅色和深色模式。请在 Tailwind CSS 中使用这些类，而不是原始颜色值。"
 ---
 
 import {
@@ -12,11 +12,11 @@ import ComponentExample from "~/components/docs/ComponentExample.astro";
 import { Badge, Banner } from "@cloudflare/kumo";
 import { InfoIcon } from "@phosphor-icons/react";
 
-## Usage
+## 用法
 
-Always use semantic tokens instead of raw Tailwind colors. This ensures your UI automatically adapts to light and dark mode, and that your components remain consistent across themes.
+始终使用语义化令牌，而不是原生的 Tailwind 颜色。这样可以确保你的 UI 自动适配浅色和深色模式，并保持组件在不同主题下的一致性。
 
-#### Correct
+#### 正确
 
 ```tsx
 <div className="bg-kumo-base text-kumo-default border-kumo-hairline">
@@ -25,7 +25,7 @@ Always use semantic tokens instead of raw Tailwind colors. This ensures your UI 
 </div>
 ```
 
-#### Incorrect
+#### 错误
 
 ```tsx
 {
@@ -36,11 +36,11 @@ Always use semantic tokens instead of raw Tailwind colors. This ensures your UI 
 </div>;
 ```
 
-> Lint rules enforce this: The `no-primitive-colors` rule will flag any raw Tailwind colors like `bg-blue-500`.
+> 代码规范（Lint）规则会强制这一点：`no-primitive-colors` 规则会标记任何原生 Tailwind 颜色，如 `bg-blue-500`。
 
-## Mode
+## 模式
 
-Set `data-mode` on a parent element to control light/dark mode. Never use Tailwind's `dark:` variant — semantic tokens handle dark mode automatically via CSS `light-dark()`.
+在父元素上设置 `data-mode` 来控制浅色/深色模式。切勿使用 Tailwind 的 `dark:` 变体 — 语义化令牌会通过 CSS `light-dark()` 自动处理深色模式。
 
 ```tsx
 // Set mode on html or body
@@ -51,14 +51,14 @@ Set `data-mode` on a parent element to control light/dark mode. Never use Tailwi
 <div className="bg-kumo-base text-kumo-default" />
 ```
 
-## Themes
+## 主题
 
-Themes override semantic token values while preserving the same token names. Set `data-theme` on a parent element to apply a theme.
+主题在保留相同令牌名的同时覆盖语义令牌值。在父元素上设置 `data-theme` 即可应用主题。
 
-### Available Themes
+### 可用主题
 
-- `kumo` — Default theme (no attribute needed)
-- `fedramp` — Government compliance styling
+- `kumo` — 默认主题（无需设置属性）
+- `fedramp` — 面向政府合规的样式
 
 ```tsx
 // Apply a theme to a section or the whole app
@@ -71,9 +71,9 @@ Themes override semantic token values while preserving the same token names. Set
 <html data-mode="dark" data-theme="fedramp">
 ```
 
-### Theme Generator
+### 主题生成器
 
-Themes are defined in a centralized config and generated as CSS files. The theme generator ensures consistency across all themes.
+主题在集中式配置中定义，并生成 CSS 文件。主题生成器可确保所有主题之间保持一致。
 
 ```bash
 
@@ -90,11 +90,11 @@ pnpm --filter @cloudflare/kumo codegen:themes
 pnpm --filter @cloudflare/kumo codegen:themes --dry-run
 ```
 
-Theme config: `packages/kumo/scripts/theme-generator/config.ts`
+主题配置：`packages/kumo/scripts/theme-generator/config.ts`
 
-### Creating a New Theme
+### 创建新主题
 
-Add theme overrides in the config file. Only override tokens that need to change — all other tokens inherit from the base kumo theme.
+在配置文件中添加主题覆盖项。只需覆盖需要变更的令牌 — 其余令牌都会继承基础 kumo 主题。
 
 ```ts
 // In scripts/theme-generator/config.ts
@@ -122,17 +122,17 @@ export const THEME_CONFIG: ThemeConfig = {
 export const AVAILABLE_THEMES = ["kumo", "fedramp", "myTheme"] as const;
 ```
 
-Then run `pnpm codegen:themes` to generate the CSS.
+然后运行 `pnpm codegen:themes` 生成 CSS。
 
-## Semantic Tokens
+## 语义化令牌
 
-We use semantic tokens to group colors by purpose. Use the token that matches the role of the element, not the color you want to achieve.
+我们使用语义化令牌按用途对颜色进行分组。请选择与元素角色匹配的令牌，而不是你想要的某个颜色。
 
-Semantic tokens are named by **role**, not by hue. A token like `bg-kumo-danger` communicates intent — it doesn't imply a specific shade of red, and its exact value can change per theme or color mode without touching your component code.
+语义化令牌按**角色**命名，而不是按色相。像 `bg-kumo-danger` 这样的令牌表达的是意图 — 它不意味着某种特定的红色，其具体值可以随主题或颜色模式变化，而无需改动你的组件代码。
 
-### Surface Hierarchy
+### 表面层级
 
-Surfaces establish depth and layering in the UI. Use them in order from the outermost background inward.
+表面用于建立 UI 中的深度和分层。请按照从最外层背景向内的顺序使用它们。
 
 <div style="overflow-x: auto;">
   <table>
@@ -142,40 +142,40 @@ Surfaces establish depth and layering in the UI. Use them in order from the oute
     </colgroup>
     <thead>
       <tr>
-        <th>Token</th>
-        <th>Purpose</th>
+        <th>令牌</th>
+        <th>用途</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>bg-kumo-canvas</code></td>
-        <td>The outermost page background — sits behind everything</td>
+        <td>最外层的页面背景 — 位于所有内容之后</td>
       </tr>
       <tr>
         <td><code>bg-kumo-base</code></td>
-        <td>Default component background</td>
+        <td>组件默认背景</td>
       </tr>
       <tr>
         <td><code>bg-kumo-elevated</code></td>
-        <td>Slightly elevated surface, e.g. <code>LayerCard.Secondary</code></td>
+        <td>略微抬升的表面，例如 <code>LayerCard.Secondary</code></td>
       </tr>
       <tr>
         <td><code>bg-kumo-recessed</code></td>
-        <td>Recessed surface with a subtly darker fill, e.g. segmented <code>Tabs</code> background</td>
+        <td>带有更暗填充的内凹表面，例如分段式 <code>Tabs</code> 的背景</td>
       </tr>
       <tr>
         <td><code>bg-kumo-tint</code></td>
-        <td>Subtle tinted background for tables or hover states</td>
+        <td>用于表格或悬停状态的细微着色背景</td>
       </tr>
       <tr>
         <td><code>bg-kumo-contrast</code></td>
-        <td>High-contrast, inverted background</td>
+        <td>高对比度的反相背景</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### Brand
+### 品牌色
 
 <div style="overflow-x: auto;">
   <table>
@@ -185,26 +185,26 @@ Surfaces establish depth and layering in the UI. Use them in order from the oute
     </colgroup>
     <thead>
       <tr>
-        <th>Token</th>
-        <th>Purpose</th>
+        <th>令牌</th>
+        <th>用途</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>bg-kumo-brand</code></td>
-        <td>Primary brand background</td>
+        <td>主要品牌背景</td>
       </tr>
       <tr>
         <td><code>bg-kumo-brand-hover</code></td>
-        <td>Hover state for brand backgrounds</td>
+        <td>品牌背景的悬停状态</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-### Semantic Status Colors
+### 语义化状态颜色
 
-Each status color comes in two variants: a solid color for icons and indicators, and a `-tint` variant for background fills behind content (i.e. `Badge` or `Banner`).
+每种状态颜色都有两个变体：实色用于图标和指示器，`-tint` 变体用于内容后面的背景填充（例如 `Badge` 或 `Banner`）。
 
 <div style="overflow-x: auto;">
   <table>
@@ -214,38 +214,38 @@ Each status color comes in two variants: a solid color for icons and indicators,
     </colgroup>
     <thead>
       <tr>
-        <th>Token</th>
-        <th>Purpose</th>
+        <th>令牌</th>
+        <th>用途</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>bg-kumo-info</code></td>
-        <td>Info indicator</td>
+        <td>信息指示器</td>
       </tr>
       <tr>
         <td><code>bg-kumo-success</code></td>
-        <td>Success indicator</td>
+        <td>成功指示器</td>
       </tr>
       <tr>
         <td><code>bg-kumo-warning</code></td>
-        <td>Warning indicator</td>
+        <td>警告指示器</td>
       </tr>
       <tr>
         <td><code>bg-kumo-danger</code></td>
-        <td>Error/destructive indicator</td>
+        <td>错误/破坏性操作指示器</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-Use the solid token `bg-kumo-*` for status dots, `fill-kumo-*` for icons, and `border-kumo-*`, `ring-kumo-*` for borders and rings. Banners and badges use the `-tint` variant with varying opacity values.
+状态点使用实色令牌 `bg-kumo-*`，图标使用 `fill-kumo-*`，边框和描边使用 `border-kumo-*`、`ring-kumo-*`。Banner 和徽章使用具有不同不透明度的 `-tint` 变体。
 
 <ComponentExample demo="StatusBannerDemo">
   <StatusBannerDemo client:visible />
 </ComponentExample>
 
-### Text Colors
+### 文本颜色
 
 <div style="overflow-x: auto;">
   <table>
@@ -255,62 +255,62 @@ Use the solid token `bg-kumo-*` for status dots, `fill-kumo-*` for icons, and `b
     </colgroup>
     <thead>
       <tr>
-        <th>Token</th>
-        <th>Purpose</th>
+        <th>令牌</th>
+        <th>用途</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>text-kumo-default</code></td>
-        <td>Primary body text</td>
+        <td>正文主文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-strong</code></td>
-        <td>Stronger text contrast than default for headers and important labels</td>
+        <td>比默认更强的文本对比，用于标题和重要标签</td>
       </tr>
       <tr>
         <td><code>text-kumo-subtle</code></td>
-        <td>Muted text for descriptions, captions, or secondary labels</td>
+        <td>用于描述、说明文字或次要标签的弱化文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-inactive</code></td>
-        <td>Disabled or inactive text</td>
+        <td>已禁用或不活跃的文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-placeholder</code></td>
-        <td>Placeholder text in inputs</td>
+        <td>输入框中的占位提示文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-inverse</code></td>
-        <td>Text intended for use on high-contrast or inverted backgrounds</td>
+        <td>用于高对比度或反相背景上的文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-link</code></td>
-        <td>Link text</td>
+        <td>链接文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-info</code></td>
-        <td>Info-colored text</td>
+        <td>信息色文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-success</code></td>
-        <td>Success-colored text</td>
+        <td>成功色文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-warning</code></td>
-        <td>Warning-colored text</td>
+        <td>警告色文本</td>
       </tr>
       <tr>
         <td><code>text-kumo-danger</code></td>
-        <td>Error/destructive text</td>
+        <td>错误/破坏性操作文本</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-> Semantic text colors (i.e. <code>text-kumo-success</code>) are darker by default to provide better contrast and readability against <code>tint-*</code> backgrounds.
+> 语义文本颜色（例如 <code>text-kumo-success</code>）默认更深，以便在 <code>tint-*</code> 背景上提供更好的对比度和可读性。
 
-### Borders & Rings
+### 边框与描边
 
 <div style="overflow-x: auto;">
   <table>
@@ -320,8 +320,8 @@ Use the solid token `bg-kumo-*` for status dots, `fill-kumo-*` for icons, and `b
     </colgroup>
     <thead>
       <tr>
-        <th>Token</th>
-        <th>Purpose</th>
+        <th>令牌</th>
+        <th>用途</th>
       </tr>
     </thead>
     <tbody>
@@ -331,18 +331,18 @@ Use the solid token `bg-kumo-*` for status dots, `fill-kumo-*` for icons, and `b
             <code>kumo-hairline</code>
           </span>
         </td>
-        <td>A border/ring color to distinguish between flat surfaces where no shadow is present (i.e. <code>LayerCard</code>).</td>
+        <td>用于区分没有阴影的平面表面的边框/描边颜色（例如 <code>LayerCard</code>）。</td>
       </tr>
       <tr>
         <td><code>kumo-line</code></td>
-        <td>A thicker border/ring color that defines the edge of an elevated surface alongside a shadow.</td>
+        <td>更粗的边框/描边颜色，与阴影一起勾勒出抬升表面的边缘。</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-## Token Reference
+## 令牌参考
 
-Toggle the theme in the header to see how tokens adapt. Tokens marked as "global" are explicit opt-in classes available regardless of theme.
+切换页面顶部的主题开关，查看令牌如何适配。标记为 global 的令牌是显式启用的类，无论任何主题都可用。
 
 <TailwindColorTokens client:load />

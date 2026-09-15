@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Autocomplete"
-description: "A free-form text input with an optional filtered suggestion list. Unlike Combobox, the value is not constrained to the items list."
+description: "一个自由文本输入框，附带可选的过滤建议列表。与 Combobox 不同，其值不受限于选项列表。"
 sourceFile: "components/autocomplete"
 baseUIComponent: "autocomplete"
 ---
@@ -31,16 +31,16 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 <CodeBlock
   code={`import { Autocomplete } from "@cloudflare/kumo";`}
   lang="tsx"
 />
 
-### Granular
+### 按需导入
 
   <CodeBlock
     code={`import { Autocomplete } from "@cloudflare/kumo/components/autocomplete";`}
@@ -52,12 +52,10 @@ import {
 
 <ComponentSection>
 
-## When to use
+## 适用场景
 
 <p>
-  Use `Autocomplete` when the input value can be free-form text and suggestions
-  are optional hints. Use `Combobox` instead when the selected value must come
-  from the predefined list.
+  当输入值可以是自由文本、建议仅为可选提示时，使用 `Autocomplete`。当选中的值必须来自预定义列表时，改用 `Combobox`。
 </p>
 </ComponentSection>
 
@@ -65,10 +63,10 @@ import {
 
 <ComponentSection>
 
-## Controlled
+## 受控
 
 <p>
-  Pass `value` and `onValueChange` for controlled usage.
+  传入 `value` 和 `onValueChange` 以实现受控用法。
 </p>
 <ComponentExample demo="AutocompleteControlledDemo">
   <AutocompleteControlledDemo client:load />
@@ -79,10 +77,10 @@ import {
 
 <ComponentSection>
 
-## With Field
+## 配合 Field
 
 <p>
-  Add `label`, `description`, and `required` to enable the built-in Field wrapper.
+  添加 `label`、`description` 和 `required` 以启用内置的 Field 包装器。
 </p>
 <ComponentExample demo="AutocompleteWithFieldDemo">
   <AutocompleteWithFieldDemo client:load />
@@ -93,10 +91,10 @@ import {
 
 <ComponentSection>
 
-## Error State
+## 错误状态
 
 <p>
-  Display validation errors with the `error` prop.
+  通过 `error` 属性展示校验错误。
 </p>
 <ComponentExample demo="AutocompleteErrorDemo">
   <AutocompleteErrorDemo client:load />
@@ -107,10 +105,10 @@ import {
 
 <ComponentSection>
 
-## Grouped
+## 分组
 
 <p>
-  Group items into categories using `Autocomplete.Group` and `Autocomplete.GroupLabel`.
+  使用 `Autocomplete.Group` 和 `Autocomplete.GroupLabel` 将项目按类别分组。
 </p>
 <ComponentExample demo="AutocompleteGroupedDemo">
   <AutocompleteGroupedDemo client:load />
@@ -121,11 +119,10 @@ import {
 
 <ComponentSection>
 
-## Sizes
+## 尺寸
 
 <p>
-  The `size` prop on `Autocomplete.InputGroup` supports four variants matching the
-  Input component: `xs`, `sm`, `base` (default), and `lg`.
+  `Autocomplete.InputGroup` 上的 `size` 属性支持与 Input 组件一致的四种变体：`xs`、`sm`、`base`（默认）和 `lg`。
 </p>
 <ComponentExample demo="AutocompleteSizesDemo">
   <AutocompleteSizesDemo client:load />
@@ -136,17 +133,13 @@ import {
 
 <ComponentSection>
 
-## Filtering
+## 过滤
 
 <p>
-  Filtering is case- and accent-insensitive by default, powered by
-  `Intl.Collator` under the hood. For string items, no custom `filter` is
-  needed.
+  默认情况下过滤不区分大小写和重音符号，底层由 `Intl.Collator` 实现。对于字符串项，无需自定义 `filter`。
 </p>
 <p>
-  When filtering on a property of object items, use
-  `Autocomplete.useFilter()` to preserve the built-in accent-insensitive
-  matching:
+  当需要对对象项的某个属性进行过滤时，使用 `Autocomplete.useFilter()` 以保留内置的不区分重音符号的匹配行为：
 </p>
 
 ```tsx
@@ -167,8 +160,7 @@ function LanguagePicker() {
 ```
 
 <p>
-  To disable filtering entirely (e.g. when results come from a server), pass
-  `filter={null}`:
+  若要完全禁用过滤（例如结果来自服务器时），传入 `filter={null}`：
 </p>
 
 ```tsx
@@ -183,38 +175,37 @@ function LanguagePicker() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Autocomplete
 
-<p>Root component. Wraps all sub-components and manages state.</p>
+<p>根组件。包装所有子组件并管理状态。</p>
 <PropsTable component="Autocomplete" />
 
 ### Autocomplete.InputGroup
 
 <p>
-  Self-contained input wrapper that renders the text input, clear button, and
-  dropdown trigger together.
+  自包含的输入包装器，将文本输入框、清除按钮和下拉触发器渲染在一起。
 </p>
 <PropsTable component="Autocomplete.InputGroup" />
 
 ### Autocomplete.Content
 
-<p>Dropdown popup container. Wraps Portal, Positioner, and Popup.</p>
+<p>下拉弹层容器。包装 Portal、Positioner 和 Popup。</p>
 <PropsTable component="Autocomplete.Content" />
 
 ### Autocomplete.Item
 
-<p>Individual suggestion item in the list.</p>
+<p>列表中的单个建议项。</p>
 <PropsTable component="Autocomplete.Item" />
 
-### Additional Sub-components
+### 其他子组件
 
   <ul class="list-disc list-inside space-y-1">
-    <li>`Autocomplete.List` — scrollable list container with render prop</li>
-    <li>`Autocomplete.Group` — groups items under a heading</li>
-    <li>`Autocomplete.GroupLabel` — heading label for a group</li>
-    <li>`Autocomplete.Collection` — item container within a group</li>
-    <li>`Autocomplete.Separator` — horizontal divider between items</li>
+    <li>`Autocomplete.List` — 带 render prop 的可滚动列表容器</li>
+    <li>`Autocomplete.Group` — 将项目归并到某个标题下</li>
+    <li>`Autocomplete.GroupLabel` — 分组的标题标签</li>
+    <li>`Autocomplete.Collection` — 组内的项目容器</li>
+    <li>`Autocomplete.Separator` — 项目之间的水平分隔线</li>
   </ul>
 </ComponentSection>

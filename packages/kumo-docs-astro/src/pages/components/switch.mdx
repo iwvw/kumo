@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Switch"
-description: "A two-state button that can be either on or off."
+description: "一个具有开或关两种状态的按钮。"
 sourceFile: "components/switch"
 baseUIComponent: "switch"
 ---
@@ -36,15 +36,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Switch } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Switch } from "@cloudflare/kumo/components/switch";
@@ -56,7 +56,7 @@ import { Switch } from "@cloudflare/kumo/components/switch";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Switch } from "@cloudflare/kumo";
@@ -77,97 +77,97 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Off State
+### 关闭状态
 
 <ComponentExample demo="SwitchOffDemo">
   <SwitchOffDemo client:visible />
 </ComponentExample>
 
-### On State
+### 开启状态
 
 <ComponentExample demo="SwitchOnDemo">
   <SwitchOnDemo client:visible />
 </ComponentExample>
 
-### Disabled
+### 禁用状态
 
 <ComponentExample demo="SwitchDisabledDemo">
   <SwitchDisabledDemo client:visible />
 </ComponentExample>
 
-### Variants
+### 变体
 
 <p>
-  The Switch supports two variants: `default` (blue when on) and `neutral`
-  (monochrome). Both use a squircle shape.
+  Switch 支持两种变体：`default`（开启时为蓝色）和 `neutral`（单色）。
+  两者都采用 squircle 形状。
 </p>
 <ComponentExample demo="SwitchVariantsDemo">
   <SwitchVariantsDemo client:visible />
 </ComponentExample>
 
-### Neutral Variant
+### 中性变体
 
 <p>
-  The neutral variant uses monochrome colors and a squircle shape, ideal for
-  subtle, less prominent toggles.
+  中性变体采用单色配色和 squircle 形状，适合
+  低调、不显眼的开关。
 </p>
 <ComponentExample demo="SwitchNeutralDemo">
   <SwitchNeutralDemo client:visible />
 </ComponentExample>
 
-### Neutral States
+### 中性状态
 
 <ComponentExample demo="SwitchNeutralStatesDemo">
   <SwitchNeutralStatesDemo client:visible />
 </ComponentExample>
 
-### Sizes
+### 尺寸
 
-<p>Three sizes available: `sm`, `base` (default), and `lg`.</p>
+<p>共有三种尺寸：`sm`、`base`（默认）和 `lg`。</p>
 <ComponentExample demo="SwitchSizesDemo">
   <SwitchSizesDemo client:visible />
 </ComponentExample>
 
-### Custom ID
+### 自定义 ID
 
 <p>
-  When a custom `id` is provided, clicking the label still toggles the switch.
-  The `id` is forwarded to Base UI so the label's `htmlFor` stays in sync.
+  提供自定义 `id` 时，点击标签仍会切换开关。`id` 会转发给 Base UI，
+  使标签的 `htmlFor` 与之保持同步。
 </p>
 <ComponentExample demo="SwitchCustomIdDemo">
   <SwitchCustomIdDemo client:visible />
 </ComponentExample>
 
-### Switch Group
+### 开关组
 
 <p>
-  Group related switches with `Switch.Group`. Provides a shared legend,
-  description, and error message for the group.
+  使用 `Switch.Group` 将相关开关组合在一起。为整个组提供共用的图例、
+  描述和错误提示。
 </p>
 <ComponentExample demo="SwitchGroupDemo">
   <SwitchGroupDemo client:visible />
 </ComponentExample>
 
-### Visually Hidden Legend
+### 视觉隐藏的图例
 
 <p>
-  Use `Switch.Legend` with `className="sr-only"` to keep the legend accessible
-  to screen readers while hiding it visually. This is useful when the group is
-  already labeled by a parent `Field` or heading, and showing the legend would
-  create a redundant label.
+  使用带 `className="sr-only"` 的 `Switch.Legend`，可以在视觉上隐藏图例的同时
+  保持其为屏幕阅读器可读。当组已由父级 `Field` 或标题提供了标签，
+  再显示图例会形成冗余标签时，
+  这一用法很有用。
 </p>
 <ComponentExample demo="SwitchLegendSrOnlyDemo">
   <SwitchLegendSrOnlyDemo client:visible />
 </ComponentExample>
 
-### Custom Legend Styling
+### 自定义图例样式
 
 <p>
-  `Switch.Legend` accepts `className` for full control over legend presentation.
-  Use it instead of the `legend` string prop when you need custom typography,
-  colors, or layout.
+  `Switch.Legend` 接受 `className`，可完全控制图例的呈现方式。当你需要
+  自定义排版、颜色或布局时，请用它替代
+  `legend` 字符串属性。
 </p>
 <ComponentExample demo="SwitchLegendCustomDemo">
   <SwitchLegendCustomDemo client:visible />
@@ -179,32 +179,32 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Switch
 
-<p>Individual switch toggle with built-in label.</p>
+<p>内置标签的单个开关切换控件。</p>
 <PropsTable component="Switch" />
 
 ### Switch.Group
 
 <p>
-  Container for multiple switches with legend, description, and error support.
+  包含多个开关的容器，支持图例、描述和错误提示。
 </p>
 <PropsTable component="Switch.Group" />
 
 ### Switch.Legend
 
 <p>
-  Composable legend sub-component for Switch.Group. Accepts `className` for full
-  styling control (e.g. `className="sr-only"` to visually hide). Use instead of
-  the `legend` string prop when you need custom legend styling.
+  可组合的 Switch.Group 图例子组件。接受 `className` 以完全控制样式
+  （例如 `className="sr-only"` 实现视觉隐藏）。当你需要自定义图例样式时，
+  用它替代 `legend` 字符串属性。
 </p>
 <PropsTable component="Switch.Legend" />
 
 ### Switch.Item
 
-<p>Individual switch within Switch.Group.</p>
+<p>Switch.Group 中的单个开关。</p>
 <PropsTable component="Switch.Item" />
 
 </ComponentSection>

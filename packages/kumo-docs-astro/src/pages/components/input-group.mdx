@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "InputGroup"
-description: "Compose inputs with addons, icons, buttons, and text for rich form fields."
+description: "使用附加组件、图标、按钮和文本组合输入框，构建丰富的表单字段。"
 sourceFile: "components/input-group"
 ---
 
@@ -30,13 +30,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导入
 
 <CodeBlock code={`import { InputGroup } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 子路径导入
 
   <CodeBlock
     code={`import { InputGroup } from "@cloudflare/kumo/components/input-group";`}
@@ -48,13 +48,12 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
-### With Built-in Field (Recommended)
+### 使用内置 Field（推荐）
 
 <p>
-  Pass the `label` prop to InputGroup to enable the built-in Field wrapper with
-  label, description, and error support.
+  为 InputGroup 传入 `label` 属性以启用内置 Field 包装器，支持标签、描述和错误提示。
 </p>
 
 ```tsx
@@ -73,11 +72,11 @@ export default function Example() {
 }
 ```
 
-### Bare InputGroup (Custom Layouts)
+### 裸 InputGroup（自定义布局）
 
 <p>
-  For custom form layouts, use InputGroup without `label`. Must provide
-  `aria-label` on `InputGroup.Input` for accessibility.
+  对于自定义表单布局，可在不带 `label` 的情况下使用 InputGroup，但必须在
+  `InputGroup.Input` 上提供 `aria-label` 以保证无障碍访问。
 </p>
 
 ```tsx
@@ -100,87 +99,82 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Icon
+### 图标
 
 <p>
-  Use Addon to place an icon at the start of the input as a visual identifier.
+  使用 Addon 在输入框开头放置图标，作为视觉标识。
 </p>
 <ComponentExample demo="InputGroupIconsDemo">
   <InputGroupIconsDemo client:visible />
 </ComponentExample>
 
-### Text
+### 文本
 
-<p>Use Addon to place text prefixes or suffixes alongside the input.</p>
+<p>使用 Addon 在输入框旁边放置文本前缀或后缀。</p>
 <ComponentExample demo="InputGroupTextDemo">
   <InputGroupTextDemo client:visible />
 </ComponentExample>
 
-### Button
+### 按钮
 
 <p>
-  Place `InputGroup.Button` inside an Addon for actions that operate directly on
-  the input value, such as reveal/hide or clear.
+  将 `InputGroup.Button` 放在 Addon 中，用于直接作用于输入值的操作，例如显示/隐藏或清空。
 </p>
 <ComponentExample demo="InputGroupButtonsDemo">
   <InputGroupButtonsDemo client:visible />
 </ComponentExample>
 
-### Button with Tooltip
+### 带提示的按钮
 
 <p>
-  Pass a `tooltip` prop to `InputGroup.Button` to show a tooltip on hover. When
-  no explicit `aria-label` is provided, the button derives it from a string
-  tooltip value.
+  为 `InputGroup.Button` 传入 `tooltip` 属性以在悬停时显示提示。当未显式提供
+  `aria-label` 时，按钮会从字符串形式的 tooltip 值自动推导。
 </p>
 <ComponentExample demo="InputGroupTooltipButtonDemo">
   <InputGroupTooltipButtonDemo client:visible />
 </ComponentExample>
 
-### Kbd
+### 键盘快捷键
 
-<p>Place a keyboard shortcut hint inside an end Addon.</p>
+<p>在末尾 Addon 中放置键盘快捷键提示。</p>
 <ComponentExample demo="InputGroupKbdDemo">
   <InputGroupKbdDemo client:visible />
 </ComponentExample>
 
-### Loading
+### 加载中
 
 <p>
-  Place a Loader inside an end Addon as a status indicator while validating the
-  input value.
+  在末尾 Addon 中放置 Loader 作为状态指示器，用于输入值校验过程中。
 </p>
 <ComponentExample demo="InputGroupLoadingDemo">
   <InputGroupLoadingDemo client:visible />
 </ComponentExample>
 
-### Inline Suffix
+### 内联后缀
 
 <p>
-  Suffix renders text that flows seamlessly next to the typed value — useful for
-  domain inputs like `.workers.dev`. Pair with a status icon Addon to show
-  validation state.
+  Suffix 在输入的文本之后无缝渲染文本，适用于 `.workers.dev` 之类的域名输入。
+  可与状态图标 Addon 搭配使用，以显示校验状态。
 </p>
 <ComponentExample demo="InputGroupSuffixDemo">
   <InputGroupSuffixDemo client:visible />
 </ComponentExample>
 
-### Sizes
+### 尺寸
 
 <p>
-  Four sizes: `xs`, `sm`, `base` (default), and `lg`. The size applies to the
-  entire group.
+  四种尺寸：`xs`、`sm`、`base`（默认）和 `lg`。尺寸作用于整个组。
 </p>
 <ComponentExample demo="InputGroupSizesDemo">
   <InputGroupSizesDemo client:visible />
 </ComponentExample>
 
-### States
+### 状态
 
 <p>
-  Various input states including error, disabled, and with description. Pass `label`, `error`, and `description` props directly to `InputGroup`.
+  各种输入状态，包括错误、禁用和带描述。将 `label`、`error` 和 `description` 属性直接传给 `InputGroup`。
 </p>
 <ComponentExample demo="InputGroupStatesDemo">
   <InputGroupStatesDemo client:visible />
@@ -189,95 +183,91 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### `InputGroup`
 
 <p>
-  The root container that provides context to all child components. Accepts
-  Field props (`label`, `description`, `error`) and wraps content in a Field
-  when label is provided.
+  根容器，为所有子组件提供上下文。接受 Field 属性（`label`、`description`、
+  `error`），当提供 label 时会将内容包裹在 Field 中。
 </p>
 <PropsTable component="InputGroup" />
 
 ### `InputGroup.Input`
 
 <p>
-  The text input element. Inherits `size`, `disabled`, and `error` from
-  InputGroup context. Accepts all standard input attributes except Field-related
-  props which are handled by the parent.
+  文本输入元素。从 InputGroup 上下文继承 `size`、`disabled` 和 `error`。
+  接受所有标准 input 属性，但与 Field 相关的属性由父级处理。
 </p>
 <PropsTable component="InputGroup.Input" />
 
 ### `InputGroup.Addon`
 
 <p>
-  Container for icons, text, or compact buttons positioned at the start or end
-  of the input.
+  放置在输入框开头或末尾的容器，用于承载图标、文本或紧凑按钮。
 </p>
 <PropsTable component="InputGroup.Addon" />
 
 ### `InputGroup.Button`
 
 <p>
-  Button for secondary actions like toggle, copy, or help. Renders inside an
-  Addon. Pass a `tooltip` prop to show a tooltip on hover.
+  用于辅助操作的按钮，如切换、复制或帮助。渲染在 Addon 内。
+  传入 `tooltip` 属性可在悬停时显示提示。
 </p>
 <PropsTable component="InputGroup.Button" />
 
 ### `InputGroup.Suffix`
 
 <p>
-  Inline text that flows seamlessly next to the typed value (e.g.,
-  `.workers.dev`). The input width adjusts automatically as the user types.
+  紧接输入文本的内联文本（例如 `.workers.dev`）。输入框宽度会随用户输入自动调整。
 </p>
 <PropsTable component="InputGroup.Suffix" />
 
-### Validation Error Types
+### 校验错误类型
 
 <p>
-  When using `error` as an object, the `match` property corresponds to HTML5 ValidityState values:
+  当 `error` 以对象形式使用时，`match` 属性对应 HTML5 ValidityState 值：
 </p>
 <div class="overflow-hidden rounded-lg border border-kumo-hairline">
   <table class="w-full text-sm">
     <thead class="bg-kumo-elevated">
       <tr>
-        <th class="px-4 py-3 text-left font-medium">Match</th>
-        <th class="px-4 py-3 text-left font-medium">Description</th>
+        <th class="px-4 py-3 text-left font-medium">匹配</th>
+        <th class="px-4 py-3 text-left font-medium">描述</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-kumo-hairline">
       <tr>
         <td class="px-4 py-3 font-mono text-xs">valueMissing</td>
-        <td class="px-4 py-3 text-xs">Required field is empty</td>
+        <td class="px-4 py-3 text-xs">必填字段为空</td>
       </tr>
       <tr>
         <td class="px-4 py-3 font-mono text-xs">typeMismatch</td>
-        <td class="px-4 py-3 text-xs">Value doesn't match type (e.g., invalid email)</td>
+        <td class="px-4 py-3 text-xs">值不符合类型（例如邮箱无效）</td>
       </tr>
       <tr>
         <td class="px-4 py-3 font-mono text-xs">patternMismatch</td>
-        <td class="px-4 py-3 text-xs">Value doesn't match pattern attribute</td>
+        <td class="px-4 py-3 text-xs">值不符合 pattern 属性</td>
       </tr>
       <tr>
         <td class="px-4 py-3 font-mono text-xs">tooShort</td>
-        <td class="px-4 py-3 text-xs">Value shorter than minLength</td>
+        <td class="px-4 py-3 text-xs">值短于 minLength</td>
       </tr>
       <tr>
         <td class="px-4 py-3 font-mono text-xs">tooLong</td>
-        <td class="px-4 py-3 text-xs">Value longer than maxLength</td>
+        <td class="px-4 py-3 text-xs">值长于 maxLength</td>
       </tr>
       <tr>
         <td class="px-4 py-3 font-mono text-xs">rangeUnderflow</td>
-        <td class="px-4 py-3 text-xs">Value less than min</td>
+        <td class="px-4 py-3 text-xs">值小于 min</td>
       </tr>
       <tr>
         <td class="px-4 py-3 font-mono text-xs">rangeOverflow</td>
-        <td class="px-4 py-3 text-xs">Value greater than max</td>
+        <td class="px-4 py-3 text-xs">值大于 max</td>
       </tr>
       <tr>
         <td class="px-4 py-3 font-mono text-xs">true</td>
-        <td class="px-4 py-3 text-xs">Always show error (for server-side validation)</td>
+        <td class="px-4 py-3 text-xs">始终显示错误（用于服务端校验）</td>
       </tr>
     </tbody>
   </table>
@@ -286,39 +276,39 @@ export default function Example() {
 
 <ComponentSection>
 
-## Accessibility
+## 无障碍
 
   <div class="space-y-4 text-sm">
     <div>
 
-      ### Label Requirement
+      ### 标签要求
 
       <p>
-        InputGroup requires an accessible name via one of:
+        InputGroup 需要满足以下任一方式提供可访问名称：
       </p>
       <ul class="mt-2 ml-4 list-disc space-y-1">
         <li>
-          `label` prop on InputGroup (renders a visible label with built-in
-          Field support)
+          在 InputGroup 上使用 `label` 属性（渲染可见标签，并带有内置
+          Field 支持）
         </li>
         <li>
-          `aria-label` on InputGroup.Input for inputs without a visible label
+          对于没有可见标签的输入框，在 InputGroup.Input 上使用 `aria-label`
         </li>
         <li>
-          `aria-labelledby` on InputGroup.Input for custom label association
+          在 InputGroup.Input 上使用 `aria-labelledby` 进行自定义标签关联
         </li>
       </ul>
       <p class="mt-2">
-        Missing accessible names trigger console warnings in development.
+        开发环境下，缺少可访问名称会触发控制台警告。
       </p>
     </div>
     <div>
 
-      ### Group Role
+      ### 组角色
 
       <p>
-        InputGroup automatically renders with `role="group"`, which semantically
-        associates the input with its addons for assistive technologies.
+        InputGroup 会自动以 `role="group"` 渲染，从而在语义上为辅助技术
+        将输入框与其 addons 关联起来。
       </p>
     </div>
 

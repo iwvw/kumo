@@ -95,9 +95,9 @@ export function TableOfContents({
   // Compact jump menu for smaller screens
   if (layout === "select") {
     return (
-      <nav aria-label="Table of contents" className="relative">
+      <nav aria-label="目录" className="relative">
         <select
-          aria-label="Jump to section"
+          aria-label="跳转至章节"
           value={activeId ?? headings[0]?.slug ?? ""}
           onChange={(e) => {
             const slug = e.target.value;
@@ -132,7 +132,7 @@ export function TableOfContents({
   // Sidebar layout (default)
   return (
     <TOC>
-      <TOC.Title>On this page</TOC.Title>
+      <TOC.Title>本页目录</TOC.Title>
       <TOC.List>
         {groupHeadings(headings).map((group) => {
           if (group.h3s.length === 0) {

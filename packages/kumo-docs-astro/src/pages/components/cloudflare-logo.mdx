@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "CloudflareLogo"
-description: "Official Cloudflare logo component with glyph and full logo variants."
+description: "官方 Cloudflare 标识组件，提供图形标志与完整标识两种变体。"
 sourceFile: "components/cloudflare-logo"
 ---
 
@@ -31,9 +31,9 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 ```tsx
 import {
@@ -43,7 +43,7 @@ import {
 } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 按需导入
 
 ```tsx
 import {
@@ -59,7 +59,7 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { CloudflareLogo } from "@cloudflare/kumo";
@@ -75,46 +75,43 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Glyph Only
+### 仅图形标志
 
 <p>
-  Use <code>variant="glyph"</code> to display just the cloud icon without the
-  wordmark.
+  使用 <code>variant="glyph"</code> 仅显示云朵图标，而不显示文字标识。
 </p>
 <ComponentExample demo="CloudflareLogoGlyphDemo">
   <CloudflareLogoGlyphDemo client:visible />
 </ComponentExample>
 
-### Color Variants
+### 颜色变体
 
-<p>The logo supports three color schemes: brand colors, black, and white.</p>
+<p>该标识支持三种配色方案：品牌色、黑色和白色。</p>
 <ComponentExample demo="CloudflareLogoColorVariantsDemo">
   <CloudflareLogoColorVariantsDemo client:visible />
 </ComponentExample>
 
-### Glyph Color Variants
+### 图形标志颜色变体
 
 <ComponentExample demo="CloudflareLogoGlyphVariantsDemo">
   <CloudflareLogoGlyphVariantsDemo client:visible />
 </ComponentExample>
 
-### Sizing
+### 尺寸
 
 <p>
-  Size the logo using CSS width classes. The height adjusts automatically to
-  maintain aspect ratio.
+  使用 CSS 宽度类来设置标识尺寸。高度会自动调整以保持宽高比。
 </p>
 <ComponentExample demo="CloudflareLogoSizesDemo">
   <CloudflareLogoSizesDemo client:visible />
 </ComponentExample>
 
-### Brand Assets Menu
+### 品牌素材菜单
 
   <p>
-    Combine with DropdownMenu to create a brand assets menu. Use <code>generateCloudflareLogoSvg()</code> to
-    get copy-paste ready SVG markup.
+    与 DropdownMenu 组合可创建品牌素材菜单。使用 <code>generateCloudflareLogoSvg()</code> 即可获得可直接复制粘贴的 SVG 标记。
   </p>
   <ComponentExample demo="CloudflareLogoCopyDemo">
     <CloudflareLogoCopyDemo client:visible />
@@ -128,22 +125,22 @@ export default function Example() {
 ## PoweredByCloudflare
 
   <p>
-    A pre-built "Powered by Cloudflare" badge component for footers and attribution.
+    一个预构建的 "Powered by Cloudflare" 徽章组件，用于页脚和署名场景。
   </p>
 
-### Basic Usage
+### 基本用法
 
 <ComponentExample demo="PoweredByCloudflareBasicDemo">
   <PoweredByCloudflareBasicDemo client:visible />
 </ComponentExample>
 
-### Color Variants
+### 颜色变体
 
 <ComponentExample demo="PoweredByCloudflareVariantsDemo">
   <PoweredByCloudflareVariantsDemo client:visible />
 </ComponentExample>
 
-### Footer Example
+### 页脚示例
 
   <ComponentExample demo="PoweredByCloudflareFooterDemo">
     <PoweredByCloudflareFooterDemo client:visible />
@@ -154,10 +151,10 @@ export default function Example() {
 
 <ComponentSection>
 
-## SVG Generation
+## SVG 生成
 
   <p>
-    Use <code>generateCloudflareLogoSvg()</code> to get copy-paste ready SVG markup for non-React contexts.
+    使用 <code>generateCloudflareLogoSvg()</code> 可为非 React 场景获取可直接复制粘贴的 SVG 标记。
   </p>
 
 ```tsx
@@ -184,19 +181,19 @@ await navigator.clipboard.writeText(
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <p>
-    CloudflareLogo extends <code>SVGSVGElement</code> and accepts all standard SVG attributes.
+    CloudflareLogo 继承 <code>SVGSVGElement</code>，并接受所有标准 SVG 属性。
   </p>
   <div class="overflow-x-auto">
     <table class="w-full text-left text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="py-3 pr-4 font-medium">Prop</th>
-          <th class="py-3 pr-4 font-medium">Type</th>
-          <th class="py-3 pr-4 font-medium">Default</th>
-          <th class="py-3 font-medium">Description</th>
+          <th class="py-3 pr-4 font-medium">属性</th>
+          <th class="py-3 pr-4 font-medium">类型</th>
+          <th class="py-3 pr-4 font-medium">默认值</th>
+          <th class="py-3 font-medium">说明</th>
         </tr>
       </thead>
       <tbody class="text-kumo-subtle">
@@ -204,19 +201,19 @@ await navigator.clipboard.writeText(
           <td class="py-3 pr-4 font-mono text-kumo-default">variant</td>
           <td class="py-3 pr-4 font-mono">"glyph" | "full"</td>
           <td class="py-3 pr-4 font-mono">"full"</td>
-          <td class="py-3">Logo variant. <code>glyph</code> shows just the cloud icon, <code>full</code> includes the wordmark.</td>
+          <td class="py-3">标识变体。<code>glyph</code> 仅显示云朵图标，<code>full</code> 包含文字标识。</td>
         </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="py-3 pr-4 font-mono text-kumo-default">color</td>
           <td class="py-3 pr-4 font-mono">"color" | "black" | "white"</td>
           <td class="py-3 pr-4 font-mono">"color"</td>
-          <td class="py-3">Color scheme. <code>color</code> uses brand colors, <code>black</code> and <code>white</code> are solid.</td>
+          <td class="py-3">配色方案。<code>color</code> 使用品牌色，<code>black</code> 和 <code>white</code> 为纯色。</td>
         </tr>
         <tr>
           <td class="py-3 pr-4 font-mono text-kumo-default">className</td>
           <td class="py-3 pr-4 font-mono">string</td>
           <td class="py-3 pr-4 font-mono">-</td>
-          <td class="py-3">CSS classes for sizing (e.g., <code>w-36</code>). Height adjusts automatically.</td>
+          <td class="py-3">用于设置尺寸的 CSS 类（例如 <code>w-36</code>）。高度会自动调整。</td>
         </tr>
       </tbody>
     </table>
@@ -225,16 +222,16 @@ await navigator.clipboard.writeText(
 ### PoweredByCloudflare
 
   <p>
-    Extends <code>HTMLAnchorElement</code> and accepts all standard anchor attributes.
+    继承 <code>HTMLAnchorElement</code>，并接受所有标准锚点属性。
   </p>
   <div class="overflow-x-auto">
     <table class="w-full text-left text-sm">
       <thead>
         <tr class="border-b border-kumo-hairline">
-          <th class="py-3 pr-4 font-medium">Prop</th>
-          <th class="py-3 pr-4 font-medium">Type</th>
-          <th class="py-3 pr-4 font-medium">Default</th>
-          <th class="py-3 font-medium">Description</th>
+          <th class="py-3 pr-4 font-medium">属性</th>
+          <th class="py-3 pr-4 font-medium">类型</th>
+          <th class="py-3 pr-4 font-medium">默认值</th>
+          <th class="py-3 font-medium">说明</th>
         </tr>
       </thead>
       <tbody class="text-kumo-subtle">
@@ -242,13 +239,13 @@ await navigator.clipboard.writeText(
           <td class="py-3 pr-4 font-mono text-kumo-default">color</td>
           <td class="py-3 pr-4 font-mono">"color" | "black" | "white"</td>
           <td class="py-3 pr-4 font-mono">"color"</td>
-          <td class="py-3">Color scheme for the logo and text.</td>
+          <td class="py-3">标识与文本的配色方案。</td>
         </tr>
         <tr>
           <td class="py-3 pr-4 font-mono text-kumo-default">href</td>
           <td class="py-3 pr-4 font-mono">string</td>
           <td class="py-3 pr-4 font-mono">"https://www.cloudflare.com"</td>
-          <td class="py-3">Link destination. Opens in a new tab by default.</td>
+          <td class="py-3">链接地址。默认在新标签页中打开。</td>
         </tr>
       </tbody>
     </table>

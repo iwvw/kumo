@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Toast"
-description: "A notification system for displaying brief, non-intrusive messages to users."
+description: "一个用于向用户展示简短、非侵入式消息的通知系统。"
 sourceFile: "components/toast"
 ---
 
@@ -35,15 +35,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Toasty, useKumoToastManager } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Toasty, useKumoToastManager } from "@cloudflare/kumo/components/toast";
@@ -55,10 +55,10 @@ import { Toasty, useKumoToastManager } from "@cloudflare/kumo/components/toast";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
   <p>
-    The toast system consists of two parts: the `Toasty` provider component and the `useKumoToastManager()` hook for triggering toasts.
+    toast 系统由两部分组成：用于触发 toast 的 `Toasty` provider 组件与 `useKumoToastManager()` hook。
   </p>
 
 ```tsx
@@ -97,10 +97,10 @@ export default function App() {
 
 <ComponentSection>
 
-## Setup
+## 配置
 
   <p>
-    Wrap your application (or a section of it) with the `Toasty` provider. This sets up the toast context and renders the toast viewport.
+    用 `Toasty` provider 包裹你的应用（或其中一部分）。它会建立 toast 上下文并渲染 toast 视口。
   </p>
 
 ```tsx
@@ -118,87 +118,85 @@ export function Layout({ children }) {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Title and Description
+### 标题与描述
 
-<p>A complete toast with both title and description.</p>
+<p>同时包含标题与描述的完整 toast。</p>
 <ComponentExample demo="ToastBasicDemo">
   <ToastBasicDemo client:visible />
 </ComponentExample>
 
-### Title Only
+### 仅标题
 
-<p>A simple toast with just a title for brief messages.</p>
+<p>仅包含标题的简单 toast，适合简短消息。</p>
 <ComponentExample demo="ToastTitleOnlyDemo">
   <ToastTitleOnlyDemo client:visible />
 </ComponentExample>
 
-### Description Only
+### 仅描述
 
-<p>A toast with only a description for more detailed messages.</p>
+<p>仅包含描述的 toast，适合更详细的消息。</p>
 <ComponentExample demo="ToastDescriptionOnlyDemo">
   <ToastDescriptionOnlyDemo client:visible />
 </ComponentExample>
 
-### Success Variant
+### 成功变体
 
-<p>Use the success variant for confirmations and positive outcomes.</p>
+<p>确认或正面结果请使用成功变体。</p>
 <ComponentExample demo="ToastSuccessDemo">
   <ToastSuccessDemo client:visible />
 </ComponentExample>
 
-### Multiple Toasts
+### 多个 Toast
 
 <p>
-  Multiple toasts stack and animate smoothly. Hover over the stack to expand
-  them.
+  多个 toast 会平滑堆叠并带有动画效果。将鼠标悬停在堆叠区域可展开它们。
 </p>
 <ComponentExample demo="ToastMultipleDemo">
   <ToastMultipleDemo client:visible />
 </ComponentExample>
 
-### Functional Updates
+### 函数式更新
 
 <p>
-  Update a toast in place from its current state. This example changes the
-  deployment toast to success after it is created.
+  可根据 toast 的当前状态将其就地更新。本示例在部署 toast 创建后把其变为成功状态。
 </p>
 <ComponentExample demo="ToastFunctionalUpdateDemo">
   <ToastFunctionalUpdateDemo client:load />
 </ComponentExample>
 
-### Error Variant
+### 错误变体
 
-<p>Use the error variant for critical issues that need attention.</p>
+<p>需要关注的严重问题请使用错误变体。</p>
 <ComponentExample demo="ToastErrorDemo">
   <ToastErrorDemo client:visible />
 </ComponentExample>
 
-### Warning Variant
+### 警告变体
 
-<p>Use the warning variant for cautionary messages.</p>
+<p>需要警示的消息请使用警告变体。</p>
 <ComponentExample demo="ToastWarningDemo">
   <ToastWarningDemo client:visible />
 </ComponentExample>
 
-### Info Variant
+### 信息变体
 
-<p>Use the info variant for neutral informational messages.</p>
+<p>中性信息类消息请使用信息变体。</p>
 <ComponentExample demo="ToastInfoDemo">
   <ToastInfoDemo client:visible />
 </ComponentExample>
 
-### Custom Content
+### 自定义内容
 
-<p>Use the content prop to render completely custom toast content.</p>
+<p>使用 `content` 属性可渲染完全自定义的 toast 内容。</p>
 <ComponentExample demo="ToastCustomContentDemo">
   <ToastCustomContentDemo client:visible />
 </ComponentExample>
 
-### Action Buttons
+### 操作按钮
 
-<p>Add action buttons to toasts for user interaction.</p>
+<p>为 toast 添加操作按钮，以便用户交互。</p>
 <ComponentExample demo="ToastActionsDemo">
   <ToastActionsDemo client:visible />
 </ComponentExample>
@@ -206,8 +204,7 @@ export function Layout({ children }) {
 ### Promise
 
 <p>
-  Use the promise method to show loading, success, and error states
-  automatically.
+  使用 promise 方法可自动展示加载、成功和错误状态。
 </p>
 <ComponentExample demo="ToastPromiseDemo">
   <ToastPromiseDemo client:visible />
@@ -219,16 +216,16 @@ export function Layout({ children }) {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Toasty
 
-<p>The provider component that wraps your app and manages the toast system.</p>
+<p>包裹应用并管理 toast 系统的 provider 组件。</p>
 <PropsTable component="Toasty" />
 
 ### useKumoToastManager()
 
-<p>A hook that returns the toast manager for creating toasts.</p>
+<p>返回用于创建 toast 的 toast 管理器 hook。</p>
 
 ```tsx
 const toastManager = useKumoToastManager();
@@ -249,17 +246,17 @@ toastManager.promise(asyncFn(), {
 });
 ```
 
-### Toast Options
+### Toast 选项
 
-<p>Options passed to `toastManager.add()` and promise handlers.</p>
+<p>传递给 `toastManager.add()` 及 promise 处理函数的选项。</p>
 <div class="overflow-x-auto">
   <table class="w-full text-left text-sm">
     <thead>
       <tr class="border-b border-kumo-hairline">
-        <th class="py-3 pr-4 font-semibold">Prop</th>
-        <th class="py-3 pr-4 font-semibold">Type</th>
-        <th class="py-3 pr-4 font-semibold">Default</th>
-        <th class="py-3 font-semibold">Description</th>
+        <th class="py-3 pr-4 font-semibold">属性</th>
+        <th class="py-3 pr-4 font-semibold">类型</th>
+        <th class="py-3 pr-4 font-semibold">默认值</th>
+        <th class="py-3 font-semibold">说明</th>
       </tr>
     </thead>
     <tbody class="text-kumo-subtle">
@@ -267,13 +264,13 @@ toastManager.promise(asyncFn(), {
         <td class="py-3 pr-4 font-mono text-kumo-default">title</td>
         <td class="py-3 pr-4 font-mono">string</td>
         <td class="py-3 pr-4">—</td>
-        <td class="py-3">The toast title displayed prominently.</td>
+        <td class="py-3">醒目展示的 toast 标题。</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="py-3 pr-4 font-mono text-kumo-default">description</td>
         <td class="py-3 pr-4 font-mono">string</td>
         <td class="py-3 pr-4">—</td>
-        <td class="py-3">Secondary text displayed below the title.</td>
+        <td class="py-3">显示在标题下方的次要文本。</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="py-3 pr-4 font-mono text-kumo-default">variant</td>
@@ -281,29 +278,28 @@ toastManager.promise(asyncFn(), {
           "default" | "success" | "error" | "warning" | "info"
         </td>
         <td class="py-3 pr-4 font-mono">"default"</td>
-        <td class="py-3">Visual style of the toast.</td>
+        <td class="py-3">toast 的视觉样式。</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="py-3 pr-4 font-mono text-kumo-default">content</td>
         <td class="py-3 pr-4 font-mono">ReactNode</td>
         <td class="py-3 pr-4">—</td>
         <td class="py-3">
-          Custom content to render inside the toast. Overrides title and
-          description.
+          在 toast 内部渲染的自定义内容，会覆盖 title 与 description。
         </td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="py-3 pr-4 font-mono text-kumo-default">actions</td>
         <td class="py-3 pr-4 font-mono">ButtonProps[]</td>
         <td class="py-3 pr-4">—</td>
-        <td class="py-3">Array of button props to render as action buttons.</td>
+        <td class="py-3">以操作按钮形式渲染的按钮属性数组。</td>
       </tr>
       <tr class="border-b border-kumo-hairline">
         <td class="py-3 pr-4 font-mono text-kumo-default">timeout</td>
         <td class="py-3 pr-4 font-mono">number</td>
         <td class="py-3 pr-4 font-mono">5000</td>
         <td class="py-3">
-          Time in milliseconds before the toast auto-dismisses.
+          toast 自动消失前的毫秒数。
         </td>
       </tr>
     </tbody>

@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Dialog"
-description: "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert."
+description: "叠加在主窗口或其他对话框窗口之上的窗口，其下方的内容会变为不可交互状态。"
 sourceFile: "components/dialog"
 baseUIComponent: "dialog"
 ---
@@ -34,13 +34,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 <CodeBlock code={`import { Dialog } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 按需导入
 
   <CodeBlock
     code={`import { Dialog } from "@cloudflare/kumo/components/dialog";`}
@@ -52,7 +52,7 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Dialog, Button } from "@cloudflare/kumo";
@@ -85,39 +85,38 @@ export default function Example() {
 
 <ComponentSection>
 
-## Dialog vs Alert Dialog
+## Dialog 与 Alert Dialog
 
 <p>
-  The Dialog component supports two ARIA roles to properly convey semantic
-  meaning to assistive technologies:
+  Dialog 组件支持两种 ARIA role，以向辅助技术正确传达语义含义：
 </p>
 
   <div class="overflow-hidden rounded-lg border border-kumo-hairline">
     <table class="w-full text-sm">
       <thead class="bg-kumo-elevated">
         <tr>
-          <th class="px-4 py-3 text-left font-medium">Role</th>
-          <th class="px-4 py-3 text-left font-medium">Use Case</th>
-          <th class="px-4 py-3 text-left font-medium">Behavior</th>
+          <th class="px-4 py-3 text-left font-medium">角色</th>
+          <th class="px-4 py-3 text-left font-medium">用例</th>
+          <th class="px-4 py-3 text-left font-medium">行为</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-kumo-hairline">
         <tr>
           <td class="px-4 py-3">
             `role="dialog"`
-            <span class="ml-2 text-kumo-subtle">(default)</span>
+            <span class="ml-2 text-kumo-subtle">（默认）</span>
           </td>
           <td class="px-4 py-3">
-            General-purpose modals, forms, content display
+            通用的模态、表单和内容展示
           </td>
-          <td class="px-4 py-3">Dismissible by default</td>
+          <td class="px-4 py-3">默认可关闭</td>
         </tr>
         <tr>
           <td class="px-4 py-3">`role="alertdialog"`</td>
           <td class="px-4 py-3">
-            Destructive actions, confirmations, critical warnings
+            危险操作、确认、关键警告
           </td>
-          <td class="px-4 py-3">Requires explicit user acknowledgment</td>
+          <td class="px-4 py-3">需要用户明确确认</td>
         </tr>
       </tbody>
     </table>
@@ -128,67 +127,66 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic Dialog
+### 基本对话框
 
 <ComponentExample demo="DialogBasicDemo">
   <DialogBasicDemo client:load />
 </ComponentExample>
 
-### Sizes
+### 尺寸
 
 <p>
-  The `size` prop controls the fixed width of the dialog on desktop. Content
-  that overflows the dialog width will scroll horizontally within the dialog
-  rather than stretching it.
+  `size` 属性控制对话框在桌面上的固定宽度。超出对话框宽度的内容
+  将在对话框内部横向滚动，而不会撑宽对话框。
 </p>
 <ComponentExample demo="DialogSizesDemo">
   <DialogSizesDemo client:load />
 </ComponentExample>
 
-### Alert Dialog (`role="alertdialog"`)
+### Alert Dialog（`role="alertdialog"`）
 
 <p>
-  For destructive or confirmation dialogs, use `role="alertdialog"` on
-  `Dialog.Root`. This provides proper accessibility semantics by rendering the
-  dialog with `role="alertdialog"` instead of `role="dialog"`.
+  对于危险或确认类对话框，请在
+  `Dialog.Root` 上使用 `role="alertdialog"`。这会以 `role="alertdialog"` 而非
+  `role="dialog"` 渲染对话框，提供正确的无障碍语义。
 </p>
 <div class="mb-4 rounded-lg border border-kumo-info/30 bg-kumo-info/10 p-4 text-sm text-kumo-info">
-  <p class="font-medium mb-2 text-sm">When to use `role="alertdialog"`:</p>
+  <p class="font-medium mb-2 text-sm">何时使用 `role="alertdialog"`：</p>
   <ul class="list-disc list-inside space-y-1 ml-2 mb-0">
-    <li>Destructive actions (delete, discard, remove)</li>
-    <li>Confirmation flows requiring explicit user acknowledgment</li>
-    <li>Actions that cannot be undone</li>
-    <li>Critical warnings or errors</li>
+    <li>危险操作（删除、丢弃、移除）</li>
+    <li>需要用户明确确认的确认流程</li>
+    <li>无法撤销的操作</li>
+    <li>关键警告或错误</li>
   </ul>
 </div>
 <ComponentExample demo="DialogAlertDemo">
   <DialogAlertDemo client:load />
 </ComponentExample>
 
-### Confirmation Dialog (with `disablePointerDismissal`)
+### 确认对话框（使用 `disablePointerDismissal`）
 
 <p>
-  For confirmation dialogs that should not be dismissed by clicking outside, use
-  `disablePointerDismissal` on `Dialog.Root`. This can be combined with
-  `role="alertdialog"` for proper accessibility.
+  对于不应通过点击外部区域关闭的确认对话框，请在
+  `Dialog.Root` 上使用 `disablePointerDismissal`。可将其与
+  `role="alertdialog"` 组合使用以获得正确的无障碍支持。
 </p>
 <ComponentExample demo="DialogConfirmationDemo">
   <DialogConfirmationDemo client:load />
 </ComponentExample>
 
-### With Actions
+### 带操作按钮
 
 <ComponentExample demo="DialogWithActionsDemo">
   <DialogWithActionsDemo client:load />
 </ComponentExample>
 
-### Custom Max Width
+### 自定义最大宽度
 
 <p>
-  Consumer max-width utilities such as `max-w-lg` should cap the dialog on
-  desktop, even when the dialog contains wide intrinsic content.
+  `max-w-lg` 等消费方最大宽度工具应在桌面上限制对话框的宽度，
+  即使对话框内部包含较宽的固有内容。
 </p>
 <ComponentExample
   demo="DialogMaxWidthDemo"
@@ -198,23 +196,23 @@ export default function Example() {
   <DialogMaxWidthDemo client:load />
 </ComponentExample>
 
-### With Select
+### 搭配 Select
 
-<p>Dialog containing a Select dropdown.</p>
+<p>包含 Select 下拉框的对话框。</p>
 <ComponentExample demo="DialogWithSelectDemo">
   <DialogWithSelectDemo client:load />
 </ComponentExample>
 
-### With Combobox
+### 搭配 Combobox
 
-<p>Dialog containing a Combobox for searchable selection.</p>
+<p>包含 Combobox 的对话框，用于可搜索选择。</p>
 <ComponentExample demo="DialogWithComboboxDemo">
   <DialogWithComboboxDemo client:load />
 </ComponentExample>
 
-### With Dropdown
+### 搭配 Dropdown
 
-  <p>Dialog containing a Dropdown menu.</p>
+  <p>包含 Dropdown 菜单的对话框。</p>
   <ComponentExample demo="DialogWithDropdownDemo">
     <DialogWithDropdownDemo client:load />
   </ComponentExample>
@@ -224,26 +222,26 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Dialog
 
-<p>The main dialog container that renders the modal overlay and popup.</p>
+<p>渲染模态覆盖层和弹出层的主对话框容器。</p>
 <PropsTable component="Dialog" />
 
 ### Dialog.Root
 
 <p>
-  Controls the open state of the dialog. Doesn't render its own HTML element.
+  控制对话框的打开状态。不渲染自身的 HTML 元素。
 </p>
 <div class="mb-4 overflow-hidden rounded-lg border border-kumo-hairline">
   <table class="w-full text-sm">
     <thead class="bg-kumo-elevated">
       <tr>
-        <th class="px-4 py-2 text-left font-medium">Prop</th>
-        <th class="px-4 py-2 text-left font-medium">Type</th>
-        <th class="px-4 py-2 text-left font-medium">Default</th>
-        <th class="px-4 py-2 text-left font-medium">Description</th>
+        <th class="px-4 py-2 text-left font-medium">属性</th>
+        <th class="px-4 py-2 text-left font-medium">类型</th>
+        <th class="px-4 py-2 text-left font-medium">默认值</th>
+        <th class="px-4 py-2 text-left font-medium">说明</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-kumo-hairline">
@@ -252,8 +250,7 @@ export default function Example() {
         <td class="px-4 py-2 font-mono text-xs">"dialog" | "alertdialog"</td>
         <td class="px-4 py-2 font-mono text-xs">"dialog"</td>
         <td class="px-4 py-2 text-kumo-subtle">
-          The ARIA role for the dialog. Use `"alertdialog"` for destructive or
-          confirmation flows.
+          对话框的 ARIA role。危险或确认流程请使用 `"alertdialog"`。
         </td>
       </tr>
       <tr>
@@ -261,8 +258,7 @@ export default function Example() {
         <td class="px-4 py-2 font-mono text-xs">boolean</td>
         <td class="px-4 py-2 font-mono text-xs">false</td>
         <td class="px-4 py-2 text-kumo-subtle">
-          When true, prevents the dialog from being dismissed by clicking
-          outside.
+          为 true 时，可防止对话框通过点击外部区域被关闭。
         </td>
       </tr>
     </tbody>
@@ -272,21 +268,21 @@ export default function Example() {
 
 ### Dialog.Trigger
 
-<p>A button that opens the dialog when clicked.</p>
+<p>点击即可打开对话框的按钮。</p>
 <PropsTable component="Dialog.Trigger" />
 
 ### Dialog.Title
 
-<p>A heading that labels the dialog for accessibility.</p>
+<p>为对话框提供无障碍标签的标题。</p>
 <PropsTable component="Dialog.Title" />
 
 ### Dialog.Description
 
-<p>A paragraph providing additional context about the dialog.</p>
+<p>提供对话框附加上下文信息的段落。</p>
 <PropsTable component="Dialog.Description" />
 
 ### Dialog.Close
 
-  <p>A button that closes the dialog when clicked.</p>
+  <p>点击即可关闭对话框的按钮。</p>
   <PropsTable component="Dialog.Close" />
 </ComponentSection>

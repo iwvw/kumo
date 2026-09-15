@@ -103,13 +103,13 @@ function ToastTriggerButton() {
     <Button
       onClick={() =>
         toastManager.add({
-          title: `Toast created`,
-          description: "This is a toast notification.",
+          title: `Toast 已创建`,
+          description: "这是一条 Toast 通知。",
           variant: "warning",
         })
       }
     >
-      Give me a toast
+      给我一个 Toast
     </Button>
   );
 }
@@ -133,11 +133,11 @@ export function HomeGrid() {
       id: "button",
       Component: (
         <div className="grid gap-3">
-          <Button icon={PlusIcon}>Create Worker</Button>
+          <Button icon={PlusIcon}>创建 Worker</Button>
           <Button variant="primary" icon={PlusIcon}>
-            Create Worker
+            创建 Worker
           </Button>
-          <Button loading>Create Worker</Button>
+          <Button loading>创建 Worker</Button>
         </div>
       ),
     },
@@ -146,8 +146,8 @@ export function HomeGrid() {
       id: "button-group",
       Component: (
         <ButtonGroup>
-          <Button variant="primary">Deploy</Button>
-          <Button variant="primary" shape="square" aria-label="More options">
+          <Button variant="primary">部署</Button>
+          <Button variant="primary" shape="square" aria-label="更多选项">
             <CaretDownIcon />
           </Button>
         </ButtonGroup>
@@ -158,8 +158,8 @@ export function HomeGrid() {
       id: "input",
       Component: (
         <div className="grid gap-3">
-          <Input placeholder="Type something..." />
-          <Input variant="error" value="Invalid!" />
+          <Input placeholder="输入内容..." />
+          <Input variant="error" value="无效！" />
         </div>
       ),
     },
@@ -170,7 +170,7 @@ export function HomeGrid() {
         <TagInput
           className="w-[280px]"
           defaultValue={["frontend", "priority"]}
-          placeholder="Add a label"
+          placeholder="添加标签"
         />
       ),
     },
@@ -179,22 +179,22 @@ export function HomeGrid() {
       id: "select",
       Component: (
         <Select
-          aria-label="Select version"
+          aria-label="选择版本"
           className="w-[200px]"
-          placeholder="Select version"
+          placeholder="选择版本"
           renderValue={(v) => {
             const labels: Record<string, string> = {
-              all: "All deployed versions",
-              active: "Active versions",
-              specific: "Specific versions",
+              all: "全部已部署版本",
+              active: "活跃版本",
+              specific: "指定版本",
             };
-            if (!v) return "Select a version...";
+            if (!v) return "选择版本…";
             return labels[v as string];
           }}
         >
-          <Select.Option value="all">All deployed versions</Select.Option>
-          <Select.Option value="active">Active versions</Select.Option>
-          <Select.Option value="specific">Specific versions</Select.Option>
+          <Select.Option value="all">全部已部署版本</Select.Option>
+          <Select.Option value="active">活跃版本</Select.Option>
+          <Select.Option value="specific">指定版本</Select.Option>
         </Select>
       ),
     },
@@ -204,11 +204,11 @@ export function HomeGrid() {
       Component: (
         <Toolbar>
           <Toolbar.Input
-            aria-label="Search DNS records"
-            placeholder="Search..."
+            aria-label="搜索 DNS 记录"
+            placeholder="搜索…"
           />
-          <Toolbar.Button icon={MagnifyingGlassIcon} aria-label="Search" />
-          <Toolbar.Button icon={PlusIcon} aria-label="Add" />
+          <Toolbar.Button icon={MagnifyingGlassIcon} aria-label="搜索" />
+          <Toolbar.Button icon={PlusIcon} aria-label="添加" />
         </Toolbar>
       ),
     },
@@ -219,7 +219,7 @@ export function HomeGrid() {
         <Autocomplete
           items={["Apple", "Banana", "Cherry", "Grape", "Mango", "Orange"]}
         >
-          <Autocomplete.InputGroup placeholder="Search fruits…" />
+          <Autocomplete.InputGroup placeholder="搜索水果…" />
           <Autocomplete.Content>
             <Autocomplete.List>
               {(item: string) => (
@@ -247,7 +247,7 @@ export function HomeGrid() {
           onValueChange={setValue}
           value={value}
         >
-          <Combobox.TriggerInput placeholder="Select an issue..." />
+          <Combobox.TriggerInput placeholder="选择一个问题…" />
           <Combobox.Content>
             <Combobox.List>
               {(item: { id: string; value: string }) => (
@@ -277,15 +277,15 @@ export function HomeGrid() {
       id: "input",
       Component: (
         <Input
-          label="Email"
+          label="邮箱"
           placeholder="name@example.com"
           type="email"
           variant="error"
           error={{
-            message: "Please enter a valid email.",
+            message: "请输入有效的邮箱地址。",
             match: "typeMismatch",
           }}
-          description="The email to send notifications to."
+          description="用于接收通知的邮箱。"
         />
       ),
     },
@@ -294,41 +294,40 @@ export function HomeGrid() {
       id: "dialog",
       Component: (
         <Dialog.Root>
-          <Dialog.Trigger render={(p) => <Button {...p}>Delete</Button>} />
+          <Dialog.Trigger render={(p) => <Button {...p}>删除</Button>} />
           <Dialog className="p-8">
             <div className="mb-4 flex items-start justify-between gap-4">
               <Dialog.Title className="text-2xl font-semibold">
-                Delete Resource?
+                删除该资源？
               </Dialog.Title>
               <Dialog.Close
-                aria-label="Close"
+                aria-label="关闭"
                 render={(props) => (
                   <Button
                     {...props}
                     variant="secondary"
                     shape="square"
                     icon={<XIcon />}
-                    aria-label="Close"
+                    aria-label="关闭"
                   />
                 )}
               />
             </div>
             <Dialog.Description className="text-kumo-subtle">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              这是一段用于演示的示例正文，展示对话框描述文本的样式。
             </Dialog.Description>
             <div className="mt-8 flex justify-end gap-2">
               <Dialog.Close
                 render={(props) => (
                   <Button variant="secondary" {...props}>
-                    Cancel
+                    取消
                   </Button>
                 )}
               />
               <Dialog.Close
                 render={(props) => (
                   <Button variant="destructive" {...props}>
-                    Delete
+                    删除
                   </Button>
                 )}
               />
@@ -344,19 +343,19 @@ export function HomeGrid() {
         <TooltipProvider>
           <div className="flex gap-2">
             <Tooltip
-              content="Add"
+              content="添加"
               open
               render={
-                <Button shape="square" icon={PlusIcon} aria-label="Add" />
+                <Button shape="square" icon={PlusIcon} aria-label="添加" />
               }
             />
             <Tooltip
-              content="Change language"
+              content="切换语言"
               render={
                 <Button
                   shape="square"
                   icon={TranslateIcon}
-                  aria-label="Change language"
+                  aria-label="切换语言"
                 />
               }
             />
@@ -369,7 +368,7 @@ export function HomeGrid() {
       id: "dropdown",
       Component: (
         <DropdownMenu>
-          <DropdownMenu.Trigger render={<Button icon={PlusIcon}>Add</Button>} />
+          <DropdownMenu.Trigger render={<Button icon={PlusIcon}>添加</Button>} />
           <DropdownMenu.Content>
             <DropdownMenu.Item>Worker</DropdownMenu.Item>
             <DropdownMenu.Item>Pages</DropdownMenu.Item>
@@ -385,9 +384,9 @@ export function HomeGrid() {
           open={collapsibleOpen}
           onOpenChange={setCollapsibleOpen}
         >
-          <Collapsible.DefaultTrigger>What is Kumo?</Collapsible.DefaultTrigger>
+          <Collapsible.DefaultTrigger>Kumo 是什么？</Collapsible.DefaultTrigger>
           <Collapsible.DefaultPanel>
-            <Text>Kumo is Cloudflare's component library.</Text>
+            <Text>Kumo 是 Cloudflare 的组件库。</Text>
           </Collapsible.DefaultPanel>
         </Collapsible.Root>
       ),
@@ -397,7 +396,7 @@ export function HomeGrid() {
       id: "checkbox",
       Component: (
         <Checkbox
-          label="Max bandwidth"
+          label="最大带宽"
           checked={checked}
           onCheckedChange={(checked) => {
             setChecked(checked);
@@ -410,8 +409,8 @@ export function HomeGrid() {
       id: "layer-card",
       Component: (
         <LayerCard className="w-[200px]">
-          <LayerCard.Secondary>Next Steps</LayerCard.Secondary>
-          <LayerCard.Primary>Hello</LayerCard.Primary>
+          <LayerCard.Secondary>后续步骤</LayerCard.Secondary>
+          <LayerCard.Primary>你好</LayerCard.Primary>
         </LayerCard>
       ),
     },
@@ -450,15 +449,15 @@ export function HomeGrid() {
       id: "banner",
       Component: (
         <div className="flex flex-col gap-2">
-          <Banner description="This is a default banner." />
+          <Banner description="这是一个默认横幅。" />
           <Banner
             icon={<WarningIcon weight="fill" />}
-            title="This is an alert banner."
+            title="这是一条警告横幅。"
             variant="alert"
           />
           <Banner
             icon={<WarningOctagonIcon weight="fill" />}
-            title="This is an error banner."
+            title="这是一条错误横幅。"
             variant="error"
           />
         </div>
@@ -470,9 +469,9 @@ export function HomeGrid() {
       Component: (
         <Tabs
           tabs={[
-            { value: "home", label: "Home" },
-            { value: "about", label: "About" },
-            { value: "contact", label: "Contact" },
+            { value: "home", label: "首页" },
+            { value: "about", label: "关于" },
+            { value: "contact", label: "联系" },
           ]}
         />
       ),
@@ -482,11 +481,11 @@ export function HomeGrid() {
       id: "badge",
       Component: (
         <div className="flex flex-col gap-2">
-          <Badge variant="blue">Blue</Badge>
-          <Badge variant="green">Green</Badge>
-          <Badge variant="orange">Orange</Badge>
-          <Badge variant="neutral">Neutral</Badge>
-          <Badge variant="red">Red</Badge>
+          <Badge variant="blue">蓝色</Badge>
+          <Badge variant="green">绿色</Badge>
+          <Badge variant="orange">橙色</Badge>
+          <Badge variant="neutral">中性</Badge>
+          <Badge variant="red">红色</Badge>
         </div>
       ),
     },
@@ -517,7 +516,7 @@ export function HomeGrid() {
     {
       name: "InputArea",
       id: "input-area",
-      Component: <InputArea placeholder="Enter your name" />,
+      Component: <InputArea placeholder="请输入你的姓名" />,
     },
     {
       name: "InputGroup",
@@ -528,7 +527,7 @@ export function HomeGrid() {
       name: "Meter",
       id: "meter",
       Component: (
-        <Meter value={75} label="My meter" customValue="100 / 5,000" />
+        <Meter value={75} label="我的仪表" customValue="100 / 5,000" />
       ),
     },
     {
@@ -545,11 +544,11 @@ export function HomeGrid() {
       id: "breadcrumbs",
       Component: (
         <div className="flex items-center gap-1 text-sm">
-          <span className="text-kumo-subtle">Home</span>
+          <span className="text-kumo-subtle">首页</span>
           <span className="text-kumo-inactive">/</span>
-          <span className="text-kumo-subtle">Docs</span>
+          <span className="text-kumo-subtle">文档</span>
           <span className="text-kumo-inactive">/</span>
-          <span className="font-medium">Page</span>
+          <span className="font-medium">页面</span>
         </div>
       ),
     },
@@ -568,8 +567,8 @@ export function HomeGrid() {
       id: "flow",
       Component: (
         <Flow>
-          <Flow.Node>Step 1</Flow.Node>
-          <Flow.Node>Step 2</Flow.Node>
+          <Flow.Node>步骤 1</Flow.Node>
+          <Flow.Node>步骤 2</Flow.Node>
         </Flow>
       ),
     },
@@ -578,12 +577,12 @@ export function HomeGrid() {
       id: "link",
       Component: (
         <div className="flex flex-col gap-2 text-sm">
-          <Link href="#">Default link</Link>
+          <Link href="#">默认链接</Link>
           <Link href="#" variant="current">
-            Current color link
+            当前颜色链接
           </Link>
           <Link href="#" variant="plain">
-            Plain link
+            纯文本链接
           </Link>
         </div>
       ),
@@ -593,9 +592,9 @@ export function HomeGrid() {
       id: "empty",
       Component: (
         <div className="flex flex-col items-center gap-1 text-center">
-          <span className="text-sm font-medium">No results</span>
+          <span className="text-sm font-medium">暂无结果</span>
           <span className="text-xs text-kumo-subtle">
-            Try a different search
+            请尝试其他搜索条件
           </span>
         </div>
       ),
@@ -625,9 +624,9 @@ export function HomeGrid() {
       id: "label",
       Component: (
         <div className="flex flex-col gap-2">
-          <Label>Default Label</Label>
-          <Label showOptional>Optional Field</Label>
-          <Label tooltip="More info">With Tooltip</Label>
+          <Label>默认标签</Label>
+          <Label showOptional>选填字段</Label>
+          <Label tooltip="更多信息">带提示</Label>
         </div>
       ),
     },
@@ -636,10 +635,10 @@ export function HomeGrid() {
       id: "popover",
       Component: (
         <Popover>
-          <Popover.Trigger render={<Button />}>Open Popover</Popover.Trigger>
+          <Popover.Trigger render={<Button />}>打开 Popover</Popover.Trigger>
           <Popover.Content>
-            <Popover.Title>Popover Title</Popover.Title>
-            <Popover.Description>This is a popover.</Popover.Description>
+            <Popover.Title>Popover 标题</Popover.Title>
+            <Popover.Description>这是一个 Popover。</Popover.Description>
           </Popover.Content>
         </Popover>
       ),
@@ -648,9 +647,9 @@ export function HomeGrid() {
       name: "Radio",
       id: "radio",
       Component: (
-        <Radio.Group legend="Select option" defaultValue="option1">
-          <Radio.Item value="option1" label="Option 1" />
-          <Radio.Item value="option2" label="Option 2" />
+        <Radio.Group legend="选择选项" defaultValue="option1">
+          <Radio.Item value="option1" label="选项 1" />
+          <Radio.Item value="option2" label="选项 2" />
         </Radio.Group>
       ),
     },
@@ -666,22 +665,22 @@ export function HomeGrid() {
         <Table className="w-[200px] text-sm">
           <Table.Header>
             <Table.Row>
-              <Table.Head>Name</Table.Head>
-              <Table.Head>Status</Table.Head>
+              <Table.Head>名称</Table.Head>
+              <Table.Head>状态</Table.Head>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             <Table.Row>
               <Table.Cell>Worker 1</Table.Cell>
-              <Table.Cell>Active</Table.Cell>
+              <Table.Cell>活跃</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Worker 2</Table.Cell>
-              <Table.Cell>Paused</Table.Cell>
+              <Table.Cell>已暂停</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Worker 3</Table.Cell>
-              <Table.Cell>Active</Table.Cell>
+              <Table.Cell>活跃</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>
@@ -692,11 +691,11 @@ export function HomeGrid() {
       id: "table-of-contents",
       Component: (
         <TableOfContents>
-          <TableOfContents.Title>On this page</TableOfContents.Title>
+          <TableOfContents.Title>本页目录</TableOfContents.Title>
           <TableOfContents.List>
-            <TableOfContents.Item active>Introduction</TableOfContents.Item>
-            <TableOfContents.Item>Installation</TableOfContents.Item>
-            <TableOfContents.Item>Usage</TableOfContents.Item>
+            <TableOfContents.Item active>简介</TableOfContents.Item>
+            <TableOfContents.Item>安装</TableOfContents.Item>
+            <TableOfContents.Item>用法</TableOfContents.Item>
           </TableOfContents.List>
         </TableOfContents>
       ),
@@ -707,11 +706,11 @@ export function HomeGrid() {
       Component: (
         <div className="flex flex-col gap-1">
           <Text size="lg" bold>
-            Large Bold Text
+            大号粗体文本
           </Text>
-          <Text size="base">Regular text content</Text>
+          <Text size="base">常规文本内容</Text>
           <Text size="sm" color="subtle">
-            Small subtle text
+            小号弱化文本
           </Text>
         </div>
       ),

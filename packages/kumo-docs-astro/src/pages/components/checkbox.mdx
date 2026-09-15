@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Checkbox"
-description: "A control that allows the user to toggle between checked and not checked. Features built-in label support with automatic horizontal layout."
+description: "一个允许用户在选中与未选中之间切换的控件。内置标签支持并自动采用水平布局。"
 sourceFile: "components/checkbox"
 baseUIComponent: "checkbox"
 ---
@@ -36,13 +36,13 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 批量导入
 
 <CodeBlock code={`import { Checkbox } from "@cloudflare/kumo";`} lang="tsx" />
 
-### Granular
+### 按需导入
 
   <CodeBlock
     code={`import { Checkbox } from "@cloudflare/kumo/components/checkbox";`}
@@ -54,7 +54,7 @@ import {
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Checkbox } from "@cloudflare/kumo";
@@ -70,92 +70,83 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Default
+### 默认
 
 <p>
-  Checkbox with built-in label. The label automatically displays in a horizontal
-  layout (checkbox before label).
+  带内置标签的 Checkbox。标签会自动以水平布局显示（Checkbox 在标签之前）。
 </p>
 <ComponentExample demo="CheckboxDefaultDemo">
   <CheckboxDefaultDemo client:visible />
 </ComponentExample>
 
-### Checked
+### 已选中
 
 <ComponentExample demo="CheckboxCheckedDemo">
   <CheckboxCheckedDemo client:visible />
 </ComponentExample>
 
-### Indeterminate
+### 半选
 
-<p>Used for "select all" patterns when some but not all items are selected.</p>
+<p>用于"全选"模式中仅部分项目被选中的场景。</p>
 <ComponentExample demo="CheckboxIndeterminateDemo">
   <CheckboxIndeterminateDemo client:visible />
 </ComponentExample>
 
-### Label First Layout
+### 标签在前的布局
 
-<p>Use `controlFirst={false}` to place the label before the checkbox.</p>
+<p>使用 `controlFirst={false}` 将标签放在 Checkbox 之前。</p>
 <ComponentExample demo="CheckboxLabelFirstDemo">
   <CheckboxLabelFirstDemo client:visible />
 </ComponentExample>
 
-### Disabled
+### 禁用
 
 <ComponentExample demo="CheckboxDisabledDemo">
   <CheckboxDisabledDemo client:visible />
 </ComponentExample>
 
-### Error
+### 错误
 
 <p>
-  Error variant provides visual styling (red ring). For error messages, use
-  Checkbox.Group.
+  错误变体提供视觉样式（红色描边）。若需显示错误提示文本，请使用 Checkbox.Group。
 </p>
 <ComponentExample demo="CheckboxErrorDemo">
   <CheckboxErrorDemo client:visible />
 </ComponentExample>
 
-### Checkbox Group
+### Checkbox 分组
 
 <p>
-  Group multiple checkboxes with a legend, description, and shared error
-  messages. Uses Checkbox.Group and Checkbox.Item.
+  使用图例（legend）、描述和共享的错误提示消息将多个 Checkbox 归组。使用 Checkbox.Group 和 Checkbox.Item。
 </p>
 <ComponentExample demo="CheckboxGroupDemo">
   <CheckboxGroupDemo client:visible />
 </ComponentExample>
 
-### Checkbox Group with Error
+### 带错误的 Checkbox 分组
 
 <p>
-  Show validation errors at the group level. Error replaces description when
-  present.
+  在分组级别显示校验错误。存在错误时，错误消息会替换描述。
 </p>
 <ComponentExample demo="CheckboxGroupErrorDemo">
   <CheckboxGroupErrorDemo client:visible />
 </ComponentExample>
 
-### Visually Hidden Legend
+### 视觉隐藏的图例
 
 <p>
-  Use `Checkbox.Legend` with `className="sr-only"` to keep the legend accessible
-  to screen readers while hiding it visually. This is useful when the group is
-  already labeled by a parent `Field` or heading, and showing the legend would
-  create a redundant label.
+  使用 `Checkbox.Legend` 并搭配 `className="sr-only"`，可使图例保持对屏幕阅读器可用，同时在视觉上隐藏。当分组已由其父级 `Field` 或标题提供标签、显示图例会形成重复标签时，这一做法很有用。
 </p>
 <ComponentExample demo="CheckboxLegendSrOnlyDemo">
   <CheckboxLegendSrOnlyDemo client:visible />
 </ComponentExample>
 
-### Custom Legend Styling
+### 自定义图例样式
 
 <p>
-  `Checkbox.Legend` accepts `className` for full control over legend
-  presentation. Use it instead of the `legend` string prop when you need custom
-  typography, colors, or layout.
+  `Checkbox.Legend` 接受 `className`，可完全控制图例的呈现效果。当需要自定义排版、颜色或布局时，请用它替代 `legend` 字符串属性。
 </p>
 <ComponentExample demo="CheckboxLegendCustomDemo">
   <CheckboxLegendCustomDemo client:visible />
@@ -167,32 +158,30 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
 ### Checkbox
 
-<p>Single checkbox component with built-in label and horizontal layout.</p>
+<p>带有内置标签和水平布局的单个 Checkbox 组件。</p>
 <PropsTable component="Checkbox" />
 
 ### Checkbox.Group
 
 <p>
-  Wrapper for multiple checkboxes with legend, description, and error support.
+  用于多个 Checkbox 的包装器，支持图例、描述和错误提示。
 </p>
 <PropsTable component="Checkbox.Group" />
 
 ### Checkbox.Legend
 
 <p>
-  Composable legend sub-component for Checkbox.Group. Accepts `className` for
-  full styling control (e.g. `className="sr-only"` to visually hide). Use
-  instead of the `legend` string prop when you need custom legend styling.
+  Checkbox.Group 的可组合图例子组件。接受 `className` 以完全控制样式（例如使用 `className="sr-only"` 实现视觉隐藏）。当需要自定义图例样式时，用它替代 `legend` 字符串属性。
 </p>
 <PropsTable component="Checkbox.Legend" />
 
 ### Checkbox.Item
 
-  <p>Individual checkbox within Checkbox.Group.</p>
+  <p>Checkbox.Group 中的单个 Checkbox。</p>
   <PropsTable component="Checkbox.Item" />
 </ComponentSection>
 
@@ -200,36 +189,35 @@ export default function Example() {
 
 <ComponentSection>
 
-## Accessibility
+## 无障碍
 
   <div class="space-y-4 text-sm">
     <div>
 
-      ### Label Requirement
+      ### 标签要求
 
       <p>
-        Single checkboxes require a `label` prop or `aria-label` for accessibility.
-        Missing labels trigger console warnings in development.
+        单个 Checkbox 必须提供 `label` 属性或 `aria-label` 才能保证无障碍访问。
+        缺少标签时，开发环境会在控制台输出警告。
       </p>
     </div>
     <div>
 
-      ### Keyboard Navigation
+      ### 键盘导航
 
       <p>
-        <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Space</kbd> toggles
-        the checkbox.
-        <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Tab</kbd> moves focus
-        between checkboxes.
+        <kbd class="rounded bg-kumo-control px-1.5 py-0.5">空格</kbd>切换
+        Checkbox 的选中状态。
+        <kbd class="rounded bg-kumo-control px-1.5 py-0.5">Tab</kbd>在
+        Checkbox 之间移动焦点。
       </p>
     </div>
     <div>
 
-      ### Screen Readers
+      ### 屏幕阅读器
 
       <p>
-        Checkbox.Group uses semantic `<fieldset>` and `<legend>` elements for
-        proper grouping announcement.
+        Checkbox.Group 使用语义化的 `<fieldset>` 和 `<legend>` 元素，以确保分组被正确播报。
       </p>
     </div>
 
