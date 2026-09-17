@@ -16,6 +16,7 @@ import {
   LayerDialogCleanupDemo,
   LayerDialogInformationalDemo,
   LayerDialogMaxHeightDemo,
+  LayerDialogNestedDemo,
   LayerDialogPendingDemo,
   LayerDialogSizeDemo,
   LayerDialogTopAlignDemo,
@@ -88,7 +89,7 @@ export default function Example() {
 `LayerDialog.Content` 恰好接受一个 `Title`、一个 `Body`、一个可选的 `Description` 和一个可选的 `Actions`。它会自动选择关闭 UI：
 
 - 无 `Actions` 时：在标题栏中显示 X，且底部无操作栏。
-- 有 `Actions` 时：移除 X，并显示含**关闭**或**取消**及一个主操作的底部操作栏。
+- 有 `Actions` 时：移除 X，并显示含**关闭**或**取消**及一个主操作的底部操作栏。在移动端，它们保持在滚动正文下方、以发丝分隔线隔开；在桌面端，它们保留在固定底部操作栏中。
 
 使用方不能混用这些布局，也不能添加更多主操作。只读内容用 X，用户必须提交变更时用 `Actions`，破坏性操作或重要确认用 `LayerDialog.Alert`。
 
@@ -103,13 +104,13 @@ export default function Example() {
 
 <ComponentSection>
 ## 标准操作
-添加 `Actions` 会启用固定底部操作栏，其中恰好包含一个 Kumo 主操作和一个自动生成的**关闭**按钮。使用方不能添加自定义底部控件、修改按钮尺寸或增加额外 CTA。主操作接受 `variant="primary"`（默认）或 `variant="destructive"`。
+添加 `Actions` 会恰好选择一个 Kumo 主操作和一个自动生成的**关闭**按钮。在移动端，操作保持在滚动正文下方、以发丝分隔线隔开；在桌面端，它们占据固定的底部操作栏。使用方不能添加自定义控件、修改按钮尺寸或增加额外 CTA。主操作接受 `variant="primary"`（默认）或 `variant="destructive"`。
 <ComponentExample demo="LayerDialogActionDemo"><LayerDialogActionDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
 ## 取消文案
-当存在 `LayerDialog.Actions` 时，LayerDialog 会渲染一个用于关闭对话框的次要按钮。默认文案为“关闭”，对于 `LayerDialog.Alert` 则为“取消”。
+当存在 `LayerDialog.Actions` 时，LayerDialog 会渲染一个用于关闭对话框的按钮。在移动端使用次要按钮样式，在桌面端底部操作栏中使用幽灵按钮样式。默认文案为“关闭”，对于 `LayerDialog.Alert` 则为“取消”。
 
 仅当对话框需要更具体的文案时才使用 `dismissLabel`，例如“继续编辑”或“放弃更改”。该标签不改变按钮行为：它始终关闭对话框。
 <ComponentExample demo="LayerDialogCancelDemo"><LayerDialogCancelDemo client:load /></ComponentExample>
@@ -121,6 +122,12 @@ export default function Example() {
 当确认操作不可逆时，为主操作传入 `variant="destructive"`。对于确认非破坏性但关键步骤的 Alert，保留默认的主操作样式。
 
 <ComponentExample demo="LayerDialogAlertDemo"><LayerDialogAlertDemo client:load /></ComponentExample>
+</ComponentSection>
+
+<ComponentSection>
+## 嵌套对话框
+当用户必须确认某个相关操作时，可以在父对话框的正文中嵌套一个 `LayerDialog.Root` 或 `LayerDialog.Alert`。每个对话框独立进行 portal 渲染；Base UI 会让嵌套抽屉在其父级之上保持激活，并在其关闭时将焦点返回给父级触发器。嵌套抽屉会在父级之上渲染自己的背景遮罩，因此父级保持完整但明显处于非激活状态。无需任何 z-index 覆盖。
+<ComponentExample demo="LayerDialogNestedDemo"><LayerDialogNestedDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>

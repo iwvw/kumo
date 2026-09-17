@@ -179,6 +179,7 @@ const COMPONENT_DESCRIPTIONS: Record<string, string> = {
   button: "展示按钮或外观类似按钮的组件。",
   checkbox: "用于在选中与未选中之间切换的控件。",
   "clipboard-text": "带一键复制按钮的文本组件。",
+  "inline-copy-text": "紧凑无边框的复制控件，用于短小的行内值。",
   collapsible: "一组垂直堆叠的交互式标题，每个标题展开对应内容。",
   combobox: "可搜索的 Select 组件，用于过滤并从选项中选择。",
   dialog: "覆盖在主窗口或其他对话框之上的模态窗口。",
