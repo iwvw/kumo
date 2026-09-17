@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
-title: "Inline Copy Text"
-description: "A compact, borderless copy control for short inline values."
+title: "行内复制文本"
+description: "紧凑无边框的复制控件，用于短小的行内值。"
 sourceFile: "components/inline-copy-text"
 ---
 
@@ -22,15 +22,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { InlineCopyText } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { InlineCopyText } from "@cloudflare/kumo/components/inline-copy-text";
@@ -40,9 +40,9 @@ import { InlineCopyText } from "@cloudflare/kumo/components/inline-copy-text";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
-Use `InlineCopyText` for short identifiers and values in dense interfaces such as table cells. Use [`ClipboardText`](/components/clipboard-text) when the value should appear in a read-only, input-like field with an always-visible copy button.
+在表格单元格等密集型界面中，使用 `InlineCopyText` 展示较短的标识符与值。当值需要显示在只读、类似输入框的字段中并带有常驻复制按钮时，请使用 [`ClipboardText`](/components/clipboard-text)。
 
 ```tsx
 import { InlineCopyText } from "@cloudflare/kumo";
@@ -62,19 +62,19 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Resource row
+### 资源行
 
-An enclosing Tailwind `group` can reveal the copy icon when the entire row is hovered or receives focus within.
+外层添加 Tailwind `group` 后，当整行被悬停或其中获得焦点时，可显示复制图标。
 
 <ComponentExample demo="InlineCopyTextResourceRowDemo">
   <InlineCopyTextResourceRowDemo client:visible />
 </ComponentExample>
 
-### Rich content
+### 富内容
 
-String children are copied by default. When the children are not a string, provide the required `value` prop with the value to copy. `InlineCopyText` also accepts Text props such as `variant`, `size`, `bold`, `truncate`, and `as`; heading variants are not supported.
+默认情况下复制的是字符串子内容。当子内容不是字符串时，请通过必需的 `value` prop 提供要复制的值。`InlineCopyText` 也接受 `variant`、`size`、`bold`、`truncate`、`as` 等 Text prop；不支持标题变体。
 
 <ComponentExample demo="InlineCopyTextRichContentDemo">
   <InlineCopyTextRichContentDemo client:visible />
@@ -84,7 +84,7 @@ String children are copied by default. When the children are not a string, provi
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="InlineCopyText" />
 </ComponentSection>
