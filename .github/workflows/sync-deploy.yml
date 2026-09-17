@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout zh
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: zh
@@ -78,7 +78,7 @@ jobs:
           fi
 
       - name: Open translation issue on conflict
-        if: steps.merge.outcome == 'failure'
+        if: failure() && steps.merge.outcome == 'failure'
         uses: actions/github-script@v7
         with:
           script: |
