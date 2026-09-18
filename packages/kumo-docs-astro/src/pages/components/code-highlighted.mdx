@@ -16,6 +16,7 @@ import {
   CodeHighlightedHighlightLinesDemo,
   CodeHighlightedLineNumbersDemo,
   CodeHighlightedCopyButtonDemo,
+  CodeHighlightedPlainDemo,
   CodeHighlightedFullFeaturedDemo,
   CodeHighlightedSharedProviderDemo,
   CodeHighlightedCssDemo,
@@ -166,6 +167,16 @@ export function App() {
 <p>使用 `showCopyButton` 添加复制到剪贴板的按钮。</p>
 <ComponentExample demo="CodeHighlightedCopyButtonDemo">
   <CodeHighlightedCopyButtonDemo client:visible />
+</ComponentExample>
+
+### 简洁模式
+
+<p>
+  使用 `variant="plain"` 去掉外层表面、边框和圆角，
+  适合把高亮代码嵌入到其他容器内。
+</p>
+<ComponentExample demo="CodeHighlightedPlainDemo">
+  <CodeHighlightedPlainDemo client:visible />
 </ComponentExample>
 
 ### 完整功能
@@ -558,6 +569,16 @@ import { ShikiProvider, CodeHighlighted } from "@cloudflare/kumo/code";
         <td class="py-2">
           语言标识（必须在 provider 的 languages 中）
         </td>
+      </tr>
+      <tr class="border-b border-kumo-hairline/50">
+        <td class="py-2 pr-4">
+          <code>variant</code>
+        </td>
+        <td class="py-2 pr-4">
+          <code>"default" | "plain"</code>
+        </td>
+        <td class="py-2 pr-4">否</td>
+        <td class="py-2">代码块的视觉样式</td>
       </tr>
       <tr class="border-b border-kumo-hairline/50">
         <td class="py-2 pr-4">
