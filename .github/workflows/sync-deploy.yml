@@ -84,12 +84,13 @@ jobs:
               git log --oneline -5
 
             TASKS (all mandatory):
-            1. Resolve every merge conflict (the files listed by `git diff --name-only --diff-filter=U`). Keep the Simplified-Chinese translation as the base and fold in upstream's new English content, translating it. For structural or code-level changes, adopt upstream's structure. Never leave conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) anywhere.
+            1. Resolve every merge conflict (the files listed by `git diff --name-only --diff-filter=U`). Keep the Simplified-Chinese translation as the base and fold in upstream's new English content, translating it. For structural or code-level changes, adopt upstream's structure. If one side of a conflict is empty because upstream DELETED that block/entry, adopt the deletion — do not resurrect removed content, even if it was translated. Never leave conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) anywhere.
             2. Translate any new English user-visible prose introduced by this merge in files under packages/kumo-docs-astro/src (pages, components, layouts). Translate only headings, paragraphs, list items, table cells, and the frontmatter `description` value.
             3. Do NOT translate: code blocks (keep byte-identical), component/API identifiers (Button, Badge...), frontmatter keys (layout/title/sourceFile), imports, JSX/Astro props and their code-like values, links, anchors, URLs, file paths, brand nouns (Kumo, Base UI, Tailwind, CLI, Figma, npm, pnpm, ARIA). Preserve exact Markdown/JSX structure, indentation and whitespace; do not reformat or reorder.
-            4. Verify the build passes: `pnpm install` if needed, then `pnpm --filter @cloudflare/kumo build`, then `pnpm --filter @cloudflare/kumo-docs-astro build`. Fix problems until it passes.
-            5. Do NOT run `git commit` or `git push`. Do NOT modify `.github/workflows`. The workflow finalizes and pushes the merge.
-            6. Finish with a concise summary of which conflicts you resolved and which files you translated.
+            4. When finished, `git diff` the resolved files and confirm the only differences versus upstream's version are the Chinese translations of user-visible prose — no leftover entries that upstream removed, no re-added content.
+            5. Verify the build passes: `pnpm install` if needed, then `pnpm --filter @cloudflare/kumo build`, then `pnpm --filter @cloudflare/kumo-docs-astro build`. Fix problems until it passes.
+            6. Do NOT run `git commit` or `git push`. Do NOT modify `.github/workflows`. The workflow finalizes and pushes the merge.
+            7. Finish with a concise summary of which conflicts you resolved and which files you translated.
           EOF
           PROMPT="$(cat /tmp/prompt.md)"
           OPENCODE=/home/runner/.opencode/bin/opencode
