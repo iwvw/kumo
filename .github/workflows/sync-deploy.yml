@@ -15,6 +15,9 @@ concurrency:
   group: sync-deploy
   cancel-in-progress: false
 
+env:
+  DSUKHUB_API_KEY: ${{ secrets.DSUKHUB_API_KEY }}
+
 jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
@@ -30,93 +33,108 @@ jobs:
           git remote add upstream https://github.com/cloudflare/kumo.git
           git fetch upstream main
 
-      - name: Detect whether to run
-        id: detect
-        run: |
-          case "${{ github.event_name }}" in
-            schedule)
-              if git merge-base --is-ancestor upstream/main HEAD; then
-                echo "run=false" >> "$GITHUB_OUTPUT"
-                echo "reason=no-upstream-change" >> "$GITHUB_OUTPUT"
-              else
-                echo "run=true" >> "$GITHUB_OUTPUT"
-                echo "reason=upstream-advanced" >> "$GITHUB_OUTPUT"
-              fi
-              ;;
-            push)
-              echo "run=true" >> "$GITHUB_OUTPUT"
-              echo "reason=pushed-changes" >> "$GITHUB_OUTPUT"
-              ;;
-            *)
-              echo "run=true" >> "$GITHUB_OUTPUT"
-              echo "reason=workflow-dispatch" >> "$GITHUB_OUTPUT"
-              ;;
-          esac
-
       - name: Sync (merge) upstream main into zh
         id: merge
-        if: steps.detect.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           PRE=$(git rev-parse HEAD)
-          if ! git merge upstream/main --no-edit; then
-            git merge --abort
-            echo "::error::Merge conflict while merging upstream/main into zh. Translation refresh required."
+          echo "pre=$PRE" >> "$GITHUB_OUTPUT"
+          git rev-parse upstream/main > /tmp/upstream-sha.txt
+          if git merge upstream/main --no-edit; then
+            echo "conflict=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "conflict=true" >> "$GITHUB_OUTPUT"
+            echo "::warning::Merge produced conflicts; handing off to opencode."
+          fi
+          CONFLICTS=$(git diff --name-only --diff-filter=U)
+          if [ "$(git rev-parse HEAD)" != "$PRE" ] || [ -n "$CONFLICTS" ]; then
+            CHANGED=true
+          else
+            CHANGED=false
+          fi
+          echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$CHANGED" != "true" ]; then
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "--- unmerged files ---"
+          echo "$CONFLICTS"
+
+      - name: Install opencode
+        if: steps.merge.outputs.changed == 'true'
+        run: curl -fsSL https://opencode.ai/install | bash
+
+      - name: Resolve conflicts and translate via opencode
+        id: agent
+        if: steps.merge.outputs.changed == 'true'
+        env:
+          MODEL: ${{ vars.OPENCODE_MODEL }}
+          MODEL_BACKUP: ${{ vars.OPENCODE_MODEL_BACKUP }}
+        run: |
+          cat > /tmp/prompt.md <<'EOF'
+            You are the maintenance agent of the Simplified-Chinese localization of the Cloudflare Kumo docs (fork iwvw/kumo, branch `zh`).
+
+            A merge of `upstream/main` into `zh` just happened in this working tree. Handle it end to end.
+
+            FIRST inspect the current state:
+              git status --short
+              git diff --name-only --diff-filter=U
+              git log --oneline -5
+
+            TASKS (all mandatory):
+            1. Resolve every merge conflict (the files listed by `git diff --name-only --diff-filter=U`). Keep the Simplified-Chinese translation as the base and fold in upstream's new English content, translating it. For structural or code-level changes, adopt upstream's structure. Never leave conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) anywhere.
+            2. Translate any new English user-visible prose introduced by this merge in files under packages/kumo-docs-astro/src (pages, components, layouts). Translate only headings, paragraphs, list items, table cells, and the frontmatter `description` value.
+            3. Do NOT translate: code blocks (keep byte-identical), component/API identifiers (Button, Badge...), frontmatter keys (layout/title/sourceFile), imports, JSX/Astro props and their code-like values, links, anchors, URLs, file paths, brand nouns (Kumo, Base UI, Tailwind, CLI, Figma, npm, pnpm, ARIA). Preserve exact Markdown/JSX structure, indentation and whitespace; do not reformat or reorder.
+            4. Verify the build passes: `pnpm install` if needed, then `pnpm --filter @cloudflare/kumo build`, then `pnpm --filter @cloudflare/kumo-docs-astro build`. Fix problems until it passes.
+            5. Do NOT run `git commit` or `git push`. Do NOT modify `.github/workflows`. The workflow finalizes and pushes the merge.
+            6. Finish with a concise summary of which conflicts you resolved and which files you translated.
+          EOF
+          PROMPT="$(cat /tmp/prompt.md)"
+          OPENCODE=/home/runner/.opencode/bin/opencode
+          echo "primary model: ${MODEL}"
+          if ! "${OPENCODE}" run -m "${MODEL}" "$PROMPT"; then
+            echo "primary model failed; falling back to ${MODEL_BACKUP}"
+            "${OPENCODE}" run -m "${MODEL_BACKUP}" "$PROMPT" || exit 1
+          fi
+          echo "--- remaining unmerged files (must be empty) ---"
+          if [ -n "$(git diff --name-only --diff-filter=U)" ]; then
+            echo "::error::Conflicts still unresolved after opencode."
             exit 1
           fi
-          if [ "$(git rev-parse HEAD)" != "$PRE" ]; then
-            echo "merged=true" >> "$GITHUB_OUTPUT"
-            git rev-parse upstream/main > /tmp/upstream-sha.txt
-            git diff --name-only "$PRE" HEAD -- \
-              packages/kumo-docs-astro/src/pages \
-              packages/kumo-docs-astro/src/components \
-              packages/kumo-docs-astro/src/layouts > /tmp/changed-docs.txt || true
-            cat /tmp/changed-docs.txt
-          else
-            echo "merged=false" >> "$GITHUB_OUTPUT"
+          if grep -RIn --exclude-dir=node_modules --exclude-dir=.git -E '^(<<<<<<<|=======|>>>>>>>)' packages/kumo-docs-astro/src 2>/dev/null; then
+            echo "::error::Conflict markers remain after opencode."
+            exit 1
           fi
 
-      - name: Open translation issue on conflict
-        if: failure() && steps.merge.outcome == 'failure'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: '上游 cloudflare/kumo 变更与汉化冲突，需要补译',
-              labels: ['translation'],
-              body: `自动同步在合并 \`cloudflare/kumo@main\` 到 \`zh\` 时发生冲突（触发事件 ${context.eventName}）。\n\n翻译 Agent 会尝试解决并增量汉化（见 translate workflow）；如自动处理失败，请手动解决后重跑 "Sync upstream and deploy"（workflow_dispatch）。\n\n触发时间: ${new Date().toISOString()}`
-            })
-
       - name: Setup pnpm
-        if: steps.merge.outcome == 'success'
+        if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
         uses: pnpm/action-setup@v4
         with:
           version: 12.3.4
 
       - name: Setup Node 24
-        if: steps.merge.outcome == 'success'
+        if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
         uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: pnpm
 
       - name: Install dependencies
-        if: steps.merge.outcome == 'success'
+        if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
         run: pnpm install
 
       - name: Build kumo
-        if: steps.merge.outcome == 'success'
+        if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
         run: pnpm --filter @cloudflare/kumo build
 
       - name: Build docs
-        if: steps.merge.outcome == 'success'
+        if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
         run: pnpm --filter @cloudflare/kumo-docs-astro build
 
       - name: Deploy to Cloudflare Pages (kumo.dsuk.top)
-        if: steps.merge.outcome == 'success'
+        if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -124,51 +142,28 @@ jobs:
           command: pages deploy packages/kumo-docs-astro/dist --project-name=kumo-docs-zh --branch=main
 
       - name: Report changed docs files
-        if: steps.merge.outputs.merged == 'true'
+        if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
         run: |
+          PRE=$(git rev-parse "${{ steps.merge.outputs.pre }}")
           {
             echo "## 同步结果"
             echo "上游提交: \`$(head -c 8 /tmp/upstream-sha.txt)\`"
+            echo "合并方式: ${{ steps.merge.outputs.conflict == 'true' && 'opencode 解冲突' || '无冲突自动合并' }}"
             echo ""
-            echo "### 本次上游变更涉及的文档文件（可能影响已翻译页面，需补译检查）"
-            if [ -s /tmp/changed-docs.txt ]; then
-              sed 's/^/- \`/' /tmp/changed-docs.txt | sed 's/$/\`/'
+            echo "### 本次涉及的文档文件（opencode 已检查补译）"
+            CHANGED=$(git diff --name-only "$PRE" -- \
+              packages/kumo-docs-astro/src/pages \
+              packages/kumo-docs-astro/src/components \
+              packages/kumo-docs-astro/src/layouts 2>/dev/null || true)
+            if [ -n "$CHANGED" ]; then
+              echo "$CHANGED" | sed 's/^/- \`/' | sed 's/$/\`/'
             else
               echo "（无文档内容变更，仅组件源码/依赖变化）"
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: File translation request issue for changed docs
-        if: steps.merge.outputs.merged == 'true'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const sha = fs.readFileSync('/tmp/upstream-sha.txt', 'utf8').trim().slice(0, 8);
-            let changed = '';
-            try { changed = fs.readFileSync('/tmp/changed-docs.txt', 'utf8').trim(); } catch {}
-            if (!changed) { console.log('no doc files changed; skip issue'); return; }
-            const files = changed.split('\n').filter(Boolean);
-            const existing = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'translation',
-            });
-            if (existing.data.some((i) => i.title.includes(sha))) {
-              console.log(`open translation issue already exists for ${sha}; skip`);
-              return;
-            }
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `translation: 需补译上游 ${sha}`,
-              labels: ['translation'],
-              body: `上游 \`cloudflare/kumo@${sha}\` 的文档内容有更新，以下文件需要增量补译为简体中文：\n\n${files.map((f) => '- ' + f).join('\n')}\n\n翻译 Agent 会自动处理本 issue（translate workflow），完成后会评论并关闭本 issue。`
-            });
-
       - name: Prune upstream workflows and push merged zh
-        if: steps.merge.outcome == 'success'
+        if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -179,9 +174,36 @@ jobs:
           cp /tmp/sync-deploy.yml .github/workflows/sync-deploy.yml
           cp /tmp/translate.yml .github/workflows/translate.yml
           git add -A
-          if git diff --cached --quiet; then
+          if git diff --cached --quiet && ! git rev-parse -q --verify MERGE_HEAD >/dev/null; then
             echo "no changes to commit; nothing to push"
           else
             git commit -m "chore(zh): sync upstream $(head -c 8 /tmp/upstream-sha.txt)"
             git push origin zh
           fi
+
+      - name: File issue on sync or translation failure
+        if: failure() && steps.merge.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let sha = 'unknown';
+            try { sha = fs.readFileSync('/tmp/upstream-sha.txt', 'utf8').trim().slice(0, 8); } catch {}
+            const title = `sync/translation failed for upstream ${sha}`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'translation',
+            });
+            if (existing.data.some((i) => i.title.includes(sha))) {
+              console.log(`open issue already exists for ${sha}; skip`);
+              return;
+            }
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              labels: ['translation'],
+              body: `自动同步或翻译在合并 upstream \`${sha}\` 时失败（事件 ${context.eventName}）。\n\nopencode 未能自动解决冲突或构建未通过。请查看运行日志：${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\n触发时间: ${new Date().toISOString()}`,
+            });
