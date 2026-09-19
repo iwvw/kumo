@@ -174,12 +174,12 @@ jobs:
           cp /tmp/sync-deploy.yml .github/workflows/sync-deploy.yml
           cp /tmp/translate.yml .github/workflows/translate.yml
           git add -A
-          if git diff --cached --quiet && ! git rev-parse -q --verify MERGE_HEAD >/dev/null; then
-            echo "no changes to commit; nothing to push"
-          else
+          if ! git diff --cached --quiet; then
             git commit -m "chore(zh): sync upstream $(head -c 8 /tmp/upstream-sha.txt)"
-            git push origin zh
+          elif git rev-parse -q --verify MERGE_HEAD >/dev/null; then
+            git commit -m "chore(zh): sync upstream $(head -c 8 /tmp/upstream-sha.txt)"
           fi
+          git push origin zh
 
       - name: File issue on sync or translation failure
         if: failure() && steps.merge.outputs.changed == 'true'
