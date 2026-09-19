@@ -86,11 +86,13 @@ import {
 
 <ComponentSection>
 
-## 自定义 X 轴标签格式
+## 自定义时间戳与数值格式
 
 <p>
-  使用 <code>xAxisTickLabelFormat</code> 属性控制 x 轴刻度标签的渲染方式。格式化
-  函数接收以毫秒为单位的原始时间戳并返回显示字符串，从而覆盖 ECharts 内置的时间格式。
+  使用 <code>xAxisTickFormat</code> 自定义 x 轴标签，使用
+  <code>tooltipTimestampFormat</code> 自定义标准提示框和标记提示框中的时间戳。
+  两者都接收以毫秒为单位的原始时间戳，因此可以一致地应用用户选择的时区。
+  未提供格式化函数时，提示框时间戳使用浏览器的语言和时区。
 </p>
 
   <ComponentExample demo="CustomAxisLabelFormatDemo">
