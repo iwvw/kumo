@@ -11,6 +11,7 @@ import {
   getComponentData,
   formatPropType,
   formatDefault,
+  translateDescription,
   type PropSchema,
 } from "~/lib/component-registry";
 
@@ -62,7 +63,7 @@ const hasDescriptions =
             const defaultDisplay = formatDefault(prop);
 
             // Build description: use prop.description, or for enums show variant descriptions
-            let description = prop.description || "";
+            let description = translateDescription(prop.description || "");
 
             return (
               <tr class="border-b border-kumo-hairline">

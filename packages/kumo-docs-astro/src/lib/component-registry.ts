@@ -6,6 +6,9 @@
 // Import the registry JSON from the kumo package export
 import registry from "@cloudflare/kumo/ai/component-registry.json";
 
+// Simplified-Chinese translations for prop descriptions, keyed by the English source
+import propDescriptionsZh from "./prop-descriptions-zh.json";
+
 // Import shared types from @cloudflare/kumo
 import type {
   ComponentRegistry,
@@ -16,6 +19,16 @@ import type {
 
 // Re-export types for convenience
 export type { PropSchema, SubComponentSchema as SubComponentData };
+
+/**
+ * Translate a prop description to Simplified Chinese when a translation exists.
+ * Falls back to the original English string.
+ */
+export function translateDescription(description: string): string {
+  return (
+    (propDescriptionsZh as Record<string, string>)[description] ?? description
+  );
+}
 
 // Alias for backwards compatibility
 export type ComponentData = ComponentSchema;
