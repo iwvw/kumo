@@ -238,6 +238,55 @@ kbd,
   line-height: inherit;
 }
 
+/* Markdown-rendered prop descriptions inside the API reference tables.
+   These live in a .not-prose table, so they need their own compact styling. */
+.prop-description {
+  line-height: 1.5;
+}
+
+.prop-description > :first-child {
+  margin-top: 0;
+}
+
+.prop-description > :last-child {
+  margin-bottom: 0;
+}
+
+.prop-description p {
+  margin: 0.25rem 0;
+}
+
+.prop-description ul,
+.prop-description ol {
+  margin: 0.25rem 0;
+  padding-left: 1.125rem;
+  list-style: disc;
+}
+
+.prop-description ol {
+  list-style: decimal;
+}
+
+.prop-description li {
+  margin: 0.125rem 0;
+}
+
+.prop-description code {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.9em;
+  background-color: var(--color-kumo-base);
+  border: 1px solid var(--color-kumo-hairline);
+  border-radius: 0.25rem;
+  padding: 0.0625rem 0.25rem;
+}
+
+.prop-description strong {
+  font-weight: 600;
+  color: var(--text-color-kumo-strong);
+}
+
 /* ==========================================================================
    Shiki code blocks — markdown code blocks use .astro-code class
    Dual theme support: light (github-light) and dark (vesper)

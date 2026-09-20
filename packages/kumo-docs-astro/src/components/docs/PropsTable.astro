@@ -12,6 +12,7 @@ import {
   formatPropType,
   formatDefault,
   translateDescription,
+  renderDescription,
   type PropSchema,
 } from "~/lib/component-registry";
 
@@ -63,7 +64,9 @@ const hasDescriptions =
             const defaultDisplay = formatDefault(prop);
 
             // Build description: use prop.description, or for enums show variant descriptions
-            let description = translateDescription(prop.description || "");
+            const description = renderDescription(
+              translateDescription(prop.description || ""),
+            );
 
             return (
               <tr class="border-b border-kumo-hairline">
@@ -78,7 +81,13 @@ const hasDescriptions =
                   {defaultDisplay !== "-" ? <code>{defaultDisplay}</code> : "-"}
                 </td>
                 {hasDescriptions && (
-                  <td class="px-4 py-3 text-xs max-w-md">{description || "-"}</td>
+                  <td class="px-4 py-3 text-xs max-w-md">
+                    {description ? (
+                      <div class="prop-description" set:html={description} />
+                    ) : (
+                      "-"
+                    )}
+                  </td>
                 )}
               </tr>
             );

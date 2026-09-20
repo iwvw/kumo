@@ -6,6 +6,8 @@
 // Import the registry JSON from the kumo package export
 import registry from "@cloudflare/kumo/ai/component-registry.json";
 
+import { marked } from "marked";
+
 // Simplified-Chinese translations for prop descriptions, keyed by the English source
 import propDescriptionsZh from "./prop-descriptions-zh.json";
 
@@ -28,6 +30,16 @@ export function translateDescription(description: string): string {
   return (
     (propDescriptionsZh as Record<string, string>)[description] ?? description
   );
+}
+
+/**
+ * Render a prop description as inline HTML.
+ * Descriptions are written as markdown (inline code, bullet lists, bold);
+ * `marked` turns them into HTML. Raw angle brackets are not used outside
+ * code spans, so the result is safe to inject.
+ */
+export function renderDescription(description: string): string {
+  return marked.parse(description, { async: false }) as string;
 }
 
 // Alias for backwards compatibility
