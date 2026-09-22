@@ -12,6 +12,9 @@ import PropsTable from "~/components/docs/PropsTable.astro";
 import {
   PopoverHeroDemo,
   PopoverBasicDemo,
+  PopoverLegacyContentDemo,
+  PopoverOverflowDemo,
+  PopoverCssVariablesDemo,
   PopoverWithCloseDemo,
   PopoverPositionDemo,
   PopoverCustomContentDemo,
@@ -58,13 +61,18 @@ import { Popover, Button } from "@cloudflare/kumo";
 
 export default function Example() {
   return (
-    <Popover>
+    <Popover.Root>
       <Popover.Trigger render={<Button />}>Open</Popover.Trigger>
-      <Popover.Content>
-        <Popover.Title>Popover Title</Popover.Title>
-        <Popover.Description>Popover content goes here.</Popover.Description>
-      </Popover.Content>
-    </Popover>
+      <Popover.Portal>
+        <Popover.Positioner>
+          <Popover.Popup>
+            <Popover.Arrow />
+            <Popover.Title>Popover Title</Popover.Title>
+            <Popover.Description>Popover content goes here.</Popover.Description>
+          </Popover.Popup>
+        </Popover.Positioner>
+      </Popover.Portal>
+    </Popover.Root>
   );
 }
 ```
@@ -152,6 +160,42 @@ export default function Example() {
   <PopoverBasicDemo client:load />
 </ComponentExample>
 
+### 已弃用的 Content 兼容性
+
+<p>
+  `Popover.Content` 已弃用，但仍保留可用，以确保现有的 Popover
+  不会失效。它将 `Portal`、`Positioner`、`Popup` 和 `Arrow`
+  组合为一个组件，并且仅使用透明度平滑淡入，不带缩放或
+  变换动画。新的 Popover 应按照基础示例所示
+  组合各个独立部分。
+</p>
+<ComponentExample demo="PopoverLegacyContentDemo">
+  <PopoverLegacyContentDemo client:load />
+</ComponentExample>
+
+### 可滚动内容
+
+<p>
+  当箭头和标题需要保持固定时，请将溢出的内容放入
+  内部滚动容器中。已弃用的 `Popover.Content`
+  上现有的溢出样式仍由其仅淡入的过渡所支持。
+</p>
+<ComponentExample demo="PopoverOverflowDemo">
+  <PopoverOverflowDemo client:load />
+</ComponentExample>
+
+### CSS 变量
+
+<p>
+  Base UI 将触发元素与视口边缘之间的空间暴露为
+  `--available-height`。此示例为弹出层设置 320px 的首选高度，
+  然后将该变量用作其最大高度，以便在可用空间较少时
+  弹出层收缩且其内部内容滚动。
+</p>
+<ComponentExample demo="PopoverCssVariablesDemo">
+  <PopoverCssVariablesDemo client:load />
+</ComponentExample>
+
 ### 带关闭按钮
 
 <ComponentExample demo="PopoverWithCloseDemo">
@@ -161,7 +205,7 @@ export default function Example() {
 ### 定位
 
 <p>
-  使用 `side` 属性控制 Popover
+  在 `Popover.Positioner` 上使用 `side` 属性来控制 Popover
   相对触发元素出现的位置。
 </p>
 <ComponentExample demo="PopoverPositionDemo">
@@ -191,7 +235,7 @@ export default function Example() {
 ### 虚拟锚点
 
 <p>
-  在 `Popover.Content` 上使用 `anchor` 属性，将 Popover 定位到触发元素以外的其他
+  在 `Popover.Positioner` 上使用 `anchor` 属性，将 Popover 定位到触发元素以外的其他
   元素上，或定位到某个虚拟点（例如 `getBoundingClientRect()` 返回的
   `DOMRect`）。当触发器与期望的锚点位于不同的组件树中时，
   这会非常有用。
@@ -208,7 +252,7 @@ export default function Example() {
 
 ## API 参考
 
-### Popover
+### Popover.Root
 
 <p>负责管理 Popover 打开状态的基础组件。</p>
 <PropsTable component="Popover" />
@@ -221,14 +265,55 @@ export default function Example() {
 </p>
 <PropsTable component="Popover.Trigger" />
 
+### Popover.Portal
+
+<p>
+  在应用的 DOM 层级之外渲染 Popover。它默认使用来自
+  `KumoPortalProvider` 的容器，并接受 `container` 属性
+  来覆盖该容器。
+</p>
+<PropsTable component="Popover.Portal" />
+
+### Popover.Backdrop
+
+<p>一个可选背景遮罩，渲染在 Popover 后方。</p>
+<PropsTable component="Popover.Backdrop" />
+
+### Popover.Positioner
+
+<p>
+  将弹出层相对于其触发元素或某个 `anchor` 定位。使用 `side`、
+  `align` 及其偏移属性来控制放置位置。
+</p>
+<PropsTable component="Popover.Positioner" />
+
+### Popover.Popup
+
+<p>
+  带样式的弹出层容器。将 `Popover.Arrow` 和 Popover 内容
+  直接放在其中。
+</p>
+<PropsTable component="Popover.Popup" />
+
+### Popover.Arrow
+
+<p>一个可选箭头，指向 Popover 的锚点。</p>
+<PropsTable component="Popover.Arrow" />
+
+### Popover.Viewport
+
+<p>
+  用于在多个触发元素共用一个弹出层时，为内容变化添加动画的视口。
+  普通的 Popover 或可滚动内容并不需要它。
+</p>
+<PropsTable component="Popover.Viewport" />
+
 ### Popover.Content
 
 <p>
-  用于承载 Popover 内容的容器。通过 `side`、`align`、`sideOffset` 和
-  `alignOffset` 属性控制定位。使用 `anchor` 属性可定位到自定义元素或虚拟点，
-  而不是触发器。当 Popover 需要脱离层叠上下文
-  （例如位于粘性头部内部）时，使用
-  `positionMethod="fixed"`。
+  一个已弃用的兼容包装组件，组合了 `Portal`、`Positioner`、
+  `Popup` 和 `Arrow`。现有用法仍受支持，但新代码应
+  组合上文所示的各个独立部分。
 </p>
 <PropsTable component="Popover.Content" />
 
