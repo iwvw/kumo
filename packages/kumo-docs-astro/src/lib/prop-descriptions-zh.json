@@ -131,6 +131,7 @@
   "Error message or validation error object.": "错误消息或验证错误对象。",
   "Error message string or validation error object with `match` key.": "错误消息字符串或带有 `match` 键的验证错误对象。",
   "Error message to display if the delete action fails": "删除操作失败时显示的错误消息",
+  "Exactly one action. Pass `menu` to LayerDialog.Action for related actions such as \"Save as draft\".": "恰好一个操作。如需相关操作（例如“另存为草稿”），请将 `menu` 传给 LayerDialog.Action。",
   "Explicit bubble radius `(value) => px`. Overrides the default `minRadius`/`maxRadius` scaling.": "显式气泡半径 `(value) => px`。覆盖默认的 `minRadius`/`maxRadius` 缩放。",
   "Fill behind the land and graticule. Default: the Kumo base surface.": "陆地和经纬网后面的填充。默认值：Kumo 基础表面。",
   "Fill for regions with no matching data row. Defaults to the neutral land grey.": "没有匹配数据行的区域的填充。默认值为中性土地灰色。",

@@ -14,11 +14,13 @@ import {
   LayerDialogAlertDemo,
   LayerDialogCancelDemo,
   LayerDialogCleanupDemo,
+  LayerDialogFormDemo,
   LayerDialogInformationalDemo,
   LayerDialogMaxHeightDemo,
   LayerDialogNestedDemo,
   LayerDialogPendingDemo,
   LayerDialogSizeDemo,
+  LayerDialogSplitActionDemo,
   LayerDialogTopAlignDemo,
 } from "~/components/demos/LayerDialogDemo";
 
@@ -72,9 +74,9 @@ export default function Example() {
         </LayerDialog.Description>
         <LayerDialog.Body>{/* form fields */}</LayerDialog.Body>
         <LayerDialog.Actions>
-          <LayerDialog.Actions.Primary onClick={save}>
+          <LayerDialog.Action onClick={save}>
             Save hostname
-          </LayerDialog.Actions.Primary>
+          </LayerDialog.Action>
         </LayerDialog.Actions>
       </LayerDialog.Content>
     </LayerDialog.Root>
@@ -91,7 +93,7 @@ export default function Example() {
 - 无 `Actions` 时：在标题栏中显示 X，且底部无操作栏。
 - 有 `Actions` 时：移除 X，并显示含**关闭**或**取消**及一个主操作的底部操作栏。在移动端，它们保持在滚动正文下方、以发丝分隔线隔开；在桌面端，它们保留在固定底部操作栏中。
 
-使用方不能混用这些布局，也不能添加更多主操作。只读内容用 X，用户必须提交变更时用 `Actions`，破坏性操作或重要确认用 `LayerDialog.Alert`。
+使用方不能混用这些布局，也不能添加无关的底部控件。`Actions` 接受一个 `Action`，它可以可选地暴露相关菜单项。只读内容用 X，用户必须提交变更时用 `Actions`，破坏性操作或重要确认用 `LayerDialog.Alert`。
 
 `Description` 直接渲染在粘性标题栏内的标题下方，并成为对话框的可访问描述。没有它时，则由正文文本来描述对话框。
 </ComponentSection>
@@ -104,8 +106,24 @@ export default function Example() {
 
 <ComponentSection>
 ## 标准操作
-添加 `Actions` 会恰好选择一个 Kumo 主操作和一个自动生成的**关闭**按钮。在移动端，操作保持在滚动正文下方、以发丝分隔线隔开；在桌面端，它们占据固定的底部操作栏。使用方不能添加自定义控件、修改按钮尺寸或增加额外 CTA。主操作接受 `variant="primary"`（默认）或 `variant="destructive"`。
+添加 `Actions` 会恰好选择一个 Kumo 主操作和一个自动生成的**关闭**按钮。在移动端，操作保持在滚动正文下方、以发丝分隔线隔开；在桌面端，它们占据固定的底部操作栏。使用方不能添加无关的底部控件或额外 CTA。主操作接受 `variant="primary"`（默认）或 `variant="destructive"`。
 <ComponentExample demo="LayerDialogActionDemo"><LayerDialogActionDemo client:load /></ComponentExample>
+</ComponentSection>
+
+<ComponentSection>
+## 原生表单
+
+`Body` 和 `Actions` 是独立的插槽，因此原生 `<form>` 属于 `Body` 内部，而其提交按钮属于 `Actions`。给表单一个 ID，然后用其 HTML `form` 属性关联主操作。这保留了内置验证，并在没有 React 状态的情况下支持非受控表单字段。
+
+<ComponentExample demo="LayerDialogFormDemo"><LayerDialogFormDemo client:load /></ComponentExample>
+</ComponentSection>
+
+<ComponentSection>
+## 多个主操作
+
+通过 `LayerDialog.Action` 的 `menu` 属性传入相关操作。它会在操作旁渲染一个标准化的拆分按钮箭头。让自动关闭按钮保持独立。例如，**保存并部署** 可以暴露 **另存为草稿**，而不会把底部操作栏变成三个同级操作。
+
+<ComponentExample demo="LayerDialogSplitActionDemo"><LayerDialogSplitActionDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
@@ -253,45 +271,16 @@ export default function Example() {
 ### LayerDialog.Actions
 
 <p>
-  包含一个自动关闭按钮和恰好一个 `LayerDialog.Actions.Primary` 的底部操作栏。
+  包含一个自动关闭按钮和恰好一个 `LayerDialog.Action` 的底部操作栏。
 </p>
 <PropsTable component="LayerDialog.Actions" />
 
-### LayerDialog.Actions.Primary
+### LayerDialog.Action
 
 <p>
-  唯一的主操作。渲染一个 Kumo `Button`，接受 `onClick`、`disabled`、`type`
-  等标准按钮属性。
+  唯一的主操作。渲染一个 Kumo `Button`，并接受 `onClick`、`disabled` 和 `type`
+  等标准按钮属性。通过 `menu` 传入菜单项，可渲染匹配的拆分按钮菜单。
 </p>
-<div class="mb-4 overflow-hidden rounded-lg border border-kumo-hairline">
-  <table class="w-full text-sm">
-    <thead class="bg-kumo-elevated">
-      <tr>
-        <th class="px-4 py-2 text-left font-medium">属性</th>
-        <th class="px-4 py-2 text-left font-medium">类型</th>
-        <th class="px-4 py-2 text-left font-medium">默认值</th>
-        <th class="px-4 py-2 text-left font-medium">描述</th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-kumo-hairline">
-      <tr>
-        <td class="px-4 py-2 font-mono text-xs">variant</td>
-        <td class="px-4 py-2 font-mono text-xs">"primary" | "destructive"</td>
-        <td class="px-4 py-2 font-mono text-xs">"primary"</td>
-        <td class="px-4 py-2 text-kumo-subtle">
-          操作的视觉强调程度。在确认删除等不可逆操作时使用 `destructive`。
-        </td>
-      </tr>
-      <tr>
-        <td class="px-4 py-2 font-mono text-xs">loading</td>
-        <td class="px-4 py-2 font-mono text-xs">boolean</td>
-        <td class="px-4 py-2 font-mono text-xs">false</td>
-        <td class="px-4 py-2 text-kumo-subtle">
-          操作待处理期间显示加载指示器并禁用操作。
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<PropsTable component="LayerDialog.Action" />
 
 </ComponentSection>
