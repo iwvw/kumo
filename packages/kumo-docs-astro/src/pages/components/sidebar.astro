@@ -259,7 +259,7 @@ const { state, isPeeking } = useSidebar();
       <div>
         <Heading level={3}>过渡完成</Heading>
         <p>
-          当某些工作必须等待侧边栏或可折叠分区的过渡结束后才能进行（如测量布局或滚动新展开的内容）时，请使用 <code class="rounded bg-kumo-control px-1 py-0.5 text-xs">onOpenChangeComplete</code>。回调会收到最终的打开状态，并且在 reduced motion 禁用过渡时也会执行。
+          当某些工作必须等待侧边栏或可折叠分区的过渡结束后才能进行（如测量布局或滚动新展开的内容）时，请使用 <code class="rounded bg-kumo-control px-1 py-0.5 text-xs">onOpenChangeComplete</code>。回调会收到最终的打开状态，并且在 reduced motion 禁用过渡时也会执行。当侧边栏或移动端抽屉显示或隐藏已打开的分区时，<code class="rounded bg-kumo-control px-1 py-0.5 text-xs">Sidebar.Collapsible</code> 也会触发完成回调，因此回调始终与用户所见一致。
         </p>
         <ComponentExample code={`const [completion, setCompletion] = useState("");
 
