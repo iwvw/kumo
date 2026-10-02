@@ -386,5 +386,8 @@
   "Which side of the trigger the popover appears on.\n- `\"top\"` — Above the trigger\n- `\"bottom\"` — Below the trigger\n- `\"left\"` — Left of the trigger\n- `\"right\"` — Right of the trigger": "弹出层出现在触发器的哪一侧。\n- `\"top\"` — 触发器上方\n- `\"bottom\"` — 触发器下方\n- `\"left\"` — 触发器左侧\n- `\"right\"` — 触发器右侧",
   "Which side the sidebar is on.": "侧边栏位于哪一侧。",
   "Zoom level — multiplies the auto-fit scale. Default: `1.25`.": "缩放级别 — 乘以自动适配比例。默认值：`1.25`。",
-  "`Select.Option` elements to render in the dropdown.": "`Select.Option` 元素，用于在下拉框中渲染。"
+  "`Select.Option` elements to render in the dropdown.": "`Select.Option` 元素，用于在下拉框中渲染。",
+  "Layout direction of the checkbox items": "校验框项目的布局方向。",
+  "Visual appearance applied to all Checkbox.Item children. - `\"default\"` — Standard inline checkbox items - `\"card\"` — Choice card with border, padding, and highlighted selection state Individual items can override this with their own `appearance` prop.": "应用于所有 `Checkbox.Item` 子元素的视觉外观。\n- `\"default\"` — 标准内联校验框项目\n- `\"card\"` — 带边框、内边距和突出选中状态的选择卡片\n单个项目可通过自身的 `appearance` 属性覆盖此设置。",
+  "When true, checkbox appears before label. When false, label appears before checkbox. Defaults to true for default appearance and false for card appearance.": "为 true 时，校验框出现在标签之前；为 false 时，标签出现在校验框之前。默认外观下默认为 true，卡片外观下默认为 false。"
 }

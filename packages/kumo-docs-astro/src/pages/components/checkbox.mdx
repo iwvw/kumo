@@ -20,6 +20,8 @@ import {
   CheckboxErrorDemo,
   CheckboxGroupDemo,
   CheckboxGroupErrorDemo,
+  CheckboxCardDemo,
+  CheckboxCardHorizontalDemo,
   CheckboxLegendSrOnlyDemo,
   CheckboxLegendCustomDemo,
 } from "~/components/demos/CheckboxDemo";
@@ -132,6 +134,27 @@ export default function Example() {
 </p>
 <ComponentExample demo="CheckboxGroupErrorDemo">
   <CheckboxGroupErrorDemo client:visible />
+</ComponentExample>
+
+### 卡片式 Checkbox
+
+<p>
+  在组上使用 `appearance="card"`，可将每个选项显示为单个卡片中可通过分隔线
+  分隔选择的行。可结合每个项目的 `description` 属性获得更丰富的内容。
+  卡片项目默认将 Checkbox 放在标签之后，除非设置了 `controlFirst`。
+</p>
+<ComponentExample demo="CheckboxCardDemo">
+  <CheckboxCardDemo client:visible />
+</ComponentExample>
+
+### 卡片式 Checkbox（水平）
+
+<p>
+  将 `appearance="card"` 与 `orientation="horizontal"` 结合，可将选项在同一个
+  卡片内排列成两列。
+</p>
+<ComponentExample demo="CheckboxCardHorizontalDemo">
+  <CheckboxCardHorizontalDemo client:visible />
 </ComponentExample>
 
 ### 视觉隐藏的图例
