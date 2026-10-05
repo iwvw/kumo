@@ -1,7 +1,7 @@
 ---
 layout: ~/layouts/MdxDocLayout.astro
 title: "Slider"
-description: "An input for picking a number, or a range between two numbers, by dragging a thumb along a track."
+description: "一种输入组件，通过沿轨道拖动滑块来选择单个数值或两个数值之间的范围。"
 sourceFile: "components/slider"
 ---
 
@@ -30,15 +30,15 @@ import {
 
 <ComponentSection>
 
-## Installation
+## 安装
 
-### Barrel
+### 桶式导出
 
 ```tsx
 import { Slider } from "@cloudflare/kumo";
 ```
 
-### Granular
+### 细粒度导入
 
 ```tsx
 import { Slider } from "@cloudflare/kumo/components/slider";
@@ -50,7 +50,7 @@ import { Slider } from "@cloudflare/kumo/components/slider";
 
 <ComponentSection>
 
-## Usage
+## 用法
 
 ```tsx
 import { Slider } from "@cloudflare/kumo";
@@ -60,7 +60,7 @@ export default function Example() {
 }
 ```
 
-`Slider` is built on [Base UI's Slider](https://base-ui.com/react/components/slider). Props such as `value`, `defaultValue`, `min`, `max`, `step`, `format`, and `onValueChange` are passed through to it.
+`Slider` 基于 [Base UI 的 Slider](https://base-ui.com/react/components/slider) 构建。`value`、`defaultValue`、`min`、`max`、`step`、`format` 和 `onValueChange` 等属性会传递给底层组件。
 
 </ComponentSection>
 
@@ -68,51 +68,51 @@ export default function Example() {
 
 <ComponentSection>
 
-## Examples
+## 示例
 
-### Basic Slider
+### 基础滑块
 
-<p>A single thumb, with the value in a badge below it and the minimum and maximum at either end.</p>
+<p>单个滑块，其下方的徽章中显示数值，两端分别显示最小值和最大值。</p>
 <ComponentExample demo="SliderBasicDemo">
   <SliderBasicDemo client:visible />
 </ComponentExample>
 
-### Range
+### 范围
 
-<p>Pass an array to `value` or `defaultValue` to render one thumb per value. Use `getAriaLabel` to give each thumb its own accessible name.</p>
+<p>向 `value` 或 `defaultValue` 传入数组，即可为每个数值渲染一个滑块。使用 `getAriaLabel` 为每个滑块提供独立的无障碍名称。</p>
 <ComponentExample demo="SliderRangeDemo">
   <SliderRangeDemo client:visible />
 </ComponentExample>
 
-### Custom Range and Step
+### 自定义范围和步长
 
-<p>Set `min`, `max`, and `step` to constrain the values.</p>
+<p>设置 `min`、`max` 和 `step` 以约束数值。</p>
 <ComponentExample demo="SliderStepDemo">
   <SliderStepDemo client:visible />
 </ComponentExample>
 
-### Formatted Values
+### 格式化数值
 
-<p>`format` takes `Intl.NumberFormat` options and applies to the badges, the range labels, and the value announced to assistive technology.</p>
+<p>`format` 接受 `Intl.NumberFormat` 选项，并应用于徽章、范围标签以及向辅助技术宣告的数值。</p>
 <ComponentExample demo="SliderFormatDemo">
   <SliderFormatDemo client:visible />
 </ComponentExample>
 
-### Sizes
+### 尺寸
 
-<p>Use `size="sm"` for dense layouts.</p>
+<p>在紧凑布局中使用 `size="sm"`。</p>
 <ComponentExample demo="SliderSizesDemo">
   <SliderSizesDemo client:visible />
 </ComponentExample>
 
-### Controlled
+### 受控
 
-<p>Pass `value` and `onValueChange` to control the slider.</p>
+<p>传入 `value` 和 `onValueChange` 以控制滑块。</p>
 <ComponentExample demo="SliderControlledDemo">
   <SliderControlledDemo client:visible />
 </ComponentExample>
 
-### Disabled
+### 禁用
 
 <ComponentExample demo="SliderDisabledDemo">
   <SliderDisabledDemo client:visible />
@@ -124,11 +124,11 @@ export default function Example() {
 
 <ComponentSection>
 
-## Accessibility
+## 无障碍
 
-- Each thumb is a native range input, so arrow keys, <kbd>Page Up</kbd>/<kbd>Page Down</kbd>, and <kbd>Home</kbd>/<kbd>End</kbd> work by default.
-- `label` names the slider and its thumb. Without a visible label, pass `getAriaLabel`.
-- The value badges and range labels are hidden from assistive technology, because each thumb already announces its formatted value.
+- 每个滑块都是原生 range 输入，因此默认支持方向键、<kbd>Page Up</kbd>/<kbd>Page Down</kbd> 以及 <kbd>Home</kbd>/<kbd>End</kbd>。
+- `label` 为滑块及其滑标提供名称。没有可见标签时，请传入 `getAriaLabel`。
+- 数值徽章和范围标签对辅助技术隐藏，因为每个滑块已经会宣告其格式化后的数值。
 
 </ComponentSection>
 
@@ -136,7 +136,7 @@ export default function Example() {
 
 <ComponentSection>
 
-## API Reference
+## API 参考
 
   <PropsTable component="Slider" />
 </ComponentSection>

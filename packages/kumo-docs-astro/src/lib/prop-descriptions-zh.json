@@ -389,5 +389,15 @@
   "`Select.Option` elements to render in the dropdown.": "`Select.Option` 元素，用于在下拉框中渲染。",
   "Layout direction of the checkbox items": "校验框项目的布局方向。",
   "Visual appearance applied to all Checkbox.Item children. - `\"default\"` — Standard inline checkbox items - `\"card\"` — Choice card with border, padding, and highlighted selection state Individual items can override this with their own `appearance` prop.": "应用于所有 `Checkbox.Item` 子元素的视觉外观。\n- `\"default\"` — 标准内联校验框项目\n- `\"card\"` — 带边框、内边距和突出选中状态的选择卡片\n单个项目可通过自身的 `appearance` 属性覆盖此设置。",
-  "When true, checkbox appears before label. When false, label appears before checkbox. Defaults to true for default appearance and false for card appearance.": "为 true 时，校验框出现在标签之前；为 false 时，标签出现在校验框之前。默认外观下默认为 true，卡片外观下默认为 false。"
+  "When true, checkbox appears before label. When false, label appears before checkbox. Defaults to true for default appearance and false for card appearance.": "为 true 时，校验框出现在标签之前；为 false 时，标签出现在校验框之前。默认外观下默认为 true，卡片外观下默认为 false。",
+  "Label displayed above the slider track.": "显示在滑块轨道上方的标签。",
+  "Accessible name for each thumb. Use it when there is no visible `label`, or to tell the thumbs of a range slider apart.": "每个滑块的无障碍名称。在没有可见的 `label` 时使用，或用于区分范围滑块中的各个滑块。",
+  "Controlled value. Pass an array to render one thumb per value (a range).": "受控值。传入数组可为每个数值渲染一个滑块（范围）。",
+  "Uncontrolled initial value. Pass an array to render one thumb per value (a range).": "非受控的初始值。传入数组可为每个数值渲染一个滑块（范围）。",
+  "Called when the value changes while dragging or from the keyboard": "在拖动期间或通过键盘更改值时调用",
+  "Minimum value of the slider (default: 0)": "滑块的最小值（默认：0）",
+  "Maximum value of the slider (default: 100)": "滑块的最大值（默认：100）",
+  "Amount the value changes per step (default: 1)": "每步数值变化的幅度（默认：1）",
+  "Formats the value badges, range labels, and the value announced to assistive technology": "格式化数值徽章、范围标签以及向辅助技术宣告的数值",
+  "Whether the slider is disabled": "滑块是否被禁用"
 }
