@@ -1,6 +1,7 @@
 {
   "A function that returns a ReactNode to format the selected value in the trigger. Required when using object values. Use `placeholder` for the empty state.": "一个函数，返回用于在触发器中格式化选中值的 `ReactNode`。使用对象值时必填。空状态使用 `placeholder`。",
   "Accessible description for screen readers. When provided, it is passed to ECharts' `aria.label.description` and announced when the chart receives focus. Consumers are responsible for writing a meaningful description — see the W3C guidance on complex images for recommendations.": "供屏幕阅读器使用的无障碍描述。提供后，该描述会传递给 ECharts 的 `aria.label.description`，并在图表获得焦点时播报。使用者需自行编写有意义的描述——建议参阅 W3C 关于复杂图片的指南。",
+  "Accessible label for the tooltip button.": "工具提示按钮的无障碍标签。",
   "Accessible labels for i18n.": "用于国际化的无障碍标签。",
   "Accessible labels for localization.": "用于本地化的无障碍标签。",
   "Accessible name of the automatic X button. Overrides the `close` translation from KumoLocaleProvider.": "自动 X 按钮的无障碍名称。覆盖 `KumoLocaleProvider` 中的 `close` 翻译。",
@@ -79,6 +80,7 @@
   "Container element for the portal. Use this to render the dialog inside a Shadow DOM or custom container. Overrides `KumoPortalProvider` context.": "传送门的容器元素。使用此属性可在 Shadow DOM 或自定义容器中渲染对话框。覆盖 `KumoPortalProvider` 上下文。",
   "Container element for the portal. Use this to render toasts inside a Shadow DOM or custom container. Overrides `KumoPortalProvider` context.": "传送门的容器元素。使用此属性可在 Shadow DOM 或自定义容器中渲染提示消息。覆盖 `KumoPortalProvider` 上下文。",
   "Content rendered inside the badge.": "渲染在徽章内部的内容。",
+  "Content shown when `showOptional` is `true`.": "当 `showOptional` 为 `true` 时显示的内容。",
   "Content to display in the tooltip": "在工具提示中显示的内容。",
   "Content to display. String children are copied unless `value` is provided.": "要显示的内容。除非提供了 `value`，否则字符串子元素会被复制。",
   "Content — typically `<Sidebar>` + main content.": "内容——通常是 `<Sidebar>` 加上主要内容。",

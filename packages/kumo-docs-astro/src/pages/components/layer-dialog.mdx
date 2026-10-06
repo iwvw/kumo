@@ -19,6 +19,7 @@ import {
   LayerDialogMaxHeightDemo,
   LayerDialogNestedDemo,
   LayerDialogPendingDemo,
+  LayerDialogSearchDemo,
   LayerDialogSizeDemo,
   LayerDialogSplitActionDemo,
   LayerDialogTopAlignDemo,
@@ -116,6 +117,14 @@ export default function Example() {
 `Body` 和 `Actions` 是独立的插槽，因此原生 `<form>` 属于 `Body` 内部，而其提交按钮属于 `Actions`。给表单一个 ID，然后用其 HTML `form` 属性关联主操作。这保留了内置验证，并在没有 React 状态的情况下支持非受控表单字段。
 
 <ComponentExample demo="LayerDialogFormDemo"><LayerDialogFormDemo client:load /></ComponentExample>
+</ComponentSection>
+
+<ComponentSection>
+## 搜索与选择器
+
+控件可以作为 `Body` 的第一个元素。此处一个无标签的搜索输入框直接位于标题栏下方，因此请为它提供 `aria-label`。正文在其内容上方留有空间，因此输入框的边框和焦点环不会被滚动区域裁剪。
+
+<ComponentExample demo="LayerDialogSearchDemo"><LayerDialogSearchDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
