@@ -13,6 +13,11 @@ import {
   RadioBasicDemo,
   RadioDefaultDemo,
   RadioHorizontalDemo,
+  RadioSegmentedDemo,
+  RadioAppearanceComparisonDemo,
+  RadioSegmentedDisabledDemo,
+  RadioSegmentedLegendDemo,
+  RadioSegmentedLongLabelsDemo,
   RadioDescriptionDemo,
   RadioErrorDemo,
   RadioDisabledDemo,
@@ -99,6 +104,83 @@ export default function Example() {
 </p>
 <ComponentExample demo="RadioHorizontalDemo">
   <RadioHorizontalDemo client:visible />
+</ComponentExample>
+
+### Segmented
+
+<p>
+  对行内、紧凑的选项使用 `appearance="segmented"`。选项不会换行，
+  请据此进行设计。
+</p>
+<ComponentExample
+  demo="RadioSegmentedDemo"
+  vrSection="radio-segmented"
+  vrTitle="Radio segmented"
+>
+  <RadioSegmentedDemo client:visible />
+</ComponentExample>
+
+#### 什么时候应该使用分段样式？
+仅当选项组较小、标签较短且控件适合单行显示时，
+才使用分段样式。标签较长、选项带描述、选项数量多或布局较窄时，
+请使用默认样式。
+
+当选择会切换所显示的内容面板时，请改用 [Tabs](/components/tabs)
+组件。
+
+### 默认与分段
+
+<p>
+  外观仅改变呈现方式。两个示例都表示相同的互斥值。
+</p>
+<ComponentExample
+  demo="RadioAppearanceComparisonDemo"
+  vrSection="radio-appearance-comparison"
+  vrTitle="Radio default and segmented"
+>
+  <RadioAppearanceComparisonDemo client:visible />
+</ComponentExample>
+
+### 禁用的分段控件
+
+<p>
+  分段组支持禁用整个组或禁用单个选项。
+</p>
+<ComponentExample
+  demo="RadioSegmentedDisabledDemo"
+  vrSection="radio-segmented-disabled"
+  vrTitle="Radio segmented disabled"
+>
+  <RadioSegmentedDisabledDemo client:visible />
+</ComponentExample>
+
+### 带自定义图例的分段
+
+<p>
+  `Radio.Legend` 保留在分段表面之外，并作为组的
+  无障碍名称。
+</p>
+<ComponentExample
+  demo="RadioSegmentedLegendDemo"
+  vrSection="radio-segmented-legend"
+  vrTitle="Radio segmented custom legend"
+>
+  <RadioSegmentedLegendDemo client:visible />
+</ComponentExample>
+
+### 长标签与窄布局
+
+<p>
+  分段控件保持其固有宽度，其项目不会换行、收缩或截断。
+  当翻译后的标签或较窄的容器使选项组无法在一行内放下时，
+  请选择默认样式。
+</p>
+<ComponentExample
+  demo="RadioSegmentedLongLabelsDemo"
+  vrSection="radio-segmented-long-labels"
+  vrTitle="Radio segmented long labels"
+>
+  <RadioSegmentedLongLabelsDemo client:visible />
 </ComponentExample>
 
 ### 带描述

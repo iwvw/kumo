@@ -99,7 +99,8 @@ export default function Example() {
 
 <p>
   选择一段连续的日期范围。与 `numberOfMonths={2}` 配合可实现
-  并排双月视图。
+  并排双月视图。多月份视图会隐藏各月份之外的日期，
+  因此面板之间不会出现重复日期。设置 `showOutsideDays` 即可显示这些日期。
 </p>
 <ComponentExample demo="DatePickerRangeDemo">
   <DatePickerRangeDemo client:load />
