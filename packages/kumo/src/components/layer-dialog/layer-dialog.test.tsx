@@ -430,7 +430,7 @@ describe("LayerDialog.Body edge clipping", () => {
     const input = result.getByRole("textbox", { name: "Search" });
     const viewport = result
       .getByRole("dialog")
-      .querySelector<HTMLElement>("[role='presentation'][style*='overflow']")!;
+      .querySelector<HTMLElement>("[data-id$='-viewport'][style*='overflow']")!;
     const content = viewport.firstElementChild as HTMLElement;
 
     return {
@@ -629,7 +629,7 @@ describe("LayerDialog dismissal", () => {
     const collapsible = description.closest("[class*='grid-rows-']")!;
     const clip = collapsible.firstElementChild as HTMLElement;
     const viewport = popup.querySelector<HTMLElement>(
-      "[role='presentation'][style*='overflow']",
+      "[data-id$='-viewport'][style*='overflow']",
     )!;
 
     // jsdom has no layout, so stub the geometry the scroll handler reads.
