@@ -98,7 +98,9 @@ export default function Example() {
 ### 缩进条目
 
 <p>
-  在没有图标的条目上使用 `inset`，可让其文本与带图标的条目对齐。
+  当菜单中的任一条目带有图标时，没有图标的条目（包括标签）会自动缩进，
+  使它们的文本对齐。当自动检测无法看到图标时（例如条目通过 `render`
+  渲染自己的内容），请使用 `inset` 强制缩进。
 </p>
 <ComponentExample demo="DropdownInsetDemo">
   <DropdownInsetDemo client:load />
@@ -182,6 +184,38 @@ export default function Example() {
 <p>点击即可打开下拉的按钮。</p>
 <PropsTable component="DropdownMenu.Trigger" />
 
+### DropdownMenu.Content
+
+<p>
+  菜单弹出层。它组合了 `Portal`、`Positioner` 和 `Popup`：诸如 `side`、
+  `align`、`sideOffset` 和 `alignOffset` 之类的定位属性传递给
+  Positioner，`className` 传递给 Popup。
+</p>
+<PropsTable component="DropdownMenu.Content" />
+
+### DropdownMenu.Portal, Positioner and Popup
+
+<p>
+  组成 `Content` 的各部分。当你需要分别对 Positioner 和 Popup 进行样式
+  调整或配置时，可直接组合它们。`Portal` 遵循 `KumoPortalProvider`，
+  `Popup` 承载菜单表面样式和打开/关闭动画。
+</p>
+
+```tsx
+<DropdownMenu.Portal>
+  <DropdownMenu.Positioner side="top" align="end">
+    <DropdownMenu.Popup className="min-w-56">
+      <DropdownMenu.Item>Edit</DropdownMenu.Item>
+    </DropdownMenu.Popup>
+  </DropdownMenu.Positioner>
+</DropdownMenu.Portal>
+```
+
+<p>
+  两者接受与 Base UI 的 `Menu.Positioner` 和 `Menu.Popup` 相同的属性。
+  完整列表请参阅 [Base UI Menu 文档](https://base-ui.com/react/components/menu)。
+</p>
+
 ### DropdownMenu.Item
 
 <p>用于操作的单个菜单条目。</p>
@@ -211,13 +245,21 @@ export default function Example() {
 ### DropdownMenu.SubTrigger
 
 <p>
-  悬停或点击时打开嵌套子菜单的菜单条目。自动显示插入标记（caret）图标。
+  悬停或点击时打开嵌套子菜单的菜单条目。自动显示插入标记（caret）图标，
+  并在其子菜单打开时保持高亮。与 `Item` 一样，其 `icon` 属性接受 Phosphor
+  图标组件或渲染的元素。
 </p>
 <PropsTable component="DropdownMenu.SubTrigger" />
 
 ### DropdownMenu.SubContent
 
-<p>子菜单条目的容器。相对于 SubTrigger 定位。</p>
+<p>
+  子菜单条目的容器。相对于 SubTrigger 定位。当子菜单位于触发器旁边时，
+  它会取消弹出层的内边距，使第一个条目与触发器对齐，并稍微与父菜单重叠。
+  如果没有足够的空间而移动到触发器的上方或下方，则使用与顶级菜单相同的
+  间距。传入 `sideOffset` 或 `alignOffset`（一个数字或已解析 `side` 的函数）
+  进行覆盖。
+</p>
 <PropsTable component="DropdownMenu.SubContent" />
 
 ### DropdownMenu.Separator
