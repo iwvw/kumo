@@ -47,7 +47,7 @@ jobs:
 
       - name: Install opencode
         if: steps.guard.outputs.proceed == 'true'
-        run: curl -fsSL https://opencode.ai/install | bash
+        run: curl -fsSL --retry 3 --retry-delay 5 --retry-all-errors https://opencode.ai/install | bash
 
       - name: Run opencode agent (incremental translation)
         if: steps.guard.outputs.proceed == 'true'
@@ -78,7 +78,7 @@ jobs:
           PROMPT="$(cat /tmp/prompt.md)"
           OPENCODE=/home/runner/.opencode/bin/opencode
           echo "primary model: ${MODEL}"
-          if ! "${OPENCODE}" run -m "${MODEL}" "$PROMPT"; then
+          if ! "${OPENCODE}" run --auto -m "${MODEL}" "$PROMPT"; then
             echo "primary model failed; falling back to ${MODEL_BACKUP}"
-            "${OPENCODE}" run -m "${MODEL_BACKUP}" "$PROMPT" || exit 1
+            "${OPENCODE}" run --auto -m "${MODEL_BACKUP}" "$PROMPT" || exit 1
           fi

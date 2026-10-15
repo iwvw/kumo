@@ -64,7 +64,7 @@ jobs:
 
       - name: Install opencode
         if: steps.merge.outputs.changed == 'true'
-        run: curl -fsSL https://opencode.ai/install | bash
+        run: curl -fsSL --retry 3 --retry-delay 5 --retry-all-errors https://opencode.ai/install | bash
 
       - name: Resolve conflicts and translate via opencode
         id: agent
@@ -96,9 +96,9 @@ jobs:
           PROMPT="$(cat /tmp/prompt.md)"
           OPENCODE=/home/runner/.opencode/bin/opencode
           echo "primary model: ${MODEL}"
-          if ! "${OPENCODE}" run -m "${MODEL}" "$PROMPT"; then
+          if ! "${OPENCODE}" run --auto -m "${MODEL}" "$PROMPT"; then
             echo "primary model failed; falling back to ${MODEL_BACKUP}"
-            "${OPENCODE}" run -m "${MODEL_BACKUP}" "$PROMPT" || exit 1
+            "${OPENCODE}" run --auto -m "${MODEL_BACKUP}" "$PROMPT" || exit 1
           fi
           echo "--- remaining unmerged files (must be empty) ---"
           if [ -n "$(git diff --name-only --diff-filter=U)" ]; then
@@ -121,7 +121,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: pnpm
+          # 不使用 cache: pnpm —— setup-node 的 post 步骤会解析 pnpm store path
+          # 到不存在的路径并报 "Path Validation Error"，导致整个 job 判红（假阴性）。
+          # 该缓存也从未命中过，直接去掉。
 
       - name: Install dependencies
         if: steps.merge.outputs.proceed == 'true' && steps.agent.outcome != 'failure'
