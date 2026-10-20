@@ -11,7 +11,9 @@ import CodeBlock from "~/components/docs/CodeBlock.astro";
 import PropsTable from "~/components/docs/PropsTable.astro";
 import {
   TagInputDemo,
+  TagInputFormDemo,
   TagInputLimitedDemo,
+  TagInputReadOnlyDemo,
   TagInputLocalizationDemo,
   TagInputUnrestrictedDemo,
 } from "~/components/demos/TagInputDemo";
@@ -50,6 +52,14 @@ const [tags, setTags] = useState<string[]>([]);
 ### 最大数量
 <ComponentExample demo="TagInputLimitedDemo"><TagInputLimitedDemo client:load /></ComponentExample>
 
+### 表单
+设置 `name`，即可将每个标签作为独立的表单值提交，使 `FormData.getAll(name)` 返回所有标签。当焦点离开输入框时，仍留在输入框中的文本会转为一个标签，因此点击提交按钮时也会包含它。只要至少有一个标签，`required` 即可通过校验。
+<ComponentExample demo="TagInputFormDemo"><TagInputFormDemo client:load /></ComponentExample>
+
+### 只读
+`readOnly` 会显示标签并保持输入框可聚焦，但无法添加或移除标签。与原生只读输入框一样，即使设置了 `required`，它也会被表单校验跳过。
+<ComponentExample demo="TagInputReadOnlyDemo"><TagInputReadOnlyDemo client:load /></ComponentExample>
+
 ### 本地化
 <ComponentExample demo="TagInputLocalizationDemo"><TagInputLocalizationDemo client:load /></ComponentExample>
 
@@ -59,7 +69,7 @@ const [tags, setTags] = useState<string[]>([]);
 
 ## 行为
 
-按 Enter、逗号或 Tab 即可创建标签。失焦时也会提交当前值。粘贴以逗号或换行分隔的文本时，会同步创建每个值。重复值会被忽略。
+按 Enter、逗号或 Tab 即可创建标签。失焦时也会提交当前值。粘贴以逗号或换行分隔的文本时，会将其插入到光标处的当前文本中，然后同步创建每个值。粘贴不含分隔符的文本时，行为与普通粘贴相同。重复值会被忽略。
 
 ## 本地化
 
