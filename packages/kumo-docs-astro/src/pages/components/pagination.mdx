@@ -14,6 +14,7 @@ import {
   PaginationUnknownTotalDemo,
   PaginationFullDemo,
   PaginationMidPageDemo,
+  PaginationEmptyDemo,
   PaginationLargeDatasetDemo,
   PaginationCustomTextDemo,
   PaginationPageSizeSelectorDemo,
@@ -141,6 +142,25 @@ return (
 <ComponentExample demo="PaginationMidPageDemo">
   <PaginationMidPageDemo client:visible />
 </ComponentExample>
+
+### 空结果
+
+<p>
+  当 `totalCount={0}` 时，Pagination 会显示一个空页面，且 `setPage`
+  永远不会以页码 0 被调用。在第 1 页时，所有导航按钮均被禁用。如果结果可能在
+  后续页面变为空（例如经过筛选后），请将 `page` 重置为 1。
+</p>
+<ComponentExample demo="PaginationEmptyDemo">
+  <PaginationEmptyDemo client:visible />
+</ComponentExample>
+
+### 页码输入
+
+<p>
+  页码输入框接受整数页码。按 Enter 或将焦点移出即可跳转到该页。超出范围的数字
+  会跳转到第一页或最后一页。其他内容，例如 `abc`、`2.5` 或 `1e1`，会在不调用
+  `setPage` 的情况下恢复为当前页。
+</p>
 
 ### 大数据集
 
