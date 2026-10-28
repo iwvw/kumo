@@ -405,5 +405,6 @@
   "Maximum value of the slider (default: 100)": "滑块的最大值（默认：100）",
   "Amount the value changes per step (default: 1)": "每步数值变化的幅度（默认：1）",
   "Formats the value badges, range labels, and the value announced to assistive technology": "格式化数值徽章、范围标签以及向辅助技术宣告的数值",
-  "Whether the slider is disabled": "滑块是否被禁用"
+  "Whether the slider is disabled": "滑块是否被禁用",
+  "Masks the text initially and adds a control to reveal or hide it.": "初始时对文本进行掩码处理，并提供显示或隐藏文本的控件。"
 }

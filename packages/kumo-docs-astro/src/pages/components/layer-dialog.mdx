@@ -20,6 +20,7 @@ import {
   LayerDialogNestedDemo,
   LayerDialogPendingDemo,
   LayerDialogSearchDemo,
+  LayerDialogSeparatorDemo,
   LayerDialogSizeDemo,
   LayerDialogSplitActionDemo,
   LayerDialogTopAlignDemo,
@@ -125,6 +126,14 @@ export default function Example() {
 控件可以作为 `Body` 的第一个元素。此处一个无标签的搜索输入框直接位于标题栏下方，因此请为它提供 `aria-label`。正文在其内容上方留有空间，因此输入框的边框和焦点环不会被滚动区域裁剪。
 
 <ComponentExample demo="LayerDialogSearchDemo"><LayerDialogSearchDemo client:load /></ComponentExample>
+</ComponentSection>
+
+<ComponentSection>
+## 分隔正文内容
+
+在 `LayerDialog.Body` 的各个分区之间使用 `LayerDialog.Separator`。分隔线贯穿正文的水平内边距，横跨整个内容表面。
+
+<ComponentExample demo="LayerDialogSeparatorDemo"><LayerDialogSeparatorDemo client:load /></ComponentExample>
 </ComponentSection>
 
 <ComponentSection>
@@ -276,6 +285,11 @@ export default function Example() {
 
 <p>可滚动的内容区域。</p>
 <PropsTable component="LayerDialog.Body" />
+
+### LayerDialog.Separator
+
+<p>分隔正文内容各分区的全宽分隔线。</p>
+<PropsTable component="LayerDialog.Separator" />
 
 ### LayerDialog.Actions
 
