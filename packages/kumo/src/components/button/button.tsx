@@ -5,6 +5,7 @@ import { Tooltip } from "../tooltip/tooltip";
 import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
 import { useLinkComponent } from "../../utils/link-provider";
+import { unwrapLazyElement } from "../../utils/unwrap-lazy-element";
 
 /** Button variant definitions mapping shape, size, and variant names to their Tailwind classes. */
 export const KUMO_BUTTON_VARIANTS = {
@@ -133,7 +134,7 @@ export function buttonVariants({
     // Base styles
     "group flex w-max shrink-0 items-center font-medium select-none",
     "border-0 shadow-xs",
-    "focus:ring-kumo-focus/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-kumo-brand",
+    "focus:ring-kumo-focus/50 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-kumo-brand",
     "cursor-pointer",
     // Disabled state
     "disabled:cursor-not-allowed disabled:text-kumo-subtle",
@@ -202,7 +203,8 @@ const getTextClasses = (
 };
 
 // Normalize icon prop to support both React elements and component types
-const renderIconNode = (IconComponent?: Icon | React.ReactNode) => {
+const renderIconNode = (iconProp?: Icon | React.ReactNode) => {
+  const IconComponent = unwrapLazyElement(iconProp);
   if (!IconComponent) return null;
   if (React.isValidElement(IconComponent)) return IconComponent;
   const Comp = IconComponent as React.ComponentType<Record<string, unknown>>;

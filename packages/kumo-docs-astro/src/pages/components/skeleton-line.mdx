@@ -13,6 +13,8 @@ import {
   SkeletonLineHeightDemo,
   SkeletonLineBlockHeightDemo,
   SkeletonLineCardDemo,
+  SkeletonLineSketchDemo,
+  SkeletonLineSketchCardDemo,
 } from "~/components/demos/SkeletonLineDemo";
 
 {/* Hero Demo */}
@@ -81,6 +83,29 @@ import { SkeletonLine } from "@cloudflare/kumo";
   </ComponentExample>
 </ComponentSection>
 
+{/* Sketch Variant */}
+
+<ComponentSection>
+
+## 草图变体
+
+  <p class="mb-4">
+    设置 <code>variant="sketch"</code> 以获得线框风格的占位符：圆角填充带有相同的滑动微光、
+    1px 轮廓，以及更浅的构造线条，每条线条会超出每个角 4px。请在线条周围留出 4px 的空间，
+    以免具有 <code>overflow: hidden</code> 的父元素裁剪这些线条。
+    当用户偏好减少动态效果时，微光会停止。
+  </p>
+  <ComponentExample demo="SkeletonLineSketchDemo">
+    <SkeletonLineSketchDemo client:visible />
+  </ComponentExample>
+  <p class="mt-6 mb-4">
+    通过 <code>className</code> 为其指定高度和固定宽度，以便在文本行旁替代按钮、图标和徽章。
+  </p>
+  <ComponentExample demo="SkeletonLineSketchCardDemo">
+    <SkeletonLineSketchCardDemo client:visible />
+  </ComponentExample>
+</ComponentSection>
+
 {/* Card Loading State */}
 
 <ComponentSection>
@@ -111,6 +136,11 @@ import { SkeletonLine } from "@cloudflare/kumo";
         </tr>
       </thead>
       <tbody>
+        <tr class="border-b border-kumo-hairline">
+          <td class="px-4 py-3 font-mono text-xs">variant</td>
+          <td class="px-4 py-3 font-mono text-xs">"default" | "sketch"</td>
+          <td class="px-4 py-3 font-mono text-xs">"default"</td>
+        </tr>
         <tr class="border-b border-kumo-hairline">
           <td class="px-4 py-3 font-mono text-xs">minWidth</td>
           <td class="px-4 py-3 font-mono text-xs">number</td>
