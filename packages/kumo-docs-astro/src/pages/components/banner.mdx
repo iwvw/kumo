@@ -18,6 +18,7 @@ import {
   BannerWithIconDemo,
   BannerWithActionDemo,
   BannerWithActionsDemo,
+  BannerWithLinksDemo,
   BannerCompactDemo,
   BannerCompactWithCtaDemo,
   BannerCompactWithoutActionDemo,
@@ -122,6 +123,16 @@ export default function Example() {
 <ComponentExample demo="BannerWithActionsDemo">
   <BannerWithActionsDemo client:visible />
 </ComponentExample>
+
+### 带链接操作
+
+传入 `href` 可将 `Banner.Action` 渲染为链接。它会通过应用的 [`LinkProvider`](/components/link#framework-integration-linkprovider) 组件渲染，因此一旦 `LinkProvider` 配置了路由器的链接，就会使用客户端路由。使用 `external` 可在新标签页中打开链接。
+
+<ComponentExample demo="BannerWithLinksDemo">
+  <BannerWithLinksDemo client:visible />
+</ComponentExample>
+
+禁用的链接操作会渲染为禁用的按钮，阻止导航。
 
 ### 紧凑尺寸
 
